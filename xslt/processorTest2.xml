@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="processorTest2.xml"?>
+<xsl:stylesheet
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	version="2.0">
+	
+	<xsl:output
+		method="html"
+		encoding="UTF-8"
+		indent="yes"
+		doctype-public="-//W3C//DTD HTML 4.01//EN"
+		doctype-system="http://www.w3.org/TR/html4/strict.dtd"/>
+	
+	<xsl:template match="/">
+		<html lang="en">
+			<head>
+				<title>XSLT processor test</title>
+			</head>
+			<body>
+				<h1>XSLT processor test</h1>
+				<div>
+					<table border="1">
+						<thead>
+							<tr>
+								<th>property name</th>
+								<th>property value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>xsl:version</td>
+								<td><xsl:value-of select="system-property('xsl:version')"/></td>
+							</tr>
+							<tr>
+								<td>xsl:vendor</td>
+								<td><xsl:value-of select="system-property('xsl:vendor')"/></td>
+							</tr>
+							<tr>
+								<td>xsl:vendor-url</td>
+								<td><xsl:value-of select="system-property('xsl:vendor-url')"/></td>
+							</tr>
+							<tr>
+								<td>msxsl:version</td>
+								<td><xsl:value-of xmlns:msxsl="urn:schemas-microsoft-com:xslt" select="system-property('msxsl:version')"/></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</body>
+		</html>
+	</xsl:template>
+	
+</xsl:stylesheet>
