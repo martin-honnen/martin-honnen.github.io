@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset=UTF-8>
+<title>MSXML 3 test</title>
+<script>
+window.onload = function() {
+  var xml = '<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40"><Worksheet ss:Name="Карточка">....<\/Worksheet> <Worksheet ss:Name="Баланс">...<\/Worksheet><\/Workbook>';
+
+  var doc = new ActiveXObject('MSXML2.DOMDocument.3.0');
+  doc.loadXML(xml);
+  doc.setProperty('SelectionLanguage', 'XPath');
+  doc.setProperty('SelectionNamespaces', 'xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"');
+
+
+  var names = doc.selectNodes('/ss:Workbook/ss:Worksheet/@ss:Name');
+
+  for (var i = 0, l = names.length; i < l; i++) {
+    var name = names[i].nodeValue;
+    document.body.insertAdjacentHTML('beforeEnd', '<p>' + name + '<\/p>');
+  }
+}
+</script>
+</head>
+<body>
+<h1>MSXML 3 test</h1>
+</body>
+</html>
