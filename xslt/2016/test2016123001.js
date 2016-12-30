@@ -22,7 +22,7 @@ var xsltCode = [
     '<xsl:template match="/">',
 
     '    <xsl:for-each select="products/test[$ids = \'\' or contains(concat(\'|\', $ids, \'|\'), id)]">',
-    '        <a href="#"> Hello # <xsl:value-of select="value"/></a>'.
+    '        <a href="#"> Hello # <xsl:value-of select="value"/></a>',
     '    </xsl:for-each>',
 
     '</xsl:template>',
