@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Testing XSLT transformation</title>
+    <script src="test2016123001.js"></script>
+    <script>
+      function parseXmlStringForTransformation(xml) {
+      	  try {
+      	  	  var doc = new ActiveXObject('Msxml2.DOMDocument.6.0');
+      	  	  doc.loadXML(xml);
+      	  	  return doc;
+      	  }
+      	  catch (e) {
+      	  	  var domParser = new DOMParser();
+      	  	  var doc = domParser.parseFromString(xml, 'application/xml');
+      	  	  return doc;
+      	 }
+      }
+      
+      function transform(xmlDoc, xslDoc, xsltParams, targetElement) {
+		  if (typeof XSLTProcessor !== 'undefined') {
+			var proc = new XSLTProcessor();
+			proc.importStylesheet(xslDoc);
+			
+			for (var prop in xsltParams) {
+			  proc.setParameter(null, prop, xsltParams[prop]);
+			}
+			
+			var resultFrag = proc.transformToFragment(xmlDoc, targetElement.ownerDocument);
+			
+			targetElement.textContent = '';
+			targetElement.appendChild(resultFrag);
+		  }
+		  else {
+			  var template = new ActiveXObject('Msxml2.XslTemplate.6.0');
+			  template.stylesheet = xslDoc;
+			  var proc = template.createProcessor();
+			  
+			  for (var prop in xsltParams) {
+				proc.addParameter(prop, xsltParams[prop]);
+			  }
+			  
+			  proc.input = xmlDoc;
+			  
+			  proc.transform();
+			  
+			  var resultHTML = proc.output;
+			  
+			  targetElement.innerHTML = resultHTML;
+		  }
+      }
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        transform(
+        	parseXmlStringForTransformation(inputXml),
+        	parseXmlStringForTransformation(xsltCode),
+        	{ ids : 'test_value2'},
+        	document.getElementById('d1')
+        );
+      })
+    </script>
+  </head>
+
+  <body>
+    <h1>Testing XSLTProcessor</h1>
+    <div id="d1"></div>
+  </body>
+
+</html>
