@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<title>place the picture</title>
+<script>
+function Place() {
+
+ document.getElementById("image").style.left = '180px';
+ document.getElementById("image").style.top = '150px';
+ // show the picture
+ document.getElementById("image").style.display = "block";
+ }
+</script>
+  </head>
+
+  <body>
+
+ <iframe name="frm1" style="width:49%; height:300px; position:relative;" src="test2014112106.html"></iframe>
+
+ <div id="image" style="position:absolute; z-index:5; display:none">
+   <img src="../images/kiboInside.gif" border="0">
+ </div>
+
+ <div>
+  <input type="button" onclick="Place()" value="Place the picture"/>
+ </div>
+
+</body>
+
+</html>

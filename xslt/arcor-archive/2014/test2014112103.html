@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Saxon CE test</title>
+    <script src="../saxonceDebug/Saxonce.nocache.js"></script>
+    <script>
+    function onSaxonLoad()
+    {
+      Saxon.setLogLevel('SEVERE');
+
+      var xslt = Saxon.requestXML("test2014112101.xsl")
+      var xsltProc = Saxon.newXSLT20Processor(xslt);
+      
+      var input = Saxon.requestXML("test2014112101.xml");
+      
+      //var filter = Saxon.requestXML("test2014112102.xml");
+      var req = new XMLHttpRequest();
+      req.open('GET', 'test2014112102.xml', false);
+      req.send();
+      var filter = req.responseXML;
+      
+      xsltProc.setParameter(null, "filter", filter);
+      
+      var result = xsltProc.transformToDocument(input);
+      
+      var resultString = Saxon.serializeXML(result);
+      
+      console.log(resultString);
+      var pre = document.createElement('pre');
+      pre.textContent = resultString;
+      document.body.appendChild(pre);
+    }
+    </script>
+  </head>
+    <body>
+    <h1>Saxon CE Test</h1>
+    </body>
+</html>
+  
+    

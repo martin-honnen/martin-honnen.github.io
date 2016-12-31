@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+  
+
+
+<script type='text/javascript'>//<![CDATA[ 
+window.onload=function(){
+var xmlMarkup = "<span field='text'>\n  <a href=\"aa\">aa</a><a href=\"bb\">bb</a>\n  <a href=\"cc\">cc</a> <a href=\"dd\">dd</a>\n  <a href=\"ee\">ee</a>- -<a href=\"ff\">ff</a>\n</span>";
+var xmlDoc = new ActiveXObject('Msxml2.DOMDocument.6.0');
+xmlDoc.loadXML(xmlMarkup);
+
+var xslDoc = new ActiveXObject('Msxml2.DOMDocument.6.0');
+xslDoc.loadXML([
+    '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">',
+    '<xsl:output method="xml" indent="no"/>',
+    '<xsl:template match="/">',
+    '<pre>',
+    '<xsl:copy-of select="span[@field = \'text\']"/>',
+    '</pre>',
+    '</xsl:template>',
+    '</xsl:stylesheet>'].join('\n'));
+
+document.getElementById('output').value = xmlDoc.transformNode(xslDoc);
+}//]]>  
+
+</script>
+
+
+</head>
+  <body>
+  <textarea id="output" rows="10" cols="80"></textarea>
+  
+</body>
+
+
+</html>
+
+

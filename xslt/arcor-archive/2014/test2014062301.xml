@@ -1,0 +1,57 @@
+<?xml-stylesheet type="text/xsl" href="test2014062301.xml"?>
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+
+<xsl:output
+  method="html"
+  encoding="UTF-8"
+  indent="yes"
+  doctype-public="-//W3C//DTD HTML 4.01//EN"
+  doctype-system="http://www.w3.org/TR/html4/strict.dtd"/>
+  
+<xsl:variable name="pageMaxLimit" select="15" />
+<xsl:variable name="page_constant" select="2"/>
+
+<xsl:variable name="start" select="($page_constant * $pageMaxLimit ) + 1" />
+
+<xsl:template match="/">
+  <html lang="en">
+    <head>
+      <title>Test</title>
+    </head>
+    <body>
+      <h1>Test</h1>
+      <div><xsl:value-of select="$start"/></div>
+      <div>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>property name</th>
+              <th>property value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>xsl:version</td>
+              <td><xsl:value-of select="system-property('xsl:version')"/></td>
+            </tr>
+            <tr>
+              <td>xsl:vendor</td>
+              <td><xsl:value-of select="system-property('xsl:vendor')"/></td>
+            </tr>
+            <tr>
+              <td>xsl:vendor-url</td>
+              <td><xsl:value-of select="system-property('xsl:vendor-url')"/></td>
+            </tr>
+            <tr>
+              <td>msxsl:version</td>
+              <td><xsl:value-of xmlns:msxsl="urn:schemas-microsoft-com:xslt" select="system-property('msxsl:version')"/></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </body>
+  </html>
+</xsl:template>
+
+</xsl:stylesheet>

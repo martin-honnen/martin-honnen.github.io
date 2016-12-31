@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+    <?xml-stylesheet type='text/xsl' href='test2014032503.xsl'?>
+    <LogFileProcessing>
+    <Test>
+    <Script>
+        <Name>Test 1</Name>
+        <Results>
+            <RunResult>
+                <RunNumber>1</RunNumber>
+                <Outcome>Pass</Outcome>
+                <StartTime>10:42:25</StartTime>
+                <EndTime>10:43:58</EndTime>
+                <Date>25/03/2014</Date>
+                <Duration>93 seconds</Duration>
+            </RunResult>
+            <RunResult>
+                <RunNumber>2</RunNumber>
+                <Outcome>Pass</Outcome>
+                <StartTime>10:44:03</StartTime>
+                <EndTime>10:45:13</EndTime>
+                <Date>25/03/2014</Date>
+                <Duration>70 seconds</Duration>
+            </RunResult>
+        </Results>
+    </Script>
+    <Script>
+        <Name>Test 2</Name>
+        <Results>
+            <RunResult>
+                <RunNumber>1</RunNumber>
+                <Outcome>Pass</Outcome>
+                <StartTime>10:45:17</StartTime>
+                <EndTime>10:46:37</EndTime>
+                <Date>25/03/2014</Date>
+                <Duration>80 seconds</Duration>
+            </RunResult>
+            <RunResult>
+                <RunNumber>2</RunNumber>
+                <Outcome>Pass</Outcome>
+                <StartTime>10:46:41</StartTime>
+                <EndTime>10:47:49</EndTime>
+                <Date>25/03/2014</Date>
+                <Duration>68 seconds</Duration>
+            </RunResult>
+        </Results>
+    </Script>
+</Test>
+</LogFileProcessing>

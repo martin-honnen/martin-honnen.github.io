@@ -1,0 +1,11 @@
+<?xml-stylesheet type="text/xsl" href="test2014110601.xsl"?>
+<books>
+<book>
+<name>Revolution</name>
+<qty value="4">1</qty>
+</book>
+<book>
+<name>Life of a pie</name>
+<qty value="4">5</qty>
+</book>
+</books>

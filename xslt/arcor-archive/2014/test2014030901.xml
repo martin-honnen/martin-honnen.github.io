@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <?xml-stylesheet href="test2014030901.xsl" type="text/xsl"?>
+        <people>
+         <list-name>Favorite Colors</list-name>
+         <person>
+           <name>
+            <first>Bob</first>
+            <last>Toddson</last>
+           </name>
+           <acct-no>327598</acct-no>
+           <fav-color hex="#ff0000">Red</fav-color>
+        </person>
+        <person>
+           <name>
+            <first>Red</first>
+            <last>McBlue</last>
+           </name>
+           <acct-no>209890</acct-no>
+           <fav-color hex="#00ff00">Green</fav-color>
+       </person>
+       <person>
+          <name>
+            <first>Tammy</first>
+            <last>Yu</last>
+          </name>
+          <acct-no>978541</acct-no>
+          <fav-color hex="#7fff00">Chartreuse</fav-color>
+       </person>
+       <person>
+          <name>
+           <first>Phillip</first>
+           <last>Cardwell</last>
+          </name>
+          <acct-no>258929</acct-no>
+          <fav-color hex="#d2b48c">Tan</fav-color>
+      </person>
+     </people>

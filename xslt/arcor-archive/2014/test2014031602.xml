@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="test2014031602.xsl"?>
+<products xmlns="http://example.com/products" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://example.com/products products.xsd">
+    <product>
+         <productname>Product 1</productname>
+         <productname>Product 2</productname>
+         <productname>Product 3</productname>
+         <productdetails>Details go here</productdetails>
+         .... other elements that I don't use....
+    </product>
+</products>

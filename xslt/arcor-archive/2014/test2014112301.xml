@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<?xml-stylesheet type ="text/xsl" href="test2014112301.xsl"?>
+
+<!DOCTYPE PhotoOrders SYSTEM "test2014112301.dtd">
+
+<PhotoOrders>
+    <outlet>
+        <name>Rite Aid #1021</name>
+        <address>123 Main Street</address>
+        <city>Fairport</city>
+        <state>NY</state> 
+        <zip>14450</zip>
+        <phone>(585)223-9999</phone>
+        <date>November 4,2013</date>/<time>1700</time>
+    </outlet>    
+    <customer>
+        <firstname>John Doe</firstname>
+        <address>172 Main Street</address>
+        <city>Fairport</city>
+        <state>NY</state> 
+        <zip>14450</zip>
+        <phone>(585)223-0000</phone>
+        <orders type="first">
+            <typeofmedium medium = "Flash_Drive" />
+            <numofcopies copies = "2" />
+            <sizeofphoto size = "4x6" />
+            <typeoffinishing finishing = "Matte" />
+            <urgency urgency = "Normal" /> 
+        </orders>
+        <orders type="second">
+            <typeofmedium medium = "CD" />
+            <numofcopies copies = "3" />
+            <sizeofphoto size = "8x11" />
+            <typeoffinishing finishing = "Black-White" />
+            <urgency urgency = "Normal" /> 
+        </orders>
+    </customer>   
+    <customer>
+        <firstname>Jane Public</firstname>
+    <lastname></lastname>
+        <address></address>
+        <city></city>
+        <state></state>
+        <zip></zip>
+        <phone>(585)555-0909</phone>
+    <email></email>
+        <orders type="first">
+            <typeofmedium medium = "Memory_Card" />
+            <numofcopies copies = "1" />
+            <sizeofphoto size = "10x14" />
+            <typeoffinishing finishing = "Matte" />
+            <urgency urgency = "Urgent" /> 
+        </orders>
+        <orders type="second">
+            <typeofmedium medium = "CD" />
+            <numofcopies copies = "2" />
+            <sizeofphoto size = "8x11" />
+            <typeoffinishing finishing = "Black-White" />
+            <urgency urgency = "Urgent" />   
+    </orders>
+    </customer>      
+</PhotoOrders>

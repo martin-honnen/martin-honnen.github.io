@@ -1,0 +1,49 @@
+<!-- PhotoOrders.dtd -->
+<!-- DTD document for PhotoOrders.xml -->
+
+<!ELEMENT PhotoOrders (outlet+, customer*)>
+<!ELEMENT outlet (name, address, city, state, zip, phone)>
+
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT address (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT state (#PCDATA)>
+<!ELEMENT zip (#PCDATA)>
+<!ELEMENT phone (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT time (#PCDATA)>
+
+<!ELEMENT customer (firstname, lastname, address, city, state, zip, phone, email, orders+)>
+<!ELEMENT firstname (#PCDATA)>
+<!ELEMENT lastname (#PCDATA)>
+<!ELEMENT address (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT state (#PCDATA)>
+<!ELEMENT zip (#PCDATA)>
+<!ELEMENT phone (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ATTLIST customer firstname CDATA #IMPLIED>
+<!ATTLIST customer lastname CDATA #REQUIRED>
+<!ATTLIST customer address CDATA #IMPLIED>
+<!ATTLIST customer city CDATA #IMPLIED>
+<!ATTLIST customer state CDATA #IMPLIED>
+<!ATTLIST customer zip CDATA #IMPLIED>
+<!ATTLIST customer phone CDATA #REQUIRED>
+<!ATTLIST customer email CDATA #IMPLIED>
+
+<!ELEMENT orders (typeofmedium, numofcopies, sizeofphoto, typeoffinishing, urgency)>
+
+<!ELEMENT typeofmedium EMPTY>
+<!ATTLIST typeofmedium medium (Flash_Drive | CD | DVD | Memory_Card ) "CD">
+
+<!ELEMENT numofcopies EMPTY>
+<!ATTLIST numofcopies copies (1 | 2 | 3 | 4) "1">
+
+<!ELEMENT sizeofphoto EMPTY>
+<!ATTLIST sizeofphoto size (4x6 | 8x11 | 5x12 | 10x14) "4X6">
+
+<!ELEMENT typeoffinishing EMPTY>
+<!ATTLIST typeoffinishing finishing (Matte | Glossy | Black-White) "Matte">
+
+<!ELEMENT urgency EMPTY>
+<!ATTLIST urgency urgency (Normal | Urgent) "Normal">

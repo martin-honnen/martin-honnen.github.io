@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="test2014111401.xsl"?>
+<images>
+  <image>
+    <file-name>image-with-umlaut-ä.png</file-name>
+    <text>arrow</text>
+  </image>
+</images>

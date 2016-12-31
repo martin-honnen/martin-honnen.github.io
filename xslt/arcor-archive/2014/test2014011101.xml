@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="test2014011101.xsl"?>
+<czolgi xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <czolg kraj_pochodzenia="ZSRR" typ="sredni">
+        <nazwa>T-34-85</nazwa>
+        <zaloga>
+            <zalogant>Dowódca</zalogant>
+            <zalogant>Kierowca</zalogant>
+            <zalogant>Celowniczy</zalogant>
+            <zalogant>Ładowniczy</zalogant>
+            <zalogant>Strzelec-radiotelegrafista</zalogant>
+        </zaloga>
+        <uzbrojenie>
+            <bron kaliber="85.0"> Armata czołgowa wz. 1944 ZiS-S-53 </bron>
+            <bron kaliber="7.62"> 2 Karabiny maszynowe DTM </bron>
+        </uzbrojenie>
+        <pancerz jednostka="mm">
+            <kadlub>45/45/45</kadlub>
+            <wieza>90/75/52</wieza>
+        </pancerz>
+        <info_dodatkowe>
+            <silnik moc="500KM">1 silnik wysokoprężny, 12-cylindrowy W-2-34</silnik>
+            <rok_wprowadzenia>1944</rok_wprowadzenia>
+        </info_dodatkowe>
+        <linki>
+            <link adres="http://pl.wikipedia.org/wiki/T-34/85"> Wikipedia PL</link>
+            <link adres="http://en.wikipedia.org/wiki/T-34/85"> Wikipedia EN</link>
+        </linki>
+    </czolg>
+.
+.
+.
+</czolgi>

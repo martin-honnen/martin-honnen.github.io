@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="processorTest3.xml"?>
+<xsl:stylesheet
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  version="3.0">
+
+<xsl:output
+  method="html"
+  version="4.01"
+  encoding="UTF-8"
+  indent="yes"
+  doctype-public="-//W3C//DTD HTML 4.01//EN"
+  doctype-system="http://www.w3.org/TR/html4/strict.dtd"/>
+  
+<xsl:template match="/" name="main">
+  <html lang="en">
+    <head>
+      <title>XSLT 3.0 processor test</title>
+      <style type="text/css">
+      tr:nth-child(even) { background-color: #D3D3D3; }
+      tr:nth-child(odd) { background-color: #FFF; }
+      </style>
+    </head>
+    <body>
+      <h1>XSLT 3.0 processor test</h1>
+      <div>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>property name</th>
+              <th>property value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>xsl:version</td>
+              <td><xsl:value-of select="system-property('xsl:version')"/></td>
+            </tr>
+            <tr>
+              <td>xsl:vendor</td>
+              <td><xsl:value-of select="system-property('xsl:vendor')"/></td>
+            </tr>
+            <tr>
+              <td>xsl:vendor-url</td>
+              <td><xsl:value-of select="system-property('xsl:vendor-url')"/></td>
+            </tr>
+            <tr>
+              <td>xsl:product-name</td>
+              <td><xsl:value-of select="system-property('xsl:product-name')"/></td>
+            </tr>
+            <tr>
+              <td>xsl:product-version</td>
+              <td><xsl:value-of select="system-property('xsl:product-version')"/></td>
+            </tr>
+            <tr>
+              <td>xsl:is-schema-aware</td>
+              <td><xsl:value-of select="system-property('xsl:is-schema-aware')"/></td>
+            </tr>
+            <tr>
+              <td>xsl:supports-streaming</td>
+              <td><xsl:value-of select="system-property('xsl:supports-streaming')"/></td>
+            </tr>
+            <tr>
+              <td>xsl:supports-dynamic-evaluation</td>
+              <td><xsl:value-of select="system-property('xsl:supports-dynamic-evaluation')"/></td>
+            </tr>
+            <tr>
+              <td>xsl:supports-backwards-compatibility</td>
+              <td><xsl:value-of select="system-property('xsl:supports-backwards-compatibility')"/></td>
+            </tr>
+            <tr>
+              <td>xsl:supports-namespace-axis</td>
+              <td><xsl:value-of select="system-property('xsl:supports-namespace-axis')"/></td>
+            </tr>  
+            <tr>
+              <td>xsl:supports-serialization</td>
+              <td><xsl:value-of select="system-property('xsl:supports-serialization')"/></td>
+            </tr>  
+            <tr>
+              <td>msxsl:version</td>
+              <td><xsl:value-of xmlns:msxsl="urn:schemas-microsoft-com:xslt" select="system-property('msxsl:version')"/></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </body>
+  </html>
+</xsl:template>
+
+</xsl:stylesheet>
+
