@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Testing XSLTProcessor</title>
+		<script>
+    function loadDoc(url) {
+           return new Promise(function(resolve) {
+             var req = new XMLHttpRequest();
+             req.open("GET", url);
+             req.onload = function() {
+               resolve(this.responseXML)
+             }
+             req.send();
+           });
+      }
+      
+      function transform(xmlUrl, xslUrl, targetElement) {
+        Promise.all([loadDoc(xmlUrl), loadDoc(xslUrl)]).then(function(data) {
+          var xmlDoc = data[0];
+          var xslDoc = data[1];
+          
+          if (typeof XSLTProcessor !== 'undefined') {
+            var proc = new XSLTProcessor();
+            proc.importStylesheet(xslDoc);
+            
+            var resultDoc = proc.transformToDocument(xmlDoc);
+            
+            console.log(resultDoc);
+            
+            targetElement.textContent = new XMLSerializer().serializeToString(resultDoc);
+          }
+        })
+      }
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        transform('test2016081103.xml', 'test201608110301.xsl', document.getElementById('result1'));
+      })			
+		</script>
+	</head>
+	<body>
+		<h1>Testing XSLTProcessor</h1>
+		<section>
+			<h2>Test output</h2>
+			<pre id="result1"></pre>
+		</section>
+	</body>
+</html>

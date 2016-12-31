@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="test2016032701.xsl"?>
+<purple> 
+    <customer cid="1">
+        <fname>John</fname> 
+        <lname>Klingard</lname> 
+        <apt>27</apt> 
+        <street>30th Winstonhut St.</street> 
+        <pobox>199183</pobox> 
+    </customer>
+</purple>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="test2016012406.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Test</title>
+<script src="test2016012406.js"></script>
+</head>
+<body>
+<h1>Test</h1>
+<div><input type="button" value="test" onclick="testXslt({type:'test'});"/></div>
+</body>
+</html>

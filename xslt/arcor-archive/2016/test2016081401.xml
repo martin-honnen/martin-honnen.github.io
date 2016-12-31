@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalogue [
+  <!ATTLIST xsl:transform
+     id ID #REQUIRED>
+]>
+<?xml-stylesheet type="text/xsl" href="#style"?>
+<catalogue>
+<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" id="style">
+
+    <xsl:output method="html" doctype-public="about:legacy-compat" encoding="UTF-8" indent="yes" />
+    <xsl:strip-space elements="*"/>
+
+    <xsl:template match="xsl:transform"/>
+    
+    <xsl:template match="/">
+      <html>
+        <head>
+          <title>data URI test</title>
+        </head>
+        <body>
+          <xsl:apply-templates/>
+        </body>
+      </html>
+    </xsl:template>
+
+    <xsl:template match="catalogue">
+        <table>
+            <thead>
+                <xsl:apply-templates select="item[1]" mode="header"/>
+            </thead>
+            <tbody>
+                <xsl:apply-templates/>
+            </tbody>
+        </table>
+    </xsl:template>
+    
+    <xsl:template match="item" mode="header">
+        <tr>
+            <xsl:apply-templates mode="header"/>
+        </tr>
+    </xsl:template>
+    
+    <xsl:template match="item/*" mode="header">
+        <th>
+            <xsl:value-of select="local-name()"/>
+        </th>
+    </xsl:template>
+    
+    <xsl:template match="item">
+        <tr>
+            <xsl:apply-templates/>
+        </tr>
+    </xsl:template>
+    
+    <xsl:template match="item/*">
+        <td>
+            <xsl:value-of select="."/>
+        </td>
+    </xsl:template>
+    
+    <xsl:template match="item/image">
+        <td>
+            <img src="data:image/png;base64,{.}"/>
+        </td>
+    </xsl:template>
+    
+</xsl:transform>
+
+    <item>
+        <item_id>1007</item_id>
+        <item_desc>test</item_desc>
+        <price>3.14</price>
+        <image>iVBORw0KGgoAA
+AANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAABlBMVEUAAAD///+l2Z/dAAAAM0l
+EQVR4nGP4/5/h/1+G/58ZDrAz3D/McH8yw83NDDeNGe4Ug9C9zwz3gVLMDA/A6
+P9/AFGGFyjOXZtQAAAAAElFTkSuQmCC</image>
+    </item>
+    <item>
+        <item_id>1234</item_id>
+        <item_desc>hi-fi sanio</item_desc>
+        <price>12.50</price>
+        <image>iVBORw0KGgoAAAANSUhEUgAAANIAAAAzCAYAAADigVZlAAA</image>
+    </item>
+    <item>
+        <item_id>4614</item_id>
+        <item_desc>lace work</item_desc>
+        <price>1.50</price>
+        <image>QN0lEQVR4nO2dCXQTxxnHl0LT5jVteHlN+5q+JCKBJITLmHIfKzBHHCCYBAiEw</image>
+    </item>
+    <item>
+        <item_id>614</item_id>
+        <item_desc>bicycle</item_desc>
+        <price>150</price>
+        <image>jVteHlN+5q+JCKBJITLmHIfKzBHHCCYBAiEwlEQVR4nO2dCXQTxxnHl0L</image>
+    </item>
+</catalogue>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+			<title>XSLT transformation test</title>
+			<script>
+		function transform(xml, xsl) {
+		  console.time('Transformation');
+		  var sheet = new ActiveXObject('Msxml2.FreeThreadedDOMDocument.6.0');
+		  sheet.async = false;
+		  sheet.load(xsl);
+		  
+		  var template = new ActiveXObject('Msxml2.XslTemplate.6.0');
+		  template.stylesheet = sheet;
+		  
+		  var input = new ActiveXObject('Msxml2.DOMDocument.6.0');
+		  input.async = false;
+		  input.load(xml);
+		  
+		  var processor = template.createProcessor();
+		  processor.input = input;
+		  processor.transform();
+		  var result = processor.output;
+		  console.timeEnd('Transformation');
+		  console.log('Transformation finished.');
+		  
+		  console.time('Rendering');		  
+		  document.getElementById('result').innerHTML = result;
+		  console.timeEnd('Rendering');
+		  console.log('innerHTML setting finished.');
+		}
+		document.addEventListener('DOMContentLoaded', function() {
+		  transform('input2016070705records10000.xml', 'test2016070705.xsl');
+		  },
+		  false
+		);
+		</script>
+	</head>
+	<body>
+		<section>
+			<h1>XSLT transformation test</h1>
+			<section>
+				<h2>Result</h2>
+				<div id="result"></div>
+			</section>
+		</section>
+	</body>
+</html>

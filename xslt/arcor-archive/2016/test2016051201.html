@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>test</title>
+<script>
+var xml = "<Actions><action><html><body><pre xml:space=\"preserve\">"
+	+ "\nThis line is not split and it ends with a dedicated ctrl-lf.\n"
+        + "This is a new line. It also continues until the full-stop, then has a ctrl-lf.\n"
+	+ "This is the third and therewith the last line.\n<\/pre><\/body><\/html><\/action><\/Actions>";	
+
+		
+var xsl = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+	+ "<xsl:stylesheet xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\" version=\"1.0\">"
+	+ "<xsl:preserve-space elements=\"*\"/>"
+        + "<xsl:template match=\"/\"><Actions><xsl:for-each select=\"//action\"><action><description><xsl:apply-templates select=\"html/*\" />"
+        + "<\/description><\/action><\/xsl:for-each><\/Actions><\/xsl:template><xsl:template match=\"html//pre\"><xsl:text>&lt;code&gt;<\/xsl:text>"
+	+ "<xsl:apply-templates select=\"node()\"/><xsl:text>&lt;/code&gt;<\/xsl:text><\/xsl:template>"
+	+ "<xsl:template match=\"text()\"><xsl:value-of select=\".\"/><\/xsl:template><\/xsl:stylesheet>";
+
+function test1() {
+	var xmlDoc = new ActiveXObject('Msxml2.DOMDocument.6.0');
+	xmlDoc.loadXML(xml);
+	
+	var sheet = new ActiveXObject('Msxml2.DOMDocument.6.0');
+	sheet.loadXML(xsl);
+	
+	var result = xmlDoc.transformNode(sheet);
+	
+	var pre = document.createElement('pre');
+	pre.textContent = result;
+	
+	document.getElementById('test1').appendChild(pre);
+}
+
+window.onload = function() {
+	test1();
+};
+</script>
+</head>
+  <body>
+    <h1>Test</h1>
+    <section id="test1">
+      <h2>Test 1</h2>
+    </section>
+  </body>
+</html>

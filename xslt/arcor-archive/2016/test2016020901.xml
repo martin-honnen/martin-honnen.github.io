@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="test2016020901.xsl"?>
+<ROOT Name="Desired">
+    <CHILD>
+        <DETAIL Name="NotTheDesired">
+        </DETAIL>
+    </CHILD>
+</ROOT>

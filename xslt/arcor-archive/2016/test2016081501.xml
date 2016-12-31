@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+
+    <test>
+        <id>test_value1</id>
+        <value>1</value>
+    </test>
+
+    <test>
+        <id>test_value2</id>
+        <value>2</value>
+    </test>
+
+</products>
