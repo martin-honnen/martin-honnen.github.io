@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>some XSLTProcessor tests</title>
+
+<script>
+function testObjectSupport() {
+  document.body.insertAdjacentHTML('beforeEnd', '<p>typeof XSLTProcessor: ' + (typeof XSLTProcessor) + '.<\/p>');
+  if (typeof XSLTProcessor != 'undefined')
+  {
+      var proc = new XSLTProcessor();
+      document.body.insertAdjacentHTML('beforeEnd', '<p>typeof transformToDocument: ' + typeof(proc.transformToDocument) + '.<\/p>');
+      document.body.insertAdjacentHTML('beforeEnd', '<p>typeof transformToFragment: ' + typeof(proc.transformToFragment) + '.<\/p>');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', testObjectSupport, false);
+</script>
+
+<script>
+function testTransformToDocument(xmlDoc, xslDoc) {
+  if (typeof XSLTProcessor != 'undefined') {
+    var proc = new XSLTProcessor();
+    proc.importStylesheet(xslDoc);
+    var resultDoc = proc.transformToDocument(xmlDoc);
+    document.body.insertAdjacentHTML('beforeEnd', '<p>transformToDocument result: ' + resultDoc + '.<\/p>');
+  }
+}
+</script>
+
+<script>
+function testTransformToDocumentWithXMLHttpRequest() {
+  var req = new XMLHttpRequest();
+  req.open('GET', 'test2015111704.xml');
+  req.onload = function() {
+    var xml = req.responseXML;
+    var req2 = new XMLHttpRequest();
+    req2.open('GET', 'test2015111704.xsl');
+    req2.onload = function() {
+      testTransformToDocument(xml, this.responseXML);
+    };
+    req2.send();
+  };
+  req.send();
+}
+
+document.addEventListener('DOMContentLoaded', testTransformToDocumentWithXMLHttpRequest, false);
+</script>
+  
+<script>
+function testTransformToDocumentWithDOMParser() {
+  var xmlDoc = new DOMParser().parseFromString('<root><foo>bar<\/foo><\/root>', 'application/xml');
+  var xslDoc = new DOMParser().parseFromString('<!DOCTYPE xsl:stylesheet [<!ENTITY nbsp "&#160;">]><xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"><xsl:template match="/"><new-root><xsl:copy-of select="."/><xsl:text>&nbsp;<\/xsl:text><\/new-root><\/xsl:template><\/xsl:stylesheet>', 'application/xml');
+  testTransformToDocument(xmlDoc, xslDoc);
+}
+
+document.addEventListener('DOMContentLoaded', testTransformToDocumentWithDOMParser, false);
+</script>
+
+<script>
+function testTransformToFragment(xmlDoc, xslDoc) {
+  var proc = new XSLTProcessor();
+  proc.importStylesheet(xslDoc);
+  var docFrag = proc.transformToFragment(xmlDoc, document);
+  document.body.insertAdjacentHTML('beforeEnd', '<p>transformToFragment result: ' + docFrag + '.<\/p>');
+}
+</script>
+
+<script>
+function testTransformToFragmentWithXMLHttpRequest() {
+  var req = new XMLHttpRequest();
+  req.open('GET', 'test2015111704.xml');
+  req.onload = function() {
+    var xml = req.responseXML;
+    var req2 = new XMLHttpRequest();
+    req2.open('GET', 'test2015111704.xsl');
+    req2.onload = function() {
+      testTransformToFragment(xml, this.responseXML);
+    };
+    req2.send();
+  };
+  req.send();
+}
+
+document.addEventListener('DOMContentLoaded', testTransformToFragmentWithXMLHttpRequest, false);
+</script>
+
+<script>
+function runProcTest() {
+  var req = new XMLHttpRequest();
+  req.open('GET', 'http://home.arcor.de/martin.honnen/xslt/processorTest2.xml');
+  req.onload = function() {
+    var xml = req.responseXML;
+    var req2 = new XMLHttpRequest();
+    req2.open('GET', 'http://home.arcor.de/martin.honnen/xslt/processorTest2.xml');
+    req2.onload = function() {
+      var proc = new XSLTProcessor();
+      proc.importStylesheet(req.responseXML);
+      document.body.appendChild(proc.transformToFragment(xml, document));
+    };
+    req2.send();
+  };
+  req.send();
+}
+
+document.addEventListener('DOMContentLoaded', runProcTest, false);
+</script>
+
+</head>
+  <body>
+    <h1>some XSLTProcessor tests</h1>
+  </body>
+</html>

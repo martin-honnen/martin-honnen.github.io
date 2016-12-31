@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XMLHttpRequest and onload handler with asynchronous requests</title>
+<script>
+function makeRequest(url, loadedData, property, elementToAddResult) {
+  var req = new XMLHttpRequest();
+  req.open('GET', url);
+  // to allow us doing XSLT in IE
+  try { req.responseType = "msxml-document" } catch (ex) {}
+  req.onload = function() {
+    loadedData[property] = req.responseXML;
+    if (checkLoaded(loadedData)) {
+      displayResult(loadedData.xmlInput, loadedData.xsltSheet, elementToAddResult);
+    };
+  };
+  req.send();
+}  
+
+function checkLoaded(loadedData) {
+  return loadedData.xmlInput != null && loadedData.xsltSheet != null;
+}
+  
+function loadAndTransform(xml, xsl, elementToAddResult) {
+  var loadedData = { xmlInput: null, xsltSheet: null };
+  
+  makeRequest(xml, loadedData, 'xmlInput', elementToAddResult);
+  makeRequest(xsl, loadedData, 'xsltSheet', elementToAddResult);
+}  
+
+function displayResult(xmlInput, xsltSheet, elementToAddResult) {
+  if (typeof XSLTProcessor !== 'undefined') {
+    var proc = new XSLTProcessor();
+    proc.importStylesheet(xsltSheet);
+    elementToAddResult.appendChild(proc.transformToFragment(xmlInput, elementToAddResult.ownerDocument));
+  }
+  else if (typeof xmlInput.transformNode !== 'undefined') {
+    elementToAddResult.innerHTML = xmlInput.transformNode(xsltSheet);
+  }
+}
+</script>
+</head>
+  <body onload="loadAndTransform('catalog.xml', 'catalog.xsl', document.getElementById('example'));">
+<div id="example"></div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="test2015081201.xsl"?>
+<root>
+  <record>
+    <foo>John</foo>
+    <bar>Doe</bar>
+  </record>
+  <record>
+    <foo>Jane</foo>
+    <bar>Foe</bar>
+  </record>
+</root>

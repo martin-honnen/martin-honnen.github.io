@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>testing execution of XSLT code having a DOCTYPE node with XSLTProcessor</title>
+<script>
+function loadAndRunXslt(xmlUrl, xsltUrl, targetElement) {
+  var req1 = new XMLHttpRequest();
+  req1.open('GET', xmlUrl);
+  req1.onload = function() {
+    var xmlDoc = this.responseXML;
+    var req2 = new XMLHttpRequest();
+    req2.open('GET', xsltUrl);
+    req2.onload = function() {
+      runXslt(xmlDoc, this.responseXML, targetElement);
+    };
+    req2.send();
+  };
+  req1.send();
+};
+
+function runXslt(xmlDoc, xsltDoc, targetElement) {
+  var proc = new XSLTProcessor();
+  proc.importStylesheet(xsltDoc);
+  var fragment = proc.transformToFragment(xmlDoc, targetElement.ownerDocument);
+  if (fragment != null) {
+    var p = targetElement.ownerDocument.createElement('p');
+    p.textContent = 'Test succeeded.';
+    targetElement.appendChild(p);
+    targetElement.appendChild(fragment);
+  }
+  else {
+    var p = targetElement.ownerDocument.createElement('p');
+    p.textContent = 'Test failed. Created fragment is: ' + fragment + '.';
+    targetElement.appendChild(p);
+  }
+}
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded',
+  function() {
+    loadAndRunXslt('test2015111706.xml', 'test2015111706.xsl', document.getElementById('s1'));
+  },
+  false
+);
+</script>
+</head>
+  <body>
+    <h1>Test</h1>
+    <section id="s1">
+      <h2>Test of execution of XSLT loaded with XMLHttpRequest</h2>
+    </section>
+  </body>
+</html>

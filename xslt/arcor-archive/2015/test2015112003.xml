@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="test2015112003.xsl"?>
+<root>
+  <para>This&#xA0;is&#xA0;a&#xA0;sentence&#xA0;with&#xA0;lots&#xA0;of&#xA0;words&#xA0;separated&#xA0;by&#xA0;the&#xA0;nonbreaking&#xA0;space&#xA0;character.</para>
+</root>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="test2015102603.xsl"?>
+<bookstore>
+  <book>
+    <title>Harry Potter and the Philosopher's Stone</title>
+    <author>J K. Rowling</author>
+    <year>1997</year>
+    <price>3.99</price>
+    <publisher>Bloomsbury (UK)</publisher>
+    <synopsis>
+         Harry Potter and the Philosopher's Stone is the first novel in the Harry Potter series and J. K. Rowling's debut novel.
+
+         The plot follows Harry Potter, a young wizard who discovers his magical heritage as he makes close friends and a few enemies in his first year at the Hogwarts School of Witchcraft and Wizardry.
+
+         With the help of his friends, Harry faces an attempted comeback by the dark wizard Lord Voldemort, who killed Harry's parents, but failed to kill Harry when he was just a year old.
+   </synopsis>
+ </book>
+ <book>
+    <title>The Girl with the Dragon Tattoo</title>
+    <author>Stieg Larsson</author>
+    <year>2005</year>
+    <price>5.99</price>
+    <publisher>Norstedts Förlag (SWE)</publisher>
+    <synopsis>
+         In Stockholm, Sweden, journalist Mikael Blomkvist, co-owner of Millennium magazine, has lost a libel case brought against him by businessman Hans-Erik Wennerström. Lisbeth Salander, a brilliant but troubled investigator and hacker, compiles an extensive background check on Blomkvist for business magnate Henrik Vanger, who has a special task for him. 
+
+         In exchange for the promise of damning information about Wennerström, Blomkvist agrees to investigate the disappearance and assumed murder of Henrik's grandniece, Harriet, 40 years ago. 
+
+         After moving to the Vanger family's compound, Blomkvist uncovers a notebook containing a list of names and numbers that no one has been able to decipher.
+    </synopsis>
+  </book>
+</bookstore>

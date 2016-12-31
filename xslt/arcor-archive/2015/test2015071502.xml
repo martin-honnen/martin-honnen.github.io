@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="test2015071502.xsl"?>
+<root>
+  <header>I am the header.</header>
+  <body>I am the body.</body>
+  <footer/>
+</root>

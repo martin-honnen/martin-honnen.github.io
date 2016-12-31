@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>XSLTProcessor test</title>
+<script>
+function runTransform(xml, xsl) {
+  var req = new XMLHttpRequest();
+  req.open('GET', xml, false);
+  req.send();
+  var doc = req.responseXML;
+  req.open('GET', xsl, false);
+  req.send();
+  var stylesheet = req.responseXML;
+  var proc = new XSLTProcessor();
+  proc.importStylesheet(stylesheet);
+  proc.setParameter('', 'blah', 'Test at ' + new Date());
+  try {
+    var resultDoc = proc.transformToDocument(doc);
+    console.log('created ' + resultDoc);
+  }
+  catch (e) {
+    console.log('transform error ' + e);
+  }
+}
+window.onload = function() {
+  runTransform('test2015102304.xml', 'test2015102304.xsl');
+  runTransform('test2015102303.xml', 'test2015102303.xsl');
+};
+</script>
+</head>
+  <body>
+    <h1>Test</h1>
+  </body>
+</html>

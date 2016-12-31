@@ -1,0 +1,9 @@
+<?xml-stylesheet href="test2015082301.xsl" type="text/xsl"?>
+<webpage>
+    <title>Book</title>
+    <auth>Mike</auth>
+    <container-content>
+        <p>foo1</p>
+        <p>foo2</p>    
+    </container-content>
+</webpage>

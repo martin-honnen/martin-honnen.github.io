@@ -1,0 +1,1 @@
+log('External script in HTML fragment created by XSLT');

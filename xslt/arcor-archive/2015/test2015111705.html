@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>testing XSLT transformation of XML input and/or XSLT code having DOCTYPE node declaring some entities</title>
+<script>
+var xmlInput = '<p style="width: 100px; overflow: auto;">This is a long sentence with lots of words to test overflow.<\/p>';
+var xsltCode = [
+  '<!DOCTYPE xsl:stylesheet [',
+  '  <!ENTITY nbsp "&#160;">',
+  ']>',
+  '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" xmlns:msxml="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxml">',
+  '<xsl:output method="html" indent="yes"/>',
+  '<xsl:template match="/">',
+  '  <section>',
+  '    <h3>XSLT results<\/h3>',
+  '    <p>system-property(\'xsl:vendor\'): <xsl:value-of select="system-property(\'xsl:vendor\')"/><\/p>',
+  '    <p>system-property(\'msxml:version\'): <xsl:value-of select="system-property(\'msxml:version\')"/><\/p>',
+  '    <xsl:apply-templates/>',
+  '    <xsl:apply-templates select="//p" mode="replace"/>',
+  '  <\/section>',
+  '<\/xsl:template>',  
+  '<xsl:template match="@* | node()">',
+  '  <xsl:copy>',
+  '    <xsl:apply-templates select="@* | node()"/>',
+  '  <\/xsl:copy>',
+  '<\/xsl:template>',
+  '<xsl:template match="@* | node()" mode="replace">',
+  '  <xsl:copy>',
+  '    <xsl:apply-templates select="@* | node()" mode="replace"/>',
+  '  <\/xsl:copy>',
+  '<\/xsl:template>',
+  '<xsl:template match="p//text()" mode="replace">',
+  '  <xsl:call-template name="replace">',
+  '    <xsl:with-param name="substring" select="\' \'"/>',
+  '    <xsl:with-param name="replacement" select="\'&nbsp;\'"/>',
+  '  <\/xsl:call-template>',
+  '<\/xsl:template>',
+  '<xsl:template name="replace">',
+  '  <xsl:param name="input" select="."/>',
+  '  <xsl:param name="substring"/>',
+  '  <xsl:param name="replacement"/>',
+  '  <xsl:choose>',
+  '    <xsl:when test="not(contains($input, $substring))">',
+  '      <xsl:value-of select="$input"/>',
+  '    <\/xsl:when>',
+  '    <xsl:otherwise>',
+  '      <xsl:value-of select="substring-before($input, $substring)"/>',
+  '      <xsl:copy-of select="$replacement"/>',
+  '      <xsl:call-template name="replace">',
+  '        <xsl:with-param name="input" select="substring-after($input, $substring)"/>',
+  '        <xsl:with-param name="substring" select="$substring"/>',
+  '        <xsl:with-param name="replacement" select="$replacement"/>',
+  '      <\/xsl:call-template>',
+  '    <\/xsl:otherwise>',
+  '  <\/xsl:choose>',
+  '<\/xsl:template>',
+  '<\/xsl:stylesheet>'
+].join('\n');
+</script>
+<script>
+function useXSLTProcessor(xmlDoc, xsltDoc, targetElement) {
+  var proc = new XSLTProcessor();
+  proc.importStylesheet(xsltDoc);
+  var resultFragment = proc.transformToFragment(xmlDoc, targetElement.ownerDocument);
+  targetElement.textContent = '';
+  targetElement.appendChild(resultFragment);
+}
+</script>
+<script>
+function useTransformNode(xmlDoc, xsltDoc, targetElement) {
+  targetElement.innerHTML = xmlDoc.transformNode(xsltDoc);
+}
+</script>
+<script>
+document.addEventListener(
+  'DOMContentLoaded', 
+  function() {
+    var domParser = new DOMParser();
+    var xmlInputDoc = domParser.parseFromString(xmlInput, 'application/xml');
+    var xsltDoc = domParser.parseFromString(xsltCode, 'application/xml');
+    useXSLTProcessor(xmlInputDoc, xsltDoc, document.getElementById('result1'));
+  },
+  false
+);
+</script>
+<script>
+document.addEventListener(
+  'DOMContentLoaded',
+  function() {
+    var xmlInputDoc = new ActiveXObject('Msxml2.DOMDocument.6.0');
+    xmlInputDoc.setProperty('ProhibitDTD', false);
+    xmlInputDoc.setProperty('ValidateOnParse', false);
+    xmlInputDoc.loadXML(xmlInput);
+    var xsltDoc = new ActiveXObject('Msxml2.DOMDocument.6.0');
+    xsltDoc.setProperty('ProhibitDTD', false);
+    xsltDoc.setProperty('ValidateOnParse', false);
+    xsltDoc.loadXML(xsltCode);
+    useTransformNode(xmlInputDoc, xsltDoc, document.getElementById('result2'));
+  },
+  false
+);
+</script>
+</head>
+  <body>
+    <h1>testing XSLT transformation of XML input and/or XSLT code having DOCTYPE node declaring some entities</h1>
+    <section>
+      <h2>XSLTProcessor test with documents parsed with DOMParser</h2>
+      <div id="result1">Test failed.</div>
+    </section>
+    <section>
+      <h2>transformNode test with documents parsed with Msxml2.DOMDocument.6.0</h2>
+      <div id="result2">Test failed.</div>
+    </section>
+  </body>
+</html>

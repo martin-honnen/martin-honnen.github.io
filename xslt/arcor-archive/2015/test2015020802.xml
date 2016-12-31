@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="test2015020802.xsl"?>
+<root>
+  <para>Kibology for all.</para>
+  <data>
+    <x>10</x>
+    <y>10</y>
+  </data>
+</root>
