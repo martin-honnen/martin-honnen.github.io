@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="available-system-properties-Test.xml"?>
+<xsl:stylesheet
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:mf="http://example.com/mf"
+	exclude-result-prefixes="xs mf"
+	expand-text="yes"
+	version="3.0">
+	
+	<xsl:output
+		method="html"
+		version="4.01"
+		encoding="UTF-8"
+		indent="yes"
+		doctype-public="-//W3C//DTD HTML 4.01//EN"
+		doctype-system="http://www.w3.org/TR/html4/strict.dtd"/>
+	
+	<xsl:function name="mf:QName-to-brace-notation" as="xs:string">
+		<xsl:param name="qname" as="xs:QName"/>
+		<xsl:sequence select="'Q{' || namespace-uri-from-QName($qname) || '}' || local-name-from-QName($qname)"/>
+	</xsl:function> 
+	
+	<xsl:template match="/" name="main">
+		<html lang="en">
+			<head>
+				<title>XSLT 3.0 available-system-properties test</title>
+				<style type="text/css" xsl:expand-text="no">
+					tr:nth-child(even) { background-color: #D3D3D3; }
+					tr:nth-child(odd) { background-color: #FFF; }
+				</style>
+			</head>
+			<body>
+				<h1>XSLT 3.0 <code>available-system-properties</code> test</h1>
+				<div>
+					<table border="1">
+						<thead>
+							<tr>
+								<th>property name</th>
+								<th>property value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<xsl:for-each select="sort(available-system-properties(), function($qname) { prefix-from-QName($qname), local-name-from-QName($qname) })">
+								<tr>
+									<td><code>{.}</code></td>
+									<td><code>{system-property(mf:QName-to-brace-notation(.))}</code></td>
+								</tr>
+							</xsl:for-each>
+						</tbody>
+					</table>
+				</div>
+			</body>
+		</html>
+	</xsl:template>
+	
+</xsl:stylesheet>
+
