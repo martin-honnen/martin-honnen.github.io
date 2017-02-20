@@ -33,51 +33,63 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>xsl:version</td>
+								<td><code>xsl:version</code></td>
 								<td><xsl:value-of select="system-property('xsl:version')"/></td>
 							</tr>
 							<tr>
-								<td>xsl:vendor</td>
+								<td><code>xsl:vendor</code></td>
 								<td><xsl:value-of select="system-property('xsl:vendor')"/></td>
 							</tr>
 							<tr>
-								<td>xsl:vendor-url</td>
-								<td><xsl:value-of select="system-property('xsl:vendor-url')"/></td>
+								<td><code>xsl:vendor-url</code></td>
+								<td><a href="{system-property('xsl:vendor-url')}"><xsl:value-of select="system-property('xsl:vendor-url')"/></a></td>
 							</tr>
 							<tr>
-								<td>xsl:product-name</td>
+								<td><code>xsl:product-name</code></td>
 								<td><xsl:value-of select="system-property('xsl:product-name')"/></td>
 							</tr>
 							<tr>
-								<td>xsl:product-version</td>
+								<td><code>xsl:product-version</code></td>
 								<td><xsl:value-of select="system-property('xsl:product-version')"/></td>
 							</tr>
 							<tr>
-								<td>xsl:is-schema-aware</td>
+								<td><a href="https://www.w3.org/TR/xslt-30/#dt-schema-aware-xslt-processor"><code>xsl:is-schema-aware</code></a></td>
 								<td><xsl:value-of select="system-property('xsl:is-schema-aware')"/></td>
 							</tr>
 							<tr>
-								<td>xsl:supports-streaming</td>
+								<td><code>xsl:xpath-version</code></td>
+								<td><xsl:value-of select="system-property('xsl:xpath-version')"/></td>
+							</tr>
+							<tr>
+								<td><code>xsl:xsd-version</code></td>
+								<td><xsl:value-of select="system-property('xsl:xsd-version')"/></td>
+							</tr>
+							<tr>
+								<td><a href="https://www.w3.org/TR/xslt-30/#dt-hof-feature"><code>xsl:supports-higher-order-functions</code></a></td>
+								<td><xsl:value-of select="system-property('xsl:supports-higher-order-functions')"/></td>
+							</tr>
+							<tr>
+								<td><a href="https://www.w3.org/TR/xslt-30/#streaming-feature"><code>xsl:supports-streaming</code></a></td>
 								<td><xsl:value-of select="system-property('xsl:supports-streaming')"/></td>
 							</tr>
 							<tr>
-								<td>xsl:supports-dynamic-evaluation</td>
+								<td><a href="https://www.w3.org/TR/xslt-30/#dynamic-evaluation-feature"><code>xsl:supports-dynamic-evaluation</code></a></td>
 								<td><xsl:value-of select="system-property('xsl:supports-dynamic-evaluation')"/></td>
 							</tr>
 							<tr>
-								<td>xsl:supports-backwards-compatibility</td>
+								<td><a href="https://www.w3.org/TR/xslt-30/#dt-1.0-compatibility-feature"><code>xsl:supports-backwards-compatibility</code></a></td>
 								<td><xsl:value-of select="system-property('xsl:supports-backwards-compatibility')"/></td>
 							</tr>
 							<tr>
-								<td>xsl:supports-namespace-axis</td>
+								<td><code>xsl:supports-namespace-axis</code></td>
 								<td><xsl:value-of select="system-property('xsl:supports-namespace-axis')"/></td>
 							</tr>  
 							<tr>
-								<td>xsl:supports-serialization</td>
+								<td><a href="https://www.w3.org/TR/xslt-30/#dt-serialization-feature"><code>xsl:supports-serialization</code></a></td>
 								<td><xsl:value-of select="system-property('xsl:supports-serialization')"/></td>
 							</tr>  
 							<tr>
-								<td>msxsl:version</td>
+								<td><code>msxsl:version</code></td>
 								<td><xsl:value-of xmlns:msxsl="urn:schemas-microsoft-com:xslt" select="system-property('msxsl:version')"/></td>
 							</tr>
 						</tbody>
