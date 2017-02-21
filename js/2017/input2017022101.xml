@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<node>
+		<a id="n1"/>
+		<a id="n2"/>
+		<a id="n3"/>
+		<a id="n4"/>
+		<a id="n5"/>
+		<a id="n10"/>
+		<a id="n11"/>
+		<a id="n12"/>
+	</node>
+	<link>
+		<a><source>n1</source><target>n2</target></a>
+		<a><source>n1</source><target>n11</target></a>
+		<a><source>n11</source><target>n3</target></a>
+		<a><source>n5</source><target>n5</target></a>
+	</link>
+</root>
