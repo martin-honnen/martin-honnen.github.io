@@ -26,7 +26,7 @@
 				  	
 				  	var links = SaxonJS.XPath.evaluate('let $current := . return //link/a[(source, target) = $current/@id]', contextNode);
 				  	
-				  	document.getElementById('results').children[0].textContent = SaxonJS.XPath.evaluate('serialize(., map { "method" : "xml", "indent" : "yes "})', links);
+				  	document.getElementById('results').children[0].textContent = SaxonJS.XPath.evaluate('serialize(., map { "method" : "xml", "indent" : "yes"})', links);
 				  	
 				  	var count = SaxonJS.XPath.evaluate('count($links)', contextNode, { params : { links : links }});
 				  	
