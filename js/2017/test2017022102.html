@@ -26,11 +26,11 @@
 				  	
 				  	var links = SaxonJS.XPath.evaluate('let $current := . return //link/a[(source, target) = $current/@id]', contextNode);
 				  	
-				  	document.getElementById('results').children[0].textContent = SaxonJS.XPath.evaluate('serialize(., map { "method" : "xml", "indent" : "yes"})', links);
+				  	document.getElementById('results').children[0].textContent = SaxonJS.XPath.evaluate('serialize(., map { "method" : "xml", "indent" : true()})', links);
 				  	
-				  	document.getElementById('results').children[1].textContent = SaxonJS.XPath.evaluate('serialize($links, map { "method" : "xml", "indent" : "yes"})', doc, { params : { links : links }});
+				  	document.getElementById('results').children[1].textContent = SaxonJS.XPath.evaluate('serialize($links, map { "method" : "xml", "indent" : true()})', doc, { params : { links : links }});
 				  	
-				  	document.getElementById('results').children[2].textContent = SaxonJS.XPath.evaluate('serialize(let $current := . return //link/a[(source, target) = $current/@id], map { "method" : "xml", "indent" : "yes"})', contextNode);
+				  	document.getElementById('results').children[2].textContent = SaxonJS.XPath.evaluate('serialize(let $current := . return //link/a[(source, target) = $current/@id], map { "method" : "xml", "indent" : true()})', contextNode);
 
 			  });
 			},
