@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Saxon-JS test</title>
+		<meta charset="utf-8">
+		<script src="../../Saxon-JS-1.0.0/SaxonJS.min.js"></script>
+		<script>		
+		function load(url, handler) {
+			var req = new XMLHttpRequest();
+			req.open('GET', url);
+			req.onload = function(evt) {
+				handler(req.responseXML);
+			};
+			req.send();
+		} 
+		</script>
+		<script>
+		document.addEventListener('DOMContentLoaded',
+			function() {
+			  load(
+			    'input2017022101.xml', 
+			  	function(doc) { 
+				  	document.getElementById('input1').textContent = new XMLSerializer().serializeToString(doc);
+				  	
+				  	var contextNode = SaxonJS.XPath.evaluate('//*[@id="n11"]', doc);
+				  	
+				  	var links = SaxonJS.XPath.evaluate('let $current := . return //link/a[(source, target) = $current/@id]', contextNode);
+				  	
+				  	document.getElementById('results').children[0].textContent = SaxonJS.XPath.evaluate('serialize(., map { "method" : "xml", "indent" : "yes"})', links);
+				  	
+				  	document.getElementById('results').children[1].textContent = SaxonJS.XPath.evaluate('serialize($links, map { "method" : "xml", "indent" : "yes"})', doc, { params : { links : links }});;
+			  });
+			},
+			false
+		);
+		</script>
+				
+	</head>
+	<body>
+		<section>
+			<h1>Saxon-JS test</h1>
+			<section>
+				<h2>Example input</h2>
+				<pre><code id="input1"></code></pre>
+			</section>
+			<section>
+				<h2>Example XPath results</h2>
+				<ul id="results">
+					<li></li>
+					<li></li>
+				</ul>
+			</section>
+		</section>
+	</body>
+</html>
