@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Grouping of XML input with XPath 3.1 and Saxon-JS</title>
+		<meta charset="utf-8">
+		<script src="../../Saxon-JS-1.0.0/SaxonJS.min.js"></script>
+		<script>		
+		function load(url, handler) {
+			var req = new XMLHttpRequest();
+			req.open('GET', url);
+			req.onload = function(evt) {
+				handler(req.responseXML);
+			};
+			req.send();
+		} 
+		</script>
+		<script>
+		document.addEventListener('DOMContentLoaded',
+			function() {
+			  load(
+			    'titles.xml', 
+			  	function(doc) { 
+				  	document.getElementById('input1').textContent = new XMLSerializer().serializeToString(doc);
+				  	
+				  	var groups = SaxonJS.XPath.evaluate(document.getElementById('xpath').textContent, doc);
+				  	
+				  	console.log(groups);
+				  	
+				  	document.getElementById('results').textContent = JSON.stringify(groups, null, '\t');
+			  });
+			},
+			false
+		);                                                                                                                                                                                                                      
+		</script>
+				
+	</head>
+	<body>
+		<section>
+			<h1>Grouping of XML input with XPath 3.1 and Saxon-JS</h1>
+			<section>
+				<h2>Example input</h2>
+				<pre><code id="input1"></code></pre>
+			</section>
+			<section>
+			    <h2>Example XPath 3.1 code</h2>
+			    <pre><code id="xpath">let $distinct-topics := distinct-values(//title/ix)
+return
+  map:merge(
+    for $topic in $distinct-topics
+    return
+      let $group := //title[ix = $topic]
+      return
+        map { 
+          $topic : $group/data(),
+        }
+   )</code></pre>
+		    </section>
+			<section>
+				<h2>Example XPath results</h2>
+				<pre><code id="results"></code></pre>
+			</section>
+		</section>
+	</body>
+</html>
