@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Grouping of JSON input with XPath 3.1 and Saxon-JS</title>
+		<meta charset="utf-8">
+		<script src="../../Saxon-JS-1.0.0/SaxonJS.min.js"></script>
+		<script>
+		document.addEventListener('DOMContentLoaded',
+			function() {
+				
+			  var contextItem = SaxonJS.XPath.evaluate('json-doc("cities.json")');
+			  
+			  document.getElementById('input1').textContent = JSON.stringify(contextItem, null, '\t'); 
+			  
+			  var groups = SaxonJS.XPath.evaluate(document.getElementById('xpath').textContent, contextItem);
+			  	
+			  console.log(groups);
+				
+			  document.getElementById('results').textContent = JSON.stringify(groups, null, '\t');
+			},
+			false
+		);                                                                                                                                                                                                                      
+		</script>
+				
+	</head>
+	<body>
+		<section>
+			<h1>Grouping of JSON input with XPath 3.1 and Saxon-JS</h1>
+			<section>
+				<h2>Example input</h2>
+				<pre><code id="input1"></code></pre>
+			</section>
+			<section>
+			    <h2>Example XPath 3.1 code</h2>
+			    <pre><code id="xpath">let $distinct-countries := distinct-values(?cities?*?country)
+return
+  map:merge(
+    for $country in $distinct-countries
+    return
+      let $group := ?cities?*[?country = $country]
+      return
+        map { 
+          $country : map { 
+            "cities" : $group?name,
+            "population" : sum($group?pop) 
+          }
+        }
+   )</code></pre>
+		    </section>
+			<section>
+				<h2>Example XPath results</h2>
+				<pre><code id="results"></code></pre>
+			</section>
+		</section>
+	</body>
+</html>
