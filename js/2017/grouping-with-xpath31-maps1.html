@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Grouping with XPath 3.1 and Saxon-JS</title>
+		<meta charset="utf-8">
+		<script src="../../Saxon-JS-1.0.0/SaxonJS.min.js"></script>
+		<script>		
+		function load(url, handler) {
+			var req = new XMLHttpRequest();
+			req.open('GET', url);
+			req.onload = function(evt) {
+				handler(req.responseXML);
+			};
+			req.send();
+		} 
+		</script>
+		<script>
+		document.addEventListener('DOMContentLoaded',
+			function() {
+			  load(
+			    'cities.xml', 
+			  	function(doc) { 
+				  	document.getElementById('input1').textContent = new XMLSerializer().serializeToString(doc);
+				  	
+				  	var groups = SaxonJS.XPath.evaluate('let $distinct-countries := distinct-values(//city/@country) return for $country in $distinct-countries return let $group := //city[@country = $country] return map { $ountry : { "cities" : $group/@name/data(), "population" : sum($group/@pop) } }', doc);
+				  	console.log(groups);
+				  	
+				  	document.getElementById('results').textContent = JSON.stringify(groups);
+			  });
+			},
+			false
+		);
+		</script>
+				
+	</head>
+	<body>
+		<section>
+			<h1>Grouping with XPath 3.1 and Saxon-JS</h1>
+			<section>
+				<h2>Example input</h2>
+				<pre><code id="input1"></code></pre>
+			</section>
+			<section>
+				<h2>Example XPath results</h2>
+				<pre><code id="results"></code></pre>
+			</section>
+		</section>
+	</body>
+</html>
