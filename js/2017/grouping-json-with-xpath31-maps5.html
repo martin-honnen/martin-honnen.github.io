@@ -8,7 +8,7 @@
 		document.addEventListener('DOMContentLoaded',
 			function() {
 				
-			  var jsonInput = SaxonJS.XPath.evaluate('json-doc("cities.xml")');
+			  var jsonInput = SaxonJS.XPath.evaluate('json-doc("cities.json")');
 			  
 			  document.getElementById('input1').textContent = JSON.stringify(jsonInput, null, '\t'); 
 			  
