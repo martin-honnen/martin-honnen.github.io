@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Grouping of JSON input with XPath 3.1 and Saxon-JS</title>
+		<meta charset="utf-8">
+		<script src="../../Saxon-JS-1.0.0/SaxonJS.min.js"></script>
+		<script>		
+var input1 =  {
+  "cities": [
+    {
+      "name": "Milano",
+      "pop": 5,
+      "country": "Italia"
+    },
+    {
+      "name": "Paris",
+      "pop": 7,
+      "country": "France"
+    },
+    {
+      "name": "München",
+      "pop": 4,
+      "country": "Deutschland"
+    },
+    {
+      "name": "Lyon",
+      "pop": 2,
+      "country": "France"
+    },
+    {
+      "name": "Venezia",
+      "pop": 1,
+      "country": "Italia"
+    }
+  ]
+}
+		</script>
+		<script>
+		document.addEventListener('DOMContentLoaded',
+			function() {
+			  document.getElementById('input1').textContent = JSON.stringify(input1, null, '\t'); 
+			  
+			  var groups = SaxonJS.XPath.evaluate(document.getElementById('xpath').textContent, input1);
+			  	
+			  console.log(groups);
+				
+			  document.getElementById('results').textContent = JSON.stringify(groups, null, '\t');
+			},
+			false
+		);                                                                                                                                                                                                                      
+		</script>
+				
+	</head>
+	<body>
+		<section>
+			<h1>Grouping of JSON input with XPath 3.1 and Saxon-JS</h1>
+			<section>
+				<h2>Example input</h2>
+				<pre><code id="input1"></code></pre>
+			</section>
+			<section>
+			    <h2>Example XPath 3.1 code</h2>
+			    <pre><code id="xpath">let $distinct-countries := distinct-values(?cities?*?country)
+return
+  map:merge(
+    for $country in $distinct-countries
+    return
+      let $group := ?cities?*[?country = $country]
+      return
+        map { 
+          $country : map { 
+            
+            "population" : sum($group?pop) 
+          }
+        }
+   )</code></pre>
+		    </section>
+			<section>
+				<h2>Example XPath results</h2>
+				<pre><code id="results"></code></pre>
+			</section>
+		</section>
+	</body>
+</html>
