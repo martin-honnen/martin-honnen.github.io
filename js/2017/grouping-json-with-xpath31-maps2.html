@@ -60,12 +60,12 @@ var input1 =  {
 			</section>
 			<section>
 			    <h2>Example XPath 3.1 code</h2>
-			    <pre><code id="xpath">let $distinct-countries := distinct-values(?cities?*?country)
+			    <pre><code id="xpath">let $distinct-countries := distinct-values(?*?country)
 return
   map:merge(
     for $country in $distinct-countries
     return
-      let $group := ?cities?*[?country = $country]
+      let $group := ?*[?country = $country]
       return
         map { 
           $country : map { 
