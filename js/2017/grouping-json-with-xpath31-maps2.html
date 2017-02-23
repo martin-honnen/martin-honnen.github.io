@@ -69,7 +69,7 @@ return
       return
         map { 
           $country : map { 
-            
+            "cities" : $group?name,
             "population" : sum($group?pop) 
           }
         }
