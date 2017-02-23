@@ -23,6 +23,7 @@
 				  	document.getElementById('input1').textContent = new XMLSerializer().serializeToString(doc);
 				  	
 				  	var groups = SaxonJS.XPath.evaluate(document.getElementById('xpath').textContent, doc);
+				  	
 				  	console.log(groups);
 				  	
 				  	document.getElementById('results').textContent = JSON.stringify(groups, null, '\t');
@@ -48,7 +49,8 @@ return
     for $country in $distinct-countries
     return
       let $group := //city[@country = $country]
-      return map { $country : map { "cities" : $group/@name/data(), "population" : sum($group/@pop) } }
+      return
+        map { $country : map { "cities" : $group/@name/data(), "population" : sum($group/@pop) } }
    )</code></pre>
 		    </section>
 			<section>
