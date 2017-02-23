@@ -1,0 +1,29 @@
+{
+  "cities": [
+    {
+      "name": "Milano",
+      "pop": 5,
+      "country": "Italia"
+    },
+    {
+      "name": "Paris",
+      "pop": 7,
+      "country": "France"
+    },
+    {
+      "name": "München",
+      "pop": 4,
+      "country": "Deutschland"
+    },
+    {
+      "name": "Lyon",
+      "pop": 2,
+      "country": "France"
+    },
+    {
+      "name": "Venezia",
+      "pop": 1,
+      "country": "Italia"
+    }
+  ]
+}
