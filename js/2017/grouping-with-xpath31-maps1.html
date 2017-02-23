@@ -50,7 +50,12 @@ return
     return
       let $group := //city[@country = $country]
       return
-        map { $country : map { "cities" : $group/@name/data(), "population" : sum($group/@pop) } }
+        map { 
+          $country : map { 
+            "cities" : $group/@name/data(),
+            "population" : sum($group/@pop) 
+          }
+        }
    )</code></pre>
 		    </section>
 			<section>
