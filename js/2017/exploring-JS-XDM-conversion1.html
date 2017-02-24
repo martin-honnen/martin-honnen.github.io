@@ -52,7 +52,7 @@ var input1 =  {
 			  var results = document.getElementById('results');
 			  
 			  xpathExpressions.forEach(function(xpath) {
-			    var result = SaxonJS.XPath.evaluate(xpath);
+			    var result = SaxonJS.XPath.evaluate(xpath, input1);
 			    console.log(result);
 			    var section = document.createElement('section');
 			    var heading = document.createElement('h3');
