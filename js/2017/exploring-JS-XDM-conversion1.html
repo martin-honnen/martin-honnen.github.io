@@ -40,17 +40,29 @@ var input1 =  {
 			function() {
 			  document.getElementById('input1').textContent = JSON.stringify(input1, null, '\t'); 
 			  
-			  var result1 = SaxonJS.XPath.evaluate('?cities', input1);
+			  var xpathExpressions = [
+			  	  '.',
+			  	  'serialize(.)',
+			  	  '?cities',
+			  	  'serialize(?cities)',
+			  	  '?cities?*',
+			  	  'serialize(?cities?*)'
+			  ];
 			  
-			  console.log(result1);
+			  var results = document.getElementById('results');
 			  
-			  document.getElementById('result1').textContent = JSON.stringify(result1, null, '\t')
-			  
-			  var result2 = SaxonJS.XPath.evaluate('?cities?*', input1);
-			  
-			  console.log(result2);
-			  
-			  document.getElementById('result1').textContent = JSON.stringify(result2, null, '\t')
+			  xpathExpressions.forEach(function(xpath) {
+			    var result = SaxonJS.XPath.evaluate(xpath);
+			    console.log(result);
+			    var section = document.createElement('section');
+			    var heading = document.createElement('h3');
+			    var code = heading.appendChild(document.createElement('code'));
+			    code.textContent = xpath;
+			    section.appendChild(heading);
+			    var code = section.appendChild(docment.createElement('pre')).appendChild(document.createElement('code'));
+			    code.textContent = JSON.stringify(result, null, '\t');
+			    results.appendChild(section);
+			  });	  
 
 			},
 			false
@@ -65,16 +77,8 @@ var input1 =  {
 				<h2>Example input</h2>
 				<pre><code id="input1"></code></pre>
 			</section>
-			<section>
+			<section id=results>
 				<h2>Example XPath results</h2>
-				<section>
-				  <h3>Result 1</h3>
-				  <pre><code id="result1"></code></pre>
-				</section>
-				<section>
-				  <h3>Result 2</h3>
-				  <pre><code id="result2"></code></pre>
-				</section>
 			</section>
 		</section>
 	</body>
