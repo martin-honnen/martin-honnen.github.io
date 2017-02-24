@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Exploring Javascript &lt;-->XDM conversion in Saxon-JS</title>
+		<meta charset="utf-8">
+		<script src="../../Saxon-JS-1.0.0/SaxonJS.min.js"></script>
+		<script>		
+var input1 =  {
+  "cities": [
+    {
+      "name": "Milano",
+      "pop": 5,
+      "country": "Italia"
+    },
+    {
+      "name": "Paris",
+      "pop": 7,
+      "country": "France"
+    },
+    {
+      "name": "München",
+      "pop": 4,
+      "country": "Deutschland"
+    },
+    {
+      "name": "Lyon",
+      "pop": 2,
+      "country": "France"
+    },
+    {
+      "name": "Venezia",
+      "pop": 1,
+      "country": "Italia"
+    }
+  ]
+}
+		</script>
+		<script>
+		document.addEventListener('DOMContentLoaded',
+			function() {
+			  document.getElementById('input1').textContent = JSON.stringify(input1, null, '\t'); 
+			  
+			  var result1 = SaxonJS.XPath.evaluate('?cities', input1);
+			  
+			  console.log(result1);
+			  
+			  document.getElementById('result1').textContent = JSON.stringify(result1, null, '\t')
+			  
+			  var result2 = SaxonJS.XPath.evaluate('?cities?*', input1);
+			  
+			  console.log(result2);
+			  
+			  document.getElementById('result1').textContent = JSON.stringify(result2, null, '\t')
+
+			},
+			false
+		);                                                                                                                                                                                                                      
+		</script>
+				
+	</head>
+	<body>
+		<section>
+			<h1>Exploring Javascript &lt;-->XDM conversion in Saxon-JS</h1>
+			<section>
+				<h2>Example input</h2>
+				<pre><code id="input1"></code></pre>
+			</section>
+			<section>
+				<h2>Example XPath results</h2>
+				<section>
+				  <h3>Result 1</h3>
+				  <pre><code id="result1"></code></pre>
+				</section>
+				<section>
+				  <h3>Result 2</h3>
+				  <pre><code id="result2"></code></pre>
+				</section>
+			</section>
+		</section>
+	</body>
+</html>
