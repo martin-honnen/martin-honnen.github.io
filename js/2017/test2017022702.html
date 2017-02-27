@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test</title>
+<script>
+window.onload = function() {
+	var jObj = { "Smart Shoes":{  
+          "Product":"Smart Shoes",
+          "Price":24.99,
+          "Quantity":"1x "
+       },
+       "Denim Jeans":{  
+          "Product":"Denim Jeans",
+          "Price":30,
+          "Quantity":"1x "
+       }
+    };
+
+    var xml = document.createElement("custom-xml");
+        xml.setAttribute("id", "POSCMD");
+        xml.setAttribute("LateProcessing", "true");
+        var commands = document.createElement("commands");
+        xml.appendChild(commands);
+        var injFM = document.createElement("injectfieldmacro");
+        injFM.setAttribute("type", "field");
+        injFM.setAttribute("name", "FIELD_CLEAR");
+        commands.appendChild(injFM);
+        var injData;
+        for (var item in jObj) {
+            injData = document.createElement("injectdata");
+            injData.setAttribute("type", "literal");
+            injData.setAttribute("data", JSON.stringify(jObj[item].Product));
+            injFM = document.createElement("injectfieldmacro");
+            injFM.setAttribute("type", "field");
+            injFM.setAttribute("name", "FIELD_UPC");
+            commands.appendChild(injData);
+            commands.appendChild(injFM);
+        }
+        document.getElementsByTagName("body")[0].appendChild(xml);
+};
+</script>
+</head>
+<body>
+<h1>Test</h1>
+</body>
+</html>
