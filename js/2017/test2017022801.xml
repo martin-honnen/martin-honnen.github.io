@@ -1,0 +1,6 @@
+<?xml-stylesheet type="text/xsl" href="test2017022801.xsl"?>
+<books>
+  <book title="AA" price="1"/>
+  <book title="AB" price="3"/>
+  <book title="AC" price="6"/>
+</books> 

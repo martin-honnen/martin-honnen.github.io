@@ -1,0 +1,15 @@
+books {
+	margin: 1em;
+	border-spacing: 2px;
+	border-collapse: collapse;
+	display: table;
+	border: 1px solid black;
+}
+book {
+	display: table-row;
+}
+title, price {
+	display: table-cell;
+	border: 1px solid black;
+	padding: 2pt;
+}
