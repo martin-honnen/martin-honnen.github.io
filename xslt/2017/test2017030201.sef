@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://ns.saxonica.com/xslt/export" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vv="http://saxon.sf.net/generated-variable" xmlns:java-type="http://saxon.sf.net/java-type" version="30" packageVersion="1" saxonVersion="9.7.0.15" timeStamp="2017-03-02T13:18:19.359+01:00" target="JS">
+<package xmlns="http://ns.saxonica.com/xslt/export" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vv="http://saxon.sf.net/generated-variable" xmlns:java-type="http://saxon.sf.net/java-type" version="30" packageVersion="1" saxonVersion="9.7.0.15" timeStamp="2017-03-02T13:28:48.179+01:00" target="JS">
  <co id="0" binds="">
   <template name="Q{}main" flags="os" line="8" module="file:/C:/Users/Martin%20Honnen/Documents/GitHub/martin-honnen.github.io/xslt/2017/test2017030201.xsl" slots="0">
-   <resultDoc role="body" vn="31" baseUri="file:/C:/Users/Martin%20Honnen/Documents/GitHub/martin-honnen.github.io/xslt/2017/test2017030201.xsl" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema math=http://www.w3.org/2005/xpath-functions/math" line="9" global="#&#xD;&#xA;#Thu Mar 02 13:18:19 CET 2017&#xD;&#xA;method=xml&#xD;&#xA;" local="#&#xD;&#xA;#Thu Mar 02 13:18:19 CET 2017&#xD;&#xA;">
+   <resultDoc role="body" vn="31" baseUri="file:/C:/Users/Martin%20Honnen/Documents/GitHub/martin-honnen.github.io/xslt/2017/test2017030201.xsl" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema math=http://www.w3.org/2005/xpath-functions/math" line="9" global="#&#xD;&#xA;#Thu Mar 02 13:28:48 CET 2017&#xD;&#xA;method=xml&#xD;&#xA;" local="#&#xD;&#xA;#Thu Mar 02 13:28:48 CET 2017&#xD;&#xA;">
     <str role="href" val="#svg1"/>
     <elem role="content" line="11" name="section">
      <sequence>
@@ -11,7 +11,7 @@
         <str val="SVG test"/>
        </valueOf>
       </elem>
-      <elem ns="=http://www.w3.org/2000/SVG xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema math=http://www.w3.org/2005/xpath-functions/math" line="12" name="svg" nsuri="http://www.w3.org/2000/SVG" flags="dl" namespaces="=http://www.w3.org/2000/SVG">
+      <elem ns="=http://www.w3.org/2000/svg xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema math=http://www.w3.org/2005/xpath-functions/math" line="12" name="svg" nsuri="http://www.w3.org/2000/svg" flags="dl" namespaces="=http://www.w3.org/2000/svg">
        <sequence>
         <att name="width" flags="l">
          <str val="300"/>
@@ -19,7 +19,7 @@
         <att name="height" flags="l">
          <str val="300"/>
         </att>
-        <elem line="13" name="rect" nsuri="http://www.w3.org/2000/SVG" flags="dl">
+        <elem line="13" name="rect" nsuri="http://www.w3.org/2000/svg" flags="dl">
          <sequence>
           <att name="x" flags="l">
            <str val="10"/>
@@ -54,4 +54,4 @@
  </output>
  <decimalFormat decimal-separator="46" grouping-separator="44" digit="35" minus-sign="45" percent="37" per-mille="8240" zero-digit="48" exponent-separator="101" pattern-separator="59" infinity="Infinity" NaN="NaN"/>
 </package>
-<?Σ 6aaf128b?>
+<?Σ 642f96ab?>
