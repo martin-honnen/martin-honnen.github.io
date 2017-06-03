@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet href="test2017060301.xsl" type="text/xsl"?>
+<FeatureCollection
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation=""
+	xmlns="http://ogr.maptools.org/"
+	xmlns:gml="http://www.opengis.net/gml">
+	<gml:name>province</gml:name>
+	<gml:boundedBy>
+		<gml:Box>
+			<gml:coord><gml:X>182215.7655999996</gml:X><gml:Y>1933511.9638</gml:Y></gml:coord>
+			<gml:coord><gml:X>571429.3273</gml:X><gml:Y>2205216.25</gml:Y></gml:coord>
+		</gml:Box>
+	</gml:boundedBy>                                                                                                        
+	<gml:featureMember>
+		<rd id="DO-01">
+			<geometryProperty><gml:MultiPolygon srsName="EPSG:32619"><gml:polygonMember><gml:Polygon><gml:outerBoundaryIs><gml:LinearRing><gml:coordinates>397122.65139999986,2050791.921 397142.0132,2050790.208699999 </gml:coordinates></gml:LinearRing></gml:outerBoundaryIs></gml:Polygon></gml:polygonMember></gml:MultiPolygon></geometryProperty>
+			<PROV>01</PROV>
+			<TOPONIMIA>DISTRITO NACIONAL</TOPONIMIA>
+			<Hombres>460903</Hombres>
+			<Mujeres>504137</Mujeres>
+			<Casos>965040</Casos>
+		</rd>
+	</gml:featureMember>
+</FeatureCollection>
