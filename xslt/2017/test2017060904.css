@@ -1,0 +1,10 @@
+documento, división, título, párrafo {
+	display: block;
+}
+
+título {
+	font-size: 110%; font-weight: bold;
+}
+a {
+	text-decoration: underline;
+}

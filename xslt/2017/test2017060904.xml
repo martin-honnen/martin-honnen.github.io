@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="test2017060904.css"?>
+<documento xml:lang="es">
+	<división>
+		<título>Esto es un test</título>
+		<párrafo>Esto es un test: ¿Funciona este <a href="http://example.com/" xmlns="http://www.w3.org/1999/xhtml">enlace</a>?</párrafo>
+	</división>
+</documento>
