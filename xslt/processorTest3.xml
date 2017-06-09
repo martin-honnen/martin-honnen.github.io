@@ -2,6 +2,8 @@
 <?xml-stylesheet type="text/xsl" href="processorTest3.xml"?>
 <xsl:stylesheet
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	exclude-result-prefixes="xs"
 	version="3.0">
 	
 	<xsl:output
@@ -13,16 +15,17 @@
 		doctype-system="http://www.w3.org/TR/html4/strict.dtd"/>
 	
 	<xsl:template match="/" name="main">
+		<xsl:variable name="title" as="xs:string" select="concat('XSLT 3.0 system properties ', system-property('xsl:product-name'), ' ', system-property('xsl:product-version'))"/>
 		<html lang="en">
 			<head>
-				<title>XSLT 3.0 processor test</title>
+				<title><xsl:value-of select="$title"/></title>
 				<style type="text/css">
 					tr:nth-child(even) { background-color: #D3D3D3; }
 					tr:nth-child(odd) { background-color: #FFF; }
 				</style>
 			</head>
 			<body>
-				<h1>XSLT 3.0 processor test</h1>
+				<h1><xsl:value-of select="$title"/></h1>
 				<div>
 					<table border="1">
 						<thead>
