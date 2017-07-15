@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://ns.saxonica.com/xslt/export" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vv="http://saxon.sf.net/generated-variable" xmlns:java-type="http://saxon.sf.net/java-type" version="30" packageVersion="1" saxonVersion="9.7.0.15" timeStamp="2017-07-15T15:11:23.681+02:00" target="JS">
+ <co id="0" binds="">
+  <globalVariable name="Q{http://saxon.sf.net/generated-variable}gg1551618103" type="item()" line="50" module="file:/C:/Users/Martin%20Honnen/Documents/GitHub/martin-honnen.github.io/xslt/2017/ui-test2.xsl" visibility="PRIVATE" jsAcceptor="return val;" jsCardCheck="function c(n) {return n==1;};">
+   <check vn="31" baseUri="file:/C:/Users/Martin%20Honnen/Documents/GitHub/martin-honnen.github.io/xslt/2017/ui-test2.xsl" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT js=http://saxonica.com/ns/globalJS xs=http://www.w3.org/2001/XMLSchema math=http://www.w3.org/2005/xpath-functions/math" line="50" card="1" diag="0|0||ixsl:call">
+    <ifCall xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT" name="ixsl:window" type="item()?"/>
+   </check>
+  </globalVariable>
+ </co>
+ <co id="1" binds="0">
+  <template name="Q{}init-datepicker" flags="os" line="46" module="file:/C:/Users/Martin%20Honnen/Documents/GitHub/martin-honnen.github.io/xslt/2017/ui-test2.xsl" slots="2">
+   <sequence role="body" vn="31" baseUri="file:/C:/Users/Martin%20Honnen/Documents/GitHub/martin-honnen.github.io/xslt/2017/ui-test2.xsl" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT js=http://saxonica.com/ns/globalJS xs=http://www.w3.org/2001/XMLSchema math=http://www.w3.org/2005/xpath-functions/math" line="47">
+    <param name="id" slot="0" flags="i" as="xs:string">
+     <treat role="conversion" as="xs:string" jsTest="return SaxonJS.U.Atomic.string.matches(item);" diag="8|0|XTTE0590|id">
+      <check card="1" diag="8|0|XTTE0590|id">
+       <cvUntyped to="xs:string">
+        <data>
+         <supplied slot="0"/>
+        </data>
+       </cvUntyped>
+      </check>
+     </treat>
+    </param>
+    <param line="48" name="value" slot="1" flags="i" as="xs:string">
+     <treat role="conversion" as="xs:string" jsTest="return SaxonJS.U.Atomic.string.matches(item);" diag="8|0|XTTE0590|value">
+      <check card="1" diag="8|0|XTTE0590|value">
+       <cvUntyped to="xs:string">
+        <data>
+         <supplied slot="1"/>
+        </data>
+       </cvUntyped>
+      </check>
+     </treat>
+    </param>
+    <ifCall xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT" line="50" name="ixsl:call" type="item()*">
+     <gVarRef name="Q{http://saxon.sf.net/generated-variable}gg1551618103" bSlot="0"/>
+     <str val="initDP"/>
+     <arrayBlock>
+      <varRef name="id" slot="0"/>
+      <varRef name="value" slot="1"/>
+     </arrayBlock>
+    </ifCall>
+   </sequence>
+  </template>
+ </co>
+ <co id="2" binds="2 1">
+  <mode onNo="TC" flags="dW" patternSlots="0">
+   <templateRule prec="0" prio="-0.5" seq="0" rank="0" minImp="0" slots="0" flags="os" line="12" module="file:/C:/Users/Martin%20Honnen/Documents/GitHub/martin-honnen.github.io/xslt/2017/ui-test2.xsl">
+    <p.nodeTest role="match" test="document-node()" jsTest="return SaxonJS.U.isNode(item) &amp;&amp; (item.nodeType==9||item.nodeType==11);"/>
+    <sequence role="action" vn="31" baseUri="file:/C:/Users/Martin%20Honnen/Documents/GitHub/martin-honnen.github.io/xslt/2017/ui-test2.xsl" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT js=http://saxonica.com/ns/globalJS xs=http://www.w3.org/2001/XMLSchema math=http://www.w3.org/2005/xpath-functions/math" line="13">
+     <resultDoc global="#&#xD;&#xA;#Sat Jul 15 15:11:23 CEST 2017&#xD;&#xA;indent=yes&#xD;&#xA;method=html&#xD;&#xA;" local="#&#xD;&#xA;#Sat Jul 15 15:11:23 CEST 2017&#xD;&#xA;">
+      <str role="href" val="#header"/>
+      <elem role="content" name="hr">
+       <empty/>
+      </elem>
+     </resultDoc>
+     <resultDoc line="16" global="#&#xD;&#xA;#Sat Jul 15 15:11:23 CEST 2017&#xD;&#xA;indent=yes&#xD;&#xA;method=html&#xD;&#xA;" local="#&#xD;&#xA;#Sat Jul 15 15:11:23 CEST 2017&#xD;&#xA;">
+      <str role="href" val="#editor"/>
+      <elem role="content" line="17" name="table">
+       <sequence>
+        <att name="border" flags="l">
+         <str val="1"/>
+        </att>
+        <elem line="18" name="tr" flags="l">
+         <sequence>
+          <att name="bgcolor" flags="l">
+           <str val="#999999"/>
+          </att>
+          <elem line="19" name="th" flags="l">
+           <sequence>
+            <att name="colspan" flags="l">
+             <str val="2"/>
+            </att>
+            <valueOf flags="Sl">
+             <str val="Form"/>
+            </valueOf>
+           </sequence>
+          </elem>
+         </sequence>
+        </elem>
+        <applyT line="21" bSlot="0">
+         <slash role="select">
+          <axis name="child" nodeTest="element(Q{}data)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='data';"/>
+          <axis name="child" nodeTest="element(Q{}date)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='date';"/>
+         </slash>
+        </applyT>
+       </sequence>
+      </elem>
+     </resultDoc>
+     <resultDoc line="24" global="#&#xD;&#xA;#Sat Jul 15 15:11:23 CEST 2017&#xD;&#xA;indent=yes&#xD;&#xA;method=html&#xD;&#xA;" local="#&#xD;&#xA;#Sat Jul 15 15:11:23 CEST 2017&#xD;&#xA;">
+      <str role="href" val="#footer"/>
+      <elem role="content" name="hr">
+       <empty/>
+      </elem>
+     </resultDoc>
+    </sequence>
+   </templateRule>
+   <templateRule prec="0" prio="0.0" seq="1" rank="1" minImp="0" slots="1" flags="os" line="28" module="file:/C:/Users/Martin%20Honnen/Documents/GitHub/martin-honnen.github.io/xslt/2017/ui-test2.xsl">
+    <p.nodeTest role="match" test="element(Q{}date)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='date';"/>
+    <elem role="action" vn="31" baseUri="file:/C:/Users/Martin%20Honnen/Documents/GitHub/martin-honnen.github.io/xslt/2017/ui-test2.xsl" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT js=http://saxonica.com/ns/globalJS xs=http://www.w3.org/2001/XMLSchema math=http://www.w3.org/2005/xpath-functions/math" line="30" name="tr">
+     <sequence>
+      <elem name="td" flags="l">
+       <valueOf flags="Sl">
+        <str val="Date:"/>
+       </valueOf>
+      </elem>
+      <elem line="32" name="td" flags="l">
+       <let var="currentValue" as="xs:string" slot="0" eval="8">
+        <fn name="string-join">
+         <sequence>
+          <data>
+           <axis name="attribute" nodeTest="attribute(Q{}month)" jsTest="return item.name=='month'"/>
+          </data>
+          <data>
+           <axis name="attribute" nodeTest="attribute(Q{}day)" jsTest="return item.name=='day'"/>
+          </data>
+          <data>
+           <axis name="attribute" nodeTest="attribute(Q{}year)" jsTest="return item.name=='year'"/>
+          </data>
+         </sequence>
+         <str val="/"/>
+        </fn>
+        <sequence line="33">
+         <valueOf flags="l">
+          <varRef name="currentValue" slot="0"/>
+         </valueOf>
+         <elem name="br" flags="l">
+          <empty/>
+         </elem>
+         <elem line="35" name="input" flags="l">
+          <sequence>
+           <att name="type" flags="l">
+            <str val="text"/>
+           </att>
+           <att name="id" flags="l">
+            <fn name="concat">
+             <str val="datepicker"/>
+             <convert from="xs:integer" to="xs:string">
+              <fn name="position"/>
+             </convert>
+            </fn>
+           </att>
+          </sequence>
+         </elem>
+         <ifCall xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT" line="36" name="ixsl:schedule-action" type="item()*">
+          <int val="1"/>
+          <empty/>
+          <callT line="37" name="init-datepicker" bSlot="1">
+           <withParam name="id" flags="c" as="xs:string">
+            <fn line="38" name="concat">
+             <str val="#datepicker"/>
+             <fn name="position"/>
+            </fn>
+           </withParam>
+           <withParam name="value" flags="c" as="xs:string">
+            <varRef line="39" name="currentValue" slot="0"/>
+           </withParam>
+          </callT>
+         </ifCall>
+        </sequence>
+       </let>
+      </elem>
+     </sequence>
+    </elem>
+   </templateRule>
+  </mode>
+ </co>
+ <overridden/>
+ <output>
+  <property name="indent" value="yes"/>
+  <property name="{http://saxon.sf.net/}stylesheet-version" value="30"/>
+  <property name="method" value="html"/>
+ </output>
+ <decimalFormat decimal-separator="46" grouping-separator="44" digit="35" minus-sign="45" percent="37" per-mille="8240" zero-digit="48" exponent-separator="101" pattern-separator="59" infinity="Infinity" NaN="NaN"/>
+</package>
+<?Σ 654f7930?>

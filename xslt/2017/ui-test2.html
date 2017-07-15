@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>XSLT-JS-UI</title>
+         <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script src="../../Saxon-JS-1.0.0/SaxonJS.min.js"></script>
+       <script>
+ function initDP(id,init)
+    {
+    $(id).datepicker();
+    $(id).datepicker("setDate",init);
+    } 
+$(document).ready(function()
+    {
+    SaxonJS.transform({
+        stylesheetLocation: "ui-test2.sef",
+        sourceLocation: "date-data1.xml"
+        });
+    });          
+       </script>
+    </head>
+    <body>
+        <div id="header"></div>
+        <div id="editor"></div>
+        <div id="footer"></div>
+        <input type="text" id="testDP">
+        <br>
+        <button onclick="initDP('#testDP','7/17/1961')">picker</button>
+    </body>
+</html>
