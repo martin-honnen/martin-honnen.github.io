@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Testing a proof of concept of pretty-printing of an XML DOM tree as a HTML collapsible table structure</title>
+        <link rel="stylesheet" type="text/css" href="pretty-print1.css"/>
+        <script>
+            var prettyPrinter = new XSLTProcessor();
+            (function() {
+            var req = new XMLHttpRequest();
+            req.open('GET', 'pretty-print1.xsl');
+            req.onload = function() {
+              prettyPrinter.importStylesheet(req.responseXML);
+            };
+            req.send();
+            }())
+            
+            function prettyPrint(doc) {
+               return prettyPrinter.transformToFragment(doc, document);
+            }
+            
+            function prettyPrintCollapseExpandHandler(event) {
+  try {
+	var thisNode = event.target;
+    var par = event.target.parentNode;
+    if (thisNode.nodeName == 'TD' && thisNode.className == 'expander') {
+      if (par.parentNode.className == 'expander-closed') {
+        par.parentNode.className = '';
+        thisNode.textContent = '-';
+      }
+      else {
+        par.parentNode.className = 'expander-closed';
+        thisNode.textContent = '+';
+      }
+    }
+  } catch (e) {
+  }
+}
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded',
+              function() {
+                var req = new XMLHttpRequest();
+                req.open('GET', 'input1.xml');
+                req.onload = function() {
+                  document.getElementById('result').appendChild(prettyPrint(req.responseXML));
+                };
+                req.send();
+             },
+             false
+           );
+        </script>
+    </head>
+    <body>
+        <section>
+            <h1>Testing a proof of concept of pretty-printing of an XML DOM tree as a HTML collapsible table structure</h1>
+            <section id="result">
+                <h2>Example result</h2>
+            </section>
+        </section>
+    </body>
+</html>
