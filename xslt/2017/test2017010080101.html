@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Saxon-JS xsl:evaluate test</title>
+        <script src="../../Saxon-JS-1.0.0/SaxonJS.min.js"></script>
+        <script>
+            var sortkey = window.location.search ? window.location.search : 'year';
+        </script>
+        <script>
+           document.addEventListener(
+              'DOMContentLoaded',
+              function() {
+                SaxonJS.transform(
+                  {
+                    stylesheetLocation : 'test201708100102.sef'
+                    sourceLocation : 'test2017081001.xml',
+                    stylesheetParams : {
+                       'sortkey' : sortkey
+                     }
+                   }
+               );
+             },
+             false
+           );
+        </script>
+    </head>
+    <body>
+        <section>
+            <h1>Saxon-JS xsl:evaluate test</h1>
+            <section>
+              <h2>Output</h2>
+              <section id="output"></section>
+            </section>
+        </section>
+    </body>
+</html>
