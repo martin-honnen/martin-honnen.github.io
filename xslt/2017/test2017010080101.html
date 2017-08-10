@@ -5,7 +5,7 @@
         <title>Saxon-JS xsl:evaluate test</title>
         <script src="../../Saxon-JS-1.0.0/SaxonJS.min.js"></script>
         <script>
-            var sortkey = window.location.search ? window.location.search : 'year';
+            var sortkey = window.location.search ? window.location.search.substring(1) : 'year';
         </script>
         <script>
            document.addEventListener(
@@ -13,7 +13,7 @@
               function() {
                 SaxonJS.transform(
                   {
-                    stylesheetLocation : 'test201708100102.sef'
+                    stylesheetLocation : 'test201708100102.sef',
                     sourceLocation : 'test2017081001.xml',
                     stylesheetParams : {
                        'sortkey' : sortkey
