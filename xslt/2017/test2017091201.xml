@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="test2017091201.xsl"?>
+<items>
+    <item>
+        <title>Header1</title>
+        <description>
+            This is the description of item 1.
+        </description>
+        <footer>Footer1</footer>
+    </item>
+    <item>
+        <title>Header2</title>
+        <description>
+            This is the description of item 2.
+        </description>
+        <footer>Footer2</footer>
+    </item>
+</items>
