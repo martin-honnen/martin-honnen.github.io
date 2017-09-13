@@ -31,7 +31,7 @@
                 <line>
                     This is line 3 of description of item 2.
                 </line>
-            <p>
+            </p>
         </description>
         <footer>Footer2</footer>
     </item>
