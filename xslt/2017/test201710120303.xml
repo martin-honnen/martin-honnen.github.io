@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<animals>
+    <animal>dog</animal>
+    <animal>horse</animal>
+    <animal>cow</animal>
+    <animal>snake</animal>
+    <animal>spider</animal>
+</animals>

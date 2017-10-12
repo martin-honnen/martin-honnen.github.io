@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="test201710120301.xsl"?>
+
+<importFiles>
+    <docs fileA = "test201710120302.xml" />
+    <docs fileB = "test201710120303.xml" /> 
+</importFiles>
