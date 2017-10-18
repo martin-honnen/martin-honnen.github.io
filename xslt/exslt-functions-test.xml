@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="exslt-functions-test.xml"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:exsl="http://exslt.org/common" xmlns:regexp="http://exslt.org/regular-expressions"
+	xmlns:set="http://exslt.org/sets" xmlns:str="http://exslt.org/strings"
+	xmlns:math="http://exslt.org/math" xmlns:date="http://exslt.org/dates-and-times" version="1.0"
+	exclude-result-prefixes="exsl regexp set str math date">
+	
+	<xsl:output indent="yes" method="html" version="5.1" doctype-system="about:legacy-doctype"/>
+	
+	<xsl:template match="/">
+		<html>
+			<head>
+				<title>Testing support for some EXSLT functions</title>
+				<style>
+					table {
+						border-collapse: collapse;
+					}
+					table,
+					th,
+					td {
+						border: 1px solid black;
+					}
+					tbody tr:nth-child(odd) {
+						background: #eee;
+					}</style>
+			</head>
+			<body>
+				<h1>Testing support for some EXSLT functions</h1>
+				<table>
+					<caption>
+						<p>
+							<code>system-property('xsl:vendor') : <xsl:value-of
+									select="system-property('xsl:vendor')"/>
+							</code>
+						</p>
+						<p>
+							<code>navigator.userAgent: <span id="userAgent"/>
+								<script>document.getElementById('userAgent').textContent = navigator.userAgent;</script>
+							</code>
+						</p>
+					</caption>
+					<thead>
+						<tr>
+							<th>function name</th>
+							<th>function namespace</th>
+							<th>function-available()</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th rowspan="3">
+								<code>http://exslt.org/common</code>
+							</th>
+						</tr>
+						<tr>
+							<td>
+								<code>exsl:node-set</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('exsl:node-set')"/>
+								</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>exsl:object-type</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('exsl:object-type')"/>
+								</code>
+							</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<th rowspan="4">
+								<code>http://exslt.org/regular-expressions</code>
+							</th>
+						</tr>
+						<tr>
+							<td>
+								<code>regexp:test</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('regexp:test')"/>
+								</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>regexp:match</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('regexp:match')"/>
+								</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>regexp:replace</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('regexp:replace')"/>
+								</code>
+							</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<th rowspan="8">
+								<code>http://exslt.org/sets</code>
+							</th>
+						</tr>
+						<tr>
+							<td>
+								<code>set:difference</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('set:difference')"/>
+								</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>set:distinct</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('set:distinct')"/>
+								</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>set:intersection</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('set:intersection')"/>
+								</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>set:distinct</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('set:distinct')"/>
+								</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>set:has-same-node</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('set:has-same-node')"/>
+								</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>set:leading</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('set:leading')"/>
+								</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>set:trailing</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('set:trailing')"/>
+								</code>
+							</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<th rowspan="4">
+								<code>http://exslt.org/strings</code>
+							</th>
+						</tr>
+						<tr>
+							<td>
+								<code>str:tokenize</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('str:tokenize')"/>
+								</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>str:concat</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('str:concat')"/>
+								</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>str:split</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('str:split')"/>
+								</code>
+							</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<th rowspan="5">
+								<code>http://exslt.org/math</code>
+							</th>
+						</tr>
+						<tr>
+							<td>
+								<code>math:min</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('math:min')"/>
+								</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>math:max</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('math:max')"/>
+								</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>math:highest</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('math:highest')"/>
+								</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>math:lowest</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('math:lowest')"/>
+								</code>
+							</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<th rowspan="2">
+								<code>http://exslt.org/dates-and-times</code>
+							</th>
+						</tr>
+						<tr>
+							<td>
+								<code>date:date-time</code>
+							</td>
+							<td>
+								<code>
+									<xsl:value-of select="function-available('date:date-time')"/>
+								</code>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</body>
+		</html>
+	</xsl:template>
+
+</xsl:stylesheet>
