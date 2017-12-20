@@ -1,0 +1,73 @@
+          .pretty-print {
+            font-family: 'Verdana', sans-serif;
+            background-color: #E9FEFE;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+          }
+                   
+          
+          .pretty-print table {
+            border-spacing: 0;
+            margin: 0;
+          }
+          
+          .pretty-print td {
+            padding: 0;
+          }
+          
+          .markup {
+            color: blue
+          }
+          
+          .elemname {
+            color: #990000;
+          }
+          
+          .attrname {
+            color: #990000;
+            font-weight: bold;
+          }
+          
+          .namespace {
+            color: red;
+            font-weight: bold;
+          }
+          .attrvalue {
+            color: black;
+            font-weight: bold;
+          }
+          
+          .text {
+            color: black;
+            font-weight: bold;
+          }
+          
+          .indent {
+            margin-left: 1em;
+          }
+          
+          .comment {
+            color: #888888;
+            font-style: italic;
+          }
+          
+          .pi {
+            color: blue;
+          }
+          
+          .expander > div {
+            width: 1em;
+          }
+          
+          .expander {
+            cursor: default;
+            -moz-user-select: none;
+            vertical-align: top;
+            text-align: center;
+          }
+          
+          .expander-closed .expander-content {
+            display: none;
+          }
+          

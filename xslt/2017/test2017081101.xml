@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="test2017081101.xsl"?>
+<caja>
+  <Note id="12234">
+    <to>Trove</to>
+    <from>Jain</from>
+    <heading>Reminder</heading>
+    <body>Don't forget me this weekend!</body>
+  </Note>
+
+<Comentario id="12234">Ho la Que pass soy UN simplex</Comentario> 
+
+<Cuadernos>
+  <Libro fecha="12-14-2010">
+    <autor>Tiny</autor>
+    <titulo>Este es el titulo</titulo>
+    <editorial>Es ta es la editorial</editorial>
+    <numeroDePaginas>678</numeroDePaginas>
+    <precio>4</precio>
+  </Libro>
+
+  <Libro fecha="12-14-2010">
+    <autor>Tiny 2</autor>
+    <titulo>Este es el titulo 2</titulo>
+    <editorial>Es ta es la editorial 2</editorial>
+    <numeroDePaginas>628</numeroDePaginas>
+    <precio>8</precio>
+  </Libro>
+
+  <Libro fecha="12-14-2010">
+    <autor>Tiny 3</autor>
+    <titulo>Este es el titulo 3</titulo>
+    <editorial>Es ta es la editorial 3</editorial>
+    <numeroDePaginas>378</numeroDePaginas>
+    <precio>6</precio>
+  </Libro>
+</Cuadernos>
+
+</caja>

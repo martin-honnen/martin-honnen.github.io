@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="test2017091301.xsl"?>
+<items>
+    <item>
+        <title>Header1</title>
+        <description>
+            <p>
+                <line>
+                    This is line 1 of description of item 1.
+                </line>
+                <line>
+                    This is line 2 of description of item 1.
+                </line>
+                <line>
+                    This is line 3 of description of item 1.
+                </line>
+            </p>
+        </description>
+        <footer>Footer1</footer>
+    </item>
+    <item>
+        <title>Header2</title>
+        <description>
+            <p>
+                <line>
+                    This is line 1 of description of item 2.
+                </line>
+                <line>
+                     This is line 2 of description of item 2.
+                </line>
+                <line>
+                    This is line 3 of description of item 2.
+                </line>
+            </p>
+        </description>
+        <footer>Footer2</footer>
+    </item>
+</items>

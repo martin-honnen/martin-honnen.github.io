@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://ns.saxonica.com/xslt/export" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vv="http://saxon.sf.net/generated-variable" xmlns:java-type="http://saxon.sf.net/java-type" version="30" packageVersion="1" saxonVersion="9.8.0.3" target="JS" relocatable="false">
+ <co id="0" binds="">
+  <mode name="Q{}th" onNo="TC" flags="W" patternSlots="0">
+   <templateRule prec="0" prio="0.5" seq="0" rank="0" minImp="0" slots="0" flags="s" line="32" module="file:/C:/Users/marti/OneDrive/Documents/xslt/stackoverflow2016/test201708100102.xsl">
+    <p.withUpper role="match" axis="parent" upFirst="false">
+     <p.nodeTest test="element()" jsTest="return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType===1;"/>
+     <p.nodeTest test="element(Q{}record)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType===1 &amp;&amp; q.uri===''&amp;&amp;q.local==='record';"/>
+    </p.withUpper>
+   </templateRule>
+  </mode>
+ </co>
+ <co id="1" vis="PUBLIC" binds="">
+  <globalParam name="Q{}sortkey" type="xs:string" line="7" module="file:/C:/Users/marti/OneDrive/Documents/xslt/stackoverflow2016/test201708100102.xsl" visibility="PUBLIC" jsAcceptor="return SaxonJS.U.Atomic.string.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <str val="year"/>
+  </globalParam>
+ </co>
+ <co id="2" binds="">
+  <mode onNo="SS" flags="dW" patternSlots="0">
+   <templateRule prec="0" prio="0.5" seq="2" rank="1" minImp="0" slots="0" flags="s" line="42" module="file:/C:/Users/marti/OneDrive/Documents/xslt/stackoverflow2016/test201708100102.xsl">
+    <p.withUpper role="match" axis="parent" upFirst="false">
+     <p.nodeTest test="element()" jsTest="return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType===1;"/>
+     <p.nodeTest test="element(Q{}reord)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType===1 &amp;&amp; q.uri===''&amp;&amp;q.local==='reord';"/>
+    </p.withUpper>
+   </templateRule>
+   <templateRule prec="0" prio="0.0" seq="1" rank="0" minImp="0" slots="0" flags="s" line="36" module="file:/C:/Users/marti/OneDrive/Documents/xslt/stackoverflow2016/test201708100102.xsl">
+    <p.nodeTest role="match" test="element(Q{}record)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType===1 &amp;&amp; q.uri===''&amp;&amp;q.local==='record';"/>
+   </templateRule>
+   <templateRule prec="0" prio="0.0" seq="0" rank="0" minImp="0" slots="0" flags="s" line="13" module="file:/C:/Users/marti/OneDrive/Documents/xslt/stackoverflow2016/test201708100102.xsl">
+    <p.nodeTest role="match" test="element(Q{}list)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType===1 &amp;&amp; q.uri===''&amp;&amp;q.local==='list';"/>
+   </templateRule>
+  </mode>
+ </co>
+ <overridden/>
+ <output>
+  <property name="indent" value="yes"/>
+  <property name="{http://saxon.sf.net/}stylesheet-version" value="30"/>
+  <property name="html-version" value="5.0"/>
+  <property name="method" value="html"/>
+ </output>
+ <decimalFormat/>
+</package>
+<?Σ ac951514?>
