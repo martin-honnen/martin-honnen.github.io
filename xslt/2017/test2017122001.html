@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+        <title>Saxon-JS test</title>
+        <style type="text/css">
+            div.responsive {
+            	border: 5px solid green;
+                display: block;
+                max-width: 100%;
+                height: auto;
+            }
+            div.fig{
+                border: 10px solid yellow;
+            }
+      </style>
+   </head>
+   <body>
+        <h2>Saxon-JS test</h2>
+        <section id="saxon-target"></section>
+        <script>
+            window.addEventListener('load', function() {
+                SaxonJS.transform({
+                stylesheetLocation: "test2017122001.sef.xsl",
+                initialTemplate: "Q{http://www.w3.org/1999/XSL/Transform}initial-template"
+                });
+            })
+        </script>
+        <script type="text/javascript" src="../../Saxon-JS-1.0.2/SaxonJS.min.js"></script>
+   </body>
+</html>
