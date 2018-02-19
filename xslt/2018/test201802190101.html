@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>test</title>
+		<script src="../../Saxon-JS-1.0.2/SaxonJS.min.js"></script>
+		<script>
+			function parseHtml(htmlString, contextNode) {
+			  var doc = contextNode != null ? contextNode.ownerDocument : document;
+			  var range = doc.createRange();
+			  return range.createContextualFragment(htmlString);
+			}
+		</script>
+		<script>
+    		document.addEventListener(
+    		  'DOMContentLoaded',
+    		  function() {
+    		    SaxonJS.transform({
+    		      'stylesheetLocation' : 'test201802190101.sef',
+    		      'initialTemplate' : 'Q{http://www.w3.org/1999/XSL/Transform}initial-template'
+    		    });
+    		  },
+    		  false
+    		);
+    	</script>
+	</head>
+	<body>
+		<h1>Test</h1>
+		<div id="div1"></div>
+	</body>
+</html>
