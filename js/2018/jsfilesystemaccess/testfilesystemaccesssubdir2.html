@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Testing local file system access</title>
+		<script src="assets/loadfile.js"></script>
+		<script src="assets/transformfile.js"></script>
+		<script>
+    		document.addEventListener(
+    		  'DOMContentLoaded',
+    		  function() {
+    		    Promise
+    		    .all([loadDoc('example-input.xml'), loadDoc('example-xslt.xsl')])
+    		    .then(data => {
+    		      let xml = data[0];
+    		      let xslt = data[1];
+    		      let targetElement = document.getElementById('result');
+    		      let resultFrag = createFragSpecification(xml, xslt, targetElement.ownerDocument);
+    		      targetElement.appendChild(resultFrag);
+    		    })
+    		  },
+    		  false
+    		);
+    	</script>
+	</head>
+	<body>
+		<h1>Testing local file system access</h1>
+		<section>
+			<h2>Result</h2>
+			<div id="result"></div>
+		</section>
+	</body>
+</html>
