@@ -1,0 +1,6 @@
+<dropdowns>
+  <dropdown name="xyz">
+    <option value="I">Info</option>
+    <option value="C">Category</option>
+  </dropdown>
+</dropdowns>
