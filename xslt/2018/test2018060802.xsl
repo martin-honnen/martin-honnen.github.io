@@ -6,7 +6,7 @@
         <xsl:param name="listname"/>
         <xsl:param name="value"/>
         <select>
-            <xsl:for-each select="document('subirtest201806/test2018060802.xml')/dropdowns/dropdown[@name=$listname]/option">
+            <xsl:for-each select="document('subirtest201806/test2018060802.xml', /)/dropdowns/dropdown[@name=$listname]/option">
                 <option>
                     <xsl:attribute name="value">
                         <xsl:value-of select="@value"/>
