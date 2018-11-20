@@ -42,7 +42,7 @@
           }
           else {
               var template = new ActiveXObject('Msxml2.XslTemplate.6.0');
-              xslDoc.setProperty('resolveExternals', true);
+              xslDoc.setProperty('ResolveExternals', true);
               template.stylesheet = xslDoc;
               var proc = template.createProcessor();
               
