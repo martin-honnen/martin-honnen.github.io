@@ -19,7 +19,7 @@
 function loadXmlStyledWithXslt(xml, xsltUrl, frameName) {
 	var pi = '<?xml-stylesheet type="text/xsl" href="' + xsltUrl + '"?>';
 	var encodedXml = 'data:application/xml,' + encodeURIComponent(pi + xml);
-	window.frames[frameName]location.href = encodedXml;
+	window.frames[frameName].location.href = encodedXml;
 }
 
 document.addEventListener('DOMContentLoaded',
