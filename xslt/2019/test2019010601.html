@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>data URL with xml-stylesheet pi referencing a file</title>
+</head>
+<body>
+<h1>data URL with xml-stylesheet pi referencing a file</h1>
+<section>
+  <h2>Test</h2>
+  <iframe name="xmlDisplay" width="100%" height="300"></iframe>
+<script id="xml" type="application/xml">
+  <list>
+    <item>foo</item>
+    <item>bar</item>
+  </list>
+</script>
+<script>
+function loadXmlStyledWithXslt(xml, xsltUrl, frameName) {
+	var pi = '<?xml-stylesheet type="text/xsl" href="' + xsltUrl + '"?>';
+	var encodedXml = 'data:application/xml,' + encodeURIComponent(pi + xml);
+	window.frames[frameName]location.href = encodedXml;
+}
+
+document.addEventListener('DOMContentLoaded',
+	function () {
+		loadXmlStyledWithXslt(document.getElementById('xml').textContent, 'test2019010601.xsl', 'xmlDisplay');
+    },
+    false
+);
+</script>
+</body>
+</html>
+
+
+
