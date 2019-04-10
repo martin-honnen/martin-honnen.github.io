@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<family>
+  <person>
+   <role>Mom</role>
+   <name>Alison</name>
+   <age>44</age>
+  </person>
+  <person>
+   <role>Father</role>
+   <name>Ben</name>
+   <age>45</age>
+  </person>
+  <person>
+   <role>Son</role>
+   <name>Ian</name>
+   <age>8</age>
+  </person>
+</family>
