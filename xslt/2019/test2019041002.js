@@ -1,5 +1,5 @@
 function testInsertion(targetElement, htmlFragmentString) {
-  var range = targetElement.ownerDocument;
+  var range = targetElement.ownerDocument.createRange();
   range.selectNode(targetElement);
   var fragment = range.createContextualFragment(htmlFragmentString);
   targetElement.appendChild(fragment);
