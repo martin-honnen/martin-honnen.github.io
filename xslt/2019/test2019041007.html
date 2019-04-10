@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Testing XSLTProcessor and script execution on insertion of result from transformToFragment</title>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script>
+    
+      function getForXslt(url) {
+        return $.get({ url : url, beforeSend : function(req, settings) { try { req.responseType = 'msxml-document'; } catch (e) {} } });
+      }
+      
+      function transform(xmlUrl, xslUrl, xsltParams, targetElement) {
+        $.when(getForXslt(xmlUrl), getForXslt(xslUrl)).then(function(xmlDoc, xslDoc) {
+          
+          if (typeof XSLTProcessor !== 'undefined') {
+            var proc = new XSLTProcessor();
+            proc.importStylesheet(xslDoc);
+            
+            for (var prop in xsltParams) {
+              proc.setParameter(null, prop, xsltParams[prop]);
+            }
+            
+            var resultFrag = proc.transformToFragment(xmlDoc, targetElement.ownerDocument);
+            
+            targetElement.textContent = '';
+            //targetElement.appendChild(resultFrag);
+            $(targetElement).append(resultFrag);
+          }
+          else {
+              var template = new ActiveXObject('Msxml2.XslTemplate.6.0');
+              template.stylesheet = xslDoc;
+              var proc = template.createProcessor();
+              
+              for (var prop in xsltParams) {
+                proc.addParameter(prop, xsltParams[prop]);
+              }
+              
+              proc.input = xmlDoc;
+              
+              proc.transform();
+              
+              var resultHTML = proc.output;
+              
+              //targetElement.innerHTML = resultHTML;
+              $(targetElement).append(resultHTML);
+          }
+        });
+      }
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        transform('test2019041001.xml', 'test2019041001.xsl', {}, document.getElementById('d1'));
+      })
+    </script>
+  </head>
+
+  <body>
+    <h1>Testing XSLTProcessor and script execution on insertion of result from transformToFragment</h1>
+    <div id="d1"></div>
+  </body>
+
+</html>
