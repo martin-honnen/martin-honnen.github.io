@@ -12,7 +12,9 @@
       }
       
       function transform(xmlUrl, xslUrl, xsltParams, targetElement) {
-        $.when(getForXslt(xmlUrl), getForXslt(xslUrl)).then(function(xmlDoc, xslDoc) {
+        $.when(getForXslt(xmlUrl), getForXslt(xslUrl)).then(function(p1, p2) {
+          var xmlDoc = p1[0];
+          var xslDoc = p2[0];
           
           if (typeof XSLTProcessor !== 'undefined') {
             var proc = new XSLTProcessor();
