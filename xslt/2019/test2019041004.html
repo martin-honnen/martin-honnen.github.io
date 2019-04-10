@@ -41,7 +41,7 @@
             
             targetElement.textContent = '';
             //targetElement.appendChild(resultFrag);
-            $(targetElement).append(resultFrag.firstChild.outerHTML);
+            $(targetElement).append(resultFrag.firstElementChild.outerHTML);
           }
           else {
               var template = new ActiveXObject('Msxml2.XslTemplate.6.0');
