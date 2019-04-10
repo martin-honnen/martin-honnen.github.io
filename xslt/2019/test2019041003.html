@@ -58,7 +58,8 @@
               
               var resultHTML = proc.output;
               
-              targetElement.innerHTML = resultHTML;
+              //targetElement.innerHTML = resultHTML;
+              $(targetElement).append(resultHTML);
           }
         });
       }
