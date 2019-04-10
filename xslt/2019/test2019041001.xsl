@@ -22,7 +22,7 @@
         </xsl:for-each>      
       </tbody>
     </table>
-    <script>document.getElementById('tbl').style.display = 'none';</script>
+    <script>document.getElementById('tbl').style.display = '';</script>
   </section>
 </xsl:template>
 
