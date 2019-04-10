@@ -41,7 +41,7 @@
             
             targetElement.textContent = '';
             //targetElement.appendChild(resultFrag);
-            $(targetElement).add(resultFrag.firstChild.outerHTML);
+            $(targetElement).append(resultFrag.firstChild.outerHTML);
           }
           else {
               var template = new ActiveXObject('Msxml2.XslTemplate.6.0');
@@ -58,7 +58,8 @@
               
               var resultHTML = proc.output;
               
-              targetElement.innerHTML = resultHTML;
+              //targetElement.innerHTML = resultHTML;
+              $(targetElement).append(resultHTML);
           }
         });
       }
