@@ -8,7 +8,9 @@
     <script>
       
       function transform(xmlUrl, xslUrl, xsltParams, targetElement) {
-        $.when($.get(xmlUrl), $.get(xslUrl)).then(function(xmlDoc, xslDoc) {
+        $.when($.get(xmlUrl), $.get(xslUrl)).then(function(p1, p2) {
+          var xmlDoc = p1[0];
+          var xslDoc = p2[0];
           
           if (typeof XSLTProcessor !== 'undefined') {
             var proc = new XSLTProcessor();
