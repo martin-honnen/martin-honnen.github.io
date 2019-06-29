@@ -33,7 +33,7 @@
                  </td>
                  <td>  
                   <span class="bpgn" style="margin-left:16px">    <!-- NEXT and LAST-->
-                   <xsl:if test="$currentPage < $lastPage"><button id="next-page" onclick="transform('test2019062901.xml', 'test2019062902.xsl', {{ currentPage: { $currentPage + 1 }, groupSize: {$groupSize} }}, document.getElementById('xslt-target'));">&#8250; </button> <!-- > --></xsl:if>
+                   <xsl:if test="$currentPage &lt; $lastPage"><button id="next-page" onclick="transform('test2019062901.xml', 'test2019062902.xsl', {{ currentPage: { $currentPage + 1 }, groupSize: {$groupSize} }}, document.getElementById('xslt-target'));">&#8250; </button> <!-- > --></xsl:if>
                    &#160;<button id="last-page" onclick="transform('test2019062901.xml', 'test2019062902.xsl', {{ currentPage: { $lastPage }, groupSize: {$groupSize} }}, document.getElementById('xslt-target'));">&#187; </button>  <!-- >> -->      
                   </span>     
                  </td>   
