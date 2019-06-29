@@ -28,12 +28,12 @@
                   
                  <span class="bpgn" style="margin-left:95px">  <!-- PREVIOUS and FIRST-->
                  <button id="first-page" onclick="transform('test2019062901.xml', 'test2019062902.xsl', {{ currentPage: 1, groupSize: {$groupSize} }}, document.getElementById('xslt-target'));">&#171; </button>  <!-- << -->
-                 &#160;<button id="previous-page" onclick="transform('test2019062901.xml', 'test2019062902.xsl', {{ currentPage: { $currentPage - 1 }, groupSize: {$groupSize} }}, document.getElementById('xslt-target'));">&#8249; </button> <!-- < -->      
+                 &#160;<xsl:if test="$currentPage > 1"><button id="previous-page" onclick="transform('test2019062901.xml', 'test2019062902.xsl', {{ currentPage: { $currentPage - 1 }, groupSize: {$groupSize} }}, document.getElementById('xslt-target'));">&#8249; </button> <!-- < --></xsl:if>   
                  </span>     
                  </td>
                  <td>  
                   <span class="bpgn" style="margin-left:16px">    <!-- NEXT and LAST-->
-                   <button id="next-page" onclick="transform('test2019062901.xml', 'test2019062902.xsl', {{ currentPage: { $currentPage + 1 }, groupSize: {$groupSize} }}, document.getElementById('xslt-target'));">&#8250; </button> <!-- > -->
+                   <xsl:if test="$currentPage < $lastPage"><button id="next-page" onclick="transform('test2019062901.xml', 'test2019062902.xsl', {{ currentPage: { $currentPage + 1 }, groupSize: {$groupSize} }}, document.getElementById('xslt-target'));">&#8250; </button> <!-- > --></xsl:if>
                    &#160;<button id="last-page" onclick="transform('test2019062901.xml', 'test2019062902.xsl', {{ currentPage: { $lastPage }, groupSize: {$groupSize} }}, document.getElementById('xslt-target'));">&#187; </button>  <!-- >> -->      
                   </span>     
                  </td>   
