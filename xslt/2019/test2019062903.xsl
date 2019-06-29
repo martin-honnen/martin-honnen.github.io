@@ -26,14 +26,14 @@
                  <td colspan="3">
                   
                  <span class="bpgn" style="margin-left:95px">  <!-- PREVIOUS and FIRST-->
-                 <button id="first-page" onclick="displayPage(1);">&#171; </button>  <!-- << -->
-                 &#160;<button id="previous-page" onclick="displayPage(page - 1);">&#8249; </button> <!-- < -->      
+                 <button id="first-page">&#171; </button>  <!-- << -->
+                 &#160;<button id="previous-page">&#8249; </button> <!-- < -->      
                  </span>     
                  </td>
                  <td>  
                   <span class="bpgn" style="margin-left:16px">    <!-- NEXT and LAST-->
-                   <button id="next-page" onclick="displayPage(page + 1);">&#8250; </button> <!-- > -->
-                   &#160;<button id="last-page" onclick="displayPage({$lastPage});">&#187; </button>  <!-- >> -->      
+                   <button id="next-page">&#8250; </button> <!-- > -->
+                   &#160;<button id="last-page">&#187; </button>  <!-- >> -->      
                   </span>     
                  </td>   
                  <td>pag: <span id="page">1</span>/<xsl:value-of select="$lastPage"/> </td>
