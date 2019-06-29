@@ -21,7 +21,7 @@
                     <th>Surname</th> <th>Name</th> <th>Age</th> <th>Address</th> <th>City</th>
                   </tr>
               </thead>
-              <xsl:apply-templates select="person[position() mod $groupSize = 1][$currentPage]" mode="page"/>
+              <xsl:apply-templates select="person[position() mod $groupSize = 1][position() = $currentPage]" mode="page"/>
               <tfoot>
                 <tr class="tln"> 
                  <td colspan="3">
@@ -37,7 +37,7 @@
                    &#160;<button id="last-page" onclick="transform('test2019062901.xml', 'test2019062902.xsl', {{ currentPage: { $lastPage }, groupSize: {$groupSize} }}, document.getElementById('xslt-target'));">&#187; </button>  <!-- >> -->      
                   </span>     
                  </td>   
-                 <td>pag: <span id="page">1</span>/<xsl:value-of select="$lastPage"/> </td>
+                 <td>page: <span id="page"><xsl:value-of select="$currentPage"/></span>/<xsl:value-of select="$lastPage"/> </td>
                 </tr>                  
               </tfoot>
           </table>
