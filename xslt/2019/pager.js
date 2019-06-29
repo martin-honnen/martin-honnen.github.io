@@ -6,7 +6,7 @@ function Pager(page, lastPage, tableId) {
     
     this.table = document.getElementById(tableId);
      
-    this.nextPageBtn = table.querySelector('#next-page');
+    this.nextPageBtn = this.table.querySelector('#next-page');
     this.nextPageBtn.addEventListener('click',
        function(evt) {
           this.displayPage(this.page + 1);
@@ -14,7 +14,7 @@ function Pager(page, lastPage, tableId) {
        false
     );
     
-    this.previousPageBtn = table.querySelector('#previous-page');
+    this.previousPageBtn = this.table.querySelector('#previous-page');
     this.previousPageBtn.addEventListener('click',
        function(evt) {
           this.displayPage(this.page - 1);
@@ -22,7 +22,7 @@ function Pager(page, lastPage, tableId) {
        false
     );
     
-    this.firstPageBtn = table.querySelector('#first-page');
+    this.firstPageBtn = this.table.querySelector('#first-page');
     this.firstPageBtn.addEventListener('click',
        function(evt) {
           this.displayPage(1);
@@ -30,7 +30,7 @@ function Pager(page, lastPage, tableId) {
        false
     );
     
-    this.firstPageBtn = table.querySelector('#last-page');
+    this.firstPageBtn = this.table.querySelector('#last-page');
     this.firstPageBtn.addEventListener('click',
        function(evt) {
           this.displayPage(this.lastPage);
