@@ -53,6 +53,6 @@ var scriptUrl = new URL(document.currentScript.src);
 
 var searchParams = scriptUrl.searchParams;
 
-var pager1 = new Pager(parseInt(searchParams.get('page'), parseInt(searchParams.get('lastPage'), searchParams.get('tableId'));
+var pager1 = new Pager(parseInt(searchParams.get('page')), parseInt(searchParams.get('lastPage')), searchParams.get('tableId'));
 
 pager1.displayPage(pager1.page);
