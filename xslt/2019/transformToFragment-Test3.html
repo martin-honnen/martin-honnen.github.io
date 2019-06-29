@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>transformToFragment test 3</title>
+</head>
+<body>
+  <h1><code>transformToFragment</code> test 3</h1>
+	<script>
+    var count = 0;
+    
+		var xsltString = '<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"><xsl:output method="html" encoding="utf-8" version="5"\/><xsl:template match="/"><section><h2>Test<\/h2><script>count++;<\/script><\/section><\/xsl:template><\/xsl:stylesheet>';
+    
+		var xsltProcessor = new XSLTProcessor();
+    
+    var domParser = new DOMParser();
+    
+		xslt.importStylesheet(domParser.parseFromString(xsltString, 'application/xml'));
+    
+		document.body.appendChild(xsltProcessor.transformToFragment(
+			domParser.parseFromString('<x/>', 'application/xml'),
+			document
+		));
+    
+    var result = document.createElement('p');
+    result.textContent = 'Test ' + (count === 0 ? 'failed' : 'passed') + '.';
+    document.body.appendChild(result); 
+	</script>
+</body>
+</html>
