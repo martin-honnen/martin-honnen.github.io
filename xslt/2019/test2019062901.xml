@@ -1,0 +1,79 @@
+<persons>
+  <person> 
+  <surname>Smith</surname>
+  <name>John</name>
+  <age>44</age>
+  <address>1 Fiction Street</address>
+  <city>SouthLand</city>
+ </person>
+ <person>
+  <surname>Hardcastle</surname>
+  <name>Belinda</name>
+  <age>37</age>
+  <address>3rd. Rose Road</address>
+  <city>DownTown</city> 
+ </person>
+ <person>
+  <surname>Elliot</surname>
+  <name>George</name>
+  <age>40</age>
+  <address>21 Know Avenue</address>
+  <city>Brownville</city>
+ </person>
+ <person>
+  <surname>Jahore</surname>
+  <name>Janice</name>
+  <age>29</age>
+  <address>14 Dragon Terrace</address>
+  <city>Imagnry Town</city>
+ </person>
+ <person>
+  <surname>Johnson</surname>
+  <name>Tracey</name>
+  <age>32</age>
+  <address>11 Home Street</address>
+  <city>Flowerville</city>
+ </person>
+ <person>
+  <surname>Jalopy</surname>
+  <name>Janus</name>
+  <age>39</age>
+  <address>63 Long Road</address>
+  <city>Bigtown</city>
+ </person>
+ <person>
+  <surname>Arthur</surname>
+  <name>Bertrand</name>
+  <age>45</age>
+  <address>23 Sunrise Blvrd.</address>
+  <city>MoonTown</city>
+ </person>
+ <person>
+  <surname>Robert</surname>
+  <name>Adolphe</name>
+  <age>28</age>
+  <address>32 East Lane</address>
+  <city>Uptown</city>
+ </person>
+ <person>
+  <surname>Eileen</surname>
+  <name>Steward</name>
+  <age>52</age>
+  <address>12 Downsouth Blvrd.</address>
+  <city>Albertville</city>
+ </person>
+ <person>
+  <surname>Elizabeth</surname>
+  <name>Parker</name>
+  <age>62</age>
+  <address>21 Jump Street</address>
+  <city>San Thomas</city>
+ </person>
+ <person>
+  <surname>Don</surname>
+  <name>Stevens</name>
+  <age>54</age>
+  <address>10th Evergreen Terrace</address>
+  <city>EastBourne City</city>
+ </person>
+</persons>
