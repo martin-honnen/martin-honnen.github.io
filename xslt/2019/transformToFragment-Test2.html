@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>transformToFragment test 2</title>
+</head>
+<body>
+  <h1><code>transformToFragment</code> test 2: <code>importNode</code> workaround</h1>
+	<script>
+		var xsl = '<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"><xsl:output method="html" encoding="utf-8" version="5"\/><xsl:template match="/"><p>There should be an alert<\/p><script>alert("XSLT")<\/script><\/xsl:template><\/xsl:stylesheet>';
+		var xslt = new XSLTProcessor;
+		xslt.importStylesheet((new DOMParser).parseFromString(xsl, 'application/xml'));
+    
+		var fragment = xslt.transformToFragment(
+			(new DOMParser).parseFromString('<x/>', 'application/xml'),
+			document
+		);
+
+		// Using the fragment's ownerDocument to import the fragment is non-sensical and should be
+		// a no-op, yet it acts as a workaround
+		document.body.appendChild(fragment.ownerDocument.importNode(fragment, true));
+
+	</script>
+</body>
+</html>
