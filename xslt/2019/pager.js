@@ -9,7 +9,7 @@ function Pager(page, lastPage, tableId) {
     this.nextPageBtn = this.table.querySelector('#next-page');
     this.nextPageBtn.addEventListener('click',
        function(evt) {
-          this.displayPage(this.page + 1);
+          pager.displayPage(pager.page + 1);
        },
        false
     );
@@ -17,27 +17,28 @@ function Pager(page, lastPage, tableId) {
     this.previousPageBtn = this.table.querySelector('#previous-page');
     this.previousPageBtn.addEventListener('click',
        function(evt) {
-          this.displayPage(this.page - 1);
+          pager.displayPage(pager.page - 1);
        },
        false
     );
     
     this.firstPageBtn = this.table.querySelector('#first-page');
-    this.firstPageBtn.addEventListener('click',
-       function(evt) {
-          this.displayPage(1);
-       },
-       false
-    );
+    this.makeListener(1, this.firstPageBtn);
     
-    this.firstPageBtn = this.table.querySelector('#last-page');
-    this.firstPageBtn.addEventListener('click',
-       function(evt) {
-          this.displayPage(this.lastPage);
-       },
-       false
-    );
+    this.lastPageBtn = this.table.querySelector('#last-page');
+    this.makeListener(this.lastPage, this.lastPageBtn);
 
+}
+
+Pager.prototype.makeListener = function(pageNr, button) {
+    var pager = this;
+    button.addEventListener(
+      'click',
+      function(evt) {
+          pager.displayPage(pageNr);
+      },
+      false
+    );
 }
 
 Pager.prototype.displayPage = function(pageNr) {
