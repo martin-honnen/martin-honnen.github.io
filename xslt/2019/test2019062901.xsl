@@ -54,8 +54,8 @@
                  table.tBodies[page - 1].style.display = '';
                  Array.from(table.tBodies).filter((el, i) => i != (page - 1)).forEach(el => el.style.display = 'none'); 
 		 table.querySelector('#page').textContent = page;
-		 previousPageBtn.disabled = page !== 1;
-		 nextPageBtn.disabled = page !== lastPage;
+		 previousPageBtn.disabled = page === 1;
+		 nextPageBtn.disabled = page === lastPage;
               }
               
               displayPage(page);
