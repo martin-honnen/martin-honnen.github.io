@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>transformToFragment test 1</title>
+</head>
+<body>
+  <h1><code>transformToFragment</code> test 1</h1>
+	<script>
+		var xsl = '<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"><xsl:output method="html" encoding="utf-8" version="5"\/><xsl:template match="/"><p>There should be an alert<\/p><script>alert("XSLT")<\/script><\/xsl:template><\/xsl:stylesheet>';
+
+		var xslt = new XSLTProcessor;
+		xslt.importStylesheet((new DOMParser).parseFromString(xsl, 'application/xml'));
+
+		document.body.appendChild(xslt.transformToFragment(
+			(new DOMParser).parseFromString('<x/>', 'application/xml'),
+			document
+		));
+	</script>
+</body>
+</html>
