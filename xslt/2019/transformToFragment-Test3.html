@@ -15,7 +15,7 @@
     
     var domParser = new DOMParser();
     
-		xslt.importStylesheet(domParser.parseFromString(xsltString, 'application/xml'));
+		xsltProcessor.importStylesheet(domParser.parseFromString(xsltString, 'application/xml'));
     
 		document.body.appendChild(xsltProcessor.transformToFragment(
 			domParser.parseFromString('<x/>', 'application/xml'),
