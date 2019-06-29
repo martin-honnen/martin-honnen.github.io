@@ -45,9 +45,9 @@ Pager.prototype.displayPage = function(pageNr) {
    this.page = pageNr;
    this.table.tBodies[this.page - 1].style.display = '';
    Array.from(this.table.tBodies).filter((el, i) => i != (this.page - 1)).forEach(el => el.style.display = 'none'); 
-   this.table.querySelector('#page').textContent = page;
+   this.table.querySelector('#page').textContent = this.page;
    this.previousPageBtn.disabled = this.page === 1;
-   this.nextPageBtn.disabled = this.page === lastPage;
+   this.nextPageBtn.disabled = this.page === this.lastPage;
 };
 
 var scriptUrl = new URL(document.currentScript.src);
