@@ -26,14 +26,14 @@
                  <td colspan="3">
                   
                  <span class="bpgn" style="margin-left:95px">  <!-- PREVIOUS and FIRST-->
-                 <a href="#" onclick="displayPage(1); return false;">&#171; </a>  <!-- << -->
-                 &#160;<a href="#" onclick="displayPage(page - 1); return false;">&#8249; </a> <!-- < -->      
+                 <button id="first-page" onclick="displayPage(1);">&#171; </button>  <!-- << -->
+                 &#160;<button id="previous-page" onclick="displayPage(page - 1);">&#8249; </button> <!-- < -->      
                  </span>     
                  </td>
                  <td>  
                   <span class="bpgn" style="margin-left:16px">    <!-- NEXT and LAST-->
-                   <a href="#" onclick="displayPage(page + 1); return false;">&#8250; </a> <!-- > -->
-                   &#160;<a href="#" onclick="displayPage(); return false;">&#187; </a>  <!-- >> -->      
+                   <button id="next-page" onclick="displayPage(page + 1);">&#8250; </button> <!-- > -->
+                   &#160;<button id="last-page" onclick="displayPage({$lastPage});">&#187; </button>  <!-- >> -->      
                   </span>     
                  </td>   
                  <td>pag: <span id="page">1</span>/<xsl:value-of select="$lastPage"/> </td>
@@ -45,14 +45,20 @@
               var lastPage = <xsl:value-of select="$lastPage"/>;
               
               var table = document.getElementById('<xsl:value-of select="$tableId"/>');
+		  
+	      var nextPageBtn = table.querySelector('#next-page');
+	      var previousPageBtn = table.querySelector('#previous-page');
               
               function displayPage(pageNr) {
                  page = pageNr;
-                 table.tBodies[page - 1].display = '';
+                 table.tBodies[page - 1].style.display = '';
                  Array.from(table.tBodies).filter((el, i) => i != (page - 1)).forEach(el => el.style.display = 'none'); 
+		 table.querySelector('#page').textContent = page;
+		 previousPageBtn.disabled = page !== 1;
+		 nextPageBtn.disabled = page !== lastPage;
               }
               
-              displayPage(1);
+              displayPage(page);
           </script>
       </section>
   </xsl:template>
