@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>createContextualFragment test 1</title>
+	<title>createContextualFragment test 1: script parsing, insertion and execution test</title>
 </head>
 <body>
   <h1><code>createContextualFragment</code> test 1</h1>
 	<script>
-    var count = 0;
-		var htmlFragString = `<section><h2>Test<\/h2><script>count++;<\/script><\/section>`;
+    var passed = false;
+    var htmlFragString = `<section><h2>script parsing, insertion and execution test<\/h2><script>passed = true;<\/script><\/section>`;
     var range = document.createRange();
     range.selectNode(document.body);
     var htmlFrag = range.createContextualFragment(htmlFragString);
     document.body.appendChild(htmlFrag);
     var result = document.createElement('p');
-    result.textContent = 'Test ' + (count === 0 ? 'failed' : 'passed') + '.';
+    result.textContent = 'Test ' + (passed ? 'passed' : 'failed') + '.';
     document.body.appendChild(result);    
 	</script>
 </body>
