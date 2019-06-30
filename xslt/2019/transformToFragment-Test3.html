@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>transformToFragment test 3</title>
+	<title>transformToFragment test 3: script creation, insertion and execution test</title>
 </head>
 <body>
   <h1><code>transformToFragment</code> test 3</h1>
 	<script>
-    var count = 0;
+    var passed = false;
     
-		var xsltString = '<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"><xsl:output method="html" encoding="utf-8" version="5"\/><xsl:template match="/"><section><h2>Test<\/h2><script>count++;<\/script><\/section><\/xsl:template><\/xsl:stylesheet>';
+    var xsltString = '<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"><xsl:output method="html" encoding="utf-8" version="5"\/><xsl:template match="/"><section><h2>script creation, insertion and execution test<\/h2><script>passed = true;<\/script><\/section><\/xsl:template><\/xsl:stylesheet>';
     
-		var xsltProcessor = new XSLTProcessor();
+    var xsltProcessor = new XSLTProcessor();
     
     var domParser = new DOMParser();
     
-		xsltProcessor.importStylesheet(domParser.parseFromString(xsltString, 'application/xml'));
+    xsltProcessor.importStylesheet(domParser.parseFromString(xsltString, 'application/xml'));
     
 		document.body.appendChild(xsltProcessor.transformToFragment(
 			domParser.parseFromString('<x/>', 'application/xml'),
@@ -23,7 +23,7 @@
 		));
     
     var result = document.createElement('p');
-    result.textContent = 'Test ' + (count === 0 ? 'failed' : 'passed') + '.';
+    result.textContent = 'Test ' + (passed ? 'passed' : 'failed') + '.';
     document.body.appendChild(result); 
 	</script>
 </body>
