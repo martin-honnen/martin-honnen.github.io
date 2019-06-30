@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>createContextualFragment test 2: external script parsing, insertion and execution test</title>
+</head>
+<body>
+  <h1><code>createContextualFragment</code> test 2</h1>
+	<script>
+    var passed = false;
+    var htmlFragString = `<section><h2>external script parsing, insertion and execution test<\/h2><script src="script1.js"><\/script><\/section>`;
+    var range = document.createRange();
+    range.selectNode(document.body);
+    var htmlFrag = range.createContextualFragment(htmlFragString);
+    document.body.appendChild(htmlFrag);
+	</script>
+  
+  <script>
+    var result = document.createElement('p');
+    result.textContent = 'Test ' + (passed ? 'passed' : 'failed') + '.';
+    document.body.appendChild(result);
+  </script>
+  
+</body>
+</html>
