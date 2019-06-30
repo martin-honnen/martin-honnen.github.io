@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>transformToFragment test 5: external script creation, insertion and execution test</title>
+</head>
+<body>
+  <h1><code>transformToFragment</code> test 5</h1>
+	<script>
+    var passed = false;
+    
+    var xsltString = '<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"><xsl:output method="html" encoding="utf-8" version="5"\/><xsl:template match="/"><section><h2>external script creation, insertion and execution test<\/h2><script src="script1.js"><\/script><\/section><\/xsl:template><\/xsl:stylesheet>';
+    
+    var xsltProcessor = new XSLTProcessor();
+    
+    var domParser = new DOMParser();
+    
+    xsltProcessor.importStylesheet(domParser.parseFromString(xsltString, 'application/xml'));
+    
+		document.body.appendChild(xsltProcessor.transformToFragment(
+			domParser.parseFromString('<x/>', 'application/xml'),
+			document
+		));
+
+	</script>
+  
+  <script>
+    window.addEventListener(
+      'load',
+      function(evt) {
+        var result = document.createElement('p');
+        result.textContent = 'Test ' + (passed ? 'passed' : 'failed') + '.';
+        document.body.appendChild(result);
+      },
+      false
+    );
+  </script>
+</body>
+</html>
