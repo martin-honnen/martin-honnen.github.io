@@ -16,9 +16,15 @@
 	</script>
   
   <script>
-    var result = document.createElement('p');
-    result.textContent = 'Test ' + (passed ? 'passed' : 'failed') + '.';
-    document.body.appendChild(result);
+    document.addEventListener(
+      'DOMContentLoaded',
+      function(evt) {
+        var result = document.createElement('p');
+        result.textContent = 'Test ' + (passed ? 'passed' : 'failed') + '.';
+        document.body.appendChild(result);
+      },
+      false
+    );
   </script>
   
 </body>
