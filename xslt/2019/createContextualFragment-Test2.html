@@ -16,8 +16,8 @@
 	</script>
   
   <script>
-    document.addEventListener(
-      'DOMContentLoaded',
+    window.addEventListener(
+      'load',
       function(evt) {
         var result = document.createElement('p');
         result.textContent = 'Test ' + (passed ? 'passed' : 'failed') + '.';
