@@ -13,7 +13,7 @@
 
   <xsl:template match="/" name="xsl:initial-template">
     <xsl:iterate select="1 to 5">
-       <xsl:result-document href="html-result-{.}.html">
+       <xsl:result-document href="html-result-{.}.html" expand-text="yes">
          <html>
             <head>
                <title>HTML result {.}</title>
