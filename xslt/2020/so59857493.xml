@@ -1,0 +1,28 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<?xml-stylesheet type="text/xsl" href="so59857493.xsl" ?>
+<group1>
+    <item1>val1</item1>
+    <item2>val2</item2>
+    <group2>
+        <item3>val3</item3>
+        <item4>val4</item4>
+        <group3>
+            <item5>val5</item5>
+        </group3>
+    </group2>
+    <group2>
+        <item3>val6</item3>
+        <item4>val7</item4>
+        <group3>
+            <item5>val8</item5>
+        </group3>
+    </group2>
+    <group4>
+        <item6>val9</item6>
+        <item7>val10</item7>
+    </group4>
+    <group4>
+        <item6>val11</item6>
+        <item7>val12</item7>
+    </group4>
+</group1>
