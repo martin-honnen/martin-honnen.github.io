@@ -1,0 +1,101 @@
+<shop>
+
+    <customers>
+        <customer id="1">
+            <level>A</level>
+        </customer>
+        <customer id="2">
+            <level>A</level>
+        </customer>
+        <customer id="3">
+            <level>B</level>
+        </customer>
+        <customer id="4">
+            <level>C</level>
+        </customer>
+        <customer id="5">
+            <level>C</level>
+        </customer>
+         <customer id="6">
+            <level>C</level>
+        </customer>
+    </customers>
+
+
+    <bills>
+     <bill id="1">
+            <customerId>1</customerId>
+            <bposition>
+                <price>1</price>
+                <amount>1</amount>
+            </bposition>
+     </bill>
+     <bill id="2">
+            <customerId>2</customerId>
+            <bposition>
+                <price>2</price>
+                <amount>2</amount>
+            </bposition>
+            <bposition>
+                <price>3</price>
+                <amount>2</amount>
+            </bposition>
+
+     </bill>
+
+     <bill id ="3">
+            <customerId>3</customerId>
+            <bposition>
+                <price>4</price>
+                <amount>1</amount>
+            </bposition>
+     </bill>
+
+     <bill id ="4">
+            <customerId>1</customerId>
+            <bposition>
+                <price>2</price>
+                <amount>2</amount>
+            </bposition>
+     </bill>
+
+     <bill id ="5">
+            <customerId>3</customerId>
+            <bposition>
+                <price>2</price>
+                <amount>2</amount>
+            </bposition>
+            <bposition>
+                <price>5</price>
+                <amount>2</amount>
+            </bposition>
+     </bill>
+
+
+     <bill id ="6">
+            <customerId>4</customerId>
+            <bposition>
+                <price>1</price>
+                <amount>3</amount>
+            </bposition>
+     </bill>
+
+    <bill id ="7">
+            <customerId>5</customerId>
+            <bposition>
+                <price>5</price>
+                <amount>1</amount>
+            </bposition>
+     </bill>
+     <bill id ="8">
+            <customerId>6</customerId>
+            <bposition>
+                <price>2</price>
+                <amount>1</amount>
+            </bposition>
+     </bill>
+
+    </bills>
+
+</shop>
+
