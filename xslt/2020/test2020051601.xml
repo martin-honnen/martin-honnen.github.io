@@ -1,0 +1,54 @@
+    <products>
+        <product ean="111">
+            <listingPrice>100</listingPrice>
+        </product>
+        <product ean="222">
+            <listingPrice>500</listPrice>
+        </product>
+        <product ean="333">
+            <listingPrice>1000</listingPrice>
+        </product>
+    </products>
+    <shops>
+       <shop id="1">
+         <product>
+           <ean>111</ean>
+           <sellingPrice>90</sellingPrice>      
+        </product>
+       </shop>
+
+       <shop id="2">
+         <product>
+           <ean>888</ean>
+           <sellingPrice>10</sellingPrice>      
+        </product>
+         <product>
+           <ean>222</ean>
+           <sellingPrice>300</sellingPrice>     
+        </product>
+       </shop>
+
+        <shop id="3">
+         <product>
+           <ean>222</ean>
+           <sellingPrice>600</sellingPrice>     
+        </product>
+       </shop>
+
+
+       <shop id="4">
+
+         <product>
+           <ean>111</ean>
+           <sellingPrice>20</sellingPrice>      
+        </product>
+
+         <product>
+           <ean>333</ean>
+           <sellingPrice>140</sellingPrice>     
+        </product>
+
+
+       </shop>
+   </shops>
+</company>
