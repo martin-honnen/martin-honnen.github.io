@@ -3,7 +3,7 @@
             <listingPrice>100</listingPrice>
         </product>
         <product ean="222">
-            <listingPrice>500</listPrice>
+            <listingPrice>500</listingPrice>
         </product>
         <product ean="333">
             <listingPrice>1000</listingPrice>
