@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saxon-JS 2 XSLT 3 Fiddle</title>
+
+    <link rel="stylesheet" href="css/ace-fiddle.css">
+
+    <script src="js/SaxonJS2.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/mode-xml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/mode-html.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/mode-json.js"></script>
+</head>
+<body class="container">
+    <header >
+        <nav class="grid-row button-bar">
+            <h2>Saxon-JS 2 XSLT 3 Fiddle</h2>
+            <form onsubmit="return false;">
+                <fieldset id="input-types">
+                    <legend>input type</legend>
+                    <label><input type="radio" name="input-type" value="XML" checked>XML</label>
+                    <label><input type="radio" name="input-type" value="JSON">JSON</label>
+                    <label><input type="radio" name="input-type" value="None">No input</label>
+                </fieldset>
+            </form>
+            <input type="button" id="transform" value="transform"
+                   onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
+                            transform(inputType !== 'None' ? inputEditor.session.getValue() : null, xsltEditor.session.getValue(), inputType, document.getElementById('results'));">
+        </nav>
+    </header>
+    <div class="view-container">
+
+        <main role="main" class="pb-3 view-container">
+            
+    <section class="grid-row">
+        <div id="input-col" class="grid-item">
+            <div id="input-editor" class="editor"></div>
+        </div>
+        <div class="grid-item">
+
+            <div id="xslt-editor" class="editor"></div>
+        </div>
+    </section>
+    <section class="grid-row button-bar">
+        <label>
+            Result documents:
+            <select name="results" id="results"></select>
+        </label>
+        <label id="render-result">
+            render result
+            <input type="checkbox" id="render-box" name="render-box" checked>
+        </label>
+    </section>
+    <section class="grid-row">
+        <div class="grid-item">
+            <div id="result-editor" class="editor"></div>
+        </div>
+        <div id="result-frame-container" class="grid-item">
+            <iframe id="current-result-frame" name="current-result-frame" src="about:blank" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
+        </div>
+    </section>
+
+        </main>
+    </div>
+    
+    
+    <script src="js/frame-write.js"></script>
+    <script src="js/ace-modes.js"></script>
+    <script src="js/transform.js"></script>
+    <script src="js/ace-editors-init.js"></script>
+    <script src="js/event-listeners-init.js"></script>
+    <script src="js/init-examples.js"></script>
+
+    
+</body>
+</html>
