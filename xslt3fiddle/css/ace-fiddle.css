@@ -1,0 +1,63 @@
+﻿html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* background-color: lightgreen; */
+}
+
+.view-container {
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 100%;
+    flex-direction: column;
+}
+
+.grid-row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    flex-basis: 50%;
+    /* height: 50%; */
+    /*background-color: lightgreen;*/
+}
+
+.button-bar {
+    align-items: center;
+    flex-basis: auto;
+    justify-content: space-around;
+}
+
+.button-bar h2 {
+    margin: 0.3em 0;
+}
+
+.grid-item {
+    flex-grow: 1;
+    flex-basis: 50%;
+    height: 100%;
+    /*background-color: lightyellow;*/
+    /*border: 1px solid red;*/
+}
+
+#current-result-frame {
+    width: 100%;
+    height: 100%;
+}
+
+.editor {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
