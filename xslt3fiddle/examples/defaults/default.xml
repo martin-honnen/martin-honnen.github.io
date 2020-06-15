@@ -13,7 +13,7 @@
           <li>XSLT execution using <code>fn:transform</code> call from <code>SaxonJS.XPath.evaluate</code></li>
           <li>supports secondary result documents created with <code>xsl:result-document</code></li>
           <li>now with load buttons to load input XML or JSON and/or XSLT from local file system</li>
-          <li>also save link/button to save resultl document to the file system</li>
+          <li>also save link/button to save result document to the file system</li>
         </ul>
       </section>
     </section>
