@@ -41,8 +41,14 @@ function transform(input, xslt, inputType, resultsSelect) {
 
     responseData = { ResultType: 'transformation', ResultDocuments: [] };
 
+    if ("output" in transformationResult) {
+      responseData.ResultDocuments.push({ uri: 'principal result', content: transformationResult.output, method: 'html' });
+    }
+
     for (let resultDocUri in transformationResult) {
-      responseData.ResultDocuments.push({ uri: resultDocUri, content: transformationResult[resultDocUri], method: 'html' });
+      if (resultDocUri !== 'output') {
+        responseData.ResultDocuments.push({ uri: resultDocUri, content: transformationResult[resultDocUri], method: 'html' });
+      }
     }
 
 
