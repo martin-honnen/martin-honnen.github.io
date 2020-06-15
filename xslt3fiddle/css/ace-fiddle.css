@@ -1,4 +1,4 @@
-﻿html, body {
+html, body {
     margin: 0;
     height: 100%;
     width: 100%;
@@ -47,6 +47,7 @@
     flex-grow: 1;
     flex-basis: 50%;
     height: 100%;
+    position: relative;
     /*background-color: lightyellow;*/
     /*border: 1px solid red;*/
 }
@@ -60,4 +61,16 @@
     position: relative;
     width: 100%;
     height: 100%;
+}
+
+#load-input, #load-xslt, #save-result {
+    position: absolute;
+    right: 9px;
+    bottom: 9px;
+    opacity: 0.3;
+    z-index: 100;
+}
+
+#load-input-file, #load-xslt-file {
+    display: none;
 }
