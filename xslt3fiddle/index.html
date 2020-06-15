@@ -60,7 +60,7 @@
     <section class="grid-row">
         <div class="grid-item">
             <div id="result-editor" class="editor"></div>
-            <!--<input type="button" id="save-result" value="save">-->
+            <a id="save-result" onclick="var blob = new Blob([resultEditor.session.getValue()], { type: 'text/html' }); this.download = document.getElementById('results').value; this.href = window.URL.createObjectURL(blob);">save</a>
         </div>
         <div id="result-frame-container" class="grid-item">
             <iframe id="current-result-frame" name="current-result-frame" src="about:blank" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>

@@ -71,6 +71,16 @@ html, body {
     z-index: 100;
 }
 
+#save-result {
+    display: inline-block;
+    border-width: 2px;
+    border-style: outset;
+    border-color: rgb(118,118,118);
+    padding: 2px;
+    color: black;
+    text-decoration: none;
+}
+
 #load-input-file, #load-xslt-file {
     display: none;
 }
