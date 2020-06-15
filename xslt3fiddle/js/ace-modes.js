@@ -6,6 +6,16 @@ var modes = {
     'text': 'ace/mode/text'
 };
 
+var filetypes = {
+  '.htm': 'html',
+  '.html': 'html',
+  '.xml': 'xml',
+  '.xsl': 'xml',
+  '.xslt': 'xml',
+  '.xhtml' : 'xml',
+  '.json' : 'json'
+};
+
 function setDocument(editor, content, mode) {
     if (mode && modes[mode]) {
       editor.session.setMode(modes[mode]);

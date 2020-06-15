@@ -47,7 +47,9 @@ function transform(input, xslt, inputType, resultsSelect) {
 
     for (let resultDocUri in transformationResult) {
       if (resultDocUri !== 'output') {
-        responseData.ResultDocuments.push({ uri: resultDocUri, content: transformationResult[resultDocUri], method: 'html' });
+        let suffix = resultDocUri.replace(/.*(\.[a-z]+)/gi, '$1').toLowerCase();
+        let method = filetypes[suffix];
+        responseData.ResultDocuments.push({ uri: resultDocUri, content: transformationResult[resultDocUri], method: method ? method : 'html' });
       }
     }
 
