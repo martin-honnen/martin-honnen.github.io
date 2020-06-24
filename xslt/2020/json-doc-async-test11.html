@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test async json-doc in Saxon-JS 2</title>
+        <script src="../../SaxonJS2/SaxonJS2.rt.js"></script>
+        <script>        
+          document.addEventListener(
+            'DOMContentLoaded',
+            e => {
+              SaxonJS.transform({
+                'stylesheetLocation' : 'json-doc-test-with-schedule-action-11.sef'
+              },
+                'async').then(result => console.log(result))
+                        .catch(error => console.log(error));
+            },
+            false
+          );
+        </script>
+    </head>
+    <body>
+        <h1>Test async json-doc in Saxon-JS 2</h1>
+        <section>
+            <h2>Results</h2>
+            <div id="results">
+                <ul id="results-list"></ul>
+            </div>
+        </section>
+    </body>
+</html>
