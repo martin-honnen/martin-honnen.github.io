@@ -5,7 +5,7 @@
   </head>
   <body>
     <section>
-      <h1>Release 0.1.3 of Saxon-JS 2 XSLT 3 fiddle</h1>
+      <h1>Release 0.1.4 of Saxon-JS 2 XSLT 3 fiddle</h1>
       <section>
         <h2>Features</h2>
         <ul>
@@ -14,6 +14,7 @@
           <li>supports secondary result documents created with <code>xsl:result-document</code></li>
           <li>now with load buttons to load input XML or JSON and/or XSLT from local file system</li>
           <li>also save link/button to save result document to the file system</li>
+          <li>save XML or JSON input and XSLT code in URL query string</li>
         </ul>
       </section>
     </section>
