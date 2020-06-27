@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="css/ace-fiddle.css">
 
-    <script src="js/SaxonJS2.js"></script>
+    <script src="js/SaxonJS2.js"></script>  
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/mode-xml.js"></script>
@@ -18,7 +18,7 @@
     <header >
         <nav class="grid-row button-bar">
             <h2>Saxon-JS 2 XSLT 3 Fiddle</h2>
-            <form onsubmit="return false;">
+            <form id="input-type-form" onsubmit="return false;">
                 <fieldset id="input-types">
                     <legend>input type</legend>
                     <label><input type="radio" name="input-type" value="XML" checked>XML</label>
@@ -29,6 +29,8 @@
             <input type="button" id="transform" value="transform" accesskey="t"
                    onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
                             transform(inputType !== 'None' ? inputEditor.session.getValue() : null, xsltEditor.session.getValue(), inputType, document.getElementById('results'));">
+            <input type="button" id="save" value="save as URL" accesskey="s"
+                   onclick="save(document.getElementById('input-type-form'));">
         </nav>
     </header>
     <div class="view-container">
