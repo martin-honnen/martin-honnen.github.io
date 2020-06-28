@@ -10,6 +10,7 @@
           <xsl:apply-templates/>
           <select>
             <xsl:apply-templates select="document('test2020062802.xml')/Options/Option"/>
+          </select>
       </p>
   </xsl:template>
     
