@@ -8,7 +8,15 @@
   <xsl:template match="para">
       <p>
           <xsl:apply-templates/>
+          <select>
+            <xsl:apply-templates select="document('test2020062802.xml')/Options/Option"/>
       </p>
+  </xsl:template>
+    
+  <xsl:template match="Option">
+    <option value="{.}">
+      <xsl:value-of select="."/>
+    </option>
   </xsl:template>
 
 </xsl:stylesheet>
