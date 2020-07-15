@@ -22,9 +22,8 @@
       }
       
       function transform(xmlDoc, xslUrl, xsltParams, iframeDoc) {
-        Promise.all([new Promise(function(resolve) { resolve(xmlDoc) }), loadDoc(xslUrl)]).then(function(data) {
-          var xmlDoc = data[0];
-          var xslDoc = data[1];
+        loadDoc(xslUrl)).then(function(data) {
+          var xslDoc = data;
           
           if (typeof XSLTProcessor !== 'undefined') {
             var proc = new XSLTProcessor();
