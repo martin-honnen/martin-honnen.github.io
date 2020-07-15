@@ -22,7 +22,7 @@
       }
       
       function transform(xmlDoc, xslUrl, xsltParams, iframeDoc) {
-        loadDoc(xslUrl)).then(function(data) {
+        loadDoc(xslUrl).then(function(data) {
           var xslDoc = data;
           
           if (typeof XSLTProcessor !== 'undefined') {
