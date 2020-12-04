@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='iso-8859-1' standalone='yes'?>
+<root title="XSL SOH&#x0001;Test">
+    <mydata> Data with SOH&#x0001;  </mydata>
+</root>
