@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <style>
+               TD.datagridHeader {
+                        border-Top: "1 solid buttonhighlight";
+                        border-Left: "1 solid buttonhighlight";
+                        border-Right: "1 solid buttonshadow";
+                        border-Bottom: "1 solid buttonshadow";
+                        background-Color: "#C5DEFD";
+                        font-family: "MS Sans Serif";
+                        font-size: "8pt";
+                        padding: "2";
+                    }
+
+                    TD.datagridField {
+                        border-Top: "1 solid buttonhighlight";
+                        border-Left: "1 solid buttonhighlight";
+                        border-Right: "1 solid buttonshadow";
+                        border-Bottom: "1 solid buttonshadow";
+                        background-color: "#FFFFFF";
+                        font-size: "8pt";
+                        text-align: "RIGHT";
+                    }
+
+                    FIELDSET.theStyle {
+                        padding: "6";
+                        font-family: "MS Sans Serif";
+                        font-size: "8pt";
+                        width: "1000";
+                    }
+
+                    TD.emptyTD {
+                        font-family: "MS Sans Serif";
+                        font-size: "8pt";
+                    }
+
+                    INPUT {
+                        font-family: "MS Sans Serif";
+                        font-size: "8pt";
+                    }
+
+                    INPUT.fmButton {
+                        font-family: "MS Sans Serif";
+                        font-size: "8pt";
+                        background-Color: "#C5DEFD";
+                    }
+
+                    INPUT.actionButton {
+                        font-family: "MS Sans Serif";
+                        font-size: "8pt";
+                        background-Color: "#C5DEFD";
+                        margin-bottom: "5px";
+                    }
+
+                    TD.wingdings {
+                        color: white;
+                        font-family: "wingdings 2";
+                        font-size: 12pt;
+                        width: 12;
+                    }
+
+                    TD.white {
+                        color: white;
+                        font-family: MS Sans Serif;
+                        font-size: 12pt;
+                        width: 12;
+                    }
+
+                    SELECT.multiSelect {
+                        font-family: MS Sans Serif;
+                        font-size: 8pt;
+                        width: 180
+                    }
+
+                    SELECT {
+                        border-top: "1 none buttonhighlight";
+                        border-left: "1 none buttonhighlight";
+                        border-right: "1 none buttonshadow";
+                        border-bottom: "1 none buttonshadow";
+                    }      
+    </style>
+    <script>
+      document.addEventListener(
+        'DOMContentLoaded',
+        function(evt) {
+          var domParser = new DOMParser();
+          var xmlDoc1 = domParser.parseFromString(document.getElementById('xml-input1').text, 'application/xml');
+          var sheet1 = domParser.parseFromString(document.getElementById('xslt-code1').text, 'application/xml');
+          var processor = new XSLTProcessor();
+          processor.importStylesheet(sheet1);
+          document.getElementById('xslt-result1').appendChild(processor.transformToFragment(xmlDoc1, document));
+        },
+        false
+      );
+    </script>
+<script type="application/xml" id="xml-input1"><?xml version="1.0" encoding="UTF-8" ?>
+        <FORM>
+            <SECTION title="SuperSection" id="0">
+                <NONRECURSIVE>
+                    <ELEMENT>
+                        <ATTRIBUTE>
+                            <TYPE>
+                                <![CDATA[IFT]]>
+                            </TYPE>
+                            <SUBTYPE>
+                                <![CDATA[]]>
+                            </SUBTYPE>
+                            <NAME>
+                                <![CDATA[DFLTF]]>
+                            </NAME>
+                            <DB_TYPE>
+                                <![CDATA[V]]>
+                            </DB_TYPE>
+                            <FIELD_TEXT>
+                                <![CDATA[]]>
+                            </FIELD_TEXT>
+                            <BOUND_DATA>
+                                <![CDATA[]]>
+                            </BOUND_DATA>
+                            <SIZE>
+                                <![CDATA[]]>
+                            </SIZE>
+                            <TITLE>
+                                <![CDATA[SOME TEXT]]>
+                            </TITLE>
+                            <VALUE>
+                                <![CDATA[]]>
+                            </VALUE>
+                            <EVENTS>
+                                <![CDATA[]]>
+                            </EVENTS>
+                        </ATTRIBUTE>
+                    </ELEMENT>
+                </NONRECURSIVE>
+            </SECTION>
+        </FORM></script>
+    <script type="application/xslt+xml" id="xslt-code1"><xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+            <xsl:output method="html" omit-xml-declaration="yes" standalone="yes" indent="yes" media-type="text/html" />
+            <xsl:template match="/FORM/SECTION">
+                <xsl:call-template name="CREATE-NORMAL" />
+            </xsl:template>
+
+            <xsl:template name="CREATE-NORMAL">
+            <fieldset class="theStyle">
+                <legend style="font-weight:bold">
+                    <xsl:value-of select="@title" />
+                </legend>
+                <br />
+                <xsl:for-each select="child::*">
+                    <xsl:if test="name()='NONRECURSIVE'">
+                        <xsl:variable name="hidden-elements" select="*[ATTRIBUTE/SUBTYPE[text()='HIDDEN']]" />
+
+                        <xsl:for-each select="$hidden-elements">
+                            <xsl:call-template name="CREATE-ELEMENT">
+                                <xsl:with-param name="add-field-text" select="1" />
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </xsl:if>
+
+                    <xsl:if test="name()='RECURSIVE'">
+                    </xsl:if>
+                </xsl:for-each>
+            </fieldset>
+
+            <xsl:for-each select="child::*">
+                <xsl:if test="name()='NONRECURSIVE'">
+                    <xsl:variable name="number-of-multi-select-elements"
+                        select="count(*[ATTRIBUTE/TYPE[text()='MULTIPLE_SELECT']])" />
+                    <xsl:if test="$number-of-multi-select-elements &gt; 0">
+                        <br />
+                        <fieldset style="padding:6">
+                            <br />
+                            <table border="0" cellspacing="0" cellpadding="0">
+                                <xsl:call-template name="CREATE-MULTI-SEL-TABLE">
+                                </xsl:call-template>
+                            </table>
+                        </fieldset>
+                    </xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+            </xsl:template>
+
+            <xsl:template name="CREATE-ELEMENT">
+                <xsl:param name="add-field-text" select="0" />
+                <xsl:param name="element-style" select="0" />
+                <xsl:param name="recursive-table" select="0" />
+                <xsl:param name="actions-section" select="0" />
+
+                <xsl:for-each select="child::*">
+                    <xsl:if test="name()='ATTRIBUTE'">
+                        <xsl:choose>
+                            <xsl:when test="SUBTYPE!=''">
+                                <xsl:choose>
+                                    <xsl:when test="SUBTYPE!='LOOKAHEAD'">
+                                        <xsl:if test="$add-field-text = 0">
+                                            <xsl:value-of select="FIELD_TEXT" />
+                                            &#160;
+                                        </xsl:if>
+                                        <xsl:element name="{TYPE}">
+                                            <xsl:attribute name="TYPE">
+                                                <xsl:value-of select="SUBTYPE" />
+                                            </xsl:attribute>
+                                            <xsl:attribute name="NAME">
+                                                <xsl:value-of select="NAME" />
+                                            </xsl:attribute>
+                                            <xsl:attribute name="TITLE">
+                                                <xsl:value-of select="TITLE" />
+                                            </xsl:attribute>
+                                            <xsl:attribute name="VALUE">
+                                                <xsl:value-of select="VALUE" />
+                                            </xsl:attribute>
+                                            <xsl:attribute name="db_type">
+                                                <xsl:value-of select="DB_TYPE" />
+                                            </xsl:attribute>
+                                            <xsl:attribute name="SIZE">
+                                                <xsl:value-of select="SIZE" />
+                                            </xsl:attribute>
+                                            <xsl:choose>
+                                                <xsl:when test="SUBTYPE = 'BUTTON' and $actions-section = 1">
+                                                    <xsl:attribute name="CLASS">actionButton</xsl:attribute>
+                                                </xsl:when>
+                                                <xsl:when test="SUBTYPE = 'BUTTON'">
+                                                    <xsl:attribute name="CLASS">fmButton</xsl:attribute>
+                                                </xsl:when>
+                                            </xsl:choose>
+                                            <xsl:attribute name="STYLE">
+                                                <xsl:if test="$element-style = 1">
+                                                    font-family:Arial;
+                                                    font-size:8pt;
+                                                </xsl:if>
+                                                <xsl:if test="$element-style = 0">
+                                                    border-bottom:0px solid;
+                                                    border-left:0px solid;
+                                                    border-right:0px solid;
+                                                    border-top:0px solid;
+                                                    font-family:Arial;
+                                                    font-size:8pt;
+                                                </xsl:if>
+                                                <xsl:if test="SUBTYPE = 'CHECKBOX'">
+                                                    width:18;
+                                                    height:18;
+                                                </xsl:if>
+                                                <xsl:if test="$add-field-text = 1 and $recursive-table != 1">
+                                                    width:120;
+                                                </xsl:if>
+                                                <xsl:if test="$recursive-table = 1">
+                                                    width:
+                                                    <xsl:value-of select="SIZE" />
+                                                    ;
+                                                </xsl:if>
+                                            </xsl:attribute>
+                                            <xsl:for-each select="EVENTS/*">
+                                                <xsl:attribute name="{name()}">
+                                                    <xsl:value-of select="." />
+                                                </xsl:attribute>
+                                            </xsl:for-each>
+                                        </xsl:element>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <SPAN style="font-family:Arial;font-size:8pt;" width="120">
+                                            <xsl:element name="{TYPE}">
+                                                <xsl:attribute name="TYPE">text</xsl:attribute>
+                                                <xsl:attribute name="NAME">
+                                                    <xsl:value-of select="NAME" />
+                                                </xsl:attribute>
+                                                <xsl:attribute name="TITLE">
+                                                    <xsl:value-of select="TITLE" />
+                                                </xsl:attribute>
+                                                <xsl:attribute name="VALUE">
+                                                    <xsl:value-of select="VALUE" />
+                                                </xsl:attribute>
+                                                <xsl:attribute name="db_type">
+                                                    <xsl:value-of select="DB_TYPE" />
+                                                </xsl:attribute>
+                                                <xsl:attribute name="SIZE">
+                                                    <xsl:value-of select="SIZE" />
+                                                </xsl:attribute>
+                                                <xsl:attribute name="bound_data">
+                                                    <xsl:value-of select="BOUND_DATA" />
+                                                </xsl:attribute>
+                                                <xsl:attribute name="STYLE">
+                                                    <xsl:if test="$element-style = 1">
+                                                        font-family:Arial;
+                                                        font-size:8pt;
+                                                    </xsl:if>
+                                                    <xsl:if test="$element-style = 0">
+                                                        border-bottom:0px solid;
+                                                        border-left:0px solid;
+                                                        border-right:0px solid;
+                                                        border-top:0px solid;
+                                                        font-family:Arial;
+                                                        font-size:8pt;
+                                                    </xsl:if>
+                                                    <xsl:if test="$add-field-text = 1 and $recursive-table != 1">
+                                                        width:105;
+                                                    </xsl:if>
+                                                    <xsl:if test="$recursive-table = 1">
+                                                        width:
+                                                        <xsl:value-of select="SIZE" />
+                                                        ;
+                                                    </xsl:if>
+                                                </xsl:attribute>
+                                                <xsl:for-each select="EVENTS/*">
+                                                    <xsl:attribute name="{name()}">
+                                                        <xsl:value-of select="." />
+                                                    </xsl:attribute>
+                                                </xsl:for-each>
+                                            </xsl:element>
+                                            <img hspace="2"
+                                                style="font-family:Arial;font-size:8pt;zoom:100%;cursor:pointer;vertical-align: middle"
+                                                onClick="if(get_element('{NAME}').value=='' || get_element('{NAME}').value=='&#60; Mandatory &#62;' || get_element('{NAME}').value=='&#60; M &#62;') get_element('{NAME}').value='%'; get_element('{NAME}').fireEvent('ONCHANGE')"
+                                                tabindex="-1"
+                                                src="" />
+                                        </SPAN>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:if test="$add-field-text = 0">
+                                    <xsl:value-of select="FIELD_TEXT" />
+                                </xsl:if>
+                                <xsl:element name="{TYPE}">
+                                    <xsl:if test="TYPE = 'DIV'">
+                                        <xsl:attribute name="ID">
+                                            <xsl:value-of select="NAME" />
+                                        </xsl:attribute>
+                                    </xsl:if>
+                                    <xsl:if test="TYPE != 'DIV'">
+                                        <xsl:attribute name="NAME">
+                                            <xsl:value-of select="NAME" />
+                                        </xsl:attribute>
+                                    </xsl:if>
+                                    <xsl:attribute name="TITLE">
+                                        <xsl:value-of select="TITLE" />
+                                    </xsl:attribute>
+                                    <xsl:attribute name="STYLE">
+                                        <xsl:if test="$add-field-text = 1 and $recursive-table != 1">
+                                            width:120;
+                                        </xsl:if>
+                                        <xsl:if test="$recursive-table = 1">
+                                            width:
+                                            <xsl:value-of select="SIZE" />
+                                            ;
+                                        </xsl:if>
+                                        font-family:Arial;
+                                        font-size:7pt;
+                                        border-bottom:0px solid;
+                                        border-left:0px solid;
+                                        border-right:0px solid;
+                                        border-top:0px solid;
+                                    </xsl:attribute>
+                                    <xsl:for-each select="EVENTS/*">
+                                        <xsl:attribute name="{name()}">
+                                            <xsl:value-of select="." />
+                                        </xsl:attribute>
+                                    </xsl:for-each>
+                                    <xsl:if test="TYPE='HIDDEN'">
+                                        &#160;
+                                    </xsl:if>
+                                </xsl:element>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:if>
+                    <xsl:call-template name="CREATE-ELEMENT" />
+                </xsl:for-each>
+            </xsl:template>
+        </xsl:stylesheet></script>
+  </head>
+  <body>
+    <h1>Example</h1>
+    <section>
+      <h2>XSLT result</h2>
+      <div id="xslt-result1"></div>
+    </section>
+  </body>
+</html>
