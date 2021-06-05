@@ -8,7 +8,7 @@ function runAutoValidate() {
   typingTimeout = autoValidate ? setTimeout(validate, doneTypingInterval) : 0;
 }
 
-function validate(xml, schematron, resultEditor) {
+function validateWithSchxslt(xml, schematron, resultEditor) {
   resultEditor.session.setValue(
     SaxonJS.transform(
       {
