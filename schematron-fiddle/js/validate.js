@@ -1,3 +1,5 @@
+const doneTypingInterval = 1000;
+
 var autoValidate = false;
 
 function validate() {
