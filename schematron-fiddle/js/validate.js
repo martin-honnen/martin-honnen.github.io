@@ -11,8 +11,8 @@ function runAutoValidate() {
 function validateWithSchxslt(xml, schematron, resultEditor) {
   resultEditor.session.setValue(
     SaxonJS.transform(
-      {
-        stylesheetLocation: 'schxslt/1.7.2/run-pipeline-for-svrl-and-appply-to-schema.sef.json',
+      { 
+        stylesheetLocation: 'schxslt/1.7.2/run-pipeline-for-svrl-and-apply-to-schema.sef.json',
         params: {
           'schema-text': schematron,
           'instance-text': xml
