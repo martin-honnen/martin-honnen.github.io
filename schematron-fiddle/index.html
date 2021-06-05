@@ -54,7 +54,7 @@
             <a id="save-result" onclick="var blob = new Blob([resultEditor.session.getValue()], { type: 'application/xml' }); this.download = document.getElementById('results').value; this.href = window.URL.createObjectURL(blob);">save</a>
         </div>
         <div id="result-frame-container" class="grid-item">
-            <iframe id="current-result-frame" name="current-result-frame" src="./index_files/saved_resource.html" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
+            <iframe id="current-result-frame" name="current-result-frame" src="about:blank" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
         </div>
     </section>
 
