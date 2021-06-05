@@ -13,7 +13,7 @@ function validateWithSchxslt(xml, schematron, resultEditor) {
     SaxonJS.transform(
       { 
         stylesheetLocation: 'schxslt/1.7.2/run-pipeline-for-svrl-and-apply-to-schema.sef.json',
-        params: {
+        stylesheetParams: {
           'schema-text': schematron,
           'instance-text': xml
         },
