@@ -1,4 +1,4 @@
-var xmlEditor = ace.edit('input-editor');
+var xmlEditor = ace.edit('xml-editor');
 xmlEditor.session.setMode('ace/mode/xml');
 
 xmlEditor.session.setTabSize(2);
@@ -6,10 +6,10 @@ xmlEditor.session.setUseSoftTabs(true);
 
 //xmlEditor.setOption("enableEmmet", true);
 
-xmlEditor.session.on('change', runAutoValidate;
+xmlEditor.session.on('change', runAutoValidate);
 
 
-var schematronEditor = ace.edit('xslt-editor');
+var schematronEditor = ace.edit('schematron-editor');
 schematronEditor.session.setMode('ace/mode/xml');
 
 schematronEditor.session.setTabSize(2);
