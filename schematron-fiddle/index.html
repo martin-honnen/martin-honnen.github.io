@@ -39,7 +39,7 @@
         <div class="grid-item">
             <div id="schematron-editor" class="editor"></div>
             <input type="button" id="load-schematron" value="load" onclick="document.getElementById('load-schematron-file').click();">
-            <input type="file" id="load-schematron-file" onchange="this.files[0].text().then(t => schematronEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,text/xml,application/xml,application/xml+xslt">
+            <input type="file" id="load-schematron-file" onchange="this.files[0].text().then(t => schematronEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,.sch,text/xml,application/xml,application/xml+xslt">
         </div>
     </section>
     <section class="grid-row button-bar">
