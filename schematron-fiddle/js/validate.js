@@ -17,7 +17,7 @@ function validateWithSchxslt(xml, schematron, resultEditor) {
           'schema-text': schematron,
           'instance-text': xml
         },
-        deliveryFormat : 'serialized'
+        destination : 'serialized'
       }
     ).principalResult
   )

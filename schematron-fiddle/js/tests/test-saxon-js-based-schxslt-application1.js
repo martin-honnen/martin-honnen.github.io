@@ -47,7 +47,7 @@ const result = SaxonJS.transform(
       'schema-text': schematron,
       'instance-text': xml
     },
-    deliveryFormat: 'serialized'
+    destination: 'serialized'
   }
 ).principalResult;
 
