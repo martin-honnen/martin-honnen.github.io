@@ -45,7 +45,7 @@
     <section class="grid-row button-bar">
         <label id="render-result">
             render result
-            <input type="checkbox" id="render-box" name="render-box" checked="">
+            <input type="checkbox" id="render-box" name="render-box">
         </label>
     </section>
     <section class="grid-row">
@@ -53,7 +53,7 @@
             <div id="result-editor" class="editor"></div>
             <a id="save-result" onclick="var blob = new Blob([resultEditor.session.getValue()], { type: 'application/xml' }); this.download = document.getElementById('results').value; this.href = window.URL.createObjectURL(blob);">save</a>
         </div>
-        <div id="result-frame-container" class="grid-item">
+        <div id="result-frame-container" class="grid-item" style="display: none;">
             <iframe id="current-result-frame" name="current-result-frame" src="about:blank" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
         </div>
     </section>
@@ -64,6 +64,7 @@
     <script src="js/ace-modes.js"></script>
     <script src="js/validate.js"></script>
     <script src="js/ace-editors-init.js"></script>
+    <script src="js/init-event-listeners.js"></script>
   
 </body>
 </html>
