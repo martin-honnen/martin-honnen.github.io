@@ -4,7 +4,7 @@ function validate() {
   validateWithSchxslt(xmlEditor.session.getValue(), schematronEditor.session.getValue(), resultEditor);
 }
 
-function runAutoTransform() {
+function runAutoValidate() {
   typingTimeout = autoValidate ? setTimeout(validate, doneTypingInterval) : 0;
 }
 
