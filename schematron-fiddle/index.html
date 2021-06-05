@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schematron Fiddle</title>
+
+  <link rel="stylesheet" href="css/ace-fiddle.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+  <script src="https://cloud9ide.github.io/emmet-core/emmet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-emmet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-xml.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-html.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-json.js"></script>
+
+  <script src="SaxonJS22/SaxonJS2.rt.js"></script>
+</head>
+<body class="container">
+    <header>
+        <nav class="grid-row button-bar">
+            <h2>Schematron Fiddle</h2>
+            <label>auto-validate <input type="checkbox" id="auto-validate"></label>
+            <input type="button" id="validate" value="transform" accesskey="t" onclick="validate();">
+            <input type="button" id="save" value="save as URL" accesskey="s" onclick="save();">
+        </nav>
+    </header>
+    <div class="view-container">
+
+    <main role="main" class="pb-3 view-container">
+            
+    <section class="grid-row">
+        <div id="input-col" class="grid-item">
+            <div id="xml-editor" class="editor"></div>
+            <input type="button" id="load-xml" value="load" onclick="document.getElementById('load-xml-file').click();">
+            <input type="file" id="load-xml-file" onchange="this.files[0].text().then(t => xmlEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,.json,text/xml,application/xml,application/json,application/xml+xslt">
+        </div>
+        <div class="grid-item">
+            <div id="schematron-editor" class="editor"></div>
+            <input type="button" id="load-schematron" value="load" onclick="document.getElementById('load-schematron-file').click();">
+            <input type="file" id="load-schematron-file" onchange="this.files[0].text().then(t => schematronEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,text/xml,application/xml,application/xml+xslt">
+        </div>
+    </section>
+    <section class="grid-row button-bar">
+        <label id="render-result">
+            render result
+            <input type="checkbox" id="render-box" name="render-box" checked="">
+        </label>
+    </section>
+    <section class="grid-row">
+        <div class="grid-item">
+            <div id="result-editor" class="editor"></div>
+            <a id="save-result" onclick="var blob = new Blob([resultEditor.session.getValue()], { type: 'application/xml' }); this.download = document.getElementById('results').value; this.href = window.URL.createObjectURL(blob);">save</a>
+        </div>
+        <div id="result-frame-container" class="grid-item">
+            <iframe id="current-result-frame" name="current-result-frame" src="./index_files/saved_resource.html" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
+        </div>
+    </section>
+
+        </main>
+    </div>
+       
+    <script src="ace-modes.js"></script>
+    <script src="validate.js"></script>
+    <script src="ace-editors-init.js"></script>
+  
+</body>
+</html>
