@@ -31,7 +31,7 @@ function validateWithSchxslt(xml, schematron, resultEditor) {
         destination : 'serialized'
       }
     ).principalResult);
-      window.frames['current-result-frame].document.close();
+      window.frames['current-result-frame'].document.close();
 }
 
 function displayError(errorMessage, resultsSelect) {
