@@ -22,7 +22,16 @@ function validateWithSchxslt(xml, schematron, resultEditor) {
         destination : 'serialized'
       }
     ).principalResult
-  )
+  );
+      window.frames['current-result-frame'].document.open();
+      window.frames['current-result-frame'].document.write(SaxonJS.transform(
+      { 
+        stylesheetLocation: 'xslt/highlight-doc-test1.sef.json',
+        sourceText: xml,
+        destination : 'serialized'
+      }
+    ).principalResult);
+      window.frames['current-result-frame].document.close();
 }
 
 function displayError(errorMessage, resultsSelect) {
