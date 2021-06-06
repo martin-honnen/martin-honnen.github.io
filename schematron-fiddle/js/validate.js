@@ -11,23 +11,27 @@ function runAutoValidate() {
 }
 
 function validateWithSchxslt(xml, schematron, resultEditor) {
-  resultEditor.session.setValue(
-    SaxonJS.transform(
+  const svrlResult =     SaxonJS.transform(
       { 
         stylesheetLocation: 'schxslt/1.7.2/run-pipeline-for-svrl-and-apply-to-schema.sef.json',
         stylesheetParams: {
           'schema-text': schematron,
           'instance-text': xml
         },
-        destination : 'serialized'
+        destination : 'document'
       }
-    ).principalResult
-  );
+    ).principalResult;
+  
+  resultEditor.session.setValue(SaxonJS.serialize(svrlResult, { method : 'xml' }));
+  
       window.frames['current-result-frame'].document.open();
       window.frames['current-result-frame'].document.write(SaxonJS.transform(
       { 
         stylesheetLocation: 'xslt/highlight-doc-test1.sef.json',
         sourceText: xml,
+        stylesheetParams : {
+          'svrl' : svrlResult
+        }
         destination : 'serialized'
       }
     ).principalResult);
