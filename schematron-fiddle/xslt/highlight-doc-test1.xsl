@@ -32,7 +32,10 @@
             <body>
                 <section>
                     <xsl:variable name="marked-up-spans" select="f:render-tree(.)"/>
-                    <pre><xsl:sequence select="f:render-tree(.)"/></pre>
+                    <xsl:variable name="added-svrl-classes">
+                        <xsl:apply-templates mode="add-svrl" select="$marked-up-spans"/>
+                    </xsl:variable>
+                    <pre><xsl:sequence select="$added-svrl-classes/node()"/></pre>
                 </section>
             </body>
         </html>
