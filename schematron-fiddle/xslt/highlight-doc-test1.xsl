@@ -63,7 +63,7 @@
 
                     .assert { border-inline: 3px solid red; }
 
-                    element.assert::before {
+                    .element.assert::before {
                     content: "❗";
                     }
 
