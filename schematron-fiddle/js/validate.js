@@ -22,7 +22,7 @@ function validateWithSchxslt(xml, schematron, resultEditor) {
       }
     ).principalResult;
   
-  resultEditor.session.setValue(SaxonJS.serialize(svrlResult, { method : 'xml' }));
+  resultEditor.session.setValue(SaxonJS.serialize(svrlResult, { method : 'xml', indent : true }));
   
       window.frames['current-result-frame'].document.open();
       window.frames['current-result-frame'].document.write(SaxonJS.transform(
