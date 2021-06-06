@@ -12,7 +12,7 @@
     <xsl:param name="svrl" as="document-node()" select="/"/>
 
     <xsl:variable name="assertions" select="$svrl//svrl:failed-assert"/>
-    <xsl:variable name="reports" select="$svrl//svrl:report"/>
+    <xsl:variable name="reports" select="$svrl//svrl:successful-report"/>
 
     <xsl:param name="color-theme" select="'light'"/>
 
