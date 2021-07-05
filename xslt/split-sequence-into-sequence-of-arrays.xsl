@@ -6,7 +6,7 @@
     exclude-result-prefixes="#all"
     expand-text="yes">
     
-    <xsl:function name="mf:group-chunks" as="array(*)*">
+    <xsl:function name="mf:group-chunks" as="array(*)*" visibility="public">
         <xsl:param name="items" as="item()*"/>
         <xsl:param name="chunk-size" as="xs:integer"/>
         <xsl:for-each-group select="$items" group-adjacent="(position() - 1) idiv $chunk-size">
