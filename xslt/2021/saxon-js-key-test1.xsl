@@ -19,7 +19,7 @@
   </xsl:template>
 
   <xsl:template name="check-content">
-    <xsl:message select="count(id('content', ixsl:page())/p), count(key('class', 'foo', ixsl:page()))"/>
+    <xsl:message>count(id('content', ixsl:page())/p): {count(id('content', ixsl:page())/p)}; count(key('class', 'foo', ixsl:page())): {count(key('class', 'foo', ixsl:page()))}</xsl:message>
   </xsl:template>
 
   <xsl:template match="input[@id = 'test']" mode="ixsl:onclick">
