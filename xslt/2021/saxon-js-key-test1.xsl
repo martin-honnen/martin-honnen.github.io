@@ -7,7 +7,7 @@
   exclude-result-prefixes="#all"
   expand-text="yes">
 
-  <xsl:output method="html" indent="yes" html-version="5"/>
+  <xsl:output method="html" indent="yes" html-version="5.0"/>
 
   <xsl:key name="class" match="*" use="@class"/>
 
