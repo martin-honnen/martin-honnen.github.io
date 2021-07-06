@@ -13,10 +13,11 @@
     <xsl:param name="group" as="item()*"/>
     <xsl:param name="pos" as="xs:integer"/>
     <xsl:param name="wrapper-name" as="xs:QName"/>
-    <xsl:element name="{$wrapper-name}" namespace="{namespace-uri-from-QName($wrapper-name)}">
-      <xsl:attribute name="index" select="$pos"/>
-      <xsl:sequence select="$group"/>
-    </xsl:element>
+    <xsl:result-document href="split-results/chunk-{$pos}.xml">
+      <xsl:element name="{$wrapper-name}" namespace="{namespace-uri-from-QName($wrapper-name)}">
+        <xsl:sequence select="$group"/>
+      </xsl:element>
+    </xsl:result-document>
   </xsl:function>
 
   <xsl:output method="xml" indent="yes"/>
