@@ -22,7 +22,7 @@
     <xsl:message select="count(id('content')/p), count(key('class', 'foo', ixsl:page()))"/>
   </xsl:template>
 
-  <xsl:template match="id('test')" mode="ixsl:onclick">
+  <xsl:template match="input[@id = 'test']" mode="ixsl:onclick">
     <xsl:call-template name="xsl:initial-template"/>
   </xsl:template>
   
