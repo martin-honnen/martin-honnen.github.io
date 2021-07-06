@@ -12,7 +12,7 @@
   <xsl:function name="ex:wrap-rows" as="element()">
     <xsl:param name="group" as="item()*"/>
     <xsl:param name="wrapper-name" as="xs:QName"/>
-    <xsl:element name="{$wrapper-name}" namespace="{}">
+    <xsl:element name="{$wrapper-name}" namespace="{namespace-uri-from-QName($wrapper-name)}">
       <xsl:sequence select="$group"/>
     </xsl:element>
   </xsl:function>
