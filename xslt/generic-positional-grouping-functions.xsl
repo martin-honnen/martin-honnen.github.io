@@ -14,4 +14,14 @@
     </xsl:for-each-group>
   </xsl:function>
 
+  <xsl:function name="mf:group-into-document-fragments" as="document-node()*" visibility="public">
+    <xsl:param name="items" as="item()*"/>
+    <xsl:param name="chunk-size" as="xs:integer"/>
+    <xsl:for-each-group select="$items" group-adjacent="(position() - 1) idiv $chunk-size">
+      <xsl:document>
+        <xsl:sequence select="current-group()"/>
+      </xsl:document>
+    </xsl:for-each-group>
+  </xsl:function>
+
 </xsl:stylesheet>
