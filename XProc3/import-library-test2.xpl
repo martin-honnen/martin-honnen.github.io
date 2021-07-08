@@ -5,6 +5,6 @@
     <p:import href="libraries/grouping2.xpl"/>
     <p:input port="source"/>
     <p:output port="result" sequence="true" serialization="map { 'method' : 'json' }"/>
-    <mhgf:split-into-sequence-of-array-of-items function-name="mf:group-into-sequence-of-arrays" function-arity="2" function-arguments="/root/item"/>
+    <mhgf:split-into-sequence-of-array-of-items function-name="mf:group-into-sequence-of-arrays" function-arity="2" function-arguments="[/root/item, 3]"/>
     <!-- <p:identity message=". instance of array(node()): {. instance of array(node())}"/> -->
 </p:declare-step>
