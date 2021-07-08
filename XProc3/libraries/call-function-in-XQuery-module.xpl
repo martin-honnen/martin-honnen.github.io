@@ -26,6 +26,9 @@
        function-lookup($function-name, $function-arity) => apply($function-arguments)
        </c:query>
      </p:with-input>
+     <p:with-input port="source">
+        <p:empty/>
+      </p:with-input>
    </p:xquery>
 
   </p:declare-step>
