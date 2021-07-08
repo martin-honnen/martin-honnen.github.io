@@ -12,7 +12,6 @@
    <p:option name="function-arity" as="xs:integer" required="true"/>
    <p:option name="function-arguments" as="array(*)" select="[]"/>
    
-   <p:input port="source"/>
    <p:output port="result" sequence="true"/>
    
    <p:xquery version="3.1" parameters="map { 'function-name' : $function-name, 'function-arity' : $function-arity, 'function-arguments' : $function-arguments }">
