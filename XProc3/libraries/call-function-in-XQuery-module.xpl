@@ -27,7 +27,7 @@
        function-lookup($function-name, $function-arity) => apply($function-arguments)
        </c:query>
      <p:with-input>
-   <p:xquery>
+   </p:xquery>
 
   </p:declare-step>
 
