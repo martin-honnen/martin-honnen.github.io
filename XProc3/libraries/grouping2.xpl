@@ -1,5 +1,6 @@
 <p:library xmlns:p="http://www.w3.org/ns/xproc" version="3.0" 
- xmlns:mhgf="http://example.com/mhgf">
+ xmlns:mhgf="http://example.com/mhgf"
+ xmlns:xs="http://www.w3.org/2001/XMLSchema">
  
  <p:option name="xslt-lib-uri" select="'../../xslt/generic-positional-grouping-functions.xsl'" static="true"/>
  
