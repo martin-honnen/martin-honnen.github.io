@@ -4,7 +4,8 @@
  
  <p:declare-step type="mf:call-function">
    
-   <p:option name="xslt-lib-uri" select="'../../xslt/generic-positional-grouping-functions.xsl'"/>
+   <p:option name="xslt-lib-uri" as="xs:anyURI" required="true"/>
+  
    <p:option name="function-name" as="xs:QName" required="true"/>
    <p:option name="function-arity" as="xs:integer" required="true"/>
    <p:option name="function-arguments" as="array(*)" select="[]"/>
