@@ -2,7 +2,7 @@
 <p:declare-step xmlns:p="http://www.w3.org/ns/xproc" version="3.0"
     xmlns:functx="http://www.functx.com"
     xmlns:mf="http://example.com/mf">
-    <p:import href="libraries/call-function-in-XQuery-lib.xpl"/>
+    <p:import href="libraries/call-function-in-XQuery-module.xpl"/>
     <p:output port="result" sequence="true" serialization="map { 'method' : 'json' }"/>
     <mf:call-xquery-function 
       xquery-lib-module-ns="http://www.functx.com"
