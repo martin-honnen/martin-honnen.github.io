@@ -7,5 +7,5 @@
     <mf:call-xquery-function 
       xquery-lib-module-ns="http://www.functx.com"
       xquery-lib-module-uri="http://www.xqueryfunctions.com/xq/functx-1.0.1-doc.xq"
-      function-name="functx:pad-string-to-length" function-arity="3" function-arguments="(['abc', '*', 10]"/>
+      function-name="functx:pad-string-to-length" function-arity="3" function-arguments="['abc', '*', 10]"/>
 </p:declare-step>
