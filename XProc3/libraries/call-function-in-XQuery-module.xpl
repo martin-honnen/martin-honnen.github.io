@@ -17,7 +17,7 @@
    <p:xquery version="3.1" parameters="map { 'function-name' : $function-name, 'function-arity' : $function-arity, 'function-arguments' : $function-arguments }">
      <p:with-input port="query">
        <c:query>
-       import module '{$xquery-lib-module-uri}' at '{$xquery-lib-module-ns}';
+       import module '{$xquery-lib-module-ns}' at '{$xquery-lib-module-uri}';
          
        declare variable $function-name as xs:QName external;
        declare variable $function-arity as xs:integer external;
