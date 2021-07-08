@@ -4,5 +4,5 @@
     <p:import href="libraries/call-function-in-XSLT-lib.xpl"/>
     <p:input port="source"/>
     <p:output port="result" sequence="true" serialization="map { 'method' : 'json' }"/>
-    <mf:call-function function-name="mf:group-into-sequence-of-arrays" function-arity="2" function-arguments="[/root/item, 3]"/>
+    <mf:call-function function-lib="'../../xslt/generic-positional-grouping-functions.xsl'" function-name="mf:group-into-sequence-of-arrays" function-arity="2" function-arguments="[/root/item, 3]"/>
 </p:declare-step>
