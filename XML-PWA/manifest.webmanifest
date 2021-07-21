@@ -1,0 +1,15 @@
+{
+  "background_color": "white",
+  "description": "XML/XSLT based PWA",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "XML-XSLT-PWA.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "name": "XML/XSLT based PWA",
+  "short_name": "XMLXSLTPWA",
+  "start_url": "/XML-PWA/index.xml"
+}

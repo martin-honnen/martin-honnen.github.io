@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="index.xsl"?>
+<root>
+  <items>
+    <item>
+      <foo>foo 1</foo>
+    </item>
+    <item>
+      <foo>foo 2</foo>
+    </item>
+  </items>
+</root>
