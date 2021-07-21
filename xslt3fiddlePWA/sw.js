@@ -3,7 +3,7 @@ self.addEventListener('install', (e) => {
     caches.open('xslt3fiddlePWA-v1').then((cache) => cache.addAll([
       '/xslt3fiddlePWA/',
       '/xslt3fiddlePWA/index.html',
-      '/pwa-examples/a2hs/index.js',
+      '/xslt3fiddlePWA/index.js',
       '/xslt3fiddlePWA/css/ace-fiddle.css',
       '/xslt3fiddlePWA/js/SaxonJS2.js',
       'https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js',
