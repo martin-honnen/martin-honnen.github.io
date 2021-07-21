@@ -4,7 +4,7 @@
   "display": "fullscreen",
   "icons": [
     {
-      "src": "icon/xslt3fiddlePWA.png",
+      "src": "icons/xslt3fiddlePWA.png",
       "sizes": "192x192",
       "type": "image/png"
     }
