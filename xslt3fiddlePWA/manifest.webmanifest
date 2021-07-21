@@ -1,0 +1,15 @@
+{
+  "background_color": "white",
+  "description": "XSLT 3 fiddle with Saxon-JS 2",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "icon/xslt3fiddlePWA.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "name": "XSLT 3 fiddle with Saxon-JS 2",
+  "short_name": "XSLT3Fiddle",
+  "start_url": "/xslt3fiddlePWA/index.html"
+}
