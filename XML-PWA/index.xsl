@@ -11,7 +11,7 @@
     <html>
       <head>
         <title>Test</title>
-        <link type="manifest" href="manifest.webmanifest"/>
+        <link rel="manifest" href="manifest.webmanifest"/>
         <script src="index.js" defer="defer"></script>
       </head>
       <body>
