@@ -18,7 +18,7 @@
 		<section>
 		  <xsl:variable name="object" select="mf:construct-object($properties)"/>
 		  <h2>Saxon-JS test</h2>
-		  <p>Result: <code>{$object}</code></p>
+		  <p>Result: <code>{$object => serialize(map { 'method' : 'adaptive' })}</code></p>
 		  <xsl:message>$object: {$object}</xsl:message>
 		</section>
 	</xsl:result-document>
