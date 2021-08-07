@@ -17,7 +17,7 @@
                   )"/>
   </xsl:function>
   
-  <xsl:function name="mf:object">
+  <xsl:function name="mf:object" visibility="public">
       <xsl:param name="properties" as="map(*)"/>
 	  <xsl:variable name="object"
 	    select="ixsl:window()
