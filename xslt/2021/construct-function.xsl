@@ -6,13 +6,14 @@
     exclude-result-prefixes="#all"
     version="3.0">
     
-    <xsl:function name="mf:construct" as="item()">
-        <xsl:param name="constructor" as="function(*)"/>
-        <xsl:param name="arguments" as="array(*)"/>
-        <xsl:sequence
-            select="ixsl:window()
-                    => ixsl:get('Reflect.construct') 
-                    => ixsl:apply($arguments)"/>
-    </xsl:function>
+  <xsl:function name="mf:construct" as="item()">
+      <xsl:param name="constructor" as="function(*)"/>
+      <xsl:param name="arguments" as="array(*)"/>
+      <xsl:sequence
+          select="ixsl:apply(
+                    ixsl:window() => ixsl:get('Reflect.construct'),
+                    [$constructor, $arguments]
+                  )"/>
+  </xsl:function>
     
 </xsl:stylesheet>
