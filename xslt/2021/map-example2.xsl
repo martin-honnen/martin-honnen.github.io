@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mf="http://example.com/mf"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:mf="http://example.com/mf"
     xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT" 
     exclude-result-prefixes="#all"
     expand-text="yes"
@@ -23,7 +24,7 @@
                                => ixsl:get('ol.Layer.Title')
                                => mf:construct([
                                     map {
-                                      'source' : ixsl:window() => ixsl:get('ol.Source.OSM') => ixsl:construct([])
+                                      'source' : ixsl:window() => ixsl:get('ol.Source.OSM') => mf:construct([])
                                     }
                                   ])
                              ],
@@ -36,7 +37,7 @@
                                            }
                                          ])
                            }
-                         ])
+                         ])"/>
         </xsl:result-document>
     </xsl:template>
     
