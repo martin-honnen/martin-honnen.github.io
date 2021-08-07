@@ -11,7 +11,8 @@
     <xsl:template name="xsl:initial-template">
         <xsl:result-document href="#result">
             <h2>Example</h2>
-            <p>{ixsl:window()?Date
+            <p>{ixsl:window()
+                => ixsl:get('Date')
                 => mf:construct([])
                 => ixsl:call('toUTCString', [])}</p>
         </xsl:result-document>

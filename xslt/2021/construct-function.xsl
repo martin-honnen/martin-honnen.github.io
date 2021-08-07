@@ -10,8 +10,9 @@
         <xsl:param name="constructor" as="function(*)"/>
         <xsl:param name="arguments" as="array(*)"/>
         <xsl:sequence
-            select="ixsl:window()?Reflect.construct 
-                     => ixsl:apply($arguments)"/>
+            select="ixsl:window()
+                    => ixsl:get('Reflect.construct') 
+                    => ixsl:apply($arguments)"/>
     </xsl:function>
     
 </xsl:stylesheet>
