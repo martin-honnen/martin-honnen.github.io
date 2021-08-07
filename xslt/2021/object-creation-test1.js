@@ -1,4 +1,4 @@
-const SaxonJS = require('saxon-js');
+//const SaxonJS = require('saxon-js');
 
 const result = SaxonJS.XPath.evaluate(`
     ixsl:window()
