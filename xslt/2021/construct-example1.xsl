@@ -10,7 +10,7 @@
     
     <xsl:template name="xsl:initial-template">
         <xsl:result-document href="#result">
-            <h2>Example</h2>
+            <h2>Saxon-JS 2 calling JavaScript constructor function via <code>Reflect.construct</code></h2>
             <code>{ixsl:window()
                 => ixsl:get('Date')
                 => mf:construct([])
