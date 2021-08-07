@@ -9,7 +9,7 @@
     
     <xsl:import href="construct-function.xsl"/>
     
-    <xsl:template name="location">
+    <xsl:template match="location">
         <xsl:result-document href="#result">
             <div id="map" class="map"></div>
             <ixsl:set-property
