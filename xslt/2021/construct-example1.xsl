@@ -11,10 +11,10 @@
     <xsl:template name="xsl:initial-template">
         <xsl:result-document href="#result">
             <h2>Example</h2>
-            <p>{ixsl:window()
+            <code>{ixsl:window()
                 => ixsl:get('Date')
                 => mf:construct([])
-                => ixsl:call('toUTCString', [])}</p>
+                => format-dateTime('[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01].[f001]')}</code>
         </xsl:result-document>
     </xsl:template>
     
