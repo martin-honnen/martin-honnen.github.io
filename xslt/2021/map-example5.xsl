@@ -30,7 +30,8 @@
 										 'center' : ixsl:window() => ixsl:call('ol.proj.fromLonLat', [[$location/longitude/xs:decimal(.), $location/latitude/xs:decimal(.)]]),
 										 'zoom' : 4
 									   }
-									   => mf:object() => trace()
+									   => mf:object() => trace(),
+                  $serialized-json := ixsl:window() => ixsl:call('JSON.stringify', [$view-param]) => trace()
               return ixsl:window()
 								  => ixsl:get('ol.View')
 								  => mf:construct([$view-param])"/>
