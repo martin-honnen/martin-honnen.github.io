@@ -32,7 +32,7 @@
     <ixsl:set-property
 		  name="myObj"
 		  select="$map1"/>
-    <xsl:message>$map1?center: {$map1?center}</xsl:message>
+    <xsl:message>$map1?center: {$map1?center}; $map1?center instance of array(*): {$map1?center instance of array(*)}</xsl:message>
   </xsl:template>
 
   <xsl:template match="/">
