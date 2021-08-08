@@ -18,22 +18,17 @@
   </xsl:function>
   
   <xsl:function name="mf:object" visibility="public">
-      <xsl:param name="properties" as="map(*)"/>
+    <xsl:param name="properties" as="map(*)"/>
 	  <xsl:variable name="object"
 	    select="ixsl:window()
-		        => ixsl:get('Object')
-				=> mf:construct([])"/>
+		          => ixsl:get('Object')
+				      => mf:construct([])"/>
 				
-      <xsl:for-each select="map:keys($properties)">
+    <xsl:for-each select="map:keys($properties)">
 	    <ixsl:set-property
-		  object="$object"
-		  name="{.}"
-		  select="let $value := $properties(.)
-              return
-                if (exists(tail($value)))
-                then [$value]
-                else $value"
-		/>
+		    object="$object"
+		    name="{.}"
+		    select="$properties(.)"/>
 	  </xsl:for-each>
 	  
 	  <xsl:sequence select="$object"/>
