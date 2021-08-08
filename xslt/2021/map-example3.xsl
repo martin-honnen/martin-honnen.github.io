@@ -45,7 +45,7 @@
 								  => ixsl:get('ol.View')
 								  => mf:construct([
 									   map {
-										 'center' : ixsl:window() => ixsl:get('ol.proj') => ixsl:call('fromLonLat', [[$location/longitude/xs:decimal(.), $location/latitude/xs:decimal(.)]]),
+										 'center' : ixsl:window() => ixsl:call('ol.proj.fromLonLat', [[$location/longitude/xs:decimal(.), $location/latitude/xs:decimal(.)]]),
 										 'zoom' : 4
 									   }
 									   => mf:object()
