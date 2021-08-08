@@ -28,7 +28,7 @@
 	    <ixsl:set-property
 		  object="$object"
 		  name="{.}"
-		  select="$properties(.)"
+		  select="[$properties(.)]"
 		/>
 	  </xsl:for-each>
 	  
