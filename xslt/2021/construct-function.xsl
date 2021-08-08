@@ -28,7 +28,11 @@
 	    <ixsl:set-property
 		  object="$object"
 		  name="{.}"
-		  select="[$properties(.)]"
+		  select="let $value := $properties(.)
+              return
+                if (exists(tail($value)))
+                then [$value]
+                else $value"
 		/>
 	  </xsl:for-each>
 	  
