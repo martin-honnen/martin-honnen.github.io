@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Example</title>
+        <script src="../../Saxon-JS-2.2/SaxonJS2.rt.js"></script>
+        <script>
+            document.addEventListener(
+              'DOMContentLoaded',
+              e => {
+                SaxonJS.transform(
+                  {
+                    'stylesheetLocation' : 'construct-js-object-from-map-test1.xsl.sef',
+                  }, 
+                  "async"
+                );
+              }
+            );
+        </script>
+    </head>
+    <body>
+        <h1>Example</h1>
+        <section id="result"></section>
+    </body>
+</html>

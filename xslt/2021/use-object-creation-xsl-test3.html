@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test</title>
+        <script src="../../Saxon-JS-2.2/SaxonJS2.rt.js"></script>
+        <script>
+        const result = SaxonJS.transform(
+          {
+            stylesheetLocation : 'object-creation-test2.xsl.sef',
+            destination: 'raw'    
+          },
+         'sync'
+        );
+
+        console.log(result.principalResult);
+        </script>
+    </head>
+    <body>
+        <h1>Test</h1>      
+    </body>
+</html>
