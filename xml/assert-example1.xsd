@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="1.1">
+    
+    <xs:element name="ABC">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="a" type="xs:integer"/>
+                <xs:element name="b" type="xs:integer"/>
+                <xs:element name="c" type="xs:string" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:assert id="restrict-occurence" test="count(c) = a + b"/>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>

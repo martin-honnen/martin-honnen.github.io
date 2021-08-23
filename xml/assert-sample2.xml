@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ABC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="assert-example1.xsd">
+    <a>1</a>
+    <b>2</b>
+    <c>foo</c>
+    <c>bar</c>
+    <c>baz</c>
+</ABC>
