@@ -21,4 +21,6 @@ require(["vs/editor/editor.main"], () => {
 
   //resultEditor.session.setTabSize(2);
   //resultEditor.session.setUseSoftTabs(true);
+
+  load(document.location);
 });
