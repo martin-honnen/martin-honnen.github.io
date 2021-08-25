@@ -1,7 +1,8 @@
 var inputEditor, xsltEditor, resultEditor;
 
 require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.27.0/min/vs' } });
-require(["vs/editor/editor.main"], () => {
+
+require(["vs/editor/editor.main", "vs/language/json/jsonMode"], () => {
 
 
   inputEditor = monaco.editor.create(document.getElementById('input-editor'), { language: 'xml' });
