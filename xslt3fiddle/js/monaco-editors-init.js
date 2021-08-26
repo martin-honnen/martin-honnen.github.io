@@ -37,7 +37,8 @@ require(["vs/editor/editor.main"], () => {
       }
       if (entry === resultEditorContainer) {
         resultEditor.layout();
-      }    
+      }
+    }
   });
                                             
   resizeObserver.observe(inputEditorContainer);
