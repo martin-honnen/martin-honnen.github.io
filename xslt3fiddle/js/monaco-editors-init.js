@@ -29,13 +29,13 @@ require(["vs/editor/editor.main"], () => {
   
   const resizeObserver = new ResizeObserver(entries => {
     for (let entry of entries) {
-      if (entry === inputEditorContainer) {
+      if (entry.target === inputEditorContainer) {
         inputEditor.layout();
       }
-      if (entry === xsltEditorContainer) {
+      if (entry.target === xsltEditorContainer) {
         xsltEditor.layout();
       }
-      if (entry === resultEditorContainer) {
+      if (entry.target === resultEditorContainer) {
         resultEditor.layout();
       }
     }
