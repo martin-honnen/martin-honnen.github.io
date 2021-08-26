@@ -27,6 +27,18 @@ function transform(input, xslt, inputType, resultsSelect) {
         }
       );
     }
+    else if (inputType === 'HTML') {
+      var htmlDoc = new DOMParser().parseFromString(input, 'text/html');
+      transformationResult = SaxonJS.XPath.evaluate(
+        "transform(map {'stylesheet-text': $stylesheet-text , 'source-node' : ., 'delivery-format' : 'serialized' })",
+        htmlDoc,
+        {
+          params: {
+            'stylesheet-text': xslt
+          }
+        }
+      );
+    }
     else if (inputType === 'None') {
       transformationResult = SaxonJS.XPath.evaluate(
         "transform(map {'stylesheet-text': $stylesheet-text, 'delivery-format' : 'serialized' })",

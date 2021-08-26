@@ -9,10 +9,10 @@
 
     <script src="js/SaxonJS2.js"></script>  
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/mode-xml.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/mode-html.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/mode-json.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-xml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-html.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-json.js"></script>
 </head>
 <body class="container">
     <header >
@@ -23,6 +23,7 @@
                     <legend>input type</legend>
                     <label><input type="radio" name="input-type" value="XML" checked>XML</label>
                     <label><input type="radio" name="input-type" value="JSON">JSON</label>
+                    <label><input type="radio" name="input-type" value="HTML">HTML</label>
                     <label><input type="radio" name="input-type" value="None">No input</label>
                 </fieldset>
             </form>
@@ -41,7 +42,7 @@
         <div id="input-col" class="grid-item">
             <div id="input-editor" class="editor"></div>
             <input type="button" id="load-input" value="load" onclick="document.getElementById('load-input-file').click();">
-            <input type="file" id="load-input-file" onchange="this.files[0].text().then(t => inputEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,.json,text/xml,application/xml,application/json,application/xml+xslt">
+            <input type="file" id="load-input-file" onchange="this.files[0].text().then(t => inputEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,.json,.html,.htm,text/xml,application/xml,application/json,application/xml+xslt,text/html">
         </div>
         <div class="grid-item">
             <div id="xslt-editor" class="editor"></div>
