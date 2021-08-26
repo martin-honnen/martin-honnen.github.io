@@ -24,4 +24,13 @@ require(["vs/editor/editor.main"], () => {
   //resultEditor.session.setUseSoftTabs(true);
 
   load(document.location);
+  
+  window.addEventListener(
+    'resize',
+    function(evt) {
+      inputEditor.layout();
+      xsltEditor.layout();
+      resultEditor.layout();
+    }
+  );
 });
