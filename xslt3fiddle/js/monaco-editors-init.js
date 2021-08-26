@@ -1,4 +1,4 @@
-var inputEditor, xsltEditor, resultEditor;
+var inputEditorContainer, inputEditor, xsltEditorContainer, xsltEditor, resultEditorContainer, resultEditor;
 
 require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.27.0/min/vs' } });
 
@@ -10,27 +10,37 @@ window.MonacoEnvironment = {
 
 require(["vs/editor/editor.main"], () => {
 
-
-  inputEditor = monaco.editor.create(document.getElementById('input-editor'), { language: 'xml', tabSize: 2, minimap: { enabled: false } });
+  inputEditorContainer = document.getElementById('input-editor');
+  inputEditor = monaco.editor.create(inputEditorContainer, { language: 'xml', tabSize: 2, minimap: { enabled: false } });
   
   //inputEditor.session.setUseSoftTabs(true);
 
-  xsltEditor = monaco.editor.create(document.getElementById('xslt-editor'), { language: 'xml', tabSize: 2, minimap : { enabled: false } });
+  xsltEditorContainer = document.getElementById('xslt-editor');
+  xsltEditor = monaco.editor.create(xsltEditorContainer, { language: 'xml', tabSize: 2, minimap : { enabled: false } });
   
   //xsltEditor.session.setUseSoftTabs(true);
 
-  resultEditor = monaco.editor.create(document.getElementById('result-editor'), { language: 'xml', tabSize: 2, minimap : { enabled: false } });
+  resultEditorContainer = document.getElementById('result-editor');
+  resultEditor = monaco.editor.create(resultEditorContainer, { language: 'xml', tabSize: 2, minimap : { enabled: false } });
   
   //resultEditor.session.setUseSoftTabs(true);
 
   load(document.location);
   
-  window.addEventListener(
-    'resize',
-    function(evt) {
-      inputEditor.layout();
-      xsltEditor.layout();
-      resultEditor.layout();
-    }
-  );
+  const resizeObserver = new ResizeObserver(entries => {
+    for (let entry of entries) {
+      if (entry === inputEditorContainer) {
+        inputEditor.layout();
+      }
+      if (entry === xsltEditorContainer) {
+        xsltEditor.layout();
+      }
+      if (entry === resultEditorContainer) {
+        resultEditor.layout();
+      }    
+  });
+                                            
+  resizeObserver.observe(inputEditorContainer);
+  resizeObserver.observe(xsltEditorContainer);
+  resizeObserver.observe(resultEditorContainer);
 });
