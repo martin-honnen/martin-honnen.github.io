@@ -11,22 +11,23 @@ window.MonacoEnvironment = {
 require(["vs/editor/editor.main"], () => {
 
   inputEditorContainer = document.getElementById('input-editor');
-  inputEditor = monaco.editor.create(inputEditorContainer, { language: 'xml', tabSize: 2, minimap: { enabled: false } });
+  inputEditor = monaco.editor.create(inputEditorContainer, { language: 'xml', tabSize: 2, automaticLayout: true, minimap: { enabled: false } });
   
   //inputEditor.session.setUseSoftTabs(true);
 
   xsltEditorContainer = document.getElementById('xslt-editor');
-  xsltEditor = monaco.editor.create(xsltEditorContainer, { language: 'xml', tabSize: 2, minimap : { enabled: false } });
+  xsltEditor = monaco.editor.create(xsltEditorContainer, { language: 'xml', tabSize: 2, automaticLayout: true, minimap : { enabled: false } });
   
   //xsltEditor.session.setUseSoftTabs(true);
 
   resultEditorContainer = document.getElementById('result-editor');
-  resultEditor = monaco.editor.create(resultEditorContainer, { language: 'xml', tabSize: 2, minimap : { enabled: false } });
+  resultEditor = monaco.editor.create(resultEditorContainer, { language: 'xml', tabSize: 2, automaticLayout: true, minimap : { enabled: false } });
   
   //resultEditor.session.setUseSoftTabs(true);
 
   load(document.location);
   
+  /*
   const resizeObserver = new ResizeObserver(entries => {
     for (let entry of entries) {
       if (entry.target === inputEditorContainer) {
@@ -44,4 +45,5 @@ require(["vs/editor/editor.main"], () => {
   resizeObserver.observe(inputEditorContainer);
   resizeObserver.observe(xsltEditorContainer);
   resizeObserver.observe(resultEditorContainer);
+  */
 });
