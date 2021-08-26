@@ -3,7 +3,7 @@ var modes = {
   'html': 'html',
   'xhtml': 'xml',
   'json': 'json',
-  'text': 'text'
+  'text': 'plaintext'
 };
 
 var filetypes = {
