@@ -34,7 +34,7 @@ function load(location) {
     const inputType = searchParams.get('input-type');
 
     setDocument(xsltEditor, xsltCode, 'xml');
-    setDocument(inputEditor, inputCode, inputType === 'JSON' ? 'json' : 'xml');
+    setDocument(inputEditor, inputCode, inputType === 'JSON' ? 'json' : inputCode === 'HTML' ? 'html' : 'xml');
 
     document.getElementById('input-type-form').elements['input-type'].value = inputType;
   }
