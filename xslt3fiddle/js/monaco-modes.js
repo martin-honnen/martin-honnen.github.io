@@ -17,9 +17,10 @@ var filetypes = {
 };
 
 function setDocument(editor, content, mode) {
-  if (mode && modes[mode]) {
-    editor.updateOptions({ language: modes[mode] });
-    //editor.session.setUseWrapMode(mode === 'text');
-  }
-  editor.setValue(content);
+  editor.setMode(monaco.editor.createModel(content, modes[mode]));
+  //if (mode && modes[mode]) {
+  //  editor.updateOptions({ language: modes[mode] });
+  //  //editor.session.setUseWrapMode(mode === 'text');
+  //}
+  //editor.setValue(content);
 }
