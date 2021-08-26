@@ -4,7 +4,7 @@ require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-e
 
 window.MonacoEnvironment = {
   getWorkerUrl: function (workerId, label) {
-    return 'my-loader.js';
+    return 'js/my-loader.js';
   }
 };
 
