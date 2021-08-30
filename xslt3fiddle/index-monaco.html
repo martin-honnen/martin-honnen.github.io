@@ -46,12 +46,12 @@
         <div id="input-col" class="grid-item">
             <div id="input-editor" class="editor"></div>
             <input type="button" id="load-input" value="load" onclick="document.getElementById('load-input-file').click();">
-            <input type="file" id="load-input-file" onchange="this.files[0].text().then(t => inputEditor.updateOptions({ value: t }));" accept=".xml,.xsl,.xslt,.json,.html,.htm,text/xml,application/xml,application/json,application/xml+xslt,text/html">
+            <input type="file" id="load-input-file" onchange="this.files[0].text().then(t => setDocument(inputEditor, t, 'xml'));" accept=".xml,.xsl,.xslt,.json,.html,.htm,text/xml,application/xml,application/json,application/xml+xslt,text/html">
         </div>
         <div class="grid-item">
             <div id="xslt-editor" class="editor"></div>
           <input type="button" id="load-xslt" value="load" onclick="document.getElementById('load-xslt-file').click();">
-            <input type="file" id="load-xslt-file" onchange="this.files[0].text().then(t => xsltEditor.updateOptions({ value: t }));" accept=".xml,.xsl,.xslt,text/xml,application/xml,application/xml+xslt">
+            <input type="file" id="load-xslt-file" onchange="this.files[0].text().then(t => setDocument(xsltEditor, t, 'xml'));" accept=".xml,.xsl,.xslt,text/xml,application/xml,application/xml+xslt">
         </div>
     </section>
     <section class="grid-row button-bar">
