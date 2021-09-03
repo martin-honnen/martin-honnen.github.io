@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uris>
+    <uri>foo.xml</uri>
+    <uri>../foo.xml</uri>
+    <uri>../../foo.xml</uri>
+</uris>
