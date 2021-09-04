@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Test</title>
+  <script src="../../Saxon-JS-2.3/SaxonJS2.js"></script>
+  <script>
+    document.addEventListener(
+      'DOMContentLoaded',
+      function (evt) {
+        const result = SaxonJS.XPath.evaluate(`
+transform(
+    map { 
+        'stylesheet-base-uri' : 'https://martin-honnen.github.io/xslt/2021/includes/base-uri-test1.xsl',
+        'stylesheet-text' : 'includes/base-uri-test1.xsl' => unparsed-text(), 
+        'source-location' : 'sample-uris1.xml' 
+        
+    }
+)?output/uris/uri/@resolve-uri/data()        
+        `,
+         []);
+        console.log(result);
+      })
+  </script>
+</head>
+<body>
+  <h1>Test</h1>
+  <section>
+    <h2>XSLT result</h2>
+    <pre id="content"></pre>
+  </section>
+</body>
+</html>
