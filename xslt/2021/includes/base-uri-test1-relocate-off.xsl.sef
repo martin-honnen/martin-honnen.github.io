@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns='http://ns.saxonica.com/xslt/export' xmlns:fn='http://www.w3.org/2005/xpath-functions' xmlns:java-type='http://saxon.sf.net/java-type' xmlns:vv='http://saxon.sf.net/generated-variable' xmlns:xs='http://www.w3.org/2001/XMLSchema' when='2021-09-03T17:46:17.512+02:00' id='0' version='30' packageVersion='1' saxonProduct='SAXON-EE' saxonVersion='10.5' buildDateTime='2021-09-03T17:46:17.513+02:00' target='HE' targetVersion='1' relocatable='false' implicit='true'>
+ <co id='0' binds='0 0'>
+  <mode onNo='SC' flags='dW' patternSlots='0'>
+   <templateRule prec='1' prio='0.0' seq='1' rank='1' minImp='0' slots='0' matches='NE nQ{}uri' flags='s' line='13' module='file:/C:/Users/marti/OneDrive/Documents/xslt/blog-xslt-3-by-example/resolve-uri-test/compiler/base-uri-test1.xsl'>
+    <p.nodeTest role='match' test='NE nQ{}uri'/>
+    <sequence role='action' baseUri='file:/C:/Users/marti/OneDrive/Documents/xslt/blog-xslt-3-by-example/resolve-uri-test/compiler/base-uri-test1.xsl' ns='xs=~ xsl=~ xml=~' line='15'>
+     <copy flags='cin' sit='1NE nQ{}uri'>
+      <sequence role='content'>
+       <att name='static-base-uri' flags='l'>
+        <str val='file:/C:/Users/marti/OneDrive/Documents/xslt/blog-xslt-3-by-example/resolve-uri-test/compiler/base-uri-test1.xsl'/>
+       </att>
+       <att line='16' name='base-uri' flags='l'>
+        <convert from='AU' to='AS'>
+         <fn name='base-uri'>
+          <dot type='1NE nQ{}uri'/>
+         </fn>
+        </convert>
+       </att>
+       <att line='17' name='resolve-uri' flags='l'>
+        <convert from='AU' to='AS'>
+         <fn name='resolve-uri'>
+          <cvUntyped to='AS'>
+           <data diag='0|0||fn:resolve-uri'>
+            <dot type='1NE nQ{}uri'/>
+           </data>
+          </cvUntyped>
+         </fn>
+        </convert>
+       </att>
+       <applyT line='18' flags='i' bSlot='0'>
+        <axis role='select' name='child' nodeTest='N'/>
+       </applyT>
+      </sequence>
+     </copy>
+     <nextMatch line='20' flags='t'/>
+    </sequence>
+   </templateRule>
+   <templateRule prec='0' prio='0.0' seq='0' rank='0' minImp='0' slots='0' matches='NE nQ{}uri' flags='s' line='7' module='file:/C:/Users/marti/OneDrive/Documents/xslt/blog-xslt-3-by-example/resolve-uri-test/compiler/xslt/inner-base-uri-test1.xsl'>
+    <p.nodeTest role='match' test='NE nQ{}uri'/>
+    <sequence role='action' baseUri='file:/C:/Users/marti/OneDrive/Documents/xslt/blog-xslt-3-by-example/resolve-uri-test/compiler/xslt/inner-base-uri-test1.xsl' ns='xs=~ xsl=~ xml=~' line='10'>
+     <comment>
+      <str val='nested stylesheet module'/>
+     </comment>
+     <copy flags='cin' sit='1NE nQ{}uri'>
+      <sequence role='content'>
+       <att name='static-base-uri' flags='l'>
+        <str val='file:/C:/Users/marti/OneDrive/Documents/xslt/blog-xslt-3-by-example/resolve-uri-test/compiler/xslt/inner-base-uri-test1.xsl'/>
+       </att>
+       <att line='11' name='base-uri' flags='l'>
+        <convert from='AU' to='AS'>
+         <fn name='base-uri'>
+          <dot type='1NE nQ{}uri'/>
+         </fn>
+        </convert>
+       </att>
+       <att line='12' name='resolve-uri' flags='l'>
+        <convert from='AU' to='AS'>
+         <fn name='resolve-uri'>
+          <cvUntyped to='AS'>
+           <data diag='0|0||fn:resolve-uri'>
+            <dot type='1NE nQ{}uri'/>
+           </data>
+          </cvUntyped>
+         </fn>
+        </convert>
+       </att>
+       <applyT line='13' flags='i' bSlot='1'>
+        <axis role='select' name='child' nodeTest='N'/>
+       </applyT>
+      </sequence>
+     </copy>
+    </sequence>
+   </templateRule>
+  </mode>
+ </co>
+ <overridden/>
+ <output>
+  <property name='indent' value='yes'/>
+  <property name='Q{http://saxon.sf.net/}stylesheet-version' value='30'/>
+ </output>
+ <decimalFormat/>
+</package>
+<?Σ 94209dc5?>
