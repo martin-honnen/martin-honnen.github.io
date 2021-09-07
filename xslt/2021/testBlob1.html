@@ -36,7 +36,7 @@ xsltProcessor.importStylesheet(xslt10Example2Doc);
 const xmlDoc1 = new DOMParser().parseFromString(`<root>
         <item>foo</item>
         <item>bar</item>
-</root>', 'application/xml`);
+</root>`, 'application/xml');
 
 const resultDoc1 = xsltProcessor.transformToDocument(xmlDoc1);
 
