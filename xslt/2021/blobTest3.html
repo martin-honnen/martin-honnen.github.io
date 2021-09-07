@@ -26,6 +26,8 @@ const svgExample1BlobURL = URL.createObjectURL(svgExample1Blob);
 const object = document.createElement('object');
 object.data = svgExample1BlobURL;
 object.type = 'image/svg+xml';
+object.width = 400;
+object.height = 400;
 
 document.body.appendChild(object);
         
