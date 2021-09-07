@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSpec fiddle using Saxon-JS 2.3</title>
+
+    <link rel="stylesheet" href="css/xspec-fiddle.css">
+
+    <script src="js/SaxonJS2.js"></script>  
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-xml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-html.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-json.js"></script>
+</head>
+<body class="container">
+    <header >
+        <nav class="grid-row button-bar">
+            <h2>XSpec fiddle</h2>
+            <!--<form id="input-type-form" onsubmit="return false;">
+                <fieldset id="input-types">
+                    <legend>input type</legend>
+                    <label><input type="radio" name="input-type" value="XML" checked>XML</label>
+                    <label><input type="radio" name="input-type" value="JSON">JSON</label>
+                    <label><input type="radio" name="input-type" value="HTML">HTML</label>
+                    <label><input type="radio" name="input-type" value="None">No input</label>
+                </fieldset>
+            </form>-->
+            <input type="button" id="test" value="test and report" accesskey="t"
+                   onclick="compileRunReport(xspecUrl, xsltUrl);">
+            <input type="button" id="save" value="save as URL" accesskey="s"
+                   onclick="save(document.getElementById('input-type-form'));">
+        </nav>
+    </header>
+    <div class="view-container">
+
+        <main role="main" class="pb-3 view-container">
+            
+    <section class="grid-row">
+        <div id="input-col" class="grid-item">
+            <div id="xspec-editor" class="editor"></div>
+            <input type="button" id="load-input" value="load" onclick="document.getElementById('load-xspec-file').click();">
+            <input type="file" id="load-xspec-file" onchange="this.files[0].text().then(t => xspecEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,.xspec,text/xml,application/xml">
+        </div>
+        <div class="grid-item">
+            <div id="xslt-editor" class="editor"></div>
+          <input type="button" id="load-xslt" value="load" onclick="document.getElementById('load-xslt-file').click();">
+            <input type="file" id="load-xslt-file" onchange="this.files[0].text().then(t => xsltEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,text/xml,application/xml,application/xml+xslt">
+        </div>
+    </section>
+    <section class="grid-row button-bar">
+        <label>
+            Result:
+            <select name="results" id="results"></select>
+        </label>
+        <label id="render-result">
+            render result
+            <input type="checkbox" id="render-box" name="render-box" checked>
+        </label>
+    </section>
+    <section class="grid-row">
+        <div class="grid-item">
+            <div id="result-editor" class="editor"></div>
+            <a id="save-result" onclick="var blob = new Blob([resultEditor.session.getValue()], { type: 'text/html' }); this.download = document.getElementById('results').value; this.href = window.URL.createObjectURL(blob);">save</a>
+        </div>
+        <div id="result-frame-container" class="grid-item">
+            <iframe id="resultFrame" name="resultFrame" src="about:blank" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
+        </div>
+    </section>
+
+        </main>
+    </div>
+    
+    
+    <script src="js/frame-write.js"></script>
+    <script src="js/ace-modes.js"></script>
+    <script src="js/compileRunReport.js"></script>
+    <script src="js/ace-editors-init.js"></script>
+    <script src="js/event-listeners-init.js"></script>
+    <script src="js/init-examples.js"></script>
+
+    
+</body>
+</html>
