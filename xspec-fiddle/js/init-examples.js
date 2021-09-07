@@ -10,9 +10,9 @@ function setEditorFromUrl(url, editor) {
 }
 
 function loadDefaults() {
-  xspecUrl = '//xspec/samples/tutorial/escape-for-regex.xspec';
+  xspecUrl = '../xspec/samples/tutorial/escape-for-regex.xspec';
   setEditorFromUrl(xspecUrl, xspecEditor);
-  xsltUrl = '//xspec/samples/tutorial/escape-for-regex.xsl';
+  xsltUrl = '../xspec/samples/tutorial/escape-for-regex.xsl';
   setEditorFromUrl(xsltUrl, xsltEditor);
 }
 
