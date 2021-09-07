@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <meta charset=UTF-8>
+    <title>Blob test</title>
+  </head>
+  <body>
+    <h1>Blob test</h1>
+    <section>
+      <h2>Blob test 3</h2>
+      <script>
+const svgExample1 = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="70" fill="red"/>
+</svg>`;
+
+const svgExample1Doc = new DOMParser().parseFromString(svgExample1, 'application/xml');
+
+console.log(svgExample1Doc);
+
+document.body.appendChild(svgExample1Doc.documentElement);
+        
+const svgExample1Blob = new Blob([svgExample1], { 'type' : 'application/xml' });
+        
+const svgExample1BlobURL = URL.createObjectURL(svgExample1Blob);
+
+const object = document.createElement('object');
+object.data = svgExample1BlobURL;
+object.type = 'image/svg+xml';
+
+document.body.appendChild(object);
+        
+document.addEventListener('DOMContentLoaded', () => URL.revokeObjectURL(svgExample1BlobURL));
+      </script>
+    </section>
+  </body>
+</html>
