@@ -19,7 +19,7 @@ const moduleToBeImported = `<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XS
 const dataUri = 'data:application/xml,' + encodeURIComponent(moduleToBeImported);
         
 
-const mainModule = `<xsl:stylesheet xmlns:xsl="http://www.ww3.org/1999/XSL/Transform" version="3.0">
+const mainModule = `<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="3.0">
   <xsl:import href="${dataUri}"/>
   
   <xsl:mode on-no-match="shallow-copy"/>
