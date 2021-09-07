@@ -1,8 +1,8 @@
 function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
 
-  const compilerFile = '../xspec/compiler/compile-xslt-tests.xsl.saxonee.sef.json';
+  const compilerFile = 'xspec/compiler/compile-xslt-tests.xsl.saxonee.sef.json';
 
-  const reportFile = '../xspec/reporter/format-xspec-report.xsl.saxonee.sef.json';
+  const reportFile = 'xspec/reporter/format-xspec-report.xsl.saxonee.sef.json';
 
   var xspecFile = xspecUrl;
 
