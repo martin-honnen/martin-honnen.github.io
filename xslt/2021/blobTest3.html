@@ -28,10 +28,10 @@ object.data = svgExample1BlobURL;
 object.type = 'image/svg+xml';
 object.width = 400;
 object.height = 400;
+object.onload = () => URL.revokeObjectURL(svgExample1BlobURL);
 
 document.body.appendChild(object);
         
-document.addEventListener('DOMContentLoaded', () => URL.revokeObjectURL(svgExample1BlobURL));
       </script>
     </section>
   </body>
