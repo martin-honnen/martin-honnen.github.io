@@ -21,7 +21,7 @@ const xslt10Example1Blob = new Blob([xslt10Example1], { 'type' : 'application/xs
         
 const xslt10Example1BlobURL = URL.createObjectURL(xslt10Example1Blob);
 
-const xslt10Example2 = `<xsl:stylesheet xmlns:xsl="http://www.ww3.org/1999/XSL/Transform" version="1.0">
+const xslt10Example2 = `<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:import href="${xslt10Example1BlobURL}"/>
 </xsl:stylesheet>`;
 
