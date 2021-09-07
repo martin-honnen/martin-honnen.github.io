@@ -13,7 +13,7 @@
 const moduleToBeImported = `<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="3.0">
   <xsl:template match="*">
      <xsl:next-match/>
-     <xsl:comment xsl:expand="yes">processing {node-name()} from module {static-base-uri()}</xsl:comment>
+     <xsl:comment expand-text="yes">processing {node-name()} from module {static-base-uri()}</xsl:comment>
   </xsl:template>
 </xsl:stylesheet>`;
 
@@ -31,7 +31,7 @@ const mainModule = `<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transf
   
   <xsl:template match="*">
     <xsl:next-match/>
-    <xsl:comment xsl:expand="yes">processing {node-name()} from module {static-base-uri()}</xsl:comment>
+    <xsl:comment expand-text="yes">processing {node-name()} from module {static-base-uri()}</xsl:comment>
   </xsl:template>
    
 </xsl:stylesheet>`;
@@ -46,7 +46,7 @@ const xml1 = `<root>
 const xsltResult = SaxonJS.XPath.evaluate(
   `transform(
     map {
-      'source-text' : $xml,
+      'source-node' : parse-xml($xml),
       'stylesheet-text' : $xslt
     }
   )?output`,
