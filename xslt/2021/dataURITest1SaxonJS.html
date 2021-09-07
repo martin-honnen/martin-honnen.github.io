@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <meta charset=UTF-8>
+    <title>data URI test with Saxon-JS 2</title>
+    <script src="../../Saxon-JS-2.3/SaxonJS2.js"></script>
+  </head>
+  <body>
+    <h1>data URI test with Saxon-JS 2</h1>
+    <section>
+      <h2>data URI test 1</h2>
+      <script>
+const moduleToBeImported = `<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="3.0">
+  <xsl:template match="*">
+     <xsl:comment xsl:expand="yes">processing {node-name()} from module {static-base-uri()}</xsl:comment>
+  </xsl:template>
+</xsl:stylesheet>`;
+
+const dataUri = 'data:application/xml,' + encodeURIComponent(moduleToBeImported);
+        
+
+const mainModule = `<xsl:stylesheet xmlns:xsl="http://www.ww3.org/1999/XSL/Transform" version="3.0">
+  <xsl:import href="${dataUri}"/>
+  
+  <xsl:mode on-no-match="shallow-copy"/>
+  
+  <xsl:template match="*">
+    <xsl:next-match/>
+    <xsl:comment xsl:expand="yes">processing {node-name()} from module {static-base-uri()}</xsl:comment>
+  </xsl:template>
+   
+</xsl:stylesheet>`;
+        
+console.log(mainModule);
+
+const xml1 = `<root>
+        <item>foo</item>
+        <item>bar</item>
+</root>`;
+
+const xsltResult = SaxonJS.XPath.evaluate(
+  `transform(
+    map {
+      'source-text' : $xml,
+      'stylesheet-text' : $xslt
+    }
+  )?output`,
+  [],
+  { params: { xml: xml1, xslt: mainModule } }
+);
+        
+console.log(xsltResult);
+        
+      </script>
+    </section>
+  </body>
+</html>
