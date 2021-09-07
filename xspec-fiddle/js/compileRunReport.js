@@ -4,6 +4,8 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
 
   const reportFile = 'xspec/reporter/format-xspec-report.xsl.saxonee.sef.json';
 
+  const cssFile = "xspec/reporter/test-report.css";
+
   var xspecFile = xspecUrl;
 
   SaxonJS.transform(
@@ -29,7 +31,10 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
       {
         stylesheetLocation: reportFile,
         sourceText: xspecReport,
-        destination: 'serialized'
+        destination: 'serialized',
+        stylesheetParams: {
+          'report-css-uri': cssFile
+        }
       },
       true
 
