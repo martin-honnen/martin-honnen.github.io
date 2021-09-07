@@ -8,8 +8,8 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
 
   SaxonJS.transform(
     {
-      stylesheetFileName: compilerFile,
-      sourceFileName: xspecFile
+      stylesheetLocation: compilerFile,
+      sourceLocation: xspecFile
     },
     true
   ).then(result => {
@@ -27,7 +27,7 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
     //console.log(xspecReport);
     SaxonJS.transform(
       {
-        stylesheetFileName: reportFile,
+        stylesheetLocation: reportFile,
         sourceText: xspecReport,
         destination: 'serialized'
       },
