@@ -40,7 +40,7 @@
     <section class="grid-row">
         <div id="input-col" class="grid-item">
             <div id="xspec-editor" class="editor"></div>
-            <input type="button" id="load-input" value="load" onclick="document.getElementById('load-xspec-file').click();">
+            <input type="button" id="load-xspec" value="load" onclick="document.getElementById('load-xspec-file').click();">
             <input type="file" id="load-xspec-file" onchange="this.files[0].text().then(t => xspecEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,.xspec,text/xml,application/xml">
         </div>
         <div class="grid-item">
