@@ -13,6 +13,7 @@
 const moduleToBeImported = `<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="3.0">
   <xsl:template match="*">
      <xsl:comment xsl:expand="yes">processing {node-name()} from module {static-base-uri()}</xsl:comment>
+  </xsl:template>
 </xsl:stylesheet>`;
 
 const moduleBlob = new Blob([moduleToBeImported], { 'type' : 'application/xml' });
