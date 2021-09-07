@@ -44,7 +44,7 @@ const xml1 = `<root>
 const xsltResult = SaxonJS.XPath.evaluate(
   `transform(
     map {
-      'source-text' : $xml,
+      'source-node' : parse-xml($xml),
       'stylesheet-text' : $xslt
     }
   )?output`,
