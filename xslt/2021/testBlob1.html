@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <meta charset=UTF-8>
+    <title>Blob test</title>
+  </head>
+  <body>
+    <h1>Blob test</h1>
+    <section>
+      <h2>Blob test 1</h2>
+      <script>
+const xslt10Example1 = `<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+  <xsl:template match="@* | node()">
+     <xsl:copy>
+        <xsl:apply-templates select="@* | node()"/>
+     </xsl:copy>
+  </xsl:template>
+</xsl:stylesheet>`;
+
+const xslt10Example1Blob = new Blob([xslt10Example1], { 'type' : 'application/xml' });
+        
+const xslt10Example1BlobURL = URL.createObjectURL(xslt10Example1Blob);
+
+const xslt10Example2 = `<xsl:stylesheet xmlns:xsl="http://www.ww3.org/1999/XSL/Transform" version="1.0">
+  <xsl:import href="${xslt10Example1BlobURL}"/>
+</xsl:stylesheet>`;
+
+const xslt10Example2Doc = new DOMParser().parseFromString(xslt10Example2, 'application/xml');
+
+console.log(xslt10Example2Doc);
+
+var xsltProcessor = new XSLTProcessor();
+
+xsltProcessor.importStylesheet(xslt10Example2Doc);
+
+const xmlDoc1 = new DOMParser().parseFromString(`<root>
+        <item>foo</item>
+        <item>bar</item>
+</root>', 'application/xml`);
+
+const resultDoc1 = xsltProcessor.transformToDocument(xmlDoc1);
+
+console.log(new XMLSerializer().serializeToString(resultDoc1));
+
+console.log(resultDoc1);
+        
+URL.revokeObjectURL(xslt10Example1BlobURL);
+      </script>
+    </section>
+  </body>
+</html>
