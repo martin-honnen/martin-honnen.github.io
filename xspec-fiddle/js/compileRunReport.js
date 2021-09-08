@@ -1,28 +1,30 @@
+const compilerFile = 'xspec/compiler/compile-xslt-tests.xsl.saxonee.sef.json';
+
+const reportFile = 'xspec/reporter/format-xspec-report.xsl.saxonee.sef.json';
+
+const internalRepresentations = {
+  compilerInternalRepresentation: null,
+  reportInternalRepresentation: null
+}
+
+const cssFile = "xspec/reporter/test-report.css";
+
 function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
-
-  const compilerFile = 'xspec/compiler/compile-xslt-tests.xsl.saxonee.sef.json';
-  var compilerInternalRepresentation = null;
-
-  const reportFile = 'xspec/reporter/format-xspec-report.xsl.saxonee.sef.json';
-
-  var reportInternalRepresentation = null;
-
-  const cssFile = "xspec/reporter/test-report.css";
 
   var xspecFile = xspecUrl;
 
   SaxonJS.transform(
-    compilerInternalRepresentation === null ? {
+    internalRepresentations.compilerInternalRepresentation === null ? {
       stylesheetLocation: compilerFile,
       sourceLocation: xspecFile
     } : {
-        stylesheetInternal :compilerInternalRepresentation,
+        stylesheetInternal: internalRepresentations.compilerInternalRepresentation,
         sourceLocation: xspecFile
     },
     true
   ).then(result => {
-    if (compilerInternalRepresentation === null) {
-      compilerInternalRepresentation = result.stylesheetInternal;
+    if (internalRepresentations.compilerInternalRepresentation === null) {
+      internalRepresentations.compilerInternalRepresentation = result.stylesheetInternal;
     }
     const xspecReport = SaxonJS.XPath.evaluate(`transform(map {
 		'base-output-uri' : 'file:///main-report.xml',
@@ -37,7 +39,7 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
     );
     //console.log(xspecReport);
     SaxonJS.transform(
-      reportInternalRepresentation === null ?
+      internalRepresentations.reportInternalRepresentation === null ?
         {
           stylesheetLocation: reportFile,
           sourceText: xspecReport,
@@ -48,17 +50,17 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
         }
         :
         {
-        stylesheetInternal: reportInternalRepresentation,
-        sourceText: xspecReport,
-        destination: 'serialized',
-        stylesheetParams: {
-          'report-css-uri': cssFile
-        }
+          stylesheetInternal: internalRepresentations.reportInternalRepresentation,
+          sourceText: xspecReport,
+          destination: 'serialized',
+          stylesheetParams: {
+            'report-css-uri': cssFile
+          }
       },
       true
     ).then(result => {
-      if (reportInternalRepresentation === null) {
-        reportInternalRepresentation = result.stylesheetInternal;
+      if (internalRepresentations.reportInternalRepresentation === null) {
+        internalRepresentations.reportInternalRepresentation = result.stylesheetInternal;
       }
       transformationResult = result.principalResult;
       setDocument(resultEditor, transformationResult, 'html');
