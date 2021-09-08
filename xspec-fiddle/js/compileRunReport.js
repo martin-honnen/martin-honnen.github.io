@@ -1,5 +1,7 @@
 const compilerFile = 'xspec/compiler/compile-xslt-tests.xsl.saxonee.sef.json';
 
+const compilerBaseUrl = '//xspec-fiddle/xspec/compiler/compile-xslt-tests.xsl.saxonee.sef.json';
+
 const reportFile = 'xspec/reporter/format-xspec-report.xsl.saxonee.sef.json';
 
 const internalRepresentations = {
@@ -15,9 +17,11 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
 
   SaxonJS.transform(
     internalRepresentations.compilerInternalRepresentation === undefined ? {
+      stylesheetBaseURI: compilerBaseUrl,
       stylesheetLocation: compilerFile,
       sourceLocation: xspecFile
     } : {
+        stylesheetBaseURI: compilerBaseUrl,
         stylesheetInternal: internalRepresentations.compilerInternalRepresentation,
         sourceLocation: xspecFile
     },
