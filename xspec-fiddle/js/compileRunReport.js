@@ -15,6 +15,8 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
 
   var xspecFile = xspecUrl;
 
+  setDocument(resultEditor, 'Hold on:compiling XSpec...', 'text');
+
   SaxonJS.transform(
     internalRepresentations.compilerInternalRepresentation === undefined ? {
       stylesheetBaseURI: compilerBaseUrl,
@@ -27,6 +29,7 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
     },
     true
   ).then(result => {
+    setDocument(resultEditor, 'Hold on:running tests...', 'text');
     if (result.stylesheetInternal !== undefined) {
       internalRepresentations.compilerInternalRepresentation = result.stylesheetInternal;
     }
@@ -42,6 +45,9 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
       }
     );
     //console.log(xspecReport);
+
+    setDocument(resultEditor, 'Hold on:producing report...', 'text');
+
     SaxonJS.transform(
       internalRepresentations.reportInternalRepresentation === undefined ?
         {
