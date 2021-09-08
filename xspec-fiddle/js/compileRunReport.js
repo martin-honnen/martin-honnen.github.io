@@ -27,11 +27,13 @@ function compileRunReport(xspecCode, xsltCode, resultsSelect) {
     internalRepresentations.compilerInternalRepresentation === undefined ? {
       stylesheetBaseURI: compilerBaseUrl,
       stylesheetLocation: compilerFile,
-      sourceNode: xspecDoc
+      sourceNode: xspecDoc,
+      sourceBaseURI: 'urn:from-text-editor'
     } : {
         stylesheetBaseURI: compilerBaseUrl,
         stylesheetInternal: internalRepresentations.compilerInternalRepresentation,
-        sourceNode: xspecDoc
+        sourceNode: xspecDoc,
+        sourceBaseURI: 'urn:from-text-editor'
     },
     true
   ).then(result => {
