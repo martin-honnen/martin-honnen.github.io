@@ -5,7 +5,7 @@
   <title>Test</title>
   <script src="../../Saxon-JS-2.3/SaxonJS2.rt.js"></script>
   <script>
-    const stylesheetData  = {
+    const stylesheetData = {
       stylesheetInternal : undefined
     }
 
@@ -15,8 +15,8 @@
             stylesheetLocation: 'simple-xslt-test.sef.json'
           },
           "async"
-        ).then(result => console.log(result))
-        .error(error => console.log(error))
+      ).then(result => { console.log(result); console.log(result.stylesheetInternal !== undefined); })
+        .catch(error => console.log(error))
     }
     document.addEventListener(
       'DOMContentLoaded',
