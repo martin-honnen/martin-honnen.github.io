@@ -11,9 +11,15 @@ const internalRepresentations = {
 
 const cssFile = "xspec/reporter/test-report.css";
 
-function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
+function compileRunReport(xspecCode, xsltCode, resultsSelect) {
 
-  var xspecFile = xspecUrl;
+  const xsltBlob = new Blob([xsltCode], { 'type': 'application/xml' });
+
+  const xsltBlobURL = URL.createObjectURL(xsltBlob);
+  
+  const xspecDoc = SaxonJS.XPath.evaluate(`parse-xml($xspecCode)`, [], { params: { xspecCode: xspecCode } });
+
+  xspecDoc.documentElement.setAttribute('stylesheet', xsltBlobURL);
 
   setDocument(resultEditor, 'Hold on:compiling XSpec...', 'text');
 
@@ -21,11 +27,11 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
     internalRepresentations.compilerInternalRepresentation === undefined ? {
       stylesheetBaseURI: compilerBaseUrl,
       stylesheetLocation: compilerFile,
-      sourceLocation: xspecFile
+      sourceNode: xspecDoc
     } : {
         stylesheetBaseURI: compilerBaseUrl,
         stylesheetInternal: internalRepresentations.compilerInternalRepresentation,
-        sourceLocation: xspecFile
+        sourceNode: xspecDoc
     },
     true
   ).then(result => {

@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="css/xspec-fiddle.css">
 
-    <script src="js/saxon-js-2/SaxonJS2.js"></script>  
+    <script src="js/saxon-js-2/SaxonJS2.3p.js"></script>  
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-xml.js"></script>
@@ -28,7 +28,7 @@
                 </fieldset>
             </form>-->
             <input type="button" id="test" value="test and report" accesskey="t"
-                   onclick="compileRunReport(xspecUrl, xsltUrl);">
+                   onclick="compileRunReport(xspecEditor.session.getValue(), xsltEditor.session.getValue());">
             <input type="button" id="save" value="save as URL" accesskey="s"
                    onclick="save(document.getElementById('input-type-form'));">
         </nav>
