@@ -21,19 +21,21 @@ function compileRunReport(xspecCode, xsltCode, resultsSelect) {
 
   xspecDoc.documentElement.setAttribute('stylesheet', xsltBlobURL);
 
+  const xspecBlob = new Blob([SaxonJS.serialize($xspecDoc)], { type: 'application/xml' });
+
+  const xspecBlobURL = URL.createObjectURL(xspecBlob);
+
   setDocument(resultEditor, 'Hold on:compiling XSpec...', 'text');
 
   SaxonJS.transform(
     internalRepresentations.compilerInternalRepresentation === undefined ? {
       stylesheetBaseURI: compilerBaseUrl,
       stylesheetLocation: compilerFile,
-      sourceNode: xspecDoc,
-      sourceBaseURI: 'file:///from-editor.xspec'
+      sourceLocation: xspecBlobURL
     } : {
         stylesheetBaseURI: compilerBaseUrl,
         stylesheetInternal: internalRepresentations.compilerInternalRepresentation,
-        sourceNode: xspecDoc,
-        sourceBaseURI: 'file:///from-editor.xspec'
+        sourceLocation: xspecBlobURL
     },
     true
   ).then(result => {
