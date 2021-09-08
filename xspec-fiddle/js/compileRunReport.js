@@ -1,20 +1,29 @@
 function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
 
   const compilerFile = 'xspec/compiler/compile-xslt-tests.xsl.saxonee.sef.json';
+  var compilerInternalRepresentation = null;
 
   const reportFile = 'xspec/reporter/format-xspec-report.xsl.saxonee.sef.json';
+
+  var reportInternalRepresentation = null;
 
   const cssFile = "xspec/reporter/test-report.css";
 
   var xspecFile = xspecUrl;
 
   SaxonJS.transform(
-    {
+    compilerInternalRepresentation === null ? {
       stylesheetLocation: compilerFile,
       sourceLocation: xspecFile
+    } : {
+        stylesheetInternal :compilerInternalRepresentation,
+        sourceLocation: xspecFile
     },
     true
   ).then(result => {
+    if (compilerInternalRepresentation === null) {
+      compilerInternalRepresentation = result.stylesheetInternal;
+    }
     const xspecReport = SaxonJS.XPath.evaluate(`transform(map {
 		'base-output-uri' : 'file:///main-report.xml',
 		'stylesheet-node' : $compiled-xspec,
@@ -28,8 +37,18 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
     );
     //console.log(xspecReport);
     SaxonJS.transform(
-      {
-        stylesheetLocation: reportFile,
+      reportInternalRepresentation === null ?
+        {
+          stylesheetLocation: reportFile,
+          sourceText: xspecReport,
+          destination: 'serialized',
+          stylesheetParams: {
+            'report-css-uri': cssFile
+          }
+        }
+        :
+        {
+        stylesheetInternal: reportInternalRepresentation,
         sourceText: xspecReport,
         destination: 'serialized',
         stylesheetParams: {
@@ -37,8 +56,10 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
         }
       },
       true
-
     ).then(result => {
+      if (reportInternalRepresentation === null) {
+        reportInternalRepresentation = result.stylesheetInternal;
+      }
       transformationResult = result.principalResult;
       setDocument(resultEditor, transformationResult, 'html');
       writeResult(window.frames.resultFrame, transformationResult);
