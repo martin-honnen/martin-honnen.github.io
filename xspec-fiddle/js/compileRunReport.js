@@ -21,7 +21,7 @@ function compileRunReport(xspecCode, xsltCode, resultsSelect) {
 
   xspecDoc.documentElement.setAttribute('stylesheet', xsltBlobURL);
 
-  const xspecBlob = new Blob([SaxonJS.serialize($xspecDoc)], { type: 'application/xml' });
+  const xspecBlob = new Blob([SaxonJS.serialize(xspecDoc)], { type: 'application/xml' });
 
   const xspecBlobURL = URL.createObjectURL(xspecBlob);
 
