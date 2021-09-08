@@ -21,7 +21,7 @@ function save(form) {
   history.pushState(null, null, '?' + new URLSearchParams(
     {
       xslt: xsltEditor.session.getValue(),
-      xspec: xspec.session.getValue()
+      xspec: xspecEditor.session.getValue()
     }
   ).toString());
 }
