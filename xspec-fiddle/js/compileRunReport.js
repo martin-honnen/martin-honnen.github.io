@@ -28,12 +28,12 @@ function compileRunReport(xspecCode, xsltCode, resultsSelect) {
       stylesheetBaseURI: compilerBaseUrl,
       stylesheetLocation: compilerFile,
       sourceNode: xspecDoc,
-      sourceBaseURI: 'urn:from-text-editor'
+      sourceBaseURI: 'file:///from-editor.xspec'
     } : {
         stylesheetBaseURI: compilerBaseUrl,
         stylesheetInternal: internalRepresentations.compilerInternalRepresentation,
         sourceNode: xspecDoc,
-        sourceBaseURI: 'urn:from-text-editor'
+        sourceBaseURI: 'file:///from-editor.xspec'
     },
     true
   ).then(result => {
@@ -84,9 +84,9 @@ function compileRunReport(xspecCode, xsltCode, resultsSelect) {
       setDocument(resultEditor, transformationResult, 'html');
       writeResult(window.frames.resultFrame, transformationResult);
     })
-    .catch(error => setDocument(resultEditor, error, 'text'));
+    .catch(error => setDocument(resultEditor, error.message, 'text'));
   })
-    .catch (error => setDocument(resultEditor, error, 'text'));
+    .catch (error => setDocument(resultEditor, error.message, 'text'));
 
 
 }
