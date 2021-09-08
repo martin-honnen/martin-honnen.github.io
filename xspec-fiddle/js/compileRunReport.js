@@ -3,8 +3,8 @@ const compilerFile = 'xspec/compiler/compile-xslt-tests.xsl.saxonee.sef.json';
 const reportFile = 'xspec/reporter/format-xspec-report.xsl.saxonee.sef.json';
 
 const internalRepresentations = {
-  compilerInternalRepresentation: null,
-  reportInternalRepresentation: null
+  compilerInternalRepresentation: undefined,
+  reportInternalRepresentation: undefined
 }
 
 const cssFile = "xspec/reporter/test-report.css";
@@ -14,7 +14,7 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
   var xspecFile = xspecUrl;
 
   SaxonJS.transform(
-    internalRepresentations.compilerInternalRepresentation === null ? {
+    internalRepresentations.compilerInternalRepresentation === undefined ? {
       stylesheetLocation: compilerFile,
       sourceLocation: xspecFile
     } : {
@@ -23,7 +23,7 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
     },
     true
   ).then(result => {
-    if (internalRepresentations.compilerInternalRepresentation === null) {
+    if (result.stylesheetInternal !== undefined) {
       internalRepresentations.compilerInternalRepresentation = result.stylesheetInternal;
     }
     const xspecReport = SaxonJS.XPath.evaluate(`transform(map {
@@ -39,7 +39,7 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
     );
     //console.log(xspecReport);
     SaxonJS.transform(
-      internalRepresentations.reportInternalRepresentation === null ?
+      internalRepresentations.reportInternalRepresentation === undefined ?
         {
           stylesheetLocation: reportFile,
           sourceText: xspecReport,
@@ -59,7 +59,7 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
       },
       true
     ).then(result => {
-      if (internalRepresentations.reportInternalRepresentation === null) {
+      if (result.stylesheetInternal !== undefined) {
         internalRepresentations.reportInternalRepresentation = result.stylesheetInternal;
       }
       transformationResult = result.principalResult;
