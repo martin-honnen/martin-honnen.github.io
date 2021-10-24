@@ -26,6 +26,10 @@ SaxonJS.getResource({ type: 'xml', text: xmlSample1 })
         const textNodeCount = SaxonJS.XPath.evaluate(`count(root/description/text())`, doc);
   
         console.log(textNodeCount);
+  
+        const xpath1TextNodeCount = doc.evaluate(`count(root/description/text())`, doc, null, XPathResult.NUMBER_TYPE).numberValue;
+  
+        console.log(xpath1TextNodeCount);
     });        
       </script>
     </section>
