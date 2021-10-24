@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <meta charset=UTF-8>
+    <title>Saxon-JS 2 CDATA section as text node test</title>
+    <script src="/Saxon-JS-2.3/SaxonJS2.rt.js"></script>
+  </head>
+  <body>
+    <h1>Saxon-JS 2 CDATA section as text node test</h1>
+    <section>
+      <h2>XPath tests</h2>
+      <script>
+const xmlSample1 = `<root>
+  <description>description 1<\/description>
+  <description><![CDATA[<p>description 2]]><\/description>
+  <description>description 3<\/description>
+  <description><![CDATA[<p>description 4]]><\/description>
+  <description>description 5<\/description>
+  <description><![CDATA[<p>description 6]]><\/description>
+<\/root>`;
+
+const xslt = `<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  version="3.0"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  exclude-result-prefixes="#all"
+  expand-text="yes">
+
+  <xsl:output method="html" indent="yes" html-version="5"/>
+
+  <xsl:template match="/" name="xsl:initial-template">
+    <section>
+      <h2>Test</h2>
+      <section>
+        <h3><code>count(root/description/text())</code></h3>
+        <p>Result: <code>{count(root/description/text())}</code></p>
+      </section>
+      <section>
+        <h3><code>apply-templates select="root/description/text()"</code></h3>
+        <xsl:where-populated>
+          <ol>
+            <xsl:apply-templates select="root/description/text()"/>
+          </ol>
+        </xsl:where-populated>
+      </section>
+    </section>
+    <xsl:comment>Run with {system-property('xsl:product-name')} {system-property('xsl:product-version')} {system-property('Q{http://saxon.sf.net/}platform')}</xsl:comment>
+  </xsl:template>
+  
+  <xsl:template match="text()">
+    <li>{.}</li>
+  </xsl:template>
+
+</xsl:stylesheet>`;
+
+SaxonJS.getResource({ type: 'xml', text: xmlSample1 })
+    .then(doc => {
+        const transformationResult = SaxonJS.XPath.evaluate(`transform(map { 'source-node' : $xml, 'stylesheet-text' : $xslt, 'delivery-format' : 'raw' })?output`, [], { params : { xml: doc, xslt: xslt } });
+        document.body.appendChild(transformationResult);
+    });        
+      </script>
+    </section>
+  </body>
+</html>
