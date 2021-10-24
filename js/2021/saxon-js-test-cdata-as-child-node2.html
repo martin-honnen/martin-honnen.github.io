@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <meta charset=UTF-8>
+    <title>Saxon-JS 2 CDATA section as child node test</title>
+    <script src="/Saxon-JS-2.3/SaxonJS2.rt.js"></script>
+  </head>
+  <body>
+    <h1>Saxon-JS 2 CDATA section as child node test</h1>
+    <section>
+      <h2>XPath tests</h2>
+      <script>
+const xmlSample1 = `<root>
+  <description>description 1<\/description>
+  <description><![CDATA[<p>description 2]]><\/description>
+  <description>description 3<\/description>
+  <description><![CDATA[<p>description 4]]><\/description>
+  <description>description 5<\/description>
+  <description><![CDATA[<p>description 6]]><\/description>
+<\/root>`;
+
+SaxonJS.getResource({ type: 'xml', text: xmlSample1 })
+    .then(doc => {
+        const childNodes = SaxonJS.XPath.evaluate(`root/description/node()`, doc, { resultForm: 'array' });
+
+        console.log(childNodes);
+
+        console.log(childNodes.length);
+  
+        const childNodeCount = SaxonJS.XPath.evaluate(`count(root/description/node())`, doc);
+  
+        console.log(childNodeCount);
+  
+        const xpath1ChildNodeCount = doc.evaluate(`count(root/description/node())`, doc, null, XPathResult.NUMBER_TYPE).numberValue;
+  
+        console.log(xpath1ChildNodeCount);
+    });        
+      </script>
+    </section>
+  </body>
+</html>
