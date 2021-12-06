@@ -53,11 +53,11 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
     
     if (transformationResult.every(item => item instanceof Node)) {
         if (transformationResult.every(item => item.ownerDocument instanceof HTMLDocument)) {
-          serializedResult = SaxonJS.serialize(transformationResult, { method: 'html' });
+          serializedResult = SaxonJS.serialize(transformationResult, { method: 'html', indent: true});
           serializedResults.push({ value : serializedResult, method: 'html' });
         }
         else {
-          serializedResult = SaxonJS.serialize(transformationResult, { method: 'xml' });
+          serializedResult = SaxonJS.serialize(transformationResult, { method: 'xml', indent: true });
           serializedResults.push({ value : serializedResult, method: 'xml' });          
         }
       
