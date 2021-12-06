@@ -49,43 +49,58 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
     resultsSelect.length = 0;
 
     var serializedResults = [];
-
-    transformationResult.forEach((result, index) => {
-      var serializedResult;
-
-      if (result instanceof HTMLDocument || result instanceof HTMLElement) {
-        serializedResult = SaxonJS.serialize(result, { method: 'html' });
-        serializedResults.push({ value: serializedResult, method: 'html' });
-      }
-      else if (result instanceof Node) {
-        serializedResult = SaxonJS.serialize(result, { method: 'xml' });
-        serializedResults.push({ value: serializedResult, method: 'xml' });
-      }
-      else {
-        try {
-          serializedResult = SaxonJS.serialize(result, { method: 'json' });
-          serializedResults.push({ value: serializedResult, method: 'json' });
+    var serializedResult;
+    
+    if (serializedResults.every(item => item instanceof Node)) {
+        if (serializedResults.every(item => item.ownerDocument instanceof HTMLDocument)) {
+          serializedResult = SaxonJS.serialize(serializedResults, { method: 'html' });
+          serializedResults.push({ value : serializedResult, method: 'html' });
         }
-        catch (e1) {
-          serializedResult = SaxonJS.serialize(result, { method: 'adaptive' });
-          serializedResults.push({ value: serializedResult, method: 'json' });
+        else {
+          serializedResult = SaxonJS.serialize(serializedResults, { method: 'xml' });
+          serializedResults.push({ value : serializedResult, method: 'xml' });          
         }
-      }
       
-     resultsSelect.appendChild(new Option(`result ${index + 1}`, `result${index + 1}`));
-        if (index === 0) {
-          writeResult(window.frames['current-result-frame'], serializedResult);
+        resultsSelect.appendChild(new Option(`Result`, `Result`));
+    }
+    else {
+      transformationResult.forEach((result, index) => {
+
+        if (result instanceof HTMLDocument || result instanceof HTMLElement) {
+          serializedResult = SaxonJS.serialize(result, { method: 'html' });
+          serializedResults.push({ value: serializedResult, method: 'html' });
         }
-    });
+        else if (result instanceof Node) {
+          serializedResult = SaxonJS.serialize(result, { method: 'xml' });
+          serializedResults.push({ value: serializedResult, method: 'xml' });
+        }
+        else {
+          try {
+            serializedResult = SaxonJS.serialize(result, { method: 'json' });
+            serializedResults.push({ value: serializedResult, method: 'json' });
+          }
+          catch (e1) {
+            serializedResult = SaxonJS.serialize(result, { method: 'adaptive' });
+            serializedResults.push({ value: serializedResult, method: 'json' });
+          }
+        }
 
-    resultsSelect.onchange = function (evt) {
-      var selectedResult = serializedResults[this.selectedIndex].value;
-      setDocument(resultEditor, selectedResult);
 
-      if (document.getElementById('render-box').checked) {
-        writeResult(window.frames['current-result-frame'], selectedResult, serializedResults[this.selectedIndex].method);
-      }
-    };
+        resultsSelect.appendChild(new Option(`result ${index + 1}`, `result${index + 1}`));
+          if (index === 0) {
+            writeResult(window.frames['current-result-frame'], serializedResult);
+          }
+      });
+
+      resultsSelect.onchange = function (evt) {
+        var selectedResult = serializedResults[this.selectedIndex].value;
+        setDocument(resultEditor, selectedResult);
+
+        if (document.getElementById('render-box').checked) {
+          writeResult(window.frames['current-result-frame'], selectedResult, serializedResults[this.selectedIndex].method);
+        }
+      };
+    }
 
     setDocument(resultEditor, serializedResults[0].value, serializedResults[0].method);
     //if (transformationResult instanceof Node) {
