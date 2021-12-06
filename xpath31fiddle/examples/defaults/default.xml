@@ -13,9 +13,9 @@
           <li>
             XPath execution using Saxon-JS 2.3
           </li>
-          <li>now with load buttons to load input XML or JSON or HTML and/or XSLT from local file system</li>
+          <li>now with load buttons to load input XML or JSON or HTML and/or XPath from local file system</li>
           <li>also save link/button to save result document to the file system</li>
-          <li>save XML or JSON or HTML input and XSLT code in URL query string</li>
+          <li>save XML or JSON or HTML input and XPath code in URL query string</li>
         </ul>
       </section>
     </section>
