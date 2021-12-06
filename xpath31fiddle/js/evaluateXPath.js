@@ -9,7 +9,7 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
         xpath,
         xmlDoc,
         {
-          
+          resultForm: 'xdm'
         }
       );
     }
@@ -18,6 +18,7 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
         `parse-json($json-input-string) ! (${xpath})`,
         [],
         {
+          resultForm: 'xdm',
           params: {
             'json-input-string': input
           }
@@ -30,6 +31,7 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
         xpath,
         htmlDoc,
         {
+          resultForm: 'xdm',
           xpathDefaultNamespace: 'http://www.w3.org/1999/xhtml'
         }
       );
@@ -39,25 +41,67 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
         xpath,
         [],
         {
-          
+          resultForm: 'xdm'
         }
       );
     }
 
-    if (transformationResult instanceof Node) {
-      if (transformationResult instanceof HTMLDocument) {
-        const serializedResult = SaxonJS.serialize(transformationResult, { method: 'html' });
-        setDocument(resultEditor, serializedResult, 'html');
+    resultsSelect.length = 0;
+
+    var serializedResults = [];
+
+    transformationResult.forEach((result, index) => {
+      var serializedResult;
+
+      if (result instanceof HTMLDocument || result instanceof HTMLElement) {
+        serializedResult = SaxonJS.serialize(result, { method: 'html' });
+        serializedResults.push({ value: serializedResult, method: 'html' });
+      }
+      else if (result instanceof Node) {
+        serializedResult = SaxonJS.serialize(result, { method: 'xml' });
+        serializedResults.push({ value: serializedResult, method: 'xml' });
       }
       else {
-        const serializedResult = SaxonJS.serialize(transformationResult, { method: 'xml' });
-        setDocument(resultEditor, serializedResult, 'xml');
+        try {
+          serializedResult = SaxonJS.serialize(result, { method: 'json' });
+          serializedResults.push({ value: serializedResult, method: 'json' });
+        }
+        catch (e1) {
+          serializedResult = SaxonJS.serialize(result, { method: 'adaptive' });
+          serializedResults.push({ value: serializedResult, method: 'json' });
+        }
       }
-    }
-    else {
-      const serializedResult = SaxonJS.serialize(transformationResult, { method: 'adaptive' });
-      setDocument(resultEditor, serializedResult, 'json');
-    }
+      
+     resultsSelect.appendChild(new Option(`result ${index + 1}`, `result${index + 1}`));
+        if (index === 0) {
+          writeResult(window.frames['current-result-frame'], serializedResult);
+        }
+    });
+
+    resultsSelect.onchange = function (evt) {
+      var selectedResult = serializedResults[this.selectedIndex].value;
+      setDocument(resultEditor, selectedResult);
+
+      if (document.getElementById('render-box').checked) {
+        writeResult(window.frames['current-result-frame'], selectedResult, serializedResults[this.selectedIndex].method);
+      }
+    };
+
+    setDocument(resultEditor, serializedResults[0].value, serializedResults[0].method);
+    //if (transformationResult instanceof Node) {
+    //  if (transformationResult instanceof HTMLDocument) {
+    //    const serializedResult = SaxonJS.serialize(transformationResult, { method: 'html' });
+    //    setDocument(resultEditor, serializedResult, 'html');
+    //  }
+    //  else {
+    //    const serializedResult = SaxonJS.serialize(transformationResult, { method: 'xml' });
+    //    setDocument(resultEditor, serializedResult, 'xml');
+    //  }
+    //}
+    //else {
+    //  const serializedResult = SaxonJS.serialize(transformationResult, { method: 'adaptive' });
+    //  setDocument(resultEditor, serializedResult, 'json');
+    //}
     
 
   }
