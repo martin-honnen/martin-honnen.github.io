@@ -28,7 +28,7 @@
                     <label><input type="radio" name="input-type" value="None">No input</label>
                 </fieldset>
             </form>
-            <input type="button" id="transform" value="evaluate" accesskey="e"
+            <input type="button" id="transform" value="evaluate" accesskey="p"
                    onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
                             xpathEvaluate(inputType !== 'None' ? inputEditor.session.getValue() : null, xpathEditor.session.getValue(), inputType, document.getElementById('results'));">
             <input type="button" id="save" value="save as URL" accesskey="s"
