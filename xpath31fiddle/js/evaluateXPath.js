@@ -52,16 +52,16 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
     var serializedResult;
     
     if (transformationResult.every(item => item instanceof Node)) {
-        if (transformationResult.every(item => item.ownerDocument instanceof HTMLDocument)) {
-          serializedResult = SaxonJS.serialize(transformationResult, { method: 'html', indent: true});
-          serializedResults.push({ value : serializedResult, method: 'html' });
-        }
-        else {
-          serializedResult = SaxonJS.serialize(transformationResult, { method: 'xml', indent: true });
-          serializedResults.push({ value : serializedResult, method: 'xml' });          
-        }
+        var method = transformationResult.every(item => item.ownerDocument instanceof HTMLDocument) ? 'html' : 'xml';
+      
+        serializedResult = SaxonJS.serialize(transformationResult, { method: method, indent: true });
+        serializedResults.push({ value : serializedResult, method: method });
       
         resultsSelect.appendChild(new Option(`Result`, `Result`));
+      
+        if (document.getElementById('render-box').checked) {
+          writeResult(window.frames['current-result-frame'], serializedResult, method);
+        }
     }
     else {
       transformationResult.forEach((result, index) => {
