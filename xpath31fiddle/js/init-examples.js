@@ -16,7 +16,7 @@ function loadDefaults() {
 function save(form) {
   history.pushState(null, null, '?' + new URLSearchParams(
     {
-      xslt: xpathEditor.session.getValue(),
+      xpath: xpathEditor.session.getValue(),
       input: inputEditor.session.getValue(),
       'input-type': form.elements['input-type'].value
     }
