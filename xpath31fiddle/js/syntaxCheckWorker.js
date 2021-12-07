@@ -7,6 +7,7 @@ onmessage = function (evt) {
     try {
       xpath31Parser = new RExXPath31Fast(evt.data.xpathCode);
       xpath31Parser.parse_XPath();
+      postMessage({ error: false });
     }
     catch (pe) {
       if (pe instanceof xpath31Parser.ParseException) {
