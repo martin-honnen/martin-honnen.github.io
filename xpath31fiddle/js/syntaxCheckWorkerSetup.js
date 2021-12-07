@@ -20,7 +20,11 @@ mySyntaxChecker.onmessage = function (evt) {
 
 function checkSyntax() {
   if (doSyntaxCheck) {
-    tid = setTimeout(function () { mySyntaxChecker.postMessage({ parse: true, xpathCode: xpathEditor.session.getValue() }) }, timerDelay);
+    if (tid) {
+      clearTimeout(tid);
+      mySyntaxChecker.postMessage({ parse: true, xpathCode: xpathEditor.session.getValue() });
+    }
+    tid = setTimeout(checkSyntax, timerDelay);
   }
 }
 
