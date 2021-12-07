@@ -9,7 +9,7 @@ onmessage = function (evt) {
       xpath31Parser.parse_XPath();
     }
     catch (pe) {
-      if (pe instanceof xpath31Parser.ParserException) {
+      if (pe instanceof xpath31Parser.ParseException) {
         postMessage(xpath31Parser.getErrorMessage(e));
       }
     }
