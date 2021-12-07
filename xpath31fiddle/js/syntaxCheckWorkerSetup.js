@@ -10,7 +10,8 @@ var tid;
 
 mySyntaxChecker.onmessage = function (evt) {
   if (evt.data.error) {
-    setDocument(resultEditor, evt.data.message, 'text');
+    lastMessage = evt.data.message;
+    setDocument(resultEditor, lastMessage, 'text');
   }
   else if (lastMessage === resultEditor.session.getValue()) {
     setDocument(resultEditor, '', 'text');
