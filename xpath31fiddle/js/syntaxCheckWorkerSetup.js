@@ -16,7 +16,6 @@ mySyntaxChecker.onmessage = function (evt) {
   else if (lastMessage === resultEditor.session.getValue()) {
     setDocument(resultEditor, '', 'text');
   }
-  checkSyntax();
 }
 
 function checkSyntax() {
@@ -25,7 +24,7 @@ function checkSyntax() {
       clearTimeout(tid);
       mySyntaxChecker.postMessage({ parse: true, xpathCode: xpathEditor.session.getValue() });
     }
-    tid = setTimeout(checkSyntax, timerDelay);
+    //tid = setTimeout(checkSyntax, timerDelay);
   }
 }
 

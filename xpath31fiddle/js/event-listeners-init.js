@@ -22,10 +22,7 @@ document.addEventListener('DOMContentLoaded',
       );
       document.getElementById('syntaxCheck').onchange = function (evt) {
         doSyntaxCheck = this.checked;
-        if (this.checked) {
-          checkSyntax();
-        }
-        else {
+        if (!doSyntaxCheck) {
           stopCheckingSyntax();
         }
       };
