@@ -22,8 +22,8 @@ function checkSyntax() {
   if (doSyntaxCheck) {
     if (tid) {
       clearTimeout(tid);
-      mySyntaxChecker.postMessage({ parse: true, xpathCode: xpathEditor.session.getValue() });
     }
+    mySyntaxChecker.postMessage({ parse: true, xpathCode: xpathEditor.session.getValue() });
     //tid = setTimeout(checkSyntax, timerDelay);
   }
 }
