@@ -1,4 +1,4 @@
-const mySyntaxChecker = new Worker('syntaxCheckWorker');
+const mySyntaxChecker = new Worker('syntaxCheckWorker.js');
 
 const timerDelay = 700;
 
