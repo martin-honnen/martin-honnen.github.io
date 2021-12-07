@@ -5,7 +5,7 @@ const timerDelay = 700;
 var tid;
 
 mySyntaxChecker.onmessage = function (evt) {
-  setDocument(resultEditor, evt.data, 'text');
+  setDocument(resultEditor, evt.data.error ? evt.data.message : '', 'text');
   checkSyntax();
 }
 

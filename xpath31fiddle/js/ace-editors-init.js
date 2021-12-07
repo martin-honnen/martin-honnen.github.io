@@ -10,7 +10,7 @@ xpathEditor.session.setMode('ace/mode/xquery');
 xpathEditor.session.setTabSize(2);
 xpathEditor.session.setUseSoftTabs(true);
 
-xpathEditor.session.onchange = function () {
+xpathEditor.session.on('change') = function () {
   checkSyntax();
 };
 
