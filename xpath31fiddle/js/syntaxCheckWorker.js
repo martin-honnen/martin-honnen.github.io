@@ -10,7 +10,7 @@ onmessage = function (evt) {
     }
     catch (pe) {
       if (pe instanceof xpath31Parser.ParseException) {
-        postMessage(xpath31Parser.getErrorMessage(e));
+        postMessage(xpath31Parser.getErrorMessage(pe));
       }
     }
   }
