@@ -31,6 +31,7 @@
             <input type="button" id="transform" value="evaluate" accesskey="p"
                    onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
                             xpathEvaluate(inputType !== 'None' ? inputEditor.session.getValue() : null, xpathEditor.session.getValue(), inputType, document.getElementById('results'));">
+            <label>on the fly syntax check: <input type="checkbox" id="syntaxCheck" name="syntaxCheck" checked></label>
             <input type="button" id="save" value="save as URL" accesskey="s"
                    onclick="save(document.getElementById('input-type-form'));">
         </nav>
@@ -74,14 +75,13 @@
         </main>
     </div>
     
-    
     <script src="js/frame-write.js"></script>
     <script src="js/ace-modes.js"></script>
     <script src="js/evaluateXPath.js"></script>
+    <script src="js/syntaxCheckWorkerSetup.js"></script>
     <script src="js/ace-editors-init.js"></script>
     <script src="js/event-listeners-init.js"></script>
     <script src="js/init-examples.js"></script>
-
     
 </body>
 </html>

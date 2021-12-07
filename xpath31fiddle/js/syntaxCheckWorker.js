@@ -1,0 +1,17 @@
+importScripts('RExXPath31Fast.js');
+
+var xpath31Parser;
+
+onmessage = function (evt) {
+  if (evt.data.parse) {
+    try {
+      xpath31Parser = new RExXPath31Fast(evt.data.xpathCode);
+      xpath31Parser.parse_XPath();
+    }
+    catch (pe) {
+      if (pe instanceof xpath31Parser.ParserException) {
+        postMessage(xpath31Parser.getErrorMessage(e));
+      }
+    }
+  }
+};

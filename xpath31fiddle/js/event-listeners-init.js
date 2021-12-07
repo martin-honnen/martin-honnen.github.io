@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded',
+document.addEventListener('DOMContentLoaded',
     function () {
         document.getElementById('input-types').addEventListener('click',
             function (evt) {
@@ -19,7 +19,15 @@
                 return true;
             },
             false
-        );
+      );
+      document.getElementById('syntaxCheck').onchange = function (evt) {
+        if (this.checked) {
+          checkSyntax();
+        }
+        else {
+          stopCheckingSyntax();
+        }
+      };
     },
     false
 )
