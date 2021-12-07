@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded',
             false
       );
       document.getElementById('syntaxCheck').onchange = function (evt) {
+        doSyntaxCheck = this.checked;
         if (this.checked) {
           checkSyntax();
         }

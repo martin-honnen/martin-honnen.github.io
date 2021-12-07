@@ -10,9 +10,9 @@ xpathEditor.session.setMode('ace/mode/xquery');
 xpathEditor.session.setTabSize(2);
 xpathEditor.session.setUseSoftTabs(true);
 
-xpathEditor.session.on('change') = function () {
+xpathEditor.session.on('change', function () {
   checkSyntax();
-};
+});
 
 var resultEditor = ace.edit('result-editor');
 resultEditor.session.setMode('ace/mode/xml');
