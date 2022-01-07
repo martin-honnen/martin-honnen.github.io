@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Test</title>
+    <link rel="stylesheet" href="autocomplete.css"></link>
+    <script src="autocomplete.js"></script>
+  </head>
+  <body>
+    <h1>Test</h1>
+    <form autocomplete="off" action="/action_page.php">
+      <div class="autocomplete" style="width:300px;">
+        <input id="myInput" type="text" name="myCountry" placeholder="Country">
+      </div>
+      <input type="submit">
+    </form>
+    <script>
+    autocomplete(document.getElementById("myInput"), countries);
+    </script>
+  </body>
+</html>
