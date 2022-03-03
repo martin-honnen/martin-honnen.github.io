@@ -1,0 +1,22 @@
+<html lang="en">
+  <head>
+    <title>Saxon-JS 2 test</title>
+    <script src="../../Saxon-JS-2.3/SaxonJS2.rt.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', e => {
+      var options = { 
+        stylesheetLocation : 'identity1.xsl.sef.json',
+        sourceLocation: 'sample1.xml',
+        destination: 'document',
+        logLevel: 2
+      };
+      SaxonJS.transform(options);
+      console.log(options.principalResult);
+      console.log(options);
+    });
+    </script>
+  </head>
+  <body>
+    <h1>Test</h1>
+  </body>
+</html>
