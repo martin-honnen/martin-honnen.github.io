@@ -7,7 +7,8 @@
       var options = { 
         stylesheetLocation : 'identity1.xsl.sef.json',
         sourceLocation: 'sample1.xml',
-        destination: 'application'
+        destination: 'application',
+        logLevel: 2
       };
       SaxonJS.transform(options, 'sync');
       console.log(options.principalResult);
