@@ -5,7 +5,7 @@
   exclude-result-prefixes="#all"
   expand-text="yes">
   
-  <xsl:function name="mf:f1" as="xs:string">
+  <xsl:function name="mf:f1" as="xs:string" visibility="public">
     <xsl:param name="m1" as="map(*)"/>
     <xsl:sequence select="serialize($m1, map { 'method' : 'json' })"/>
   </xsl:function>
