@@ -13,6 +13,11 @@
       SaxonJS.transform(options, 'async').then(result => { internalStylesheet = result.stylesheetInternal; });
     });
     </script>
+    <script>
+      function functionCallTest1() {
+       SaxonJS.transform({ destination: 'raw', stylesheetInternal: internalStylesheet, initialFunction: 'Q{http://example.com/mf}f1', functionParams: [ { x: 1, y: 'foo' }] }, 'async').then(result => console.log(result.principalResult)); 
+      }
+    </script>
   </head>
   <body>
     <h1>Test</h1>
