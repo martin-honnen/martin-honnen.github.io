@@ -8,7 +8,7 @@
       var options = { 
         stylesheetLocation : 'functionCallTest1.xsl.sef.json',
         sourceLocation: 'sample1.xml',
-        destination: 'application'
+        destination: 'appendToBody'
       };
       SaxonJS.transform(options, 'async').then(result => { internalStylesheet = result.stylesheetInternal; });
     });
