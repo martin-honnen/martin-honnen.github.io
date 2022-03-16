@@ -10,7 +10,7 @@
         sourceLocation: 'sample1.xml',
         destination: 'appendToBody'
       };
-      SaxonJS.transform(options, 'async').then(result => { internalStylesheet = result.stylesheetInternal; });
+      SaxonJS.transform(options, 'async').then(result => { internalStylesheet = result.stylesheetInternal; console.log(internalStylesheet); console.log(result); });
     });
     </script>
     <script>
