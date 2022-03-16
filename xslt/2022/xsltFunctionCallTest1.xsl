@@ -17,7 +17,7 @@
       <h2>Test</h2>
       <p>Run with {system-property('xsl:product-name')} {system-property('xsl:product-version')} {system-property('Q{http://saxon.sf.net/}platform')}</p>
       <input type="button" value="test"
-        onclick="SaxonJS.transform({ destination: 'raw', stylesheetInternal: internalStylesheet, initialFunction: 'Q{http://example.com/mf}f1', functionParams: [ { x: 1, y: 'foo' }] }, 'async').then(result => console.log(result.principalResult));">
+        onclick="functionCallTest1();"/>
     </section>
   </xsl:template>
 
