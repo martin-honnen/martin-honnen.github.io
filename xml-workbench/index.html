@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/mode-json.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/mode-xquery.js"></script>
 </head>
-<body class="container">
+<body class="container" onload="fetch('https://saxon11api.azurewebsites.net/', { method: 'HEAD' }).then(response => console.log(response.status));">
 <header >
     <nav class="grid-row button-bar">
         <h2>XML Workbench</h2>
