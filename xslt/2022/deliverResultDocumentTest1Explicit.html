@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Saxon-JS 2 deliverResultDocument test</title>
+    <script src="../../Saxon-JS-2.3/SaxonJS2.rt.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', e => {
+      var options = {
+        'stylesheetLocation' : 'sheet1.sef.json',
+        'sourceLocation' : 'input1.xml',
+        'destination' : 'serialized',
+        'baseOutputURI' : baseURI.href,
+        'deliverResultDocument': function(uri) {
+           return {
+             'destination' : 'serialized',
+             'save' : function(resultUri, result, encoding) {
+                console.log(resultUri, result);
+              }
+           };
+         }
+      };
+      SaxonJS.transform(options);
+      console.log(`principalResult: ${options.principalResult}`);
+      for (var uri in options.resultDocuments) {
+        console.log(`result URI ${uri}: ${options.resultDocuments[uri]}`);
+      }
+    });
+    </script>
+  </head>
+  <body>
+    <h1>Test deliverResultDocument test</h1>
+    <p>See console (F12) for any output.</p>
+  </body>
+</html>
