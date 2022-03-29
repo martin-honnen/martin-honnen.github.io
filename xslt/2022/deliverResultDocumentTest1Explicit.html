@@ -14,16 +14,13 @@
            return {
              'destination' : 'serialized',
              'save' : function(resultUri, result, encoding) {
-                console.log(resultUri, result);
+                console.log(`result document URI: ${resultUri}; result: ${result}`);
               }
            };
          }
       };
       SaxonJS.transform(options);
       console.log(`principalResult: ${options.principalResult}`);
-      for (var uri in options.resultDocuments) {
-        console.log(`result URI ${uri}: ${options.resultDocuments[uri]}`);
-      }
     });
     </script>
   </head>
