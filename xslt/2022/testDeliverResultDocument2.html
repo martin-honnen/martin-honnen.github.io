@@ -16,7 +16,7 @@
         for (var uri in result.resultDocuments) {
           console.log(`result URI ${uri}: ${options.resultDocuments[uri]}`);
         }
-      }).error(err => console.log(err));
+      }).catch(err => console.log(err));
     });
     </script>
   </head>
