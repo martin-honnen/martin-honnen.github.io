@@ -23,7 +23,7 @@
     <param-document>
       <xsl:if test="function-available('exslt:object-type')">
         <xsl:text>exslt:object-type($doc2): </xsl:text>
-        <xsl:value-of select="exslt:object-type($doc)"/>
+        <xsl:value-of select="exslt:object-type($doc2)"/>
       </xsl:if>
     </param-document>
   </xsl:copy>
