@@ -11,7 +11,7 @@
     <script src="../../Saxon-JS-2.3/SaxonJS2.js"></script>
     <script>
     function runXslt() {
-      const xslt = `<stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="3.0" xpath-default-namespace="http://www.w3.org/1999/xhtml">
+      const xslt = `<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="3.0" xpath-default-namespace="http://www.w3.org/1999/xhtml">
         <xsl:output method="html" html-version="5.0"/>
         <xsl:mode on-no-match="shallow-copy"/>
         <xsl:template match="meta[@charset]"/>
