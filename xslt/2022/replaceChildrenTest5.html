@@ -12,12 +12,12 @@
     function runXslt() {
       const xslt = 'colorSwitcher.xsl.sef.json';
        
-      SaxonJS.transform({ stylesheetLocation : xslt, sourceNode: document }, 'async').then(resultFragment =>
+      SaxonJS.transform({ stylesheetLocation : xslt, sourceNode: document }, 'async').then(resultFragment => {
         console.log(resultFragment);
       
         document.replaceChildren();
         document.appendChild(resultFragment);
-      );
+      });
     }
     </script>
   </head>
