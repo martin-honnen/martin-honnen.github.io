@@ -16,9 +16,7 @@
         <xsl:template match="meta[@charset]"/>
         <xsl:template match="style">
           <xsl:copy>
-          .sample {
-            color: green;
-          }
+             <xsl:value-of select="if (contains(., 'red')) then replace('red', 'green') else replace('green', 'red')"/>
           </xsl:copy>
        </xsl:template>
        </xsl:stylesheet>`;
@@ -33,7 +31,7 @@
          
       console.log(resultFragment);
       
-      document.replaceChildren(resultFragment.firstElementChild);
+      document.replaceChildren(...resultFragment.childNodes);
     }
     </script>
   </head>
