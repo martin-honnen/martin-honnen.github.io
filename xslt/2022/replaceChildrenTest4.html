@@ -33,7 +33,8 @@
          
       console.log(resultFragment);
       
-      document.replaceChildren(resultFragment);
+      document.replaceChildren();
+      document.appendChild(resultFragment);
     }
     </script>
   </head>
