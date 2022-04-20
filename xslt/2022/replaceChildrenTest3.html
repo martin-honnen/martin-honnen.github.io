@@ -16,7 +16,7 @@
         <xsl:template match="meta[@charset]"/>
         <xsl:template match="style">
           <xsl:copy>
-             <xsl:value-of select="if (contains(., 'red')) then replace('red', 'green') else replace('green', 'red')"/>
+             <xsl:value-of select="if (contains(., 'red')) then replace(., 'red', 'green') else replace(., 'green', 'red')"/>
           </xsl:copy>
        </xsl:template>
        </xsl:stylesheet>`;
