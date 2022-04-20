@@ -31,7 +31,7 @@
          
       console.log(resultFragment);
       
-      document.replaceChildren(...resultFragment.childNodes);
+      document.replaceChildren(Array.from(resultFragment.childNodes));
     }
     </script>
   </head>
