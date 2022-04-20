@@ -23,7 +23,7 @@
        </xsl:template>
        </xsl:stylesheet>`;
        
-       var resultDocument = SaxonJS.XPath.evaluate(`transform(map {
+       var resultFragment = SaxonJS.XPath.evaluate(`transform(map {
          'source-node' : .,
          'stylesheet-text' : $xslt
          })?output`,
@@ -31,9 +31,10 @@
          { params : { xslt : xslt } }
       );
          
-      console.log(resultDocument);
+      console.log(resultFragment);
       
-      document.replaceChildren(resultDocument.childNodes);
+      document.replaceChildren();
+      document.appendChild(resultFragment);
     }
     </script>
   </head>
