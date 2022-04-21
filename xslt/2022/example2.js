@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </head>
         <body>
           <h1>Test</h1>
-          <div><code>{serialize(., map { 'method': 'xml', 'indent' : true() })}</code></div>
+          <div><pre>{serialize(., map { 'method': 'xml', 'indent' : true() })}</pre></div>
         </body>
       </html>
     </xsl:template>
