@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const xslt = `<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform version="3.0" xmlns="http://www.w3.org/1999/xhtml" expand-text="yes>
+  const xslt = `<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="3.0" xmlns="http://www.w3.org/1999/xhtml" expand-text="yes">
     <xsl:template match="/">
-      <html lang="en>
+      <html lang="en">
         <head>
           <title>Test</title>
         </head>
