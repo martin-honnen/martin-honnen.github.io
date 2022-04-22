@@ -16,7 +16,7 @@
   </xsl:template>
 
   <xsl:template match="title/text()">
-    <xsl:value-of select="replace(., '[0-9]+', (//input[@id = 'button1'] => ixsl:get('dataset'))?counter + 1)"/>
+    <xsl:value-of select="replace(., '[0-9]+', string((//input[@id = 'button1'] => ixsl:get('dataset'))?counter + 1))"/>
   </xsl:template>
   
   <xsl:template match="input[@type = 'button']/@value">
