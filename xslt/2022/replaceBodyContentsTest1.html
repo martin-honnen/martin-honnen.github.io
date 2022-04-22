@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html id="root" lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Saxon-JS Test</title>
+    <script src="../../Saxon-JS-2.3/SaxonJS2.js"></script>
+    <script>
+    function runXslt() {
+      const xslt = 'replaceBodyContentsTest1.xsl.sef.json';
+       
+      SaxonJS.transform({ stylesheetLocation : xslt, sourceNode: document, destination: 'appendToBody' }, 'async');
+    }
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', runXslt, false);
+    </script>
+  </head>
+  <body>
+    <h1>Saxon-JS test</h1>
+  </body>
+</html>
