@@ -15,7 +15,7 @@
   </xsl:template>
   
   <xsl:template match="input[@type = 'button']/@value">
-    <xsl:attribute name="{name()}" select="'test ' || ..?dataset?counter + 1"/>
+    <xsl:attribute name="{name()}" select="'test ' || (.. => ixsl:get('dataset'))?counter + 1"/>
   </xsl:template>
 
   <xsl:template match="input[@type = 'button']/@data-counter">
