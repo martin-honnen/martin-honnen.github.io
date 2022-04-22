@@ -7,12 +7,9 @@
   expand-text="yes">
 
   <xsl:template match="html">
-    <xsl:copy>
-      <xsl:apply-templates select="@*"/>
-      <xsl:result-document href="?." method="ixsl:replace-content">
-        <xsl:apply-templates/>
-      </xsl:result-document>
-    </xsl:copy>
+    <xsl:result-document href="?." method="ixsl:replace-content">
+      <xsl:apply-templates/>
+    </xsl:result-document>
   </xsl:template>
   
   <xsl:template match="meta[@charset]"/>
