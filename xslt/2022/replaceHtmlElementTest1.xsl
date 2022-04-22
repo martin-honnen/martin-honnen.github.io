@@ -25,10 +25,13 @@
 
   <xsl:mode on-no-match="shallow-copy"/>
 
-  <xsl:template match="/" name="xsl:initial-template">
-    <xsl:next-match/>
-    <xsl:comment>Run with {system-property('xsl:product-name')} {system-property('xsl:product-version')} {system-property('Q{http://saxon.sf.net/}platform')} at {current-dateTime()}</xsl:comment>
+  <xsl:template match="input[@type = 'button' and @id = 'button1']" mode="ixsl:onclick">
+     <xsl:apply-templates select="/*"/>
+  </xsl:template>
 
+  <xsl:template match="/" name="xsl:initial-template">
+    <input type="button" id="button1" value="test"/>
+    <xsl:comment>Run with {system-property('xsl:product-name')} {system-property('xsl:product-version')} {system-property('Q{http://saxon.sf.net/}platform')} at {current-dateTime()}</xsl:comment>
   </xsl:template>
 
 </xsl:stylesheet>
