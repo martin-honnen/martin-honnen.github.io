@@ -12,7 +12,7 @@
     function runXslt() {
       const xslt = 'replaceHtmlElementTest1.xsl.sef.json';
        
-      SaxonJS.transform({ stylesheetLocation : xslt, sourceNode: document }, 'async');
+      SaxonJS.transform({ stylesheetLocation : xslt, sourceNode: document, destination: 'appendToBody' }, 'async');
     }
     </script>
   </head>
