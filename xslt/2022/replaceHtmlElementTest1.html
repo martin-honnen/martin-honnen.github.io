@@ -15,6 +15,9 @@
       SaxonJS.transform({ stylesheetLocation : xslt, sourceNode: document, destination: 'appendToBody' }, 'async');
     }
     </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', runXslt, false);
+    </script>
   </head>
   <body>
     <h1>Test</h1>
