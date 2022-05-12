@@ -1,0 +1,23 @@
+<html id="root" lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <style>
+    .sample {
+      color: red;
+    }
+    </style>
+    <script>
+    function replaceHtmlContents() {
+      var newHead = document.documentElement.firstElementChild.cloneNode(true);
+      newHead.querySelector('style').textContent = newHead.querySelector('style').textContent.indexOf('red') > 0 ? newHead.querySelector('style').textContent.replace('red', 'green') : newHead.querySelector('style').textContent.replace('green', 'red');
+      document.documentElement.replaceChildren(...[newHead, document.body.cloneNode(true)]);
+    }
+    </script>
+  </head>
+  <body>
+    <h1>Test</h1>
+    <p class="sample">This is a test.</p>
+    <input type="button" value="test" onclick="replaceHtmlContents();">
+  </body>
+</html>

@@ -1,0 +1,126 @@
+#!markdown
+
+# Using XPath 3.1, XQuery 3.1 and XSLT 3.0 with SaxonCS and .NET 5 or 6
+
+#!markdown
+
+## Installing SaxonCS
+SaxonCS is a commercial package from Saxonica available on NuGet at https://www.nuget.org/packages/SaxonCS/. To run it, you need a license, either bought from Saxonica or a trial license you can also request from Saxonica.
+
+#!csharp
+
+#r "nuget:SaxonCS"
+
+#!markdown
+
+## Making sure the SaxonCS library finds your license
+There are various ways to have the SaxonCS library find your license keys detailed in https://saxonica.com/html/documentation11/about/license/licensekey.html. I find setting up an environment variable named `SAXON_LICENSE_DIR` to point to the directory where you stored the license file the most convenient way. The following code samples assume that that environment variable is set as needed.
+
+#!markdown
+
+## Using directive for SaxonCS library and creation of Processor instance
+
+#!csharp
+
+using Saxon.Api;
+
+var processor = new Processor();
+
+#!markdown
+
+## Running XPath 3.1
+
+#!csharp
+
+var xpathCompiler = processor.NewXPathCompiler();
+
+var result = xpathCompiler.Evaluate("random-number-generator(current-dateTime())?permute(1 to 20)", null);
+
+Console.WriteLine(result);
+
+#!markdown
+
+## Running XQuery 3.1
+
+#!csharp
+
+var xqueryCompiler = processor.NewXQueryCompiler();
+
+var result = xqueryCompiler.Compile(@"<root>{random-number-generator(current-dateTime())?permute(1 to 20)!<item>{.}</item>}</root>").Load().Evaluate();
+
+Console.WriteLine(result);
+
+#!markdown
+
+## Running XSLT 3.0
+
+#!csharp
+
+using System.IO;
+
+var xsltCompiler = processor.NewXsltCompiler();
+
+XsltExecutable xsltExecutable; 
+
+var xsltCode = @"<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='3.0' expand-text='yes'><xsl:template name='xsl:initial-template'><root><xsl:for-each select='random-number-generator(current-dateTime())?permute(1 to 20)'><item>{.}</item></xsl:for-each></root></xsl:template></xsl:stylesheet>";
+
+using (var sr = new StringReader(xsltCode))
+{
+    xsltExecutable = xsltCompiler.Compile(sr);
+}
+
+var result = xsltExecutable.Load30().CallTemplate(null);
+
+Console.WriteLine(result);
+
+#!markdown
+
+## creating a context item for XPath, XQuery or XSLT
+Using SaxonCS, you can both process XML and JSON with XPath, XQuery or XSLT. For XML you use the `DocumentBuilder`, for JSON you use the `JsonBuilder`.
+
+#!csharp
+
+var docBuilder = processor.NewDocumentBuilder();
+
+var jsonBuilder = processor.NewJsonBuilder();
+
+var xmlSample1 = @"<root><item>a</item><item>b</item><item>c</item></root>";
+
+XdmNode exampleInputDoc;
+
+using (var sr = new StringReader(xmlSample1))
+{
+    exampleInputDoc = docBuilder.Build(sr);
+}
+
+var xpathResult = xpathCompiler.EvaluateSingle("array { random-number-generator(current-dateTime())?permute(/root/item) }", exampleInputDoc);
+
+Console.WriteLine(xpathResult);
+
+var xqueryEvaluator = xqueryCompiler.Compile("<result>{random-number-generator(current-dateTime())?permute(/root/item)}</result>").Load();
+
+xqueryEvaluator.ContextItem = exampleInputDoc;
+
+var xqueryResult = xqueryEvaluator.EvaluateSingle();
+
+Console.WriteLine(xqueryResult);
+
+var xsltExecutable = xsltCompiler.Compile(new StringReader(@"<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='3.0'><xsl:mode on-no-match='shallow-copy'/><xsl:template match='root'><result><xsl:apply-templates select='random-number-generator(current-dateTime())?permute(*)'/></result></xsl:template></xsl:stylesheet>"));
+
+var xslt30Transformer = xsltExecutable.Load30();
+
+var xsltResult = xslt30Transformer.ApplyTemplates(exampleInputDoc);
+
+Console.WriteLine(xsltResult);
+
+var jsonSample1 = @"{ ""items"" : [ { ""name"" : ""a"" }, { ""name"" : ""b"" }, { ""name"" : ""c""} ] }";
+
+var exampleInputItem = jsonBuilder.parseJson(jsonSample1) as XdmItem;
+
+var xpathResult0 = xpathCompiler.EvaluateSingle(".", exampleInputItem);
+
+Console.WriteLine(xpathResult0.ToString());
+
+var xpathResult1 = xpathCompiler.EvaluateSingle("map { 'items' : array { random-number-generator(current-dateTime())?permute(?items?*)} }", exampleInputItem);
+
+Console.WriteLine(xpathResult1);

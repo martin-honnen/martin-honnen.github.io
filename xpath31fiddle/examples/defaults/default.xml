@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html lang="en">
+  <head>
+    <title>Saxon-JS 2.3 XPath 3.1 fiddle</title>
+  </head>
+  <body>
+    <section>
+      <h1>Release 1.2.3.0 of Saxon-JS 2 XSLT 3 Fiddle</h1>
+      <section>
+        <h2>Features</h2>
+        <ul>
+          <li>XPath 3.1 using Saxon-JS 2.3</li>
+          <li>
+            XPath execution using Saxon-JS 2.3
+          </li>
+          <li>now with load buttons to load input XML or JSON or HTML and/or XPath from local file system</li>
+          <li>also save link/button to save result document to the file system</li>
+          <li>save XML or JSON or HTML input and XPath code in URL query string</li>
+        </ul>
+      </section>
+    </section>
+  </body>
+</html>

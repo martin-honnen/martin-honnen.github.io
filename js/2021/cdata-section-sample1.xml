@@ -1,0 +1,8 @@
+<root>
+  <description>description 1</description>
+  <description><![CDATA[<p>description 2]]></description>
+  <description>description 3</description>
+  <description><![CDATA[<p>description 4]]></description>
+  <description>description 5</description>
+  <description><![CDATA[<p>description 6]]></description>
+</root>

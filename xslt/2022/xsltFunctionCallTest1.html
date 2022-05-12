@@ -1,0 +1,25 @@
+<html lang="en">
+  <head>
+    <title>Saxon-JS 2 test</title>
+    <script src="../../Saxon-JS-2.3/SaxonJS2.rt.js"></script>
+    <script>
+    var internalStylesheet;
+    document.addEventListener('DOMContentLoaded', e => {
+      var options = { 
+        stylesheetLocation : 'xsltFunctionCallTest1.xsl.sef.json',
+        sourceLocation: 'sample1.xml',
+        destination: 'appendToBody'
+      };
+      SaxonJS.transform(options, 'async').then(result => { internalStylesheet = result.stylesheetInternal; console.log(internalStylesheet); console.log(result); });
+    });
+    </script>
+    <script>
+      function functionCallTest1() {
+       SaxonJS.transform({ destination: 'raw', stylesheetInternal: internalStylesheet, initialFunction: 'Q{http://example.com/mf}f1', functionParams: [ { x: 1, y: 'foo' }] }, 'async').then(result => console.log(result.principalResult)); 
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Test</h1>
+  </body>
+</html>

@@ -11,9 +11,19 @@ const internalRepresentations = {
 
 const cssFile = "xspec/reporter/test-report.css";
 
-function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
+function compileRunReport(xspecCode, xsltCode, resultsSelect) {
 
-  var xspecFile = xspecUrl;
+  const xsltBlob = new Blob([xsltCode], { 'type': 'application/xml' });
+
+  const xsltBlobURL = URL.createObjectURL(xsltBlob);
+  
+  const xspecDoc = SaxonJS.XPath.evaluate(`parse-xml($xspecCode)`, [], { params: { xspecCode: xspecCode } });
+
+  xspecDoc.documentElement.setAttribute('stylesheet', xsltBlobURL);
+
+  const xspecBlob = new Blob([SaxonJS.serialize(xspecDoc)], { type: 'application/xml' });
+
+  const xspecBlobURL = URL.createObjectURL(xspecBlob);
 
   setDocument(resultEditor, 'Hold on:compiling XSpec...', 'text');
 
@@ -21,11 +31,11 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
     internalRepresentations.compilerInternalRepresentation === undefined ? {
       stylesheetBaseURI: compilerBaseUrl,
       stylesheetLocation: compilerFile,
-      sourceLocation: xspecFile
+      sourceLocation: xspecBlobURL
     } : {
         stylesheetBaseURI: compilerBaseUrl,
         stylesheetInternal: internalRepresentations.compilerInternalRepresentation,
-        sourceLocation: xspecFile
+        sourceLocation: xspecBlobURL
     },
     true
   ).then(result => {
@@ -76,9 +86,9 @@ function compileRunReport(xspecUrl, xsltUrl, resultsSelect) {
       setDocument(resultEditor, transformationResult, 'html');
       writeResult(window.frames.resultFrame, transformationResult);
     })
-    .catch(error => setDocument(resultEditor, error, 'text'));
+    .catch(error => setDocument(resultEditor, error.message, 'text'));
   })
-    .catch (error => setDocument(resultEditor, error, 'text'));
+    .catch (error => setDocument(resultEditor, error.message, 'text'));
 
 
 }

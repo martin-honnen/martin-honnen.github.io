@@ -1,0 +1,32 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <style>
+    .sample {
+      color: red;
+    }
+    </style>
+    <script src="../../Saxon-JS-2.3/SaxonJS2.js"></script>
+    <script>
+    function runXslt() {
+      const xslt = 'colorSwitcher.xsl.sef.json';
+       
+      SaxonJS.transform({ stylesheetLocation : xslt, sourceNode: document }, 'async').then(result => {
+        
+        const resultFragment = result.principalResult;
+        
+        console.log(resultFragment);
+      
+        document.replaceChildren();
+        document.appendChild(resultFragment);
+      });
+    }
+    </script>
+  </head>
+  <body>
+    <h1>Test</h1>
+    <p class="sample">This is a test.</p>
+    <input type="button" value="test" onclick="runXslt();">
+  </body>
+</html>

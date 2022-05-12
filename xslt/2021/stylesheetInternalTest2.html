@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Test</title>
+  <script src="../../Saxon-JS-2.3/SaxonJS2.rt.js"></script>
+  <script>
+    const stylesheetData = {
+      stylesheetInternal : undefined
+    }
+
+    function runTest() {
+      if (stylesheetData.stylesheetInternal !== undefined) {
+        var result = SaxonJS.transform( { stylesheetInternal : stylesheetData.stylesheetInternal });
+      }
+      else {
+        var result = SaxonJS.transform( { stylesheetLocation: 'simple-xslt-test.sef.json' });
+        stylesheetData.stylesheetInternal = result.stylesheetInternal;
+        console.log(result.stylesheetInternal);
+        console.log(result.stylesheetInternal !== undefined);
+      }
+    }
+    
+    document.addEventListener(
+      'DOMContentLoaded',
+      runTest
+    )
+  </script>
+</head>
+<body>
+  <h1>Test</h1>
+  <section>
+    <h2>XSLT appended content</h2>
+    <p><input id="test" type="button" value="test" onclick="runTest();"></p>
+    <section id="content"></section>
+  </section>
+</body>
+</html>

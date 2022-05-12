@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <title>Saxon-JS 2 CDATA section as text node test</title>
+    <script src="/Saxon-JS-2.3/SaxonJS2.rt.js"></script>
+  </head>
+  <body>
+    <h1>Saxon-JS 2 CDATA section as text node test</h1>
+    <section>
+      <h2>XPath tests</h2>
+      <script>
+SaxonJS.getResource({ type: 'xml', location: 'cdata-section-sample1.xml' })
+    .then(doc => {
+        const textNodes = SaxonJS.XPath.evaluate(`root/description/text()`, doc, { resultForm: 'array' });
+
+        console.log(textNodes);
+
+        console.log(textNodes.length);
+  
+        const textNodeCount = SaxonJS.XPath.evaluate(`count(root/description/text())`, doc);
+  
+        console.log(textNodeCount);
+  
+        const xpath1TextNodeCount = doc.evaluate(`count(root/description/text())`, doc, null, XPathResult.NUMBER_TYPE).numberValue;
+  
+        console.log(xpath1TextNodeCount);
+    });        
+      </script>
+    </section>
+  </body>
+</html>
