@@ -1,1 +1,1 @@
-js:parseiXMLData(js:compileGrammar(//code[@id = 'grammar1']), //code[@id = 'data'])?tree
+js:compileGrammar(//code[@id = 'grammar1']) => ixsl:call(//code[@id = 'data'], 'parse', [map {'justOne': false()}])?tree
