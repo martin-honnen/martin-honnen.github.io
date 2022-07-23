@@ -1,1 +1,6 @@
-js:compileGrammar(//code[@id = 'grammar1']) => ixsl:call('parse', [map {'justOne': false()}, //code[@id = 'data']])?tree
+let $jwiXML := js:jwiXML(),
+    $compileGrammar := function($grammarSource) { ixsl:call($jwiXML, 'compile', [$grammarSource]) },
+    $parseIXML := function($grammer, $input) { ixsl:call($grammar, 'parse', [$input, map {'justOne': false()}]) },
+    $grammar1 := $compileGrammar(//code[@id = 'grammar1'])
+return
+    $parseIXML($grammar1, //code[@id = 'data']])?tree

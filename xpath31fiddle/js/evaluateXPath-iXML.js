@@ -1,5 +1,5 @@
-const jwL = jwiXML();
-const compileGrammar = jwL.compile;
+//const jwL = jwiXML();
+//const compileGrammar = jwL.compile;
 //const parseiXMLData = jwL.parse;
 
 function xpathEvaluate(input, xpath, inputType, resultsSelect) {
