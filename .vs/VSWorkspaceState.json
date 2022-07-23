@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\XProc3",
-    "\\XProc3\\libraries",
+    "\\xpath31fiddle",
+    "\\xpath31fiddle\\examples",
+    "\\xpath31fiddle\\examples\\defaults",
+    "\\xpath31fiddle\\js",
     "\\xslt3fiddle",
-    "\\xslt3fiddlePWA",
-    "\\xslt3fiddlePWA\\css",
-    "\\xslt3fiddlePWA\\examples",
-    "\\xslt3fiddlePWA\\examples\\defaults",
-    "\\xslt3fiddlePWA\\js",
-    "\\xslt\\split-results"
+    "\\xslt3fiddle\\examples",
+    "\\xslt3fiddle\\examples\\defaults",
+    "\\xslt3fiddle\\js",
+    "\\xslt3fiddle\\xslt"
   ],
-  "SelectedNode": "\\xslt3fiddlePWA\\index.js",
+  "SelectedNode": "\\xpath31fiddle\\js\\evaluateXPath-iXML.js",
   "PreviewInSolutionExplorer": false
 }
