@@ -1,0 +1,1 @@
+js:parseiXMLData(js:compileGrammar(//code[@id = 'grammar1']), //code[@id = 'data'])?tree
