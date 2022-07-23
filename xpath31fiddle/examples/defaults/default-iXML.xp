@@ -1,1 +1,1 @@
-js:compileGrammar(//code[@id = 'grammar1']) => ixsl:call(//code[@id = 'data'], 'parse', [map {'justOne': false()}])?tree
+js:compileGrammar(//code[@id = 'grammar1']) => ixsl:call('parse', [map {'justOne': false()}, //code[@id = 'data']])?tree
