@@ -6,7 +6,7 @@
   exclude-result-prefixes="#all"
   expand-text="yes">
 
-  <xsl:include href="../../xslt/jwiXML.processor.xsl"/>
+  <xsl:include href="https://martin-honnen.github.io/xslt3fiddle/xslt/jwiXML.processor.xsl"/>
 
   <xsl:mode on-no-match="shallow-copy"/>
 
