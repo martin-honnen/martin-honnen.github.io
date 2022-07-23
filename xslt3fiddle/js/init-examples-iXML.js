@@ -8,7 +8,7 @@ function setEditorFromUrl(url, editor) {
 }
 
 function loadDefaults() {
-  setEditorFromUrl('examples/defaults/default.xml', inputEditor);
+  setEditorFromUrl('examples/defaults/default-iXML.xml', inputEditor);
   setEditorFromUrl('examples/defaults/default-iXML.xsl', xsltEditor);
 }
 
