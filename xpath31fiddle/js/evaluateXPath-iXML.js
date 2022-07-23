@@ -6,6 +6,11 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
 
   var transformationResult;
 
+  const namespaceContext = {
+    js: 'http://saxonica.com/ns/globalJS',
+    ixsl: 'http://saxonica.com/ns/interactiveXSLT'
+  };
+
   try {
     if (inputType === 'XML') {
       const xmlDoc = new DOMParser().parseFromString(input, 'application/xml');
@@ -13,7 +18,8 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
         xpath,
         xmlDoc,
         {
-          resultForm: 'xdm'
+          resultForm: 'xdm',
+          namespaceContext: namespaceContext
         }
       );
     }
@@ -25,7 +31,8 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
           resultForm: 'xdm',
           params: {
             'json-input-string': input
-          }
+          },
+          namespaceContext: namespaceContext
         }
       );
     }
@@ -36,7 +43,8 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
         htmlDoc,
         {
           resultForm: 'xdm',
-          xpathDefaultNamespace: 'http://www.w3.org/1999/xhtml'
+          xpathDefaultNamespace: 'http://www.w3.org/1999/xhtml',
+          namespaceContext: namespaceContext
         }
       );
     }
@@ -45,7 +53,8 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
         xpath,
         [],
         {
-          resultForm: 'xdm'
+          resultForm: 'xdm',
+          namespaceContext: namespaceContext
         }
       );
     }
