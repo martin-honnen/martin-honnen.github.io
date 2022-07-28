@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>SaxonJS sourceText test</title>
+    <script src="/Saxon-JS-2.4/SaxonJS2.js"></script>
+    <script>
+      SaxonJS.transform({
+        sourceText: `<root>test</root>`,
+        stylesheetLocation: 'sourceTextTest1.xsl.sef.json'
+      }, 'async');
+    </script>
+  </head>
+  <body>
+    <h1>SaxonJS sourceText test</h1>
+    <section id="result">
+      <h2>XSLT result should appear here</h2>
+    </section>
+  </body>
+</html>
