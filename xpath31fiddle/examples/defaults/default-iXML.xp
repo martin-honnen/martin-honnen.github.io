@@ -3,4 +3,4 @@ let $jwiXML := js:jwiXML(),
     $parseIXML := function($grammar, $input as xs:string) { ixsl:call($grammar, 'parse', [$input, map {'justOne': false()}]) },
     $grammar1 := $compileGrammar(//code[@id = 'grammar1'])
 return
-    $parseIXML($grammar1, //code[@id = 'data']/string())?tree
+    $parseIXML($grammar1, //code[@id = 'data']/)?tree
