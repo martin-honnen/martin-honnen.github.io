@@ -16,6 +16,11 @@
       .catch(err => console.log('Initial transformation failed.', err))
     });
   </script>
+  <script>
+    function testSecondTransformation() {
+      SaxonJS.transform({ stylesheetLocation: 'sheet2.xsl.sef.json' }, 'async').then(res => console.log(res.principalResult)).catch(err => console.log('Second transformation failed.', err));
+    }
+  </script>
 </head>
 <body>
 
