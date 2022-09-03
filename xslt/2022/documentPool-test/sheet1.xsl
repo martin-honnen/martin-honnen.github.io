@@ -5,6 +5,8 @@
   exclude-result-prefixes="#all"
   expand-text="yes">
 
+  <xsl:key name="cat" match="category" use="@name"/>
+
   <xsl:output method="html" indent="yes" html-version="5"/>
 
   <xsl:template match="/" name="xsl:initial-template">
@@ -22,5 +24,7 @@
      <xsl:apply-templates/>
     </li>
   </xsl:template>
+
+  <xsl:template match="category">{.} : {key('cat', ., doc('input2.xml'))}</xsl:template>
 
 </xsl:stylesheet>
