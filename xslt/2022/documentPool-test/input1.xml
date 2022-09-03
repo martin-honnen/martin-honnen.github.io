@@ -2,7 +2,7 @@
 <items>
   <item>
     <name>item 1</name>
-    <cagegories>
+    <categories>
       <category>A</category>
       <category>B</category>
     </categories>
