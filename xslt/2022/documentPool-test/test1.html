@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <title>SaxonJS documentPool test 1</title>
+  <script src="/Saxon-JS-2.4/SaxonJS2.rt.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded, () => {
+    const uris = [ 'input1.xml' ];
+    Promise.all(uris.map((uri, pos) => Saxon.getResource({location : new URL(uri).href, type : 'xml'})).then(resources => {
+      const docPool = {};
+      resources.forEach((r, p) => docPool[new URL(uris[p]).href] = r);
+      return SaxonJS.transform({ stylesheetFileName = 'sheet1.xsl.sef.json', destination: 'appendToBody', documentPool : docPool}, 'async');
+    }).then(res => console.log('Initial transformation successful.'))
+    .catch(err => console.log('Initial transformation failed.'));
+  });
+  </script>
+</head>
+<body>
+
+</body>
+</html>
