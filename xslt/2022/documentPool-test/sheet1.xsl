@@ -38,7 +38,7 @@
 
   <xsl:template match="id('item-list')" mode="ixsl:click">
     <xsl:result-document href="#item-list">
-      <xsl:apply-templates select="doc('input3.xml')//category"/>
+      <xsl:apply-templates select="doc('input3.xml')//item"/>
     </xsl:result-document>
   </xsl:template>
 

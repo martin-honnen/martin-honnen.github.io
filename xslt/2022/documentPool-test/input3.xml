@@ -1,0 +1,9 @@
+<items>
+  <item>
+    <name>item 2</name>
+    <categories>
+      <category>A</category>
+      <category>C</category>
+    </categories>
+  </item>
+</items>
