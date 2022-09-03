@@ -13,7 +13,7 @@
       return SaxonJS.transform({ stylesheetFileName : 'sheet1.xsl.sef.json', destination : 'appendToBody', documentPool : docPool}, 'async');
       })
       .then(res => console.log('Initial transformation successful.'))
-      .catch(err => console.log('Initial transformation failed.'))
+      .catch(err => console.log('Initial transformation failed.', err))
     });
   </script>
 </head>
