@@ -4,6 +4,7 @@
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:js="http://saxonica.com/ns/globalJS"
   xmlns:saxon="http://saxon.sf.net/"
   exclude-result-prefixes="#all"
   expand-text="yes">
@@ -21,6 +22,7 @@
      <xsl:apply-templates/>
    </ul>
    <input type="button" value="load" id="add-item"/>
+   <input type="button" value="run SaxonJS.transform" id="run-transform"/>
   </xsl:template>
 
   <xsl:template match="item">
@@ -45,4 +47,8 @@
     </xsl:result-document>
   </xsl:template>
 
+  <xsl:template match="xhtml:input[@type = 'button' and @id = 'run-transform']" mode="ixsl:onclick">
+    <xsl:message select="'ixsl:click called', saxon:timestamp()"/>
+    <xsl:sequence select="saxon:timestamp(), serialize(js:testSecondTransformation())"/>
+  </xsl:template>
 </xsl:stylesheet>
