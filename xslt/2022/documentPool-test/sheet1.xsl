@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="3.0"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT"
   exclude-result-prefixes="#all"
   expand-text="yes">
 
@@ -14,9 +15,10 @@
   </xsl:template>
 
   <xsl:template match="items">
-   <ul>
+   <ul id="item-list">
      <xsl:apply-templates/>
    </ul>
+   <input type="button" value="load" id="add-item"/>
   </xsl:template>
 
   <xsl:template match="item">
@@ -33,5 +35,11 @@
   </xsl:template>
 
   <xsl:template match="category"><li>{.} : {key('cat', ., doc('input2.xml'))}</li></xsl:template>
+
+  <xsl:template match="id('item-list')" mode="ixsl:click">
+    <xsl:result-document href="#item-list">
+      <xsl:apply-templates select="doc('input3.xml')//category"/>
+    </xsl:result-document>
+  </xsl:template>
 
 </xsl:stylesheet>
