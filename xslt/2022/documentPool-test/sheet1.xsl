@@ -22,7 +22,8 @@
      <xsl:apply-templates/>
    </ul>
    <input type="button" value="load" id="add-item"/>
-   <input type="button" value="run SaxonJS.transform" id="run-transform"/>
+   <input type="button" value="run SaxonJS.transform 2" id="run-transform2"/>
+   <input type="button" value="run SaxonJS.transform 3" id="run-transform3"/>
   </xsl:template>
 
   <xsl:template match="item">
@@ -47,8 +48,15 @@
     </xsl:result-document>
   </xsl:template>
 
-  <xsl:template match="xhtml:input[@type = 'button' and @id = 'run-transform']" mode="ixsl:onclick">
+  <xsl:template match="xhtml:input[@type = 'button' and @id = 'run-transform2']" mode="ixsl:onclick">
     <xsl:message select="'ixsl:click called', saxon:timestamp()"/>
     <xsl:sequence select="saxon:timestamp(), serialize(js:testSecondTransformation())"/>
   </xsl:template>
+
+
+  <xsl:template match="xhtml:input[@type = 'button' and @id = 'run-transform3']" mode="ixsl:onclick">
+    <xsl:message select="'ixsl:click called', saxon:timestamp()"/>
+    <xsl:sequence select="saxon:timestamp(), serialize(js:testThirdTransformation())"/>
+  </xsl:template>
+  
 </xsl:stylesheet>

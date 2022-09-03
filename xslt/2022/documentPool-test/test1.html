@@ -5,20 +5,25 @@
   <title>SaxonJS documentPool test 1</title>
   <script src="/Saxon-JS-2.4/SaxonJS2.rt.js"></script>
   <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const uris = [ 'input1.xml', 'input2.xml', 'input3.xml'].map(uri => new URL(uri, location.href).href);
-    Promise.all(uris.map((uri, pos) => SaxonJS.getResource({location : uri, type : 'xml'}))).then(resources => {
-      const docPool = {};
-      resources.forEach((r, p) => docPool[uris[p]] = r);
-      return SaxonJS.transform({ stylesheetLocation: 'sheet1.xsl.sef.json', destination : 'appendToBody', documentPool : docPool}, 'async');
+    document.addEventListener('DOMContentLoaded', () => {
+      const uris = ['input1.xml', 'input2.xml', 'input3.xml'].map(uri => new URL(uri, location.href).href);
+      Promise.all(uris.map((uri, pos) => SaxonJS.getResource({ location: uri, type: 'xml' }))).then(resources => {
+        const docPool = {};
+        resources.forEach((r, p) => docPool[uris[p]] = r);
+        return SaxonJS.transform({ stylesheetLocation: 'sheet1.xsl.sef.json', destination: 'appendToBody', documentPool: docPool }, 'async');
       })
-      .then(res => console.log('Initial transformation successful.'))
-      .catch(err => console.log('Initial transformation failed.', err))
+        .then(res => console.log('Initial transformation successful.'))
+        .catch(err => console.log('Initial transformation failed.', err))
     });
   </script>
   <script>
     function testSecondTransformation() {
-      SaxonJS.transform({ stylesheetLocation: 'sheet2.xsl.sef.json' }, 'async').then(res => console.log(res.principalResult)).catch(err => console.log('Second transformation failed.', err));
+      SaxonJS.transform({ stylesheetLocation: 'sheet2.xsl.sef.json' }, 'async').then(res => console.log('Second transformation run:', res.principalResult)).catch(err => console.log('Second transformation failed.', err));
+    }
+  </script>
+  <script>
+    function testThirdTransformation() {
+      SaxonJS.transform({ stylesheetLocation: 'sheet3.xsl.sef.json', destination: 'appendToBody' }, 'async').then(res => console.log('Third transformation run:', res.principalResult)).catch(err => console.log('Third transformation failed.', err));
     }
   </script>
 </head>
