@@ -36,7 +36,7 @@
 
   <xsl:template match="category"><li>{.} : {key('cat', ., doc('input2.xml'))}</li></xsl:template>
 
-  <xsl:template match="id('item-list')" mode="ixsl:click">
+  <xsl:template match="input[@type = 'button' and @id = 'add-item']" mode="ixsl:click">
     <xsl:result-document href="#item-list">
       <xsl:apply-templates select="doc('input3.xml')//item"/>
     </xsl:result-document>
