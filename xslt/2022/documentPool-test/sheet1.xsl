@@ -25,6 +25,13 @@
     </li>
   </xsl:template>
 
-  <xsl:template match="category">{.} : {key('cat', ., doc('input2.xml'))}</xsl:template>
+  <xsl:template match="categories">
+    <xsl:value-of select="name()"/>
+    <ul>
+      <xsl:apply-templates/>
+    </ul>
+  </xsl:template>
+
+  <xsl:template match="category"><li>{.} : {key('cat', ., doc('input2.xml'))}</li></xsl:template>
 
 </xsl:stylesheet>
