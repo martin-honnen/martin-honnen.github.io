@@ -3,6 +3,7 @@
   version="3.0"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
   exclude-result-prefixes="#all"
   expand-text="yes">
 
@@ -36,7 +37,7 @@
 
   <xsl:template match="category"><li>{.} : {key('cat', ., doc('input2.xml'))}</li></xsl:template>
 
-  <xsl:template match="input[@type = 'button' and @id = 'add-item']" mode="ixsl:click">
+  <xsl:template match="xhtml:input[@type = 'button' and @id = 'add-item']" mode="ixsl:click">
     <xsl:result-document href="#item-list">
       <xsl:apply-templates select="doc('input3.xml')//item"/>
     </xsl:result-document>
