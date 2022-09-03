@@ -10,7 +10,7 @@
     Promise.all(uris.map((uri, pos) => SaxonJS.getResource({location : uri, type : 'xml'}))).then(resources => {
       const docPool = {};
       resources.forEach((r, p) => docPool[uris[p]] = r);
-      return SaxonJS.transform({ stylesheetFileName : 'sheet1.xsl.sef.json', destination : 'appendToBody', documentPool : docPool}, 'async');
+      return SaxonJS.transform({ stylesheetFileName: 'sheet1.xsl.sef.json', destination : 'appendToBody', documentPool : docPool}, 'async');
       })
       .then(res => console.log('Initial transformation successful.'))
       .catch(err => console.log('Initial transformation failed.', err))
