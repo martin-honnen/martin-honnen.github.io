@@ -5,7 +5,7 @@
   <title>SaxonJS documentPool test 1</title>
   <script src="/Saxon-JS-2.4/SaxonJS2.rt.js"></script>
   <script>
-  document.addEventListener('DOMContentLoaded, () => {
+  document.addEventListener('DOMContentLoaded', () => {
     const uris = [ 'input1.xml' ];
     Promise.all(uris.map((uri, pos) => Saxon.getResource({location : new URL(uri).href, type : 'xml'})).then(resources => {
       const docPool = {};
