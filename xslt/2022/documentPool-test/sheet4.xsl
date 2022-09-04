@@ -25,7 +25,7 @@
   <xsl:param name="colors" as="xs:string*" select="'blue', 'green', 'yellow'"/>
   
   <xsl:template match="root[data]">
-    <svg id="data1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <svg id="data1" width="300" height="300" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
       <xsl:iterate select="data">
         <xsl:param name="max" select="max(data/value)"/>
         <xsl:param name="dy" select="50"/>
