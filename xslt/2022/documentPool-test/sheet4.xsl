@@ -30,7 +30,7 @@
         <xsl:param name="max" select="max(data/value)"/>
         <xsl:param name="dy" select="50"/>
         <rect x="10" y="{$dy}" fill="{let $pos := position() return $colors[$pos]}" height="20" width="{value div $max * 100}%" data-value="{value}">
-          <title>{data}: {value div $max * 100}</title>       
+          <title>{value}: {value div $max * 100}%</title>       
         </rect>
         <xsl:next-iteration>
           <xsl:with-param name="dy" select="$dy + 20"/>
