@@ -37,7 +37,7 @@
     </svg>
   </xsl:template>
 
-  <xsl:template match="svg:svg[@id = 'data1']/rect" mode="ixsl:onmouseover">
+  <xsl:template match="svg:svg[@id = 'data1']/svg:rect" mode="ixsl:onmouseover">
     <xsl:sequence select="saxon:timestamp(), . => ixsl:get('dataset') => ixsl:get('value') => trace()"/>
   </xsl:template> 
 
