@@ -24,10 +24,10 @@
 
   <xsl:param name="colors" as="xs:string*" select="'blue', 'green', 'yellow'"/>
   
-  <xsl:template match="data">
+  <xsl:template match="root[data]">
     <svg id="data1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-      <xsl:iterate select="value">
-        <xsl:param name="max" select="max(value)"/>
+      <xsl:iterate select="data">
+        <xsl:param name="max" select="max(data/value)"/>
         <xsl:param name="dy" select="50"/>
         <rect x="10" y="{$dy}" title="{.}" fill="{let $pos := position() return $colors[$pos]}" height="20" width="{$max div $max}" data-value="{.}"/>
         <xsl:next-iteration>
