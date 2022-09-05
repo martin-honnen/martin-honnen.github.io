@@ -28,7 +28,12 @@
   </script>
   <script>
     function testFourthTransformation() {
-      SaxonJS.transform({ stylesheetLocation: 'sheet4.xsl.sef.json', stylesheetParams: { 'doc-uri': 'input3.xml' }, destination: 'appendToBody' }, 'async').then(res => console.log('Fourth transformation run:', res.principalResult)).catch(err => console.log('Fourth transformation failed.', err));
+      SaxonJS.transform({ stylesheetLocation: 'sheet4.xsl.sef.json', sourceLocation: 'input4.xml', destination: 'appendToBody' }, 'async').then(res => console.log('Fourth transformation run:', res.principalResult)).catch(err => console.log('Fourth transformation failed.', err));
+    }
+  </script>
+  <script>
+    function testFifthTransformation() {
+      SaxonJS.transform({ stylesheetLocation: 'sheet5.xsl.sef.json', sourceLocation: 'input4.xml', destination: 'appendToBody' }, 'async').then(res => console.log('Fifth transformation run:', res.principalResult)).catch(err => console.log('Fifth transformation failed.', err));
     }
   </script>
 </head>
