@@ -48,7 +48,7 @@
   <xsl:template match="xhtml:input[@type = 'button' and @id = 'add-item']" mode="ixsl:onclick">
     <xsl:message select="'ixsl:click called', saxon:timestamp()"/>
     <xsl:result-document href="#item-list">
-      <xsl:apply-templates select="doc('input3.xml')//item"/>
+      <xsl:apply-templates select="doc('http://example.com/input3.xml')//item"/>
     </xsl:result-document>
   </xsl:template>
 
