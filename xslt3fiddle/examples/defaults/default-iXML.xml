@@ -9,7 +9,7 @@
       <section>
         <h2>Features</h2>
         <ul>
-          <li>XSLT 3 using Saxon-JS 2.4</li>
+          <li>XSLT 3 using Saxon-JS 2.5</li>
           <li>
             XSLT execution using <code>fn:transform</code> call from <code>SaxonJS.XPath.evaluate</code>
           </li>

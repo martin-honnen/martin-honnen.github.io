@@ -12,7 +12,7 @@
 
   <xsl:template match="/" name="xsl:initial-template">
     <xsl:next-match/>
-    <xsl:comment>Run with {system-property('xsl:product-name')} {system-property('xsl:product-version')} {system-property('Q{http://saxon.sf.net/}platform')}</xsl:comment>
+    <xsl:comment>Run with {system-property('xsl:product-name')} {system-property('xsl:product-version')} {system-property('Q{http://saxon.sf.net/}platform')} and version {jwL:version()} of the iXML library</xsl:comment>
   </xsl:template>
 
 </xsl:stylesheet>
