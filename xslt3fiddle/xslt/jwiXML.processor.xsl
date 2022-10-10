@@ -12,6 +12,11 @@
         jwiXML JavaScript library script
     -->
     <xsl:variable name="jwiXML" select="js:jwiXML()"/>
+    
+    <!-- Version identifier -->
+    <xsl:function name="jwL:version" as="xs:string">
+        <xsl:sequence select="ixsl:call($jwiXML, 'version', [])"/>
+    </xsl:function>
 
     <!-- 
     These are the calls to compile or just parse an iXML grammar
