@@ -14,7 +14,7 @@
     <xsl:variable name="jwiXML" select="js:jwiXML()"/>
     
     <!-- Version identifier -->
-    <xsl:function name="jwL:version" as="xs:string">
+    <xsl:function name="jwL:version" as="xs:string" visibility="public">
         <xsl:sequence select="ixsl:call($jwiXML, 'version', [])"/>
     </xsl:function>
 
@@ -28,16 +28,16 @@
               an XML-exported form can be retrieved via its display() method, viz:
                     ixsl:call($parsedGrammar,'display',[])  (THE NAME MAY CHANGE!)
     -->
-    <xsl:function name="jwL:compileGrammar" as="item()">
+    <xsl:function name="jwL:compileGrammar" as="item()" visibility="public">
         <xsl:param name="grammarSource" as="item()"/>
         <xsl:sequence select="jwL:compileGrammar($grammarSource, map {})"/>
     </xsl:function>
-    <xsl:function name="jwL:compileGrammar" as="item()">
+    <xsl:function name="jwL:compileGrammar" as="item()" visibility="public">
         <xsl:param name="grammarSource" as="item()"/>
         <xsl:param name="options" as="map(*)"/>
         <xsl:sequence select="ixsl:call($jwiXML, 'compile', [$grammarSource, $options])"/>
     </xsl:function>
-    <xsl:function name="jwL:parseGrammar" as="item()">
+    <xsl:function name="jwL:parseGrammar" as="item()" visibility="public">
         <xsl:param name="grammarSource" as="item()"/>
         <xsl:sequence select="ixsl:call($jwiXML, 'parse', [$grammarSource])"/>
     </xsl:function>
@@ -69,12 +69,12 @@
      There are other fields relevant to debugging and timing performance.
      
     -->
-    <xsl:function name="jwL:parse" as="map(*)">
+    <xsl:function name="jwL:parse" as="map(*)" visibility="public">
         <xsl:param name="grammar"/>
         <xsl:param name="input" as="xs:string"/>
         <xsl:sequence select="jwL:parse($grammar, $input, map {'justOne': false()})"/>
     </xsl:function>
-    <xsl:function name="jwL:parse" as="map(*)">
+    <xsl:function name="jwL:parse" as="map(*)" visibility="public">
         <xsl:param name="grammar"/>
         <xsl:param name="input" as="xs:string"/>
         <xsl:param name="options" as="map(*)"/>
