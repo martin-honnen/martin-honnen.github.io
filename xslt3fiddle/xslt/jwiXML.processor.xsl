@@ -11,7 +11,7 @@
         The jwiXML() function has been attached to the browser window object at the end of the evalution of the 
         jwiXML JavaScript library script
     -->
-    <xsl:variable name="jwiXML" select="js:jwiXML()"/>
+    <xsl:variable name="jwiXML" select="js:jwiXML()" visibility="public"/>
     
     <!-- Version identifier -->
     <xsl:function name="jwL:version" as="xs:string" visibility="public">
