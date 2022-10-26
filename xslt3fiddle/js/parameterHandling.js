@@ -22,7 +22,7 @@ document.addEventListener(
           const valueField = fields[1];
           if (nameField.value != '' && valueField.value != '') {
             const qname = SaxonJS.XS.QName.fromEQName(nameField.value);
-            const value = [new SaxonJS.atomic(valueField.value)];
+            const value = [SaxonJS.atom(valueField.value)];
             xsltParams.inSituPut(qname, value);
           }
         }
