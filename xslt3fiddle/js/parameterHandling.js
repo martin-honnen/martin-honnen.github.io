@@ -15,7 +15,7 @@ document.addEventListener(
       () => {
         xsltParams = new SaxonJS.XdmMap();
         const paramRows = document.querySelector('#params-table').tBodies[0].rows;
-        for (let row in paramRows) {
+        paramsRow.forEach((row) => {
           const fields = row.querySelectorAll('input[type="text"]');
           const nameField = fields[0];
           const valueField = fields[1];
@@ -25,6 +25,7 @@ document.addEventListener(
             xsltParams.inSituPut(qname, value);
           }
         }
+        );
       }
     );
   }
