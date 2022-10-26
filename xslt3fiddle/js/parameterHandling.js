@@ -22,7 +22,8 @@ document.addEventListener(
           const valueField = fields[1];
           if (nameField.value != '' && valueField.value != '') {
             const qname = SaxonJS.XS.QName.fromEQName(nameField.value);
-            const value = [SaxonJS.atom(valueField.value)];
+            const type = row.querySelector('select').value;
+            const value = [SaxonJS.atom(valueField.value, type)];
             xsltParams.inSituPut(qname, value);
           }
         }
