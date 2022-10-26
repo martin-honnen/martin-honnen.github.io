@@ -14,7 +14,7 @@ document.addEventListener(
     document.getElementById('setParamsBtn').addEventListener('click',
       () => {
         xsltParams = new SaxonJS.XdmMap();
-        const paramRows = document.querySelectorAll('#paramsTable tr');
+        const paramRows = document.querySelector('#params-table').tBodies[0].rows;
         for (let row in paramRows) {
           const fields = row.querySelectorAll('input[type="text"]');
           const nameField = fields[0];
