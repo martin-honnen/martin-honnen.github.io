@@ -38,8 +38,14 @@
                   <tr>
                     <td><label>Parameter name: <input type="text" name="pn1" placeholder="Q{namespace}local-name"></label></td>
                     <td><label>Parameter value: <input type="text" name="pv1"></label></td>
-                    <td><input type="button" class="add-params-btn" value="+"
-                               onclick="addParameterRow(this.parentElement.parentElement);"></td>
+                    <td>
+                      <input type="button" class="add-params-btn" value="+"
+                             onclick="addParameterRow(this.parentElement.parentElement);">
+                    </td>
+                    <td>
+                      <input type="button" class="add-params-btn" value="-"
+                             onclick="this.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement);">
+                    </td>
                   </tr>
                 </table>
                 <div>
