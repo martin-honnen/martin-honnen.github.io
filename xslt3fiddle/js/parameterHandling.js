@@ -1,8 +1,8 @@
 function addParameterRow(currentRow) {
   const newRow = currentRow.cloneNode(true);
-  for (let input in newRow.querySelectorAll('input[type="text"]')) {
+  newRow.querySelectorAll('input[type="text"]').forEach(input => {
     input.defaultValue = '';
-  }
+  });
   currentRow.parentElement.insertBefore(newRow, currentRow.nextSibling);
 }
 
