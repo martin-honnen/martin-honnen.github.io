@@ -24,7 +24,7 @@ document.addEventListener(
             const qname = SaxonJS.XS.QName.fromEQName(nameField.value);
             const type = row.querySelector('select').value;
             const isXPathExpression = row.querySelector('input[type="checkbox"]').checked;
-            const value = [!isXPathExpression ? SaxonJS.atom(valueField.value, type) : SaxonJS.XPath.evaluate(valueField.value)];
+            const value = !isXPathExpression ? [SaxonJS.atom(valueField.value, type)] : SaxonJS.XPath.evaluate(valueField.value, null, { resultForm: 'xdm' });
             xsltParams.inSituPut(qname, value);
           }
         }
