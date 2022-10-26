@@ -34,12 +34,12 @@
                    onclick="document.getElementById('params-dialog').showModal();">
             <dialog id="params-dialog">
               <form method="dialog">
-                <table>
+                <table id="params-table">
                   <tr>
                     <td><label>Parameter name: <input type="text" name="pn1" placeholder="Q{namespace}local-name"></label></td>
                     <td><label>Parameter value: <input type="text" name="pv1"></label></td>
                     <td><input type="button" class="add-params-btn" value="+"
-                               onclick="addParameterRow(this.parentElement.parentElement)"></td>
+                               onclick="addParameterRow(this.parentElement.parentElement);"></td>
                   </tr>
                 </table>
                 <div>
@@ -96,7 +96,7 @@
     <script src="js/frame-write.js"></script>
     <script src="js/ace-modes.js"></script>
     <script src="js/parameterHandling.js"></script>
-    <script src="js/transform.js"></script>
+    <script src="js/transform-params.js"></script>
     <script src="js/ace-editors-init.js"></script>
     <script src="js/event-listeners-init.js"></script>
     <script src="js/init-examples.js"></script>
