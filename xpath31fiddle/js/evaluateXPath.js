@@ -9,19 +9,18 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
         xpath,
         xmlDoc,
         {
-          resultForm: 'xdm'
+          resultForm: 'xdm',
+          params: typeof xpathParams === 'undefined' ? {} : xpathParams
         }
       );
     }
     else if (inputType === 'JSON') {
       transformationResult = SaxonJS.XPath.evaluate(
-        `parse-json($json-input-string) ! (${xpath})`,
-        [],
+        xpath,
+        SaxonJS.XPath.evaluate(`parse-json($json-input-string)`, null, { resultForm: 'xdm'}),
         {
           resultForm: 'xdm',
-          params: {
-            'json-input-string': input
-          }
+          params: typeof xpathParams === 'undefined' ? {} : xpathParams
         }
       );
     }
@@ -32,7 +31,8 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
         htmlDoc,
         {
           resultForm: 'xdm',
-          xpathDefaultNamespace: 'http://www.w3.org/1999/xhtml'
+          xpathDefaultNamespace: 'http://www.w3.org/1999/xhtml',
+          params: typeof xpathParams === 'undefined' ? {} : xpathParams
         }
       );
     }
@@ -41,7 +41,8 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
         xpath,
         [],
         {
-          resultForm: 'xdm'
+          resultForm: 'xdm',
+          params: typeof xpathParams === 'undefined' ? {} : xpathParams
         }
       );
     }
