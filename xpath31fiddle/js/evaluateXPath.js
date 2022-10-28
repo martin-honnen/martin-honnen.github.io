@@ -17,7 +17,7 @@ function xpathEvaluate(input, xpath, inputType, resultsSelect) {
     else if (inputType === 'JSON') {
       transformationResult = SaxonJS.XPath.evaluate(
         xpath,
-        SaxonJS.XPath.evaluate(`parse-json($json-input-string)`, null, { resultForm: 'xdm'}),
+        SaxonJS.XPath.evaluate(`parse-json($json-input-string)`, null, { params: { 'json-input-string' : input }, resultForm: 'xdm'}),
         {
           resultForm: 'xdm',
           params: typeof xpathParams === 'undefined' ? {} : xpathParams
