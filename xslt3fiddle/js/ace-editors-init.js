@@ -1,13 +1,23 @@
+ace.require("ace/ext/language_tools");
+
 var inputEditor = ace.edit('input-editor');
 inputEditor.session.setMode('ace/mode/xml');
-inputEditor.setOption("enableLiveAutocompletion", true);
+inputEditor.setOptions({
+  enableBasicAutocompletion: true,
+  enableSnippets: true,
+  enableLiveAutocompletion: false
+});
 
 inputEditor.session.setTabSize(2);
 inputEditor.session.setUseSoftTabs(true);
 
 var xsltEditor = ace.edit('xslt-editor');
 xsltEditor.session.setMode('ace/mode/xml');
-xsltEditor.setOption("enableLiveAutocompletion", true);
+xsltEditor.setOptions({
+  enableBasicAutocompletion: true,
+  enableSnippets: true,
+  enableLiveAutocompletion: false
+})
 
 xsltEditor.session.setTabSize(2);
 xsltEditor.session.setUseSoftTabs(true);
