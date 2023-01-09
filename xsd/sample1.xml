@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <input>
+        <action no="1" type="xyz"/>
+        <action no="2" type="abc"/>
+        <action no="3" type="ddd"/>
+    </input>
+    <input>
+        <action no="2" type="xyz"/>
+        <action no="3" type="abc"/>
+        <action no="4" type="ddd"/>
+    </input>
+    <input>
+        <action no="1" type="xyz"/>
+        <action no="1" type="abc"/>
+        <action no="3" type="ddd"/>
+    </input>
+</root>
