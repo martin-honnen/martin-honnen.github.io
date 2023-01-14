@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <html lang="en">
   <head>
-    <title>Saxon-JS 2.3 XSLT 3 fiddle</title>
+    <title>Saxon-JS 2.5 XSLT 3 fiddle</title>
   </head>
   <body>
     <section>
-      <h1>Release 1.2.3.1 of Saxon-JS 2 XSLT 3 Fiddle</h1>
+      <h1>Release 1.2.5.0 of Saxon-JS 2 XSLT 3 Fiddle</h1>
       <section>
         <h2>Features</h2>
         <ul>
-          <li>XSLT 3 using Saxon-JS 2.3</li>
+          <li>XSLT 3 using Saxon-JS 2.5</li>
           <li>
             XSLT execution using <code>fn:transform</code> call from <code>SaxonJS.XPath.evaluate</code>
           </li>
@@ -19,6 +19,7 @@
           <li>now with load buttons to load input XML or JSON or HTML and/or XSLT from local file system</li>
           <li>also save link/button to save result document to the file system</li>
           <li>save XML or JSON or HTML input and XSLT code in URL query string</li>
+          <li>print result frame document (with browser print dialogue, e.g. to PDF document)</li>
         </ul>
       </section>
     </section>

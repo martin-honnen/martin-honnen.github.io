@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Saxon-JS 2 deliverResultDocument async test 1</title>
+    <script src="../../Saxon-JS-2.4/SaxonJS2.rt.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', e => {
+      var options = { 
+        stylesheetLocation : 'sheet1.sef.json',
+        sourceLocation: 'input1.xml',
+        destination: 'serialized',
+        baseOutputURI: location.href
+      };
+      SaxonJS.transform(options, 'async').then(result => {
+        console.log(`principalResult: ${result.principalResult}`);
+        for (var uri in result.resultDocuments) {
+          console.log(`result URI ${uri}: ${options.resultDocuments[uri]}`);
+        }
+      }).catch(err => console.log(err));
+    });
+    </script>
+  </head>
+  <body>
+    <h1>Test deliverResultDocument async test 1</h1>
+    <p>See console (F12) for any output.</p>
+  </body>
+</html>

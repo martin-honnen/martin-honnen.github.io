@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <html lang="en">
-    <head>
-        <title>XML Workbench: XSLT 3.0, XQuery 3.1, XPath 3.1</title>
-    </head>
-    <body>
-        <section>
-            <h1>Release 0.6 beta of XML Workbench</h1>
-            <section>
-                <h2>Features using Saxon Java 11.2 HE</h2>
-                <ul>
-                    <li>XSLT 3.0 against XML or JSON input or no input starting with <code>xsl:template name="xsl:initial-template"</code>, all with support for creating and displaying various <code>xsl:result-document</code>s</li>
-                    <li>XQuery 3.1 against XML or JSON input or no input</li>
-                    <li>XPath 3.1 against XML or JSON input or no input</li>
-                </ul>
-            </section>
-        </section>
-    </body>
+  <head>
+    <title>XML Workbench: XSLT 3.0, XQuery 3.1, XPath 3.1</title>
+  </head>
+  <body>
+    <section>
+      <h1>Release 0.9 beta of XML Workbench</h1>
+      <section>
+        <h2>Features using Saxon Java 11.4 HE</h2>
+        <ul>
+          <li>XSLT 3.0 against XML or JSON input or no input starting with <code>xsl:template name="xsl:initial-template"</code>, all with support for creating and displaying various <code>xsl:result-document</code>s</li>
+          <li>XQuery 3.1 against XML or JSON input or no input</li>
+          <li>XPath 3.1 against XML or JSON input or no input</li>
+          <li><a href="https://coffeesacks.nineml.org/">CoffeeSacks</a>, a Saxon extension library to support <a href="https://invisiblexml.org/">Invisible XML</a>, has been integrated for XSLT, XQuery and XPath</li>
+        </ul>
+      </section>
+    </section>
+  </body>
 </html>

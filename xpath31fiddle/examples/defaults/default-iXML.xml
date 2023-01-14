@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html lang="en">
+  <head>
+    <title>Saxon-JS 2.5 XPath 3.1 and iXML fiddle</title>
+  </head>
+  <body>
+    <section>
+      <h1>Release 1.2.5.0 of Saxon-JS 2 XSLT 3 and Invisible XML Fiddle</h1>
+      <section>
+        <h2>Features</h2>
+        <ul>
+          <li>XPath 3.1 using Saxon-JS 2.5</li>
+          <li>
+            XPath execution using Saxon-JS 2.5
+          </li>
+          <li>now with load buttons to load input XML or JSON or HTML and/or XPath from local file system</li>
+          <li>also save link/button to save result document to the file system</li>
+          <li>save XML or JSON or HTML input and XPath code in URL query string</li>
+          <li>experimental support for <a href="https://invisiblexml.org/">Invisible XML</a> using John Lumley's <a href="https://github.com/johnlumley/jwiXML">jwiXML library</a></li>
+        </ul>
+        <h3>Invisible XML example</h3>
+        <section>
+          <h4>Grammar</h4>
+          <pre><code id="grammar1">Countries = Country*.
+Country = Name, -'/', Code, -'/', Line, #A?.
+Name = ['A'-'Z'],['A'-'Z'].
+Code = ['0'-'9'],['0'-'9'],['0'-'9'].
+Line = ['0'-'9'],['0'-'9'].</code>
+          </pre>
+          <h4>Sample data</h4>
+          <pre><code id="data">UK/006/10
+US/004/12</code></pre>
+        </section>
+      </section>
+    </section>
+  </body>
+</html>
