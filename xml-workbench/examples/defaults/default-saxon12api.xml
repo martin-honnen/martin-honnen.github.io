@@ -5,7 +5,7 @@
   </head>
   <body>
     <section>
-      <h1>Release 0.9 beta of XML Workbench</h1>
+      <h1>Release 0.9.12.0 beta of XML Workbench</h1>
       <section>
         <h2>Features using Saxon Java 12.0 HE</h2>
         <ul>
