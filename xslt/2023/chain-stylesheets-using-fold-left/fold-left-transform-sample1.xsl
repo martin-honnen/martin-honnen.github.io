@@ -7,7 +7,7 @@
   
   <xsl:param name="xslt-uris" as="xs:string*" select="'sheet1.xsl', 'sheet2.xsl', 'sheet3.xsl'"/>
 
-  <xsl:mode on-no-match="shallow-copy"/>
+  <xsl:output indent="yes"/>
 
   <xsl:template match="/" name="xsl:initial-template">
     <xsl:sequence
