@@ -40,7 +40,7 @@
   <xsl:template name="xsl:initial-template">
     <section>
       <h2>SVG example</h2>
-      <xsl:copy-of select="doc(sample1.svg)"/>
+      <xsl:copy-of select="doc('sample1.svg')"/>
     </section>
   </xsl:template>
   
