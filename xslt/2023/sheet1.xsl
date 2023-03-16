@@ -18,7 +18,7 @@
                        select="$matrix => ixsl:get('e') + $dx"/>
     <ixsl:set-property object="$matrix"
                        name="f"
-                       select="$matrix => ixsl:get('f') + $dx"/>
+                       select="$matrix => ixsl:get('f') + $dy"/>
   </xsl:function>
   
   <xsl:template mode="ixsl:onclick" match="id('pan1')">
