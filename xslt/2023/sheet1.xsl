@@ -15,10 +15,10 @@
     <xsl:variable name="matrix" select="$svg-element => ixsl:get('transform') => ixsl:get('baseVal') => ixsl:get('0') => ixsl:get('matrix')"/>
     <ixsl:set-property object="$matrix"
                        name="e"
-                       select="$matrix => ixsl:get(e) + $dx"/>
+                       select="$matrix => ixsl:get('e') + $dx"/>
     <ixsl:set-property object="$matrix"
                        name="f"
-                       select="$matrix => ixsl:get(f) + $dx"/>
+                       select="$matrix => ixsl:get('f') + $dx"/>
   </xsl:function>
   
   <xsl:template mode="ixsl:onclick" match="id('pan1')">
