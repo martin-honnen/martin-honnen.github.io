@@ -7,7 +7,8 @@
     <script>
     document.addEventListener('DOMContentLoaded', e => {
       SaxonJS.transform({
-        stylesheetLocation : 'sheet1.xsl.sef.json'
+        stylesheetLocation: 'sheet1.xsl.sef.json',
+        destination: 'appendToBody'
       },
       'async');
     });
