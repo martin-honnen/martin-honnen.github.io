@@ -52,8 +52,8 @@
     <path id='pan4' class="button" d="M45 25 l-10 -6 a35 20 0 0 1 0 12z" />
     
     <circle class="compass" cx="25" cy="25" r="10"/>
-    <circle class="button"  cx="25" cy="20.5" r="4" onclick="zoom(0.8)"/>
-    <circle class="button"  cx="25" cy="29.5" r="4" onclick="zoom(1.25)"/>
+    <circle id="zoom1" class="button"  cx="25" cy="20.5" r="4"/>
+    <circle id="zoom2" class="button"  cx="25" cy="29.5" r="4"/>
 
     <rect class="plus-minus" x="23" y="20" width="4" height="1"/>
     <rect class="plus-minus" x="23" y="29" width="4" height="1"/>
