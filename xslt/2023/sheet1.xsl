@@ -20,6 +20,27 @@
                        name="f"
                        select="$matrix => ixsl:get('f') + $dy"/>
   </xsl:function>
+
+  <xsl:function name="mf:zoom">
+    <xsl:param name="svg-element" as="element()"/>
+    <xsl:param name="zoom" as="xs:double"/>
+    <xsl:variable name="matrix" select="$svg-element => ixsl:get('transform') => ixsl:get('baseVal') => ixsl:get('0') => ixsl:get('matrix')"/>
+    <xsl:variable name="viewBox" select="id('map-svg')/@viewBox => tokenize(' ')"/>
+    <xsl:variable name="centerX" select="$viewBox[3] div 2"/>
+    <xsl:variable name="centerY" select="$viewBox[4] div 2"/>
+    <xsl:for-each select="'a', 'b', 'c', 'd', 'e', 'f'">
+      <ixsl:set-property object="$matrix"
+                         name="{.}"
+                         select="$matrix => ixsl:get(.) * $zoom"/>
+    </xsl:for-each>
+    <ixsl:set-property object="$matrix"
+                       name="e"
+                       select="$matrix => ixsl:get('e') + (1 - $zoom) * $centerX"/>
+    <ixsl:set-property object="$matrix"
+                       name="f"
+                       select="$matrix => ixsl:get('f') + (1 - $zoom) * $centerY"/>
+
+  </xsl:function>
   
   <xsl:template mode="ixsl:onclick" match="id('pan1')">
     <xsl:sequence select="mf:pan(id('matrix-group'), 0, 25)"/>
@@ -35,6 +56,14 @@
   
   <xsl:template mode="ixsl:onclick" match="id('pan4')">
     <xsl:sequence select="mf:pan(id('matrix-group'), -25, 0)"/>
+  </xsl:template>
+
+  <xsl:template mode="ixsl:onclick" match="id('zoom1')">
+    <xsl:sequence select="mf:zom(id('matrix-group'), 0.8)"/>
+  </xsl:template>
+
+  <xsl:template mode="ixsl:onclick" match="id('zoom2')">
+    <xsl:sequence select="mf:zom(id('matrix-group'), 1.25)"/>
   </xsl:template>
 
   <xsl:template name="xsl:initial-template">
