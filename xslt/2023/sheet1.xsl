@@ -25,7 +25,7 @@
     <xsl:param name="svg-element" as="element()"/>
     <xsl:param name="zoom" as="xs:double"/>
     <xsl:variable name="matrix" select="$svg-element => ixsl:get('transform') => ixsl:get('baseVal') => ixsl:get('0') => ixsl:get('matrix')"/>
-    <xsl:variable name="viewBox" select="root($matrix)/id('map-svg')/@viewBox => tokenize(' ')"/>
+    <xsl:variable name="viewBox" select="root($svg-element)/id('map-svg')/@viewBox => tokenize(' ')"/>
     <xsl:variable name="centerX" select="$viewBox[3] div 2"/>
     <xsl:variable name="centerY" select="$viewBox[4] div 2"/>
     <xsl:for-each select="'a', 'b', 'c', 'd', 'e', 'f'">
