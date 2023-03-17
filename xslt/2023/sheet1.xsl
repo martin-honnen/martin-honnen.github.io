@@ -59,11 +59,11 @@
   </xsl:template>
 
   <xsl:template mode="ixsl:onclick" match="id('zoom1')">
-    <xsl:sequence select="mf:zom(id('matrix-group'), 0.8)"/>
+    <xsl:sequence select="mf:zoom(id('matrix-group'), 0.8)"/>
   </xsl:template>
 
   <xsl:template mode="ixsl:onclick" match="id('zoom2')">
-    <xsl:sequence select="mf:zom(id('matrix-group'), 1.25)"/>
+    <xsl:sequence select="mf:zoom(id('matrix-group'), 1.25)"/>
   </xsl:template>
 
   <xsl:template name="xsl:initial-template">
