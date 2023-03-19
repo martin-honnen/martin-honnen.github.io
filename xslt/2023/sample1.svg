@@ -59,5 +59,7 @@
     <rect class="plus-minus" x="23" y="29" width="4" height="1"/>
     <rect class="plus-minus" x="24.5" y="27.5" width="1" height="4"/>
 
+    <text id="reset" x="46" y="15" title="reset">0</text>
+
 
   </svg>

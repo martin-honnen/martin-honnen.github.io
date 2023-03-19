@@ -21,6 +21,29 @@
                        select="$matrix => ixsl:get('f') + $dy"/>
   </xsl:function>
 
+  <xsl:function name="mf:reset">
+    <xsl:param name="svg-element" as="element()"/>
+    <xsl:variable name="matrix" select="$svg-element => ixsl:get('transform') => ixsl:get('baseVal') => ixsl:get('0') => ixsl:get('matrix')"/>
+    <ixsl:set-property object="$matrix"
+                       name="a"
+                       select="1"/>
+    <ixsl:set-property object="$matrix"
+                       name="b"
+                       select="0"/>
+    <ixsl:set-property object="$matrix"
+                       name="c"
+                       select="0"/>
+    <ixsl:set-property object="$matrix"
+                       name="d"
+                       select="1"/>
+    <ixsl:set-property object="$matrix"
+                       name="e"
+                       select="0"/>
+    <ixsl:set-property object="$matrix"
+                       name="f"
+                       select="0"/>
+  </xsl:function>
+
   <xsl:function name="mf:zoom">
     <xsl:param name="svg-element" as="element()"/>
     <xsl:param name="zoom" as="xs:double"/>
@@ -42,6 +65,10 @@
 
   </xsl:function>
   
+  <xsl:template mode="ixsl:onclick" match="id('reset')">
+    <xsl:sequence select="mf:reset(id('matrix-group'))"/>
+  </xsl:template>
+
   <xsl:template mode="ixsl:onclick" match="id('pan1')">
     <xsl:sequence select="mf:pan(id('matrix-group'), 0, 25)"/>
   </xsl:template>
