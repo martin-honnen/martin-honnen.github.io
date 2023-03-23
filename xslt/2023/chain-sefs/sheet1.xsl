@@ -8,8 +8,10 @@
   <xsl:mode on-no-match="shallow-copy"/>
 
   <xsl:template match="/" name="xsl:initial-template">
-    <xsl:next-match/>
-    <xsl:comment>Run with {static-base-uri()} using {system-property('xsl:product-name')} {system-property('xsl:product-version')} {system-property('Q{http://saxon.sf.net/}platform')} at {current-dateTime()}</xsl:comment>
+    <xsl:document>
+      <xsl:apply-templates/>
+    	<xsl:comment>Run with {static-base-uri()} using {system-property('xsl:product-name')} {system-property('xsl:product-version')} {system-property('Q{http://saxon.sf.net/}platform')} at {current-dateTime()}</xsl:comment>
+    </xsl:document>
   </xsl:template>
   
 </xsl:stylesheet>
