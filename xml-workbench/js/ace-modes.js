@@ -11,6 +11,7 @@ var filetypes = {
     '.htm': 'html',
     '.html': 'html',
     '.xml': 'xml',
+    '.xsd': 'xml',
     '.xsl': 'xml',
     '.xslt': 'xml',
     '.xhtml' : 'xml',
