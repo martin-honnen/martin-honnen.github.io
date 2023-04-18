@@ -30,6 +30,7 @@
                 <label><input type="radio" name="code-type" value="XSLT" checked>XSLT</label>
                 <label><input type="radio" name="code-type" value="XQuery">XQuery</label>
                 <label><input type="radio" name="code-type" value="XPath">XPath</label>
+                <label><input type="radio" name="code-type" value="XSD">XSD</label>
             </fieldset>
         </form>
         <input type="button" id="transform" value="XSLT transformation" accesskey="t"
@@ -41,6 +42,8 @@
         <input type="button" id="xpath" value="XPath" accesskey="a"
                onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
                             xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, document.getElementById('results'));">
+         <input type="button" id="xsd" value="XSD" accesskey="V"
+               onclick="validate(inputEditor.session.getValue(), codeEditor.session.getValue(), document.getElementById('results'));">
         <input type="button" id="save" value="save as URL" accesskey="s"
                onclick="save(document.getElementById('input-type-form'));">
     </nav>
@@ -58,7 +61,7 @@
             <div class="grid-item">
                 <div id="code-editor" class="editor"></div>
                 <input type="button" id="load-code" value="load" onclick="document.getElementById('load-code-file').click();">
-                <input type="file" id="load-code-file" onchange="this.files[0].text().then(t => codeEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,text/xml,application/xml,application/xml+xslt">
+                <input type="file" id="load-code-file" onchange="this.files[0].text().then(t => codeEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,.xsd,text/xml,application/xml,application/xml+xslt">
             </div>
         </section>
         <section class="grid-row button-bar">
