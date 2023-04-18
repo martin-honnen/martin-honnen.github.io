@@ -3,6 +3,7 @@ var modes = {
     'html': 'ace/mode/html',
     'xhtml': 'ace/mode/xml',
     'json': 'ace/mode/json',
+    'xsd': 'ace/mode/xml',
     'text': 'ace/mode/text',
     'xquery': 'ace/mode/xquery'
 };
