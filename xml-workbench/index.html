@@ -42,7 +42,7 @@
         <input type="button" id="xpath" value="XPath" accesskey="a"
                onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
                             xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, document.getElementById('results'));">
-         <input type="button" id="xsd" value="XSD" accesskey="V"
+         <input type="button" id="xsd" value="XSD" accesskey="V" title="validate XML against XSD schema"
                onclick="validate(inputEditor.session.getValue(), codeEditor.session.getValue(), document.getElementById('results'));">
         <input type="button" id="save" value="save as URL" accesskey="s"
                onclick="save(document.getElementById('input-type-form'));">
