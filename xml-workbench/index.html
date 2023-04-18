@@ -12,6 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.0/mode-html.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.0/mode-json.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.15.0/mode-xquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.1/full/pyodide.js"></script>
 </head>
 <body class="container" onload="fetch('https://saxon11api.azurewebsites.net/', { method: 'HEAD' }).then(response => console.log(response.status));">
 <header >
@@ -95,6 +96,8 @@ const baseURI = 'https://saxon11api.azurewebsites.net/SaxonHE11JApi-1.0-SNAPSHOT
 <script src="js/ace-editors-init.js"></script>
 <script src="js/event-listeners-init.js"></script>
 <script src="js/init-examples.js"></script>
+<script src="js/init-pyodide.js"></script>
+<script src="js/validate.js"></script>
 
 
 </body>
