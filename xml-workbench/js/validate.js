@@ -1,5 +1,3 @@
-var pyodide = null
-
 function validate(xml, xsd, resultsSelect) {
   window.xml = xml;
   window.xsd = xsd;
