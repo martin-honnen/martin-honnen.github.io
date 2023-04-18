@@ -10,7 +10,7 @@ codeEditor.session.setMode('ace/mode/xml');
 
 codeEditor.session.setTabSize(2);
 codeEditor.session.setUseSoftTabs(true);
-codeEditor.setOption('placeholder', 'Enter your XSLT or XQuery or XPath code here...');
+codeEditor.setOption('placeholder', 'Enter your XSLT or XQuery or XPath or XSD code here...');
 
 var resultEditor = ace.edit('result-editor');
 resultEditor.session.setMode('ace/mode/xml');
