@@ -1,6 +1,8 @@
 function validate(xml, xsd, resultsSelect) {
-  window.xml = xml;
-  window.xsd = xsd;
+  let localsMap = new Map();
+  localsMap.set('xml', xml);
+  localsMap.set('xsd', xsd);
+  
   pyodide.runPython(`
 import js
 import xmlschema
@@ -13,6 +15,6 @@ js.console.log(result)
   `,
   {
     globals: pyodide.globals,
-    locals: { xml: xml, xsd: xsd }
+    locals: localsMap
   });
 }
