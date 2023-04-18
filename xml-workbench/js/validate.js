@@ -12,7 +12,7 @@ js.setDocument(js.resultEditor, result, 'text');
 js.console.log(result)
   `,
   {
-    globals: pyoide.globals,
+    globals: pyodide.globals,
     locals: { xml: xml, xsd: xsd }
   });
 }
