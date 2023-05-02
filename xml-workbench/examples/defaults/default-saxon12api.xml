@@ -5,9 +5,9 @@
   </head>
   <body>
     <section>
-      <h1>Release 0.9.12.1 beta of XML Workbench</h1>
+      <h1>Release 0.9.12.2 beta of XML Workbench</h1>
       <section>
-        <h2>Features using Saxon Java 12.1 HE</h2>
+        <h2>Features using Saxon Java 12.2 HE</h2>
         <ul>
           <li>XSLT 3.0 against XML or JSON input or no input starting with <code>xsl:template name="xsl:initial-template"</code>, all with support for creating and displaying various <code>xsl:result-document</code>s</li>
           <li>XQuery 3.1 against XML or JSON input or no input</li>
