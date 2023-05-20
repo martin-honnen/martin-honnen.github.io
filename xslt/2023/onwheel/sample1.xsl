@@ -28,11 +28,11 @@
     <xsl:comment>Run with {system-property('xsl:product-name')} {system-property('xsl:product-version')} {system-property('Q{http://saxon.sf.net/}platform')} at {current-dateTime()}</xsl:comment>
   </xsl:template>
   
-  <xsl:template match="id('div1')" mode="ixsl:onwheel">
+  <xsl:template match="div[@id = 'div1']" mode="ixsl:onwheel">
     <xsl:message select="saxon:timestamp() || ': ' || ixsl:event()?type"/>
   </xsl:template>
   
-  <xsl:template match="id('div2')" mode="ixsl:onwheel">
+  <xsl:template match="div[@id ='div2']" mode="ixsl:onwheel">
     <xsl:message select="saxon:timestamp() || ': ' || ixsl:event()?type, ixsl:event() => ixsl:call('preventDefault', [])"/>
   </xsl:template>
   
