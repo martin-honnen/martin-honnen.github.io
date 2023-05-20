@@ -29,11 +29,11 @@
   </xsl:template>
   
   <xsl:template match="id('div1')" mode="ixsl:onwheel">
-    <xsl:message select="trace(saxon:timestamp() || ': ' || ixsl:event()?type)"/>
+    <xsl:message select="saxon:timestamp() || ': ' || ixsl:event()?type"/>
   </xsl:template>
   
   <xsl:template match="id('div2')" mode="ixsl:onwheel">
-    <xsl:message select="trace(saxon:timestamp() || ': ' || ixsl:event()?type), ixsl:event() => ixsl:call('preventDefault', [])"/>
+    <xsl:message select="saxon:timestamp() || ': ' || ixsl:event()?type, ixsl:event() => ixsl:call('preventDefault', [])"/>
   </xsl:template>
   
 </xsl:stylesheet>
