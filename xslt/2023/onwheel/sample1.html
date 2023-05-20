@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title>ixsl:onwheel test</title>
+    <script src="/Saxon-JS-2.5/SaxonJS2.rt.js"></script>
+    <script>
+    document.addEventListener(
+      'DOMContentLoaded',
+      () => SaxonJS.transform({ stylesheetLocation: 'sample1.xsl.sef.json', destination: 'appendToBody' });
+    )
+    </script>
+  </head>
+  <body></body>
+</html>
