@@ -32,8 +32,10 @@
 
   <xsl:template name="debug">
     <xsl:result-document href="#requestResult">
-      <h2><xsl:value-of select="?status"/></h2>
-      <pre><xsl:value-of select="?body"/></pre>
+      <section>
+        <h2><xsl:value-of select="?status"/></h2>
+        <pre><xsl:value-of select="?body"/></pre>
+      </section>
     </xsl:result-document>
   </xsl:template>
 
