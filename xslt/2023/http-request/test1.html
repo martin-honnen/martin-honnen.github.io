@@ -5,10 +5,14 @@
     <title>HTTP request test</title>
     <script src="/Saxon-JS-2.5/SaxonJS2.rt.js"></script>
     <script>
-    SaxonJS.transform(
-      {
-        stylesheetLocation: 'request-test1.xsl.sef.json'
-      }
+    document.addEventListener(
+      'DOMContentLoaded',
+      SaxonJS.transform(
+        {
+          stylesheetLocation: 'request-test1.xsl.sef.json'
+        }
+      ),
+      true
     );
     </script>
   </head>
