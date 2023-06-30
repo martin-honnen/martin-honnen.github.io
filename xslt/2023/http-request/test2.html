@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=UTF-8>
+    <title>HTTP request test</title>
+    <script src="/Saxon-JS-2.3/SaxonJS2.rt.js"></script>
+    <script>
+    document.addEventListener(
+      'DOMContentLoaded',
+      SaxonJS.transform(
+        {
+          stylesheetLocation: 'request-test1.xsl.sef.json',
+          destination: 'appendToBody'
+        },
+        'async'
+      ),
+      true
+    );
+    </script>
+  </head>
+  <body>
+    <h1>HTTP request test</h1>
+  </body>
+</html>
