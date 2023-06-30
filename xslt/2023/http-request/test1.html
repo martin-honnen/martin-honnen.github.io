@@ -9,7 +9,8 @@
       'DOMContentLoaded',
       SaxonJS.transform(
         {
-          stylesheetLocation: 'request-test1.xsl.sef.json'
+          stylesheetLocation: 'request-test1.xsl.sef.json',
+          destination: 'appendToBody'
         }
       ),
       true
