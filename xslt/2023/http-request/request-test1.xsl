@@ -7,8 +7,10 @@
   exclude-result-prefixes="xs ixsl">
 
   <xsl:template name="xsl:initial-template">
-    <input type="button" value="request test" id="requestTest1"/>
-    <div id="requestResult"></div>
+    <section>
+      <input type="button" value="request test" id="requestTest1"/>
+      <div id="requestResult"></div>
+    </section>
   </xsl:template>
 
   <xsl:template mode="ixsl:onclick" match="input[@id='requestTest1']">
