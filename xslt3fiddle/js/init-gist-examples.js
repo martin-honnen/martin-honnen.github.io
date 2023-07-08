@@ -67,7 +67,7 @@ async function load(location) {
     document.getElementById('gistId').value = gistId;
     const inputFile = searchParams.get('input');
     document.getElementById('inputFile').value = inputFile;
-    const xsltFile = searchParams.get('xslt');
+    const xsltFile = searchParams.get('xsltFile');
     document.getElementById('xsltFile').value = xsltFile;
     const inputType = searchParams.get('input-type');
 
