@@ -11,7 +11,24 @@ import { request } from "https://esm.sh/@octokit/request";
 
 var currentGist = null;
 
-async function getGist(gistId) {
+var xsltCode = null;
+
+var inputCode = null;
+
+var inputType = null;
+
+function initFilesFromGist(xsltFileName, inputFileName) {
+   if (currentGist != null) {
+     if (currentGist.files[xsltFileName])
+       xsltCode = currentGist.files[xsltFileName].content;
+     if (currentGist.files[inputFileName]) {
+       inputCode = currentGist.files[inputFileName].content;
+       inputType = currentGist.files[inputFileName].language;
+     }
+   }
+}
+
+async function getGist(gistId, xsltFileName, inputFileName) {
     const result = await request('GET /gists/{gist_id}', {
       gist_id: gistId,
       headers: {
@@ -19,6 +36,7 @@ async function getGist(gistId) {
       }
     });
     currentGist = result;
+    inputFilesFromGist(xsltFileName, inputFileName);
 }
 
 document.addEventListener(
@@ -27,7 +45,7 @@ document.addEventListener(
     document.getElementById('loadGistBtn').addEventListener(
     'click',
     async () => {
-      currentGist = await getGist(document.getElementById('gistId').value);
+      currentGist = await getGist(document.getElementById('gistId').value, document.getElementById('xsltFile').value, document.getElementById('inputFile').value);
     }
     );
   }
@@ -59,23 +77,20 @@ function save(form) {
 
 async function load(location) {
   if (!location.search) {
-    await loadDefaults();
+    await getGist(sampleDefaults.gistId, sampleDefaults.xslt, sampleDefaults.input);
   }
   var searchParams = new URL(location).searchParams;
-  if (searchParams.has("gistId") && searchParams.has("input") && searchParams.has("xslt") && searchParams.has("input-type")) {
+  if (searchParams.has("gistId") && searchParams.has("xsltFile")) {
     const gistId = searchParams.get('gistId');
     document.getElementById('gistId').value = gistId;
-    const inputFile = searchParams.get('input');
+    const inputFileName = searchParams.get('inputFile');
     document.getElementById('inputFile').value = inputFile;
-    const xsltFile = searchParams.get('xsltFile');
+    const xsltFileName = searchParams.get('xsltFile');
     document.getElementById('xsltFile').value = xsltFile;
     const inputType = searchParams.get('input-type');
 
-    currentGist = await getGist(gistId);
+    currentGist = await getGist(gistId, xsltFileName, inputFileName);
   }
-
-    const xsltCode = currentGist.files[xsltFile].content;
-    const inputCode = currentGist.files[inputFile].content;
 
     setDocument(xsltEditor, xsltCode, 'xml');
     setDocument(inputEditor, inputCode, inputType === 'JSON' ? 'json' : inputType === 'HTML' ? 'html' : 'xml');
