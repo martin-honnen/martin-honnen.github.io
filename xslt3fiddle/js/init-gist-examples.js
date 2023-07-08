@@ -84,9 +84,9 @@ async function load(location) {
     const gistId = searchParams.get('gistId');
     document.getElementById('gistId').value = gistId;
     const inputFileName = searchParams.get('inputFile');
-    document.getElementById('inputFile').value = inputFile;
+    document.getElementById('inputFile').value = inputFileName;
     const xsltFileName = searchParams.get('xsltFile');
-    document.getElementById('xsltFile').value = xsltFile;
+    document.getElementById('xsltFile').value = xsltFileName;
     const inputType = searchParams.get('input-type');
 
     currentGist = await getGist(gistId, xsltFileName, inputFileName);
