@@ -32,9 +32,10 @@ function initFilesFromGist(xsltFileName, inputFileName) {
      }
      else {
        let firstInputFile = currentGist.data.files.find(file => file.language === 'XSLT' || file.language === 'JSON');
-       if (firstInputFile)
+       if (firstInputFile) {
          inputCode = firstInputFile.content;
          inputType = firstInputFile.language;
+       }
      }
      else {
        inputCode = '';
