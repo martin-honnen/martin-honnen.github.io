@@ -36,7 +36,7 @@ async function getGist(gistId, xsltFileName, inputFileName) {
       }
     });
     currentGist = result;
-    inputFilesFromGist(xsltFileName, inputFileName);
+    initFilesFromGist(xsltFileName, inputFileName);
 }
 
 document.addEventListener(
