@@ -27,8 +27,7 @@ document.addEventListener(
     document.getElementById('loadGistBtn').addEventListener(
     'click',
     async () => {
-      let result = await getGist(document.getElementById('gistId').value);
-      console.log(result);
+      currentGist = await getGist(document.getElementById('gistId').value);
     }
     );
   }
