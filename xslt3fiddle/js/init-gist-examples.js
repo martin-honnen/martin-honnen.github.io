@@ -36,10 +36,10 @@ function initFilesFromGist(xsltFileName, inputFileName) {
          inputCode = firstInputFile.content;
          inputType = firstInputFile.language;
        }
-     }
-     else {
-       inputCode = '';
-       inputType = 'None';
+       else {
+         inputCode = '';
+         inputType = 'None';
+       }
      }
    }
 }
