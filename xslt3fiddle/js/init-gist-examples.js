@@ -45,7 +45,7 @@ document.addEventListener(
     document.getElementById('loadGistBtn').addEventListener(
     'click',
     async () => {
-      currentGist = await getGist(document.getElementById('gistId').value, document.getElementById('xsltFile').value, document.getElementById('inputFile').value);
+      await getGist(document.getElementById('gistId').value, document.getElementById('xsltFile').value, document.getElementById('inputFile').value);
     }
     );
   }
