@@ -19,11 +19,11 @@ var inputType = null;
 
 function initFilesFromGist(xsltFileName, inputFileName) {
    if (currentGist != null) {
-     if (currentGist.files[xsltFileName])
-       xsltCode = currentGist.files[xsltFileName].content;
-     if (currentGist.files[inputFileName]) {
-       inputCode = currentGist.files[inputFileName].content;
-       inputType = currentGist.files[inputFileName].language;
+     if (currentGist.data.files[xsltFileName])
+       xsltCode = currentGist.data.files[xsltFileName].content;
+     if (currentGist.data.files[inputFileName]) {
+       inputCode = currentGist.data.files[inputFileName].content;
+       inputType = currentGist.data.files[inputFileName].language;
      }
    }
 }
