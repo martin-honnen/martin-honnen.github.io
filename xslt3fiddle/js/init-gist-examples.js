@@ -95,7 +95,7 @@ async function load(location) {
     await getGist(sampleDefaults.gistId, sampleDefaults.xslt, sampleDefaults.input);
   }
   var searchParams = new URL(location).searchParams;
-  if (searchParams.has("gistId") && searchParams.has("xsltFile")) {
+  if (searchParams.has("gistId")) {
     const gistId = searchParams.get('gistId');
     document.getElementById('gistId').value = gistId;
     const inputFileName = searchParams.get('inputFile');
