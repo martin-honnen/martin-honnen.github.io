@@ -82,11 +82,11 @@ async function load(location) {
     setDocument(inputEditor, inputCode, inputType === 'JSON' ? 'json' : inputType === 'HTML' ? 'html' : 'xml');
 
     document.getElementById('input-type-form').elements['input-type'].value = inputType;
-  }
+}
   //else {
     //loadDefaults();
   //}
-}
+//}
 
 await load(document.location);
 
