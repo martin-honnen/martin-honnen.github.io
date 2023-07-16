@@ -91,8 +91,8 @@ document.addEventListener(
 );
 
 const sampleDefaults = {
-  gistId : '36da4adcf7f85665d2b9b006bd89ccf0',
-  xslt: 'sheet1.xsl',
+  gistId : 'b6c4ec7e5f0b7f3ea3e550890a329dd4',
+  xslt: 'sheet1.xsl.sef.json',
   input: 'sample1.xml'
 };
 
