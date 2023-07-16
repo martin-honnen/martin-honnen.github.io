@@ -78,7 +78,9 @@ document.addEventListener(
     async () => {
       await getGist(document.getElementById('gistId').value, document.getElementById('xsltFile').value, document.getElementById('inputFile').value);
       setDocument(xsltEditor, xsltCode, 'xml');
-      setDocument(inputEditor, inputCode, inputType === 'JSON' ? 'json' : inputType === 'HTML' ? 'html' : 'xml');
+
+      if (inputType != 'None')
+        setDocument(inputEditor, inputCode, inputType === 'JSON' ? 'json' : inputType === 'HTML' ? 'html' : 'xml');
 
       document.getElementById('input-type-form').elements['input-type'].value = inputType;      
     }
