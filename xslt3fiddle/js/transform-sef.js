@@ -1,6 +1,6 @@
 import { docPool, textPool }  from './init-gist-examples-sef.js';
 
-async function transform(input, xsltSef, inputType, resultsSelect) {
+export async function transform(input, xsltSef, inputType, resultsSelect) {
 
   var transformationResult, responseData;
 
