@@ -87,9 +87,14 @@
     import { transform } from './js/transform-sef.json';
     document.addEventListener(
       'DOMContentLoaded',
-      async () => {
-        var inputType = document.getElementById('input-types').form['input-type'].value;
-        await transform(inputType !== 'None' ? inputEditor.session.getValue() : null, xsltEditor.session.getValue(), inputType, document.getElementById('results'));
+      () => {
+        document.getElementById('transform').addEventListener(
+          'click',
+          async () => {
+            var inputType = document.getElementById('input-types').form['input-type'].value;
+            await transform(inputType !== 'None' ? inputEditor.session.getValue() : null, xsltEditor.session.getValue(), inputType, document.getElementById('results'));
+          }
+       );
       }
     );
     </script>
