@@ -46,7 +46,7 @@ async function transform(input, xsltSef, inputType, resultsSelect) {
     
     responseData = { ResultType: 'transformation', ResultDocuments: [] };
 
-    if ("primcipalResult" in transformationResult) {
+    if ("principalResult" in transformationResult) {
       responseData.ResultDocuments.push({ uri: 'principal result', content: transformationResult.principalResult, method: 'html' });
     }
 
@@ -54,9 +54,11 @@ async function transform(input, xsltSef, inputType, resultsSelect) {
       if (resultDocUri !== 'output') {
         let suffix = resultDocUri.replace(/.*(\.[a-z]+)/gi, '$1').toLowerCase();
         let method = filetypes[suffix];
-        responseData.ResultDocuments.push({ uri: resultDocUri, content: transformationResult[resultDocUri], method: method ? method : 'html' });
+        responseData.ResultDocuments.push({ uri: resultDocUri, content: transformationResult.resultDocuments[resultDocUri], method: method ? method : 'html' });
       }
     }
+
+  resultsSelect.length = 0;
 
   if (responseData.ResultType === 'transformation') {
     responseData.ResultDocuments.forEach((result, index) => {
@@ -90,10 +92,6 @@ e.stack`,
       'text');
     return;
   }
-
-
-  resultsSelect.length = 0;
-
 
 
 
