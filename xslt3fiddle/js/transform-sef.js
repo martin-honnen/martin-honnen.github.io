@@ -42,7 +42,7 @@ async function transform(input, xsltSef, inputType, resultsSelect) {
       };
     }
 
-    var transformationResult = SaxonJS.transform(transformationOptions, 'async');
+    var transformationResult = await SaxonJS.transform(transformationOptions, 'async');
     
     responseData = { ResultType: 'transformation', ResultDocuments: [] };
 
