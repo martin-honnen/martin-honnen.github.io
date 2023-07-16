@@ -81,6 +81,8 @@ document.addEventListener(
 
       if (inputType != 'None')
         setDocument(inputEditor, inputCode, inputType === 'JSON' ? 'json' : inputType === 'HTML' ? 'html' : 'xml');
+      else
+        setDocument(inputEditor, '', 'text');
 
       document.getElementById('input-type-form').elements['input-type'].value = inputType;      
     }
@@ -133,6 +135,8 @@ async function load(location) {
   
     if (inputType != 'None') 
        setDocument(inputEditor, inputCode, inputType === 'JSON' ? 'json' : inputType === 'HTML' ? 'html' : 'xml');
+    else
+       setDocument(inputEditor, '', 'text');
 
     document.getElementById('input-type-form').elements['input-type'].value = inputType;
 }
