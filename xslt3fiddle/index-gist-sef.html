@@ -32,9 +32,7 @@
             <label>XSLT file: <input type="text" id="xsltFile"></label>
             <label>Input file: <input type="text" id="inputFile"></label>
             <input type="button" id="loadGistBtn" value="load gist">
-            <input type="button" id="transform" value="transform" accesskey="t"
-                   onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
-                            transform(inputType !== 'None' ? inputEditor.session.getValue() : null, xsltEditor.session.getValue(), inputType, document.getElementById('results'));">
+            <input type="button" id="transform" value="transform" accesskey="t">
             <input type="button" id="save" value="save as URL" accesskey="s"
                    onclick="save(document.getElementById('input-type-form'));">
             <input type="button" id="printResult" value="print result" onclick="var rf = window.frames['current-result-frame']; rf.print();">
@@ -85,6 +83,16 @@
     <script src="js/ace-editors-init.js"></script>
     <script src="js/event-listeners-init.js"></script>
     <script type="module" src="js/init-gist-examples.js"></script>
+    <script type="module">
+    import { transform } from './js/transform-sef.json';
+    document.addEventListener(
+      'DOMContentLoaded',
+      async () => {
+        var inputType = document.getElementById('input-types').form['input-type'].value;
+        await transform(inputType !== 'None' ? inputEditor.session.getValue() : null, xsltEditor.session.getValue(), inputType, document.getElementById('results'));
+      }
+    );
+    </script>
 
     
 </body>
