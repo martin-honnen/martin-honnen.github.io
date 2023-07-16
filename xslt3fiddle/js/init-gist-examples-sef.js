@@ -28,10 +28,10 @@ async function initFilesFromGist(xsltFileName, inputFileName) {
      let files = Object.values(currentGist.data.files);
      for (let file of files) {
        if (file.language === 'TEXT' || file.language === 'JSON') {
-          textPool[new URL(file.fileName, window.location.href).href] = file.content;
+          textPool[new URL(file.filename, window.location.href).href] = file.content;
        }
        else if (file.language === 'XML' || file.language === 'XSLT') {
-          docPool[new URL(file.fileName, window.location.href).href] = await SaxonJS.getResource({ type: 'xml', text: file.content, baseURI: window.location.href });
+          docPool[new URL(file.filename, window.location.href).href] = await SaxonJS.getResource({ type: 'xml', text: file.content, baseURI: window.location.href });
        }
      }
      if (currentGist.data.files[xsltFileName])
