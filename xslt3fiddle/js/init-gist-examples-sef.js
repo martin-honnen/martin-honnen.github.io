@@ -31,7 +31,7 @@ async function initFilesFromGist(xsltFileName, inputFileName) {
           textPool[new URL(file.fileName, window.location.href).href] = file.content;
        }
        else if (file.language === 'XML' || file.language === 'XSLT') {
-          docPool[new URL(file.fileName, window.location.href).href] = await SaxonJS.getResource({ type: 'xml', text: file.content, baseURI = window.location.href });
+          docPool[new URL(file.fileName, window.location.href).href] = await SaxonJS.getResource({ type: 'xml', text: file.content, baseURI: window.location.href });
        }
      }
      if (currentGist.data.files[xsltFileName])
