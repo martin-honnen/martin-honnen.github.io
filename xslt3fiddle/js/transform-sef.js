@@ -1,4 +1,4 @@
-import { docPool, textPool }  from './init-gist-examples-sef.json';
+import { docPool, textPool }  from './init-gist-examples-sef.js';
 
 async function transform(input, xsltSef, inputType, resultsSelect) {
 
