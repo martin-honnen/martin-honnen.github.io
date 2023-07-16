@@ -27,7 +27,7 @@ async function initFilesFromGist(xsltFileName, inputFileName) {
    if (currentGist != null) {
      let files = Object.values(currentGist.data.files);
      for (let file of files) {
-       if (file.language === 'TEXT' || file.language === 'JSON') {
+       if (file.language === 'Text' || file.language === 'JSON') {
           textPool[new URL(file.filename, window.location.href).href] = file.content;
        }
        else if (file.language === 'XML' || file.language === 'XSLT') {
