@@ -1,3 +1,5 @@
+import { docPool, textPool }  from './init-gist-examples-sef.json';
+
 async function transform(input, xsltSef, inputType, resultsSelect) {
 
   var transformationResult, responseData;
@@ -12,7 +14,9 @@ async function transform(input, xsltSef, inputType, resultsSelect) {
         sourceType: 'xml',
         sourceText: input,
         sourceBaseURI: window.location.href, 
-        destination: 'serialized'
+        destination: 'serialized',
+        documentPool: docPool,
+        textResourcePool: textPool
       };
     }
     else if (inputType === 'JSON') {
@@ -22,7 +26,9 @@ async function transform(input, xsltSef, inputType, resultsSelect) {
         sourceType: 'json',
         sourceText: input,
         sourceBaseURI: window.location.href,
-        destination: 'serialized'
+        destination: 'serialized',
+        documentPool: docPool,
+        textResourcePool: textPool
       };
     }
     else if (inputType === 'HTML') {
@@ -31,14 +37,18 @@ async function transform(input, xsltSef, inputType, resultsSelect) {
         stylesheetText: xsltSef,
         stylesheetBaseURI: window.location.href,
         sourceNode: htmlDoc,
-        destination: 'serialized'
+        destination: 'serialized',
+        documentPool: docPool,
+        textResourcePool: textPool
       };
     }
     else if (inputType === 'None') {
       transformationOptions = {
         stylesheetText: xsltSef,
         stylesheetBaseURI: window.location.href,
-        destination: 'serialized'
+        destination: 'serialized',
+        documentPool: docPool,
+        textResourcePool: textPool
       };
     }
 
