@@ -10,6 +10,7 @@ async function transform(input, xsltSef, inputType, resultsSelect) {
         stylesheetText: xsltSef,
         stylesheetBaseURI: window.location.href,
         sourceType: 'xml',
+        sourceText: input,
         sourceBaseURI: window.location.href, 
         destination: 'serialized'
       };
@@ -19,6 +20,7 @@ async function transform(input, xsltSef, inputType, resultsSelect) {
         stylesheetText: xsltSef,
         stylesheetBaseURI: window.location.href,
         sourceType: 'json',
+        sourceText: input,
         sourceBaseURI: window.location.href,
         destination: 'serialized'
       };
