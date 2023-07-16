@@ -46,15 +46,15 @@ async function initFilesFromGist(xsltFileName, inputFileName) {
        inputType = currentGist.data.files[inputFileName].language;
      }
      else {
-       let firstInputFile = files.find(file => file.language === 'XML' || file.language === 'JSON');
-       if (firstInputFile) {
-         inputCode = firstInputFile.content;
-         inputType = firstInputFile.language;
-       }
-       else {
+       //let firstInputFile = files.find(file => file.language === 'XML' || file.language === 'JSON');
+       //if (firstInputFile) {
+       //  inputCode = firstInputFile.content;
+       //  inputType = firstInputFile.language;
+       //}
+       //else {
          inputCode = '';
          inputType = 'None';
-       }
+       //}
      }
    }
 }
