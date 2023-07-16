@@ -85,18 +85,14 @@
     <script type="module" src="js/init-gist-examples.js"></script>
     <script type="module">
     import { transform } from './js/transform-sef.js';
-    document.addEventListener(
-      'DOMContentLoaded',
-      () => {
-        document.getElementById('transform').addEventListener(
+    document.getElementById('transform').addEventListener(
           'click',
           async () => {
             var inputType = document.getElementById('input-types').form['input-type'].value;
             await transform(inputType !== 'None' ? inputEditor.session.getValue() : null, xsltEditor.session.getValue(), inputType, document.getElementById('results'));
           }
        );
-      }
-    );
+
     </script>
 
     
