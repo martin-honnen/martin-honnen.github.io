@@ -13,7 +13,7 @@ function runAutoValidate() {
 function validateWithSchxslt(xml, schematron, resultEditor) {
   let svrlResult = SaxonJS.transform(
       { 
-        stylesheetLocation: 'schxslt/schxslt-1.9.5/run-pipeline-for-svrl-and-apply-to-schema.sef.json',
+        stylesheetLocation: 'schxslt/schxslt-1.9.5/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json',
         stylesheetParams: {
           'schema-text': schematron,
           'instance-text': xml
