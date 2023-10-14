@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <html lang="en">
   <head>
-    <title>Saxon-JS 2.5 XSLT 3 fiddle</title>
+    <title>SaxonJS 2.6 XSLT 3 fiddle</title>
   </head>
   <body>
     <section>
-      <h1>Release 1.2.5.0 of Saxon-JS 2 XSLT 3 Fiddle</h1>
+      <h1>Release 1.2.6.0 of SaxonJS 2 XSLT 3 Fiddle</h1>
       <section>
         <h2>Features</h2>
         <ul>
-          <li>XSLT 3 using Saxon-JS 2.5</li>
+          <li>XSLT 3 using SaxonJS 2.6</li>
           <li>
             XSLT execution using <code>fn:transform</code> call from <code>SaxonJS.XPath.evaluate</code>
           </li>
