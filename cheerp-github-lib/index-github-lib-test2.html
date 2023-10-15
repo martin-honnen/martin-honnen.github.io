@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub API test 1</title>
+
+    <!--<script src="https://cjrtnc.leaningtech.com/3_20231007_209/cj3loader.js"></script>-->
+    <!--<script src="https://cjrtnc.leaningtech.com/3_20231007_210/cj3loader.js"></script>-->
+	<script src="https://cjrtnc.leaningtech.com/3_20231012_227/cj3loader.js"></script>
+    <script>
+      var gitHubLibInitialized = false;
+
+      var gitHubLib = null;
+	  
+	  var GitHub = null;
+ 
+    </script>
+    <script>
+    async function init() {
+	  try {
+		  await cheerpjInit();
+
+		  document.querySelector('#cheerpj3-load-indicator').style.display = 'none';
+
+		  gitHubLib = await cheerpjRunLibrary("/cheerp-github-lib/app/github-api-1.315.jar:/cheerp-github-lib/app/jackson-databind-2.14.0.jar:/cheerp-github-lib/app/jackson-core-2.14.0.jar:/cheerp-github-lib/app/jackson-annotations-2.14.0.jar:/cheerp-github-lib/app/commons-lang3-3.9.jar:/cheerp-github-lib/app/commons-io-2.8.0.jar:/cheerp-github-lib/app/commons-codec-1.15.jar"); //:/app/xmlresolver-5.2.1-data.jar:/app/Saxon-HE-11.6.jar"); //await cheerpjRunJar("/app/GistResolver.jar");
+		  
+		  GitHub = await gitHubLib.org.kohsuke.github.GitHub;
+		  
+		  var github = await GitHub.connectAnonymously();
+		  
+		  var gist = await github.getGist("36da4adcf7f85665d2b9b006bd89ccf0");
+		  
+		  console.log('Loaded gist: ', gist);
+		  
+		  gitHubLibInitialized = true;
+
+		  document.querySelector('#gitHubLibInitialized').style.display = 'none';
+	  }
+	  catch (e) {
+		  console.log(e);
+		  console.log(await e.getMessage());
+		  console.log(await e.toString());
+		  debugger
+	  }
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+    </script>
+
+</head>
+<body class="container">
+
+<div id="cheerpj3-load-indicator" style="color: red; font-weight: bolder; text-align: center;">CheerpJ 3 is not (yet) initialized.</div>
+<div id="gitHubLibInitialized" style="color: red; font-weight: bolder; text-align: center;">GitHub library not (yet) loaded.</div>
+
+</body>
+</html>
