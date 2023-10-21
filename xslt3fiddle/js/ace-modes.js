@@ -13,7 +13,9 @@ var filetypes = {
   '.xsl': 'xml',
   '.xslt': 'xml',
   '.xhtml' : 'xml',
-  '.json' : 'json'
+  '.json' : 'json',
+  '.txt' : 'text',
+  '.text' : 'text'
 };
 
 function setDocument(editor, content, mode) {
