@@ -5,7 +5,7 @@
   </head>
   <body>
     <section>
-      <h1>Release 1.2.6.0 of SaxonJS 2 XSLT 3 Fiddle</h1>
+      <h1>Release 1.2.6.1 of SaxonJS 2 XSLT 3 Fiddle</h1>
       <section>
         <h2>Features</h2>
         <ul>
@@ -13,12 +13,21 @@
           <li>
             XSLT execution using <code>fn:transform</code> call from <code>SaxonJS.XPath.evaluate</code>
           </li>
+          <li>possible inputs:
+            <ul>
+              <li>XML</li>
+              <li>JSON (parsed with <code>fn:parse-json</code>)</li>
+              <li>HTML (parsed with browser's <code>DOMParser</code> as <code>text/html</code>)</li>
+              <li>plain text (passed as <code>xs:string</code> context item to XSLT)</li>
+              <li>no input (processing starts with named template <code>xsl:initial-template</code>)</li>
+            </ul>
+          </li>
           <li>
             supports secondary result documents created with <code>xsl:result-document</code>
           </li>
-          <li>now with load buttons to load input XML or JSON or HTML and/or XSLT from local file system</li>
+          <li>now with load buttons to load input XML or JSON or HTML or plain text and/or XSLT from local file system</li>
           <li>also save link/button to save result document to the file system</li>
-          <li>save XML or JSON or HTML input and XSLT code in URL query string</li>
+          <li>save XML or JSON or HTML or plain text input and XSLT code in URL query string</li>
           <li>print result frame document (with browser print dialogue, e.g. to PDF document)</li>
         </ul>
       </section>
