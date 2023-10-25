@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang=de>
+  <head>
+    <meta charset=utf-8>
+    <title>Herzfrequenz-Zonen</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <style>
+     input[type=text] {
+      text-align: right;
+    }
+
+    td:nth-of-type(5) {
+      text-align: right;
+    } 
+    </style>
+    <script>
+function computeZones(form) {
+  let now = new Date();
+  let birthdate = new Date(form.birthdate.value);
+  form.age.value = now.getMonth() < birthdate.getMonth() || now.getMonth() == birthdate.getMonth() && now.getDate() < birthdate.getDate() ? now.getFullYear() - birthdate.getFullYear() - 1 : now.getFullYear() - birthdate.getFullYear();
+  form.maxHeartRate.value = 220 - age.value  - 10;
+  form.percentMin50.value = form.maxHeartRate.value * 0.5; 
+  form.percentMin60.value = form.percentMax60.value = Math.round(form.maxHeartRate.value * 0.6);
+  form.percentMin70.value = form.percentMax70.value = Math.round(form.maxHeartRate.value * 0.7);
+  form.percentMin80.value = form.percentMax80.value = Math.round(form.maxHeartRate.value * 0.8);
+  form.percentMin90.value = form.percentMax90.value = Math.round(form.maxHeartRate.value * 0.9);
+  form.percentMax100.value = form.maxHeartRate.value;
+}      
+    </script>
+  </head>
+  <body>
+<form onsubmit="return false;">
+<fieldset>
+  <legend>Alter</legend>
+  <label>Geburtsdatum: <input type="date" id="birthdate" onchange="computeZones(this.form);"></label>
+  <label>Alter: <input type="text" readonly id="age" size="3"></label>
+  <label>Maximalpuls: 220 - Alter - 10: <input type="text" size="3" id="maxHeartRate" readonly></label>
+</fieldset>
+<fieldset>
+  <legend>Herzfrequenz-Zonen</legend>
+  <table frames=all>
+  <thead>
+    <tr>
+      <th>Schwierigkeit</th>
+      <th>Herzfrequenz</th>
+      <th>Zone</th>
+      <th>Ziel</th>
+      <th>Minimaler Puls</th>
+      <th> - </th>
+      <th>Maximaler Puls</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color: lightgreen;">
+      <td>sehr leicht</td>
+      <td>50 - 60%</td>
+      <td>Gesundheitszonen</td>
+      <td>Förderung der Gesundheit</td>
+      <td><input type=text readonly id=percentMin50 size=3></td>
+      <td> - </td>
+      <td><input type=text readonly id=percentMax60 size=3></td>
+    </tr>
+    <tr style="background-color: yellow;">
+      <td>leicht</td>
+      <td>60 - 70%</td>
+      <td>Fettverbrennungszone</td>
+      <td>Aktivierung des Fettstoffwechsels, Verbesserung der Grundlagenausdauer</td>
+      <td><input type=text readonly id=percentMin60 size=3></td>
+      <td> - </td>
+      <td><input type=text readonly id=percentMax70 size=3></td>
+    </tr>
+    <tr style="background-color: orange;">
+      <td>mittel</td>
+      <td>70 - 80%</td>
+      <td>Aerobes Training</td>
+      <td>Verbesserung der aeroben Fitness, Steigerung der Ausdauerleistungsfähigkeit</td>
+      <td><input type=text readonly id=percentMin70 size=3></td>
+      <td> - </td>
+      <td><input type=text readonly id=percentMax80 size=3></td>
+    </tr>
+     <tr style="background-color: darkorange;">
+      <td>intensiv</td>
+      <td>80 - 90%</td>
+      <td>Anaerobes Training</td>
+      <td>Verbesserung der Laktattoleranz, Training für maximalen Leitungszuwachs</td>
+      <td><input type=text readonly id=percentMin80 size=3></td>
+      <td> - </td>
+      <td><input type=text readonly id=percentMax90 size=3></td>
+    </tr>
+     <tr style="background-color: red;">
+      <td>maximal</td>
+      <td>90 - 100%</td>
+      <td>Wettkampfzone</td>
+      <td>Verbesserung der maximalen Leistung und Geschwindigkeit</td>
+      <td><input type=text readonly id=percentMin90 size=3></td>
+      <td> - </td>
+      <td><input type=text readonly id=percentMax100 size=3></td>
+    </tr>
+  </tbody>
+  </table>
+</fieldset>
+</form>    
+  </body>
+</html>
