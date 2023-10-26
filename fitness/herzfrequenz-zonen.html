@@ -42,10 +42,14 @@
     } 
     </style>
     <script>
-function computeZones(form) {
+function computeZonesFromBirthdate(form) {
   let now = new Date();
   let birthdate = new Date(form.birthdate.value);
   form.age.value = now.getMonth() < birthdate.getMonth() || now.getMonth() == birthdate.getMonth() && now.getDate() < birthdate.getDate() ? now.getFullYear() - birthdate.getFullYear() - 1 : now.getFullYear() - birthdate.getFullYear();
+  computeZones(form);
+}  
+      
+function computeZones(form) {
   form.maxHeartRate.value = 220 - age.value  - 10;
   form.percentMin50.value = form.maxHeartRate.value * 0.5; 
   form.percentMin60.value = form.percentMax60.value = Math.round(form.maxHeartRate.value * 0.6);
@@ -60,9 +64,9 @@ function computeZones(form) {
 <form onsubmit="return false;">
 <fieldset>
   <legend>Alter</legend>
-  <label>Geburtsdatum: <input type="date" id="birthdate" onchange="computeZones(this.form);"></label>
+  <label>Geburtsdatum: <input type="date" id="birthdate" onchange="computeZonesFromBirthdate(this.form);"></label>
   <label>Alter: <input type="text" readonly id="age" size="3"></label>
-  <label>Maximalpuls: 220 - Alter - 10: <input type="text" size="3" id="maxHeartRate" readonly></label>
+  <label>Maximalpuls: 220 - Alter - 10: <input type="text" size="3" id="maxHeartRate" onchange="computeZones(this.form);></label>
 </fieldset>
 <fieldset>
   <legend>Herzfrequenz-Zonen</legend>
