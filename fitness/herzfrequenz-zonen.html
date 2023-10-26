@@ -65,7 +65,7 @@ function computeZones(form) {
 <fieldset>
   <legend>Alter</legend>
   <label>Geburtsdatum: <input type="date" id="birthdate" onchange="computeZonesFromBirthdate(this.form);"></label>
-  <label>Alter: <input type="text" readonly id="age" size="3" onchange="computeZones(this.form);"></label>
+  <label>Alter: <input type="text" id="age" size="3" onchange="computeZones(this.form);"></label>
   <label>Maximalpuls: 220 - Alter - 10: <input type="text" size="3" id="maxHeartRate" readonly></label>
 </fieldset>
 <fieldset>
