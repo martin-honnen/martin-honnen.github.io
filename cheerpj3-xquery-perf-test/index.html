@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title>CheerpJ Saxon HE 11.6 XQuery performance test</title>
+
+    <script src="https://cjrtnc.leaningtech.com/3_20231108_275/cj3loader.js"></script>
+
+    <script>
+    const xquery = `declare namespace math = "http://www.w3.org/2005/xpath-functions/math";
+
+declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
+
+declare option output:method "text";
+
+declare variable $MAX := 1000;
+
+declare function local:mandelbrot($width as xs:integer, $height as xs:integer) as xs:string {
+  let $mandelbrot := function($r0, $i0) {
+    fold-left(0 to $MAX, ($r0, $i0), function($curr, $n) {
+      if(count($curr) = 1) then $curr
+      else if(math:pow($curr[1], 2) + math:pow($curr[2], 2) > 4 or $n = $MAX) then $n
+      else (math:pow($curr[1], 2) - math:pow($curr[2], 2) + $r0, 2 * $curr[1] * $curr[2] + $i0)
+    })
+  }
+  return codepoints-to-string((
+    let $minR := -2.1e0, $maxR := .5e0, $minI := -1e0, $maxI := 1e0
+    for $y in 1 to $height
+    return (
+      for $x in 1 to $width
+      let $r := $minR + $x * ($maxR - $minR) div ($width - 1)
+      let $i := $minI + $y * ($maxI - $minI) div ($height - 1)
+      return 256 + $mandelbrot($r, $i),
+      10
+    )
+  ))
+};
+local:mandelbrot(120, 35)`;
+    </script>
+
+    <script>
+    async function init() {
+
+      await cheerpjInit();
+
+      cheerpjAddStringFile("/str/xquery-test1.xq", xquery);
+
+      const exitCode = await cheerpjRunMain(
+        "net.sf.saxon.Query",
+        "/app/saxon-he-11.6.jar",
+        "-t",
+        "-repeat:4",
+        "/str/xquery-test1.xq"
+      );
+
+      console.log(`Program exited with code ${exitCode}`);
+    }
+    document.addEventListener('DOMContentLoaded', init);
+    </script>
+  </head>
+  <body>
+    <h1>Saxon HE 11.6 Java XQuery performance test</h1>
+    <p>Check developer console for output</p>
+  </body>
+</html>
