@@ -10,6 +10,8 @@ var StringWriter = null;
 
 var StreamSource = null;
 
+var JException = null;
+
 var SaxonApiException = null;
 
 var saxonProcessor = null;
@@ -34,6 +36,8 @@ var saxonInitialized = false;
   console.log('Worker CheerpJ 3 library initialized');
   
   postMessage({ type: 'message', message : 'hide', id : 'cheerpj3-load-indicator' });
+
+  JException = await lib.java.lang.Exception;
 
   SaxonProcessor = await lib.net.sf.saxon.s9api.Processor;
 
