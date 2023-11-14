@@ -28,8 +28,7 @@ async function xpath(input, xpathCode, inputType, resultsSelect) {
 	  }	
     
     try {
-      var xpathResult = await xpathProcessor.evaluate(xpathCode, contextItem);
-      
+      var xpathResult = await xpathProcessor.evaluate(xpathCode, contextItem);   
       
       var stringResult = await xpathResult.toString(); // await CheerpJ3Helper.javaToString(xpathResult);
       
@@ -40,28 +39,17 @@ async function xpath(input, xpathCode, inputType, resultsSelect) {
     }
     catch (e1) {
  		  console.log('Error evaluating XPath');
-      try {
-        postMessage({ type: 'error', message: 'Error evaluating XPath: ' + e1 });
-      }
-      catch (e) {
-        try {
-          postMessage({ type : 'error', message : 'Error evaluating XPath' + await e1.getMessage() });
-        }
-        catch (e) {
-          try {
-            postMessage({ type : 'error', message : 'Error evaluating XPath' + await e1.toString() });
-          }
-          catch (e) {
-            postMessage({ type : 'error', message : 'Error evaluating XPath' });
-          }
-        }
-      }
-   
-		  //console.log(await e.toString(), await e.getMessage());
-      try {
+      if (e1 instanceof SaxonApiException) {
+        postMessage({ type: 'error', message: 'Error evaluating XPath: ' + await e1.getMessage() + ' (' + await e1.getLineNumber() + ':' + await e1.getColumnNumber() + ')' });
         await e1.printStackTrace();
       }
-      catch (e) {}
+      else if (e1 instanceof JException) {
+        postMessage({ type : 'error', message : 'Error evaluating XPath' + await e1.getMessage() });
+        await e1.printStackTrace();
+      }
+      else if (e1 instanceof Error {
+        postMessage({ type: 'error', message: 'Error evaluating XPath: ' + e1.message });
+      }
     }  
   }
   else {
