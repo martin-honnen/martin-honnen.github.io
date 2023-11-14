@@ -47,7 +47,7 @@ async function xpath(input, xpathCode, inputType, resultsSelect) {
         postMessage({ type : 'error', message : 'Error evaluating XPath' + await e1.getMessage() });
         await e1.printStackTrace();
       }
-      else if (e1 instanceof Error {
+      else if (e1 instanceof Error) {
         postMessage({ type: 'error', message: 'Error evaluating XPath: ' + e1.message });
       }
     }  
