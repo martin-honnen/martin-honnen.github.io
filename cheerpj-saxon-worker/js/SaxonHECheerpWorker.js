@@ -27,7 +27,7 @@ var saxonInitialized = false;
 (async () => {
   await cheerpjInit();
 
-  lib = await cheerpjRunLibrary("/app/saxon-he-11.6.jar");
+  lib = await cheerpjRunLibrary("/app/cheerpj-saxon-worker/saxon-he-11.6.jar");
 
   console.log('Worker CheerpJ 3 library initialized');
   
