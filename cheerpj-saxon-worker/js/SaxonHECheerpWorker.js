@@ -10,6 +10,8 @@ var StringWriter = null;
 
 var StreamSource = null;
 
+var SaxonApiException = null;
+
 var saxonProcessor = null;
 
 var xsltCompiler = null;
@@ -40,6 +42,8 @@ var saxonInitialized = false;
   StringWriter = await lib.java.io.StringWriter;
 
   StreamSource = await lib.javax.xml.transform.stream.StreamSource;
+
+  SaxonApiException = await lib.net.sf.saxon.s9api.SaxonApiException;
 
   saxonProcessor = await new SaxonProcessor(false);
 
