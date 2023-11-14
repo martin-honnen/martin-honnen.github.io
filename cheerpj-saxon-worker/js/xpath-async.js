@@ -40,7 +40,7 @@ async function xpath(input, xpathCode, inputType, resultsSelect) {
     catch (e1) {
  		  console.log('Error evaluating XPath');
       if (e1 instanceof SaxonApiException) {
-        postMessage({ type: 'error', message: 'Error evaluating XPath: ' + await e1.getMessage() + ' (' + await e1.getLineNumber() + ':' + await e1.getColumnNumber() + ')' });
+        postMessage({ type: 'error', message: 'Error evaluating XPath: ' + await e1.getMessage() + ' (Line ' + await e1.getLineNumber() + ')' });
         await e1.printStackTrace();
       }
       else if (e1 instanceof JException) {
