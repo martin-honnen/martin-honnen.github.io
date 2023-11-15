@@ -7,9 +7,12 @@ async function xpath(input, xpathCode, inputType, resultsSelect) {
 				contextItem = await jsonBuilder.parseJson(input);
 			}
 			catch (e) {
-				var result = 'Parsing your JSON failed: ' + await e.toString() + ' ' + await e.getMessage();
-				//setDocument(resultEditor, result, 'text');
-				postMessage({ type: 'error', message: result });
+        if (e instanceof SaxonApiException) {
+				  postMessage({ type: 'error', message: 'Parsing your JSON failed: ' + await e.getMessage()  + ' (Line ' + await e.getLineNumber() + ')' });
+        }
+        else if (e instanceof Error) {
+          postMessage({ type: 'error', message: 'Parsing your JSON failed: ' + e.message });
+        }
 				return;
 			}
 	  }
@@ -20,10 +23,13 @@ async function xpath(input, xpathCode, inputType, resultsSelect) {
 				contextItem = await docBuilder.build(streamSource);
 			}
 			catch (e) {
-				var result = 'Parsing your XML failed: ' + await e.toString() + ' ' + await e.getMessage();
-				//setDocument(resultEditor, result, 'text');
-				postMessage({ type: 'error', message: result });
-				return;				
+        if (e instanceof SaxonApiException) {
+				  postMessage({ type: 'error', message: 'Parsing your XML failed: ' + await e.getMessage()  + ' (Line ' + await e.getLineNumber() + ')' });
+        }
+        else if (e instanceof Error) {
+          postMessage({ type: 'error', message: 'Parsing your XML failed: ' + e.message });
+        }
+				return;			
 			}
 	  }	
     
