@@ -1,7 +1,7 @@
 async function xquery(input, xquery, inputType) {
 
   if (saxonInitialized) {
-x	  var contextItem = null;
+	  var contextItem = null;
 	  if (inputType === 'JSON') {
 			try {
 				contextItem = await jsonBuilder.parseJson(input);
