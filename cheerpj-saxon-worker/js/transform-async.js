@@ -8,7 +8,7 @@ async function transform(input, xslt, inputType, resultsSelect) {
   			}
   			catch (e) {
           if (e instanceof SaxonApiException) {
-  				  postMessage({ type: 'error', message: 'Parsing your JSON failed: ' + await e.getMessage()  + ' (Line ' + await e.getLineNumber() + ')' });
+  				  postMessage({ type: 'error', message: 'Parsing your JSON failed: ' + await e.getMessage() });
           }
           else if (e instanceof Error) {
             postMessage({ type: 'error', message: 'Parsing your JSON failed: ' + e.message });
@@ -24,7 +24,7 @@ async function transform(input, xslt, inputType, resultsSelect) {
   			}
   			catch (e) {
           if (e instanceof SaxonApiException) {
-  				  postMessage({ type: 'error', message: 'Parsing your XML failed: ' + await e.getMessage()  + ' (Line ' + await e.getLineNumber() + ')' });
+  				  postMessage({ type: 'error', message: 'Parsing your XML failed: ' + await e.getMessage() });
           }
           else if (e instanceof Error) {
             postMessage({ type: 'error', message: 'Parsing your XML failed: ' + e.message });
@@ -37,8 +37,8 @@ async function transform(input, xslt, inputType, resultsSelect) {
         var xsltExecutable = await xsltCompiler.compile(await new StreamSource(await new StringReader(xslt)));
 		  }
 		  catch (e) {
-				var result = 'Compiling your XSLT failed: ' + await e.getMessage() + ' (Line ' + await e.getLineNumber() + ')';
-				//setDocument(resultEditor, result, 'text');
+				var result = 'Compiling your XSLT failed: ' + await e.getMessage();
+
 				postMessage({ type: 'error', message: result });
 				return;
 		  }
@@ -59,7 +59,7 @@ async function transform(input, xslt, inputType, resultsSelect) {
 			  }
 			  catch (e) {
           var result = 'Running your initial template failed: ' + await e.getMessage() + ' (Line ' + await e.getLineNumber() + ')';
-          //setDocument(resultEditor, result, 'text');
+
           postMessage({ type: 'error', message: result });
           return;
 			  }
@@ -70,20 +70,17 @@ async function transform(input, xslt, inputType, resultsSelect) {
 			  }
 			  catch (e) {
           var result = 'Applying your XSLT against the XML failed: ' + await e.getMessage() + ' (Line ' + await e.getLineNumber() + ')';
-          //setDocument(resultEditor, result, 'text');
+
           postMessage({ type: 'error', message: result });
           return;
 			  }
 		  }
 		  
-		  var stringResult = await stringWriter.toString();  //await CheerpJ3Helper.javaToString(stringWriter);
+		  var stringResult = await stringWriter.toString();
 		  
 		  postMessage({ type : 'result', task: 'transform',  results : [stringResult] });
 
-		  //setDocument(resultEditor, stringResult, 'xml');
-
-		  //writeResult(window.frames['current-result-frame'], stringResult);
-	  }
+	}
   else {
 	  console.log('Wait for Saxon HE library to be loaded.');
   }

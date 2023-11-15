@@ -8,7 +8,7 @@ async function xpath(input, xpathCode, inputType, resultsSelect) {
 			}
 			catch (e) {
         if (e instanceof SaxonApiException) {
-				  postMessage({ type: 'error', message: 'Parsing your JSON failed: ' + await e.getMessage()  + ' (Line ' + await e.getLineNumber() + ')' });
+				  postMessage({ type: 'error', message: 'Parsing your JSON failed: ' + await e.getMessage() });
         }
         else if (e instanceof Error) {
           postMessage({ type: 'error', message: 'Parsing your JSON failed: ' + e.message });
@@ -24,7 +24,7 @@ async function xpath(input, xpathCode, inputType, resultsSelect) {
 			}
 			catch (e) {
         if (e instanceof SaxonApiException) {
-				  postMessage({ type: 'error', message: 'Parsing your XML failed: ' + await e.getMessage()  + ' (Line ' + await e.getLineNumber() + ')' });
+				  postMessage({ type: 'error', message: 'Parsing your XML failed: ' + await e.getMessage() });
         }
         else if (e instanceof Error) {
           postMessage({ type: 'error', message: 'Parsing your XML failed: ' + e.message });
@@ -36,11 +36,8 @@ async function xpath(input, xpathCode, inputType, resultsSelect) {
     try {
       var xpathResult = await xpathProcessor.evaluate(xpathCode, contextItem);   
       
-      var stringResult = await xpathResult.toString(); // await CheerpJ3Helper.javaToString(xpathResult);
+      var stringResult = await xpathResult.toString();
       
-      //setDocument(resultEditor, stringResult, 'xml');
-
-      //writeResult(window.frames['current-result-frame'], stringResult);
       postMessage({ type : 'result', task: 'xpath',  results : [stringResult] });
     }
     catch (e1) {

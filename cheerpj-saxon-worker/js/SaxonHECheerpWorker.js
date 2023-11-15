@@ -31,14 +31,14 @@ var saxonInitialized = false;
 (async () => {
   await cheerpjInit();
 
-  lib = await cheerpjRunLibrary("/app/cheerpj-saxon-worker/saxon-he-11.6.jar");
+  lib = await cheerpjRunLibrary("/app/saxon-he-11.6.jar");
 
   console.log('Worker CheerpJ 3 library initialized');
   
   postMessage({ type: 'message', message : 'hide', id : 'cheerpj3-load-indicator' });
 
   JException = await lib.java.lang.Exception;
-
+  
   SaxonProcessor = await lib.net.sf.saxon.s9api.Processor;
 
   StringReader = await lib.java.io.StringReader;
@@ -46,7 +46,7 @@ var saxonInitialized = false;
   StringWriter = await lib.java.io.StringWriter;
 
   StreamSource = await lib.javax.xml.transform.stream.StreamSource;
-
+  
   SaxonApiException = await lib.net.sf.saxon.s9api.SaxonApiException;
 
   saxonProcessor = await new SaxonProcessor(false);

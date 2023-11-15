@@ -8,7 +8,7 @@ async function xquery(input, xquery, inputType) {
 			}
 			catch (e) {
         if (e instanceof SaxonApiException) {
-				  postMessage({ type: 'error', message: 'Parsing your JSON failed: ' + await e.getMessage()  + ' (Line ' + await e.getLineNumber() + ')' });
+				  postMessage({ type: 'error', message: 'Parsing your JSON failed: ' + await e.getMessage() });
         }
         else if (e instanceof Error) {
           postMessage({ type: 'error', message: 'Parsing your JSON failed: ' + e.message });
@@ -24,7 +24,7 @@ async function xquery(input, xquery, inputType) {
 			}
 			catch (e) {
         if (e instanceof SaxonApiException) {
-				  postMessage({ type: 'error', message: 'Parsing your XML failed: ' + await e.getMessage()  + ' (Line ' + await e.getLineNumber() + ')' });
+				  postMessage({ type: 'error', message: 'Parsing your XML failed: ' + await e.getMessage() });
         }
         else if (e instanceof Error) {
           postMessage({ type: 'error', message: 'Parsing your XML failed: ' + e.message });
@@ -35,7 +35,18 @@ async function xquery(input, xquery, inputType) {
 
     try {
 		  var xqueryExecutable = await xqueryCompiler.compile(xquery);
+    }
+    catch (e) {
+      if (e instanceof SaxonApiException) {
+        postMessage({ type: 'error', message: 'Compiling your XQuery failed: ' + await e.getMessage()  + ' (Line ' + await e.getLineNumber() + ')' });
+      }
+      else if (e instanceof Error) {
+        postMessage({ type: 'error', message: 'Compiling your XQuery failed: ' + e.message });
+      }
+      return;			
+    }
 
+    try {
 		  var xquerySelector = await xqueryExecutable.load();
 
 		  await xquerySelector.setContextItem(contextItem);
@@ -48,26 +59,23 @@ async function xquery(input, xquery, inputType) {
 			
 		  await xquerySelector.run(destination);
 
-		  var stringResult = await stringWriter.toString(); //await  CheerpJ3Helper.javaToString(stringWriter);
+		  var stringResult = await stringWriter.toString();
 
-		  //setDocument(resultEditor, stringResult, 'xml');
-
-		  //writeResult(window.frames['current-result-frame'], stringResult);
 		  postMessage({ type : 'result', task: 'xquery',  results : [stringResult] });
 
 	  }
 	  catch (e) {
  		  console.log('Error evaluating XQuery');
       if (e instanceof SaxonApiException) {
-        postMessage({ type: 'error', message: 'Error evaluating XPath: ' + await e.getMessage() + ' (Line ' + await e.getLineNumber() + ')' });
+        postMessage({ type: 'error', message: 'Error evaluating XQuery: ' + await e.getMessage() + ' (Line ' + await e.getLineNumber() + ')' });
         await e.printStackTrace();
       }
       else if (e instanceof JException) {
-        postMessage({ type : 'error', message : 'Error evaluating XPath' + await e.getMessage() });
+        postMessage({ type : 'error', message : 'Error evaluating XQuery' + await e.getMessage() });
         await e.printStackTrace();
       }
       else if (e instanceof Error) {
-        postMessage({ type: 'error', message: 'Error evaluating XPath: ' + e.message });
+        postMessage({ type: 'error', message: 'Error evaluating XQuery: ' + e.message });
       }
     }
   }
