@@ -2,32 +2,37 @@ async function transform(input, xslt, inputType, resultsSelect) {
 
   if (saxonInitialized) {
 	  try {
-		  var contextItem = null;
-		  
-		  if (inputType === 'JSON') {
-        try {
-          contextItem = await jsonBuilder.parseJson(input);
-        }
-        catch (e) {
-          var result = 'Parsing your JSON failed: ' + await e.toString() + ' ' + await e.getMessage();
-          //setDocument(resultEditor, result, 'text');
-          postMessage({ type: 'error', message: result });
-          return;
-        }
-		  }
-		  else if (inputType === 'XML') {
-        try {
-          var streamSource = await new StreamSource(await new StringReader(input));
-          
-          contextItem = await docBuilder.build(streamSource);
-        }
-        catch (e) {
-          var result = 'Parsing your XML failed: ' + await e.toString() + ' ' + await e.getMessage();
-          //setDocument(resultEditor, result, 'text');
-          postMessage({ type: 'error', message: result });
-          return;				
-        }
-		  }	
+  	  var contextItem = null;
+  	  if (inputType === 'JSON') {
+  			try {
+  				contextItem = await jsonBuilder.parseJson(input);
+  			}
+  			catch (e) {
+          if (e instanceof SaxonApiException) {
+  				  postMessage({ type: 'error', message: 'Parsing your JSON failed: ' + await e.getMessage()  + ' (Line ' + await e.getLineNumber() + ')' });
+          }
+          else if (e instanceof Error) {
+            postMessage({ type: 'error', message: 'Parsing your JSON failed: ' + e.message });
+          }
+  				return;
+  			}
+  	  }
+  	  else if (inputType === 'XML') {
+  			try {
+  				var streamSource = await new StreamSource(await new StringReader(input));
+  				
+  				contextItem = await docBuilder.build(streamSource);
+  			}
+  			catch (e) {
+          if (e instanceof SaxonApiException) {
+  				  postMessage({ type: 'error', message: 'Parsing your XML failed: ' + await e.getMessage()  + ' (Line ' + await e.getLineNumber() + ')' });
+          }
+          else if (e instanceof Error) {
+            postMessage({ type: 'error', message: 'Parsing your XML failed: ' + e.message });
+          }
+  				return;			
+  			}
+  	  }	
 		  
 		  try {
         var xsltExecutable = await xsltCompiler.compile(await new StreamSource(await new StringReader(xslt)));
@@ -83,30 +88,22 @@ async function transform(input, xslt, inputType, resultsSelect) {
 	  }
 	  catch (e1) {
 		  console.log('Error running XSLT');
-      try {
-        postMessage({ type: 'error', message: 'Error running XSLT: ' + e1 });
-      }
-      catch (e) {
-        try {
-          postMessage({ type: 'error', message: 'Error running XSLT: ' + await e1.toString() });
-        }
-        catch (e) {
-          try {
-            postMessage({ type: 'error', message: 'Error running XSLT: ' + await e1.getMessage() });
-          }
-          catch (e) {
-            postMessage({ type : 'error', message : 'Error running XSLT' });
-          }         
-        }
-      }
    
-		  //console.log(await e.toString(), await e.getMessage());
-      try {
+      if (e1 instanceof SaxonApiException) {
+        postMessage({ type: 'error', message: 'Error executing XSLT: ' + await e1.getMessage() + ' (Line ' + await e1.getLineNumber() + ')' });
         await e1.printStackTrace();
       }
-      catch (e) {}
-		  //debugger
-	  }
+      else if (e1 instanceof JException) {
+        postMessage({ type : 'error', message : 'Error executing XSLT' + await e1.getMessage() });
+        await e1.printStackTrace();
+      }
+      else if (e1 instanceof Error) {
+        postMessage({ type: 'error', message: 'Error executing XSLT: ' + e1.message });
+      }
+
+      if (e1 instanceof JException) {
+        await e.printStackTrace();
+      }
   }
   else {
 	  console.log('Wait for Saxon HE library to be loaded.');
