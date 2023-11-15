@@ -2,31 +2,37 @@ async function xquery(input, xquery, inputType) {
 
   if (saxonInitialized) {
 	  try {
-		  var contextItem = null;
-		  if (inputType === 'JSON') {
-        try {
-          contextItem = await jsonBuilder.parseJson(input);
+	  var contextItem = null;
+	  if (inputType === 'JSON') {
+			try {
+				contextItem = await jsonBuilder.parseJson(input);
+			}
+			catch (e) {
+        if (e instanceof SaxonApiException) {
+				  postMessage({ type: 'error', message: 'Parsing your JSON failed: ' + await e.getMessage()  + ' (Line ' + await e.getLineNumber() + ')' });
         }
-        catch (e) {
-          var result = 'Parsing your JSON failed: ' + await e.toString() + ' ' + await e.getMessage();
-          //setDocument(resultEditor, result, 'text');
-          postMessage({ type: 'error', message: result });
-          return;
+        else if (e instanceof Error) {
+          postMessage({ type: 'error', message: 'Parsing your JSON failed: ' + e.message });
         }
-      }
-		  else if (inputType === 'XML') {
-        try {
-          var streamSource = await new StreamSource(await new StringReader(input));
-          
-          contextItem = await docBuilder.build(streamSource);
+				return;
+			}
+	  }
+	  else if (inputType === 'XML') {
+			try {
+				var streamSource = await new StreamSource(await new StringReader(input));
+				
+				contextItem = await docBuilder.build(streamSource);
+			}
+			catch (e) {
+        if (e instanceof SaxonApiException) {
+				  postMessage({ type: 'error', message: 'Parsing your XML failed: ' + await e.getMessage()  + ' (Line ' + await e.getLineNumber() + ')' });
         }
-        catch (e) {
-          var result = 'Parsing your XML failed: ' + await e.toString() + ' ' + await e.getMessage();
-          //setDocument(resultEditor, result, 'text');
-          postMessage({ type: 'error', message: result });
-          return;				
+        else if (e instanceof Error) {
+          postMessage({ type: 'error', message: 'Parsing your XML failed: ' + e.message });
         }
-		  }	
+				return;			
+			}
+	  }	
       
 		  var xqueryExecutable = await xqueryCompiler.compile(xquery);
 
