@@ -58,28 +58,21 @@ async function xquery(input, xquery, inputType) {
 	  }
 	  catch (e1) {
  		  console.log('Error evaluating XQuery');
-      try {
-        postMessage({ type: 'error', message: 'Error evaluating XQuery: ' + e1 });
-      }
-      catch (e) {
-        try {
-          postMessage({ type: 'error', message: 'Error evaluating XQuery: ' + await e1.toString() });
-        }
-        catch (e) {
-          try {
-           postMessage({ type : 'error', message : 'Error evaluating XQuery' + await e1.getMessage() });
-          }
-          catch (e) {
-            postMessage({ type : 'error', message : 'Error evaluating XQuery' });        
-          }
-        }
-      }
-   
-		  //console.log(await e.toString(), await e.getMessage());
-      try {
+      if (e1 instanceof SaxonApiException) {
+        postMessage({ type: 'error', message: 'Error evaluating XPath: ' + await e1.getMessage() + ' (Line ' + await e1.getLineNumber() + ')' });
         await e1.printStackTrace();
       }
-      catch (e) {}
+      else if (e1 instanceof JException) {
+        postMessage({ type : 'error', message : 'Error evaluating XPath' + await e1.getMessage() });
+        await e1.printStackTrace();
+      }
+      else if (e1 instanceof Error) {
+        postMessage({ type: 'error', message: 'Error evaluating XPath: ' + e1.message });
+      }
+   
+		  if (e1 instanceof JException) {
+        await e.printStackTrace();
+      }
     }
   }
   else {
