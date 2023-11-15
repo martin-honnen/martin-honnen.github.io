@@ -1,7 +1,6 @@
 async function transform(input, xslt, inputType, resultsSelect) {
 
   if (saxonInitialized) {
-	  try {
   	  var contextItem = null;
   	  if (inputType === 'JSON') {
   			try {
@@ -38,14 +37,13 @@ async function transform(input, xslt, inputType, resultsSelect) {
         var xsltExecutable = await xsltCompiler.compile(await new StreamSource(await new StringReader(xslt)));
 		  }
 		  catch (e) {
-				var result = 'Compiling your XSLT failed: ' + await e.toString() + ' ' + await e.getMessage();
+				var result = 'Compiling your XSLT failed: ' + await e.getMessage() + ' (Line ' + await e.getLineNumber() + ')';
 				//setDocument(resultEditor, result, 'text');
 				postMessage({ type: 'error', message: result });
 				return;
 		  }
 
 		  var xslt30Transformer = await xsltExecutable.load30();
-
 
 		  if (contextItem !== null) {
         await xslt30Transformer.setGlobalContextItem(contextItem);
@@ -60,7 +58,7 @@ async function transform(input, xslt, inputType, resultsSelect) {
           await xslt30Transformer.callTemplate(null, destination);
 			  }
 			  catch (e) {
-          var result = 'Running your initial template failed: ' + await e.toString() + ' ' + await e.getMessage();
+          var result = 'Running your initial template failed: ' + await e.getMessage() + ' (Line ' + await e.getLineNumber() + ')';
           //setDocument(resultEditor, result, 'text');
           postMessage({ type: 'error', message: result });
           return;
@@ -71,7 +69,7 @@ async function transform(input, xslt, inputType, resultsSelect) {
           await xslt30Transformer.applyTemplates(contextItem, destination);
 			  }
 			  catch (e) {
-          var result = 'Applying your XSLT against the XML failed: ' + await e.toString() + ' ' + await e.getMessage();
+          var result = 'Applying your XSLT against the XML failed: ' + await e.getMessage() + ' (Line ' + await e.getLineNumber() + ')';
           //setDocument(resultEditor, result, 'text');
           postMessage({ type: 'error', message: result });
           return;
@@ -86,25 +84,6 @@ async function transform(input, xslt, inputType, resultsSelect) {
 
 		  //writeResult(window.frames['current-result-frame'], stringResult);
 	  }
-	  catch (e1) {
-		  console.log('Error running XSLT');
-   
-      if (e1 instanceof SaxonApiException) {
-        postMessage({ type: 'error', message: 'Error executing XSLT: ' + await e1.getMessage() + ' (Line ' + await e1.getLineNumber() + ')' });
-        await e1.printStackTrace();
-      }
-      else if (e1 instanceof JException) {
-        postMessage({ type : 'error', message : 'Error executing XSLT' + await e1.getMessage() });
-        await e1.printStackTrace();
-      }
-      else if (e1 instanceof Error) {
-        postMessage({ type: 'error', message: 'Error executing XSLT: ' + e1.message });
-      }
-
-      if (e1 instanceof JException) {
-        await e.printStackTrace();
-      }
-  }
   else {
 	  console.log('Wait for Saxon HE library to be loaded.');
   }
