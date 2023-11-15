@@ -12,7 +12,7 @@
           <li>XSLT 3.0 against XML or JSON input or no input starting with <code>xsl:template name="xsl:initial-template"</code></li>
           <li>XQuery 3.1 against XML or JSON input or no input</li>
           <li>XPath 3.1 against XML or JSON input or no input</li>
-		  <li>optional automatic evaluation of XSLT/XQuery/XPath as CheerpJ nightly now also allows to run Java code (e.g. Saxon) from a web worker</li>
+		      <li>optional automatic evaluation of XSLT/XQuery/XPath as CheerpJ nightly now also allows to run Java code (e.g. Saxon) from a web worker</li>
         </ul>
       </section>
     </section>
