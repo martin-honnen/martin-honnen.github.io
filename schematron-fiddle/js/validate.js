@@ -2,6 +2,11 @@ const doneTypingInterval = 1000;
 
 var autoValidate = false;
 
+const schxsltVersions = {
+  'schxslt-1.9.5' : 'schxslt/schxslt-1.9.5/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json',
+  'schxslt2-1.0' : 'schxslt/schxslt2-1.0/transpile.sef.json'
+};
+
 function validate() {
   validateWithSchxslt(xmlEditor.session.getValue(), schematronEditor.session.getValue(), resultEditor);
 }
@@ -10,10 +15,13 @@ function runAutoValidate() {
   typingTimeout = autoValidate ? setTimeout(validate, doneTypingInterval) : 0;
 }
 
-function validateWithSchxslt(xml, schematron, resultEditor) {
+function validateWithSchxslt(xml, schematron, resultEditor, schxsltVersion) {
+  if (typeof schxsltVersion === 'undefined') {
+    schxsltVersion = 'schxslt-1.9.5';
+  }
   let svrlResult = SaxonJS.transform(
       { 
-        stylesheetLocation: 'schxslt/schxslt-1.9.5/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json',
+        stylesheetLocation: schxsltVersions[schxsltVersion],
         stylesheetParams: {
           'schema-text': schematron,
           'instance-text': xml
