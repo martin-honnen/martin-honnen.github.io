@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title>CheerpJ 3 Schxslt2 Saxon HE 12 test</title>
+
+    <script src="https://cjrtnc.leaningtech.com/3_20231120_297/cj3loader.js"></script>
+
+    <script>
+    async function init() {
+
+      await cheerpjInit();
+
+      const exitCode = await cheerpjRunMain(
+        "org.example.Main",
+        "/app/Schxslt2ResourceTest2.jar:/app/Saxon-HE-12.3.jar:/app/schxslt2-1.0.jar:/app/xmlresolver-5.2.0.jar"
+      );
+
+      console.log(`Program exited with code ${exitCode}`);
+    }
+    document.addEventListener('DOMContentLoaded', init);
+    </script>
+  </head>
+  <body>
+    <h1>CheerpJ 3 Schxslt2 Saxon HE 12 test</h1>
+    <p>Check developer console for output of Main console program</p>
+  </body>
+</html>
