@@ -8,7 +8,7 @@ const schxsltVersions = {
 };
 
 function validate() {
-  validateWithSchxslt(xmlEditor.session.getValue(), schematronEditor.session.getValue(), resultEditor);
+  validateWithSchxslt(xmlEditor.session.getValue(), schematronEditor.session.getValue(), resultEditor, document.getElementById('schxsltVersionSelect').value);
 }
 
 function runAutoValidate() {
