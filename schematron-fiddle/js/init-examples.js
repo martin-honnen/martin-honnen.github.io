@@ -16,8 +16,8 @@ function loadDefaults() {
 function save(form) {
     history.pushState(null, null, '?' + new URLSearchParams(
         {
-            code: codeEditor.session.getValue(),
-            input: inputEditor.session.getValue(),
+            code: schematronEditor.session.getValue(),
+            input: xmlEditor.session.getValue(),
             schxsltVersion: document.getElementById('schxsltVersionSelect').value
         }
     ).toString());
@@ -28,17 +28,16 @@ function load(location) {
         loadDefaults();
     }
     var searchParams = new URL(location).searchParams;
+  
     if (searchParams.has("input") && searchParams.has("code")) {
         const inputCode = searchParams.get('input');
         const code = searchParams.get('code');
         const schxsltVersion = searchParams.get('schxsltVersion');
 
-        setDocument(codeEditor, code, 'xml');
-        setDocument(inputEditor, inputCode, 'xml');
+        setDocument(schematronEditor, code, 'xml');
+        setDocument(xmlEditor, inputCode, 'xml');
 
         document.getElementById('schxsltVersionSelect').value = schxsltVersion;
-
-        document.getElementById('input-type-form').elements['input-type'].value = inputType;
     }
     else {
         loadDefaults();
