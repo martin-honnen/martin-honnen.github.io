@@ -28,7 +28,7 @@ function load(location) {
         loadDefaults();
     }
     var searchParams = new URL(location).searchParams;
-    if (searchParams.has("input") && searchParams.has("code"))) {
+    if (searchParams.has("input") && searchParams.has("code")) {
         const inputCode = searchParams.get('input');
         const code = searchParams.get('code');
         const schxsltVersion = searchParams.get('schxsltVersion');
