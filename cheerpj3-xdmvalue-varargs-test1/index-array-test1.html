@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title>CheerpJ Saxon HE 11.6 XdmValue varargs test</title>
+
+    <script src="https://cjrtnc.leaningtech.com/3_20231123_298/cj3loader.js"></script>
+
+    <script>
+    async function init() {
+
+      await cheerpjInit();
+
+
+      const lib = await cheerpjRunLibrary("/app/cheerpj3-xdmvalue-varargs-test1/saxon-he-11.6.jar");
+
+      const Processor = await lib.net.sf.saxon.s9api.Processor;
+
+      const QName =  await lib.net.sf.saxon.s9api.QName;
+
+      const XdmAtomicValue = await lib.net.sf.saxon.s9api.XdmAtomicValue;
+
+      const XdmFunctionItem = await lib.net.sf.saxon.s9api.XdmFunctionItem;
+
+      var processor = await new Processor(false);
+
+      var jsonDocFunction = await XdmFunctionItem.getSystemFunction(processor, await new QName('http://www.w3.org/2005/xpath-functions', 'json-doc'), 1);
+
+      var xdmValue = await jsonDocFunction.call(processor, [await new XdmAtomicValue('https://martin-honnen.github.io/xslt/json/sample1.json')]);
+
+      console.log(xdmValue);
+      
+
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+    </script>
+  </head>
+  <body>
+    <h1>CheerpJ Saxon HE 11.6 XdmValue varargs test</h1>
+    <p>Check developer console for output</p>
+  </body>
+</html>
