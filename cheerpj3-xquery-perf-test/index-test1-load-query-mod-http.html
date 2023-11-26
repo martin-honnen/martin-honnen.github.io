@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title>CheerpJ Saxon HE 11.6 XQuery module loading over HTTPS test</title>
+
+    <script src="https://cjrtnc.leaningtech.com/3_20231123_298/cj3loader.js"></script>
+
+    <script>
+    async function init() {
+
+      await cheerpjInit();
+
+      const exitCode = await cheerpjRunMain(
+        "net.sf.saxon.Query",
+        "/app/cheerpj3-xquery-perf-test/saxon-he-11.6.jar",
+        "-u",
+        "-q:"
+      );
+
+      console.log(`Program exited with code ${exitCode}`);
+    }
+    document.addEventListener('DOMContentLoaded', init);
+    </script>
+  </head>
+  <body>
+    <h1>CheerpJ Saxon HE 11.6 XQuery module loading over HTTPS test</h1>
+    <p>Check developer console for output</p>
+  </body>
+</html>
