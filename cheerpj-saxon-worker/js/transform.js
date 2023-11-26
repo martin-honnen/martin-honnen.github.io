@@ -91,3 +91,10 @@ function transform(input, xslt, inputType, resultsSelect) {
   } */
 
 }
+
+function transformUrls(inputUrl, xsltUrl, inputType, resultsSelect) {
+  if (!autoEvaluation)
+	  setDocument(resultEditor, "Processing your XSLT...", "text");
+
+  saxonWorker.postMessage({ task: 'transform-urls', data : { input : inputUrl, code: xsltUrl, inputType: inputType }});  
+}
