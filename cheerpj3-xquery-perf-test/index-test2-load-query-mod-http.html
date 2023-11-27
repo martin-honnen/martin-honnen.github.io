@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title>CheerpJ Saxon HE 11.6 XQuery module loading over HTTPS test</title>
+
+    <script src="https://cjrtnc.leaningtech.com/3_20231123_298/cj3loader.js"></script>
+
+    <script>
+    var xqueryUrl = 'https://martin-honnen.github.io/xquery/test1.xq';
+    </script>
+    
+    <script>
+    var lib = null;
+    
+    var SaxonProcessor = null;
+    
+    var StringReader = null;
+    
+    var StringWriter = null;
+    
+    var StreamSource = null;
+    
+    var JException = null;
+    
+    var SaxonApiException = null;
+    
+    var XdmValue = null;
+    
+    var XdmAtomicValue = null;
+    
+    var QName = null;
+    
+    var XdmFunctionItem = null;
+    
+    var QueryReader = null;
+    
+    var saxonProcessor = null;
+    
+    var xsltCompiler = null;
+    
+    var xpathProcessor = null;
+    
+    var xqueryCompiler = null;
+    
+    var docBuilder = null;
+    
+    var jsonBuilder = null;
+    
+    var jsonDocFunction = null;
+    
+    var saxonInitialized = false;
+      
+    async function init() {
+
+      await cheerpjInit();
+
+      lib = await cheerpjRunLib("/app/cheerpj3-xquery-perf-test/saxon-he-11.6.jar");
+
+      JException = await lib.java.lang.Exception;
+      
+      SaxonProcessor = await lib.net.sf.saxon.s9api.Processor;
+    
+      StringReader = await lib.java.io.StringReader;
+    
+      StringWriter = await lib.java.io.StringWriter;
+    
+      StreamSource = await lib.javax.xml.transform.stream.StreamSource;
+      
+      SaxonApiException = await lib.net.sf.saxon.s9api.SaxonApiException;
+      
+      XdmValue = await lib.net.sf.saxon.s9api.XdmValue;
+      
+      XdmAtomicValue = await lib.net.sf.saxon.s9api.XdmAtomicValue;
+      
+      QName = await lib.net.sf.saxon.s9api.QName;
+      
+      XdmFunctionItem = await lib.net.sf.saxon.s9api.XdmFunctionItem;
+      
+      QueryReader = await lib.net.sf.saxon.query.QueryReader;
+    
+      saxonProcessor = await new SaxonProcessor(false);
+    
+      docBuilder = await saxonProcessor.newDocumentBuilder();
+    
+      jsonBuilder = await saxonProcessor.newJsonBuilder();
+          
+      xqueryCompiler = await saxonProcessor.newXQueryCompiler();
+
+      var config = await saxonProcessor.getUnderlyingConfiguration();
+      var moduleURIResolver = await xqueryCompiler.getModuleURIResolver();
+      if (moduleURIResolver == null) {
+        moduleURIResolver = await config.getStandardModuleURIResolver();
+      }
+      var moduleStreamSources = await moduleURIResolver.resolve(null, null, [xqueryUrl]);
+      var moduleStreamSource = moduleStreamSources[0];
+      var characterChecker = await config.getValidCharacterChecker();
+      var xquery = await QueryReader.readSourceQuery(config, moduleStreamSource, characterChecker);
+      var xqueryExecutable = await xqueryCompiler.compile(xquery);        
+
+      console.log(xqueryExecutable);
+      
+    }
+
+    
+    document.addEventListener('DOMContentLoaded', init);
+    </script>
+  </head>
+  <body>
+    <h1>CheerpJ Saxon HE 11.6 XQuery module loading over HTTPS test</h1>
+    <p>Check developer console for output</p>
+  </body>
+</html>
