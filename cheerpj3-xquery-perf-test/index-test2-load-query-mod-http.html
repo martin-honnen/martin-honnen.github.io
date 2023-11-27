@@ -95,7 +95,7 @@
       var moduleStreamSources = await moduleURIResolver.resolve(null, null, [xqueryUrl]);
       var moduleStreamSource = moduleStreamSources[0];
       var characterChecker = await config.getValidCharacterChecker();
-      var xquery = await QueryReader.readSourceQuery(config, moduleStreamSource, characterChecker);
+      var xquery = await QueryReader.readSourceQuery(moduleStreamSource, characterChecker);
       var xqueryExecutable = await xqueryCompiler.compile(xquery);        
 
       console.log(xqueryExecutable);
