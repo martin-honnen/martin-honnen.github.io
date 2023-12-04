@@ -53,7 +53,7 @@
             <div id="input-col" class="grid-item">
                 <div id="input-editor" class="editor"></div>
                 <input type="button" id="load-input" value="load" onclick="document.getElementById('load-input-file').click();">
-                <input type="file" id="load-input-file" onchange="this.files[0].text().then(t => inputEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,.json,.html,.htm,text/xml,application/xml,application/json,application/xml+xslt,text/html">
+                <input type="file" id="load-input-file" onchange="this.files[0].text().then(t => inputEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,.json,.html,.htm,.txt,.text,text/xml,application/xml,application/json,application/xml+xslt,text/html,text/plain">
             </div>
             <div class="grid-item">
                 <div id="code-editor" class="editor"></div>
