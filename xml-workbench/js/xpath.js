@@ -9,7 +9,7 @@ function xpath(input, xpathCode, inputType, resultsSelect) {
             body: JSON.stringify({
                 inputCode: xpathCode,
                 inputData: input,
-                inputType: inputType == 'XML' ? 0 : inputType == 'JSON' ? 1 : 2
+                inputType: inputType == 'XML' ? 0 : inputType == 'JSON' ? 1 : inputType == 'TEXT' ? 2 : 3
             })
         })
         .then(response => response.json()
