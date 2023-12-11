@@ -7,7 +7,7 @@ async function transform(input, xslt, inputType, inputUri, xsltUri, outputUri) {
   if (xalanInitialized) {
     var transformer = null;
     try {
-      transformer = await TransformerFactory.newTransformer(await new StreamSource(await new StringReader(xslt), xsltUri));
+      transformer = await xalanTransformerFactory.newTransformer(await new StreamSource(await new StringReader(xslt), xsltUri));//TransformerFactory.newTransformer(await new StreamSource(await new StringReader(xslt), xsltUri));
 
       console.log(await (await transformer.getClass()).getName());
     }
