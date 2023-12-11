@@ -1,0 +1,102 @@
+importScripts('https://cjrtnc.leaningtech.com/3_20231202_306/cj3loader.js'); //'https://cjrtnc.leaningtech.com/3.0rc2/cj3loader.js');
+
+var filetypes = {
+  '.htm': 'html',
+  '.html': 'html',
+  '.xml': 'xml',
+  '.xsd': 'xml',
+  '.xsl': 'xml',
+  '.xslt': 'xml',
+  '.xhtml' : 'xml',
+  '.xquery' : 'xquery',
+  '.xq' : 'xquery',
+  '.json' : 'json',
+  '.txt' : 'text',
+  '.text' : 'text'
+};
+
+var lib = null;
+
+var TransformerFactoryClass = null;
+
+var TransformerFactory = null;
+
+
+var StringReader = null;
+
+var StringWriter = null;
+
+var StreamSource = null;
+
+var StreamResult = null;
+
+var PrintWriter = null;
+
+var URI = null;
+
+var JException = null;
+
+var JTransformerException = null;
+
+var docBuilder = null;
+
+var xalanInitialized = false;
+
+(async () => {
+  await cheerpjInit();
+
+  lib = await cheerpjRunLibrary("/app/xalan.jar:/app/serializer.jar:/app/lib/bcel-6.7.0.jar:/app/lib/brazil-2.1.jar:/app/lib/bsf.jar:/app/lib/commons-logging-1.2.jar:/app/lib/javaee-api-5.0-2.jar:/app/lib/javaee-api-5.0-2.jar:/app/lib/regexp.jar:/app/lib/rhino-1.7.14.jar:/app/lib/runtime.jar:/app/lib/servlet-api-2.5.jar:/app/lib/xpath31_types.jar:/app/lib/endorsed/xercesImpl.jar:/app/lib/endorsed/xml-apis.jar");
+
+  console.log('Worker CheerpJ 3 library initialized');
+  
+  postMessage({ type: 'message', message : 'hide', id : 'cheerpj3-load-indicator' });
+
+  JException = await lib.java.lang.Exception;
+  
+  JTransformerException = await lib.javax.xml.transform.TransformerException;
+  
+  TransformerFactoryClass = await lib.javax.xml.transform.TransformerFactory;
+  
+  TransformerFactory = await TransformerFactoryClass.newInstance();
+  
+  //SaxonHelpers = await lib.net.liberty_development.cheerp3Helpers.SaxonHelpers;
+
+  StringReader = await lib.java.io.StringReader;
+
+  StringWriter = await lib.java.io.StringWriter;
+
+  StreamSource = await lib.javax.xml.transform.stream.StreamSource;
+  
+  StreamResult = await lib.javax.xml.transform.stream.StreamResult;
+  
+  PrintWriter = await lib.java.io.PrintWriter;
+  
+  URI = await lib.java.net.URI;
+
+  xalanInitialized = true;
+
+  importScripts("transform-async.js");
+  
+  //importScripts("xquery-async.js");
+
+  //importScripts("xpath-async.js");
+
+  console.log('Worker Xalan initialized');
+  
+  postMessage({ type: 'message', message : 'hide', id : 'xalan-load-indicator' });
+
+})();
+
+onmessage = async (e) => {
+  var task = e.data.task;
+  var data = e.data.data;
+  if (task === 'transform') {
+    await transform(data.input, data.code, data.inputType);
+  }
+  else if (task === 'xquery') {
+	  await xquery(data.input, data.code, data.inputType);  
+  }
+  else if (task === 'xpath') {
+	  await xpath(data.input, data.code, data.inputType);  
+  }
+}
