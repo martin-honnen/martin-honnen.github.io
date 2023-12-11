@@ -67,7 +67,7 @@ var xalanInitialized = false;
 
   XalanTransformerFactoryClass = await lib.org.apache.xalan.processor.TransformerFactoryImpl;
 
-  xalanTransformerFactory = await new XalanTransformerFactory();
+  xalanTransformerFactory = await new XalanTransformerFactoryClass();
   
   TransformerFactory = await TransformerFactoryClass.newInstance();
   
