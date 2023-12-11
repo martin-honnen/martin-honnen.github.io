@@ -38,7 +38,7 @@ var JException = null;
 
 var JTransformerException = null;
 
-var XalanTransformerFactoryClass = null;
+var XalanTransformerFactoryImpl = null;
 
 var xalanTransformerFactory = null;
 
@@ -65,9 +65,9 @@ var xalanInitialized = false;
   
   TransformerFactoryClass = await lib.javax.xml.transform.TransformerFactory;
 
-  XalanTransformerFactoryClass = await lib.org.apache.xalan.processor.TransformerFactoryImpl;
+  XalanTransformerFactoryImpl = await lib.org.apache.xalan.processor.TransformerFactoryImpl;
 
-  xalanTransformerFactory = await new XalanTransformerFactoryClass();
+  xalanTransformerFactory = await new XalanTransformerFactoryImpl();
   
   TransformerFactory = await TransformerFactoryClass.newInstance();
   
