@@ -16,7 +16,28 @@ async function transform(input, xslt, inputType, inputUri, xsltUri, outputUri) {
         postMessage({ type: 'error', message: 'Compiling your XSLT failed: ' + await e.getMessage() });
         return;
       }
-      await e.printStackTrace();
+     else if (e instanceof JSAXParseException) {
+        postMessage({ type: 'error', message: 'Parsing failed: ' + await e.getMessage() });
+        return;
+      }
+      else if (e instanceof JException) {
+        
+        var errorWriter = await new StringWriter();
+        
+        var printWriter = await new PrintWriter(errorWriter, true);
+        
+        await e.printStackTrace(printWriter);
+        
+        await printWriter.close();
+        
+        postMessage({ type: 'error', message: 'Running your XSLT failed: ' + await e.toString() });
+        
+        e.printStackTrace();
+
+      }
+      else if (e instanceof Error) {
+        postMessage({ type: 'error', message: e.message });
+      }
       return;
     }
     
@@ -36,20 +57,26 @@ async function transform(input, xslt, inputType, inputUri, xsltUri, outputUri) {
         postMessage({ type: 'error', message: 'Running your XSLT failed: ' + await e.getMessage() });
         return;
       }
-      //else if (e instanceof JException) {
+      else if (e instanceof JSAXParseException) {
+        postMessage({ type: 'error', message: 'Parsing failed: ' + await e.getMessage() });
+        return;
+      }
+      else if (e instanceof JException) {
         
-        //var errorWriter = await new StringWriter();
+        var errorWriter = await new StringWriter();
         
-        //var printWriter = await new PrintWriter(errorWriter, true);
+        var printWriter = await new PrintWriter(errorWriter, true);
         
-        //await e.printStackTrace(printWriter);
+        await e.printStackTrace(printWriter);
         
-        //await printWriter.close();
+        await printWriter.close();
         
-        //postMessage({ type: 'error', message: 'Running your XSLT failed: ' + await e.toString() });
-      //}
+        postMessage({ type: 'error', message: 'Running your XSLT failed: ' + await e.toString() });
+        
+        e.printStackTrace();
+
+      }
       
-      e.printStackTrace();
       return;
     }
   }
