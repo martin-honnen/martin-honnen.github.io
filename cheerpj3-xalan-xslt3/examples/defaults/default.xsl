@@ -4,7 +4,7 @@
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   exclude-result-prefixes="xs">
 
-  <xsl:output method="html" indent="yes"/>
+  <xsl:output method="html" indent="no"/>
 
   <xsl:template match="@* | node()">
     <xsl:copy>
