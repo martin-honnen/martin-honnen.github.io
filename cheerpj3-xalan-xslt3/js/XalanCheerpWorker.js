@@ -38,9 +38,9 @@ var JException = null;
 
 var JTransformerException = null;
 
-var XalanTransformerFactoryImpl = null;
+var ErrorListenerImplementationClass = null;
 
-var xalanTransformerFactory = null;
+var JTransformerConfigurationException = null;
 
 var JSAXParseException = null;
 
@@ -51,9 +51,8 @@ var xalanInitialized = false;
 (async () => {
   await cheerpjInit();
 
-  //lib = await cheerpjRunLibrary("/app/xalan.jar:/app/serializer.jar:/app/lib/bcel-6.7.0.jar:/app/lib/brazil-2.1.jar:/app/lib/bsf.jar:/app/lib/commons-logging-1.2.jar:/app/lib/javaee-api-5.0-2.jar:/app/lib/javaee-api-5.0-2.jar:/app/lib/regexp.jar:/app/lib/rhino-1.7.14.jar:/app/lib/runtime.jar:/app/lib/servlet-api-2.5.jar:/app/lib/xpath31_types.jar:/app/lib/endorsed/xercesImpl.jar:/app/lib/endorsed/xml-apis.jar");
-  lib = await cheerpjRunLibrary("/app/cheerpj3-xalan-xslt3/xalan.jar:/app/cheerpj3-xalan-xslt3/serializer.jar:/app/cheerpj3-xalan-xslt3/lib/bcel-6.7.0.jar:/app/cheerpj3-xalan-xslt3/lib/brazil-2.1.jar:/app/cheerpj3-xalan-xslt3/lib/bsf.jar:/app/cheerpj3-xalan-xslt3/lib/commons-logging-1.2.jar:/app/cheerpj3-xalan-xslt3/lib/javaee-api-5.0-2.jar:/app/cheerpj3-xalan-xslt3/lib/javaee-api-5.0-2.jar:/app/cheerpj3-xalan-xslt3/lib/regexp.jar:/app/cheerpj3-xalan-xslt3/lib/rhino-1.7.14.jar:/app/cheerpj3-xalan-xslt3/lib/runtime.jar:/app/cheerpj3-xalan-xslt3/lib/servlet-api-2.5.jar:/app/cheerpj3-xalan-xslt3/lib/xpath31_types.jar:/app/cheerpj3-xalan-xslt3/lib/endorsed/xercesImpl.jar:/app/cheerpj3-xalan-xslt3/lib/endorsed/xml-apis.jar");
-  
+  lib = await cheerpjRunLibrary("/app/xalan.jar:/app/serializer.jar:/app/CheerpJaxpHelpers.jar:/app/lib/bcel-6.7.0.jar:/app/lib/brazil-2.1.jar:/app/lib/bsf.jar:/app/lib/commons-logging-1.2.jar:/app/lib/javaee-api-5.0-2.jar:/app/lib/javaee-api-5.0-2.jar:/app/lib/regexp.jar:/app/lib/rhino-1.7.14.jar:/app/lib/runtime.jar:/app/lib/servlet-api-2.5.jar:/app/lib/xpath31_types.jar:/app/lib/endorsed/xercesImpl.jar:/app/lib/endorsed/xml-apis.jar");
+
   console.log('Worker CheerpJ 3 library initialized');
   
   postMessage({ type: 'message', message : 'hide', id : 'cheerpj3-load-indicator' });
@@ -62,15 +61,15 @@ var xalanInitialized = false;
   
   JTransformerException = await lib.javax.xml.transform.TransformerException;
   
+  JTransformerConfigurationException = await lib.javax.xml.transform.TransformerConfigurationException;
+  
   JSAXParseException = await lib.org.xml.sax.SAXParseException;
   
   TransformerFactoryClass = await lib.javax.xml.transform.TransformerFactory;
-
-  XalanTransformerFactoryImpl = await lib.org.apache.xalan.processor.TransformerFactoryImpl;
-
-  xalanTransformerFactory = await new XalanTransformerFactoryImpl();
   
   TransformerFactory = await TransformerFactoryClass.newInstance();
+  
+  ErrorListenerImplementationClass = await lib.org.example.ErrorListenerHelper;
   
   //SaxonHelpers = await lib.net.liberty_development.cheerp3Helpers.SaxonHelpers;
 
