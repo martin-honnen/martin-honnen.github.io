@@ -50,8 +50,9 @@ var saxonInitialized = false;
 (async () => {
   await cheerpjInit();
 
-  lib = await cheerpjRunLibrary("/app/saxon-he-12.4.jar:/app/Cheerp3Helpers.jar");
-
+  //lib = await cheerpjRunLibrary("/app/saxon-he-12.4.jar:/app/Cheerp3Helpers.jar");
+  lib = await cheerpjRunLibrary("/app/cheerpj3-saxonhe12-fiddle/saxon-he-12.4.jar:/app/cheerpj3-saxonhe12-fiddle/Cheerp3Helpers.jar");
+  
   console.log('Worker CheerpJ 3 library initialized');
   
   postMessage({ type: 'message', message : 'hide', id : 'cheerpj3-load-indicator' });
