@@ -5,7 +5,7 @@
   exclude-result-prefixes="#all"
   expand-text="yes">
 
-  <xsl:output method="html" indent="yes" html-version="5"/>
+  <xsl:output method="html" indent="no" html-version="5"/>
 
   <xsl:mode on-no-match="shallow-copy"/>
 
