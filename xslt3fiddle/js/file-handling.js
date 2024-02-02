@@ -37,11 +37,22 @@ export var openedCodeFiles = [];
 
   const loadDataFilesBtn = document.getElementById('load-xslt');
 
+  const inputFilesSelect = document.getElementById('input-files');
+
+  const xsltFilesSelect = document.getElementById('xslt-files');
+
   loadInputFilesBtn.addEventListener('click', async () => {
     try {
       openedInputFiles = await fileOpen([xmlFiles, jsonFiles, htmlFiles, textFiles]);
-      const firstInput = await openedInputFiles[0].text();
-      console.log(firstInput);
+      inputFilesSelect.length = 0;
+      for (const inputFile of openedInputFiles) {
+        const option = new Option(inputFile.webkitRelativePath, await inputFile.text());
+        inputFilesSelect.appendChild(option);
+      }
+      inputFilesSelect.selectedIndex = 0;
+      inputFilesSelect.onchange = () => {
+        console.log(this.value);
+      }
     }
     catch (e) {
       console.err(e);
