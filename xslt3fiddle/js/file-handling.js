@@ -46,7 +46,7 @@ export var openedCodeFiles = [];
       openedInputFiles = await fileOpen([xmlFiles, jsonFiles, htmlFiles, textFiles]);
       inputFilesSelect.length = 0;
       for (const inputFile of openedInputFiles) {
-        const option = new Option(inputFile.webkitRelativePath, await inputFile.text());
+        const option = new Option(inputFile.webkitRelativePath + inputFile.name, await inputFile.text());
         inputFilesSelect.appendChild(option);
       }
       inputFilesSelect.selectedIndex = 0;
@@ -62,8 +62,15 @@ export var openedCodeFiles = [];
   loadDataFilesBtn.addEventListener('click', async () => {
     try {
       openedCodeFiles = await fileOpen([xmlFiles]);
-      const firstInput = await openedCodeFiles[0].text();
-      console.log(firstInput);
+      xsltFilesSelect.length = 0;
+      for (const xsltFile of openedCodeFiles) {
+        const option = new Option(xsltFile.webkitRelativePath + xsltFile.name, await inputFile.text());
+        inputFilesSelect.appendChild(option);
+      }
+      inputFilesSelect.selectedIndex = 0;
+      inputFilesSelect.onchange = () => {
+        console.log(this.value);
+      }
     }
     catch (e) {
       console.err(e);
