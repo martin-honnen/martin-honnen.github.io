@@ -65,15 +65,15 @@ export var openedCodeFiles = [];
       xsltFilesSelect.length = 0;
       for (const xsltFile of openedCodeFiles) {
         const option = new Option(xsltFile.webkitRelativePath + xsltFile.name, await inputFile.text());
-        inputFilesSelect.appendChild(option);
+        xsltFilesSelect.appendChild(option);
       }
-      inputFilesSelect.selectedIndex = 0;
-      inputFilesSelect.onchange = function(evt) {
+      xsltFilesSelect.selectedIndex = 0;
+      xsltFilesSelect.onchange = function(evt) {
         console.log(this.value);
       }
     }
     catch (e) {
-      console.err(e);
+      console.error(e);
     }
   });
 })();
