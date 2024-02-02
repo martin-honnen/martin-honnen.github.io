@@ -35,10 +35,23 @@ export var openedCodeFiles = [];
 (async () => {
   const loadInputFilesBtn = document.getElementById('load-input');
 
+  const loadDataFilesBtn = document.getElementById('load-xslt');
+
   loadInputFilesBtn.addEventListener('click', async () => {
     try {
       openedInputFiles = await fileOpen([xmlFiles, jsonFiles, htmlFiles, textFiles]);
       const firstInput = await openedInputFiles[0].text();
+      console.log(firstInput);
+    }
+    catch (e) {
+      console.err(e);
+    }
+  });
+
+  loadDataFilesBtn.addEventListener('click', async () => {
+    try {
+      openedCodeFiles = await fileOpen([xmlFiles]);
+      const firstInput = await openedCodeFiles[0].text();
       console.log(firstInput);
     }
     catch (e) {
