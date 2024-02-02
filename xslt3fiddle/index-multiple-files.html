@@ -43,14 +43,14 @@
             
     <section class="grid-row">
         <div id="input-col" class="grid-item">
+            <label>Input files <select id="input-files"></select></label>
             <div id="input-editor" class="editor"></div>
-            <input type="button" id="load-input" value="load" onclick="document.getElementById('load-input-file').click();">
-            <input type="file" id="load-input-file" onchange="this.files[0].text().then(t => inputEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,.json,.html,.htm,.txt,.text,text/xml,application/xml,application/json,application/xml+xslt,text/html,text/plain">
+            <input type="button" id="load-input" value="load">
         </div>
         <div class="grid-item">
+            <label>XSLT files <select id="xslt-files"></select></label>
             <div id="xslt-editor" class="editor"></div>
-          <input type="button" id="load-xslt" value="load" onclick="document.getElementById('load-xslt-file').click();">
-            <input type="file" id="load-xslt-file" onchange="this.files[0].text().then(t => xsltEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,text/xml,application/xml,application/xml+xslt">
+            <input type="button" id="load-xslt" value="load">
         </div>
     </section>
     <section class="grid-row button-bar">
