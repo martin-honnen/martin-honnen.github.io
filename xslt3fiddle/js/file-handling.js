@@ -28,11 +28,9 @@ const htmlFiles = {
   multiple: true
 };
 
-var openedInputFiles = [];
+export var openedInputFiles = [];
 
-var openedCodeFiles = [];
-
-export openedInputFiles, openedCodeFiles;
+export var openedCodeFiles = [];
 
 (async () => {
   const loadInputFilesBtn = document.getElementById('load-input');
