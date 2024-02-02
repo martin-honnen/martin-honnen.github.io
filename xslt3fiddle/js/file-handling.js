@@ -64,7 +64,7 @@ export var openedCodeFiles = [];
       openedCodeFiles = await fileOpen([xmlFiles]);
       xsltFilesSelect.length = 0;
       for (const xsltFile of openedCodeFiles) {
-        const option = new Option(xsltFile.webkitRelativePath + xsltFile.name, await inputFile.text());
+        const option = new Option(xsltFile.webkitRelativePath + xsltFile.name, await xsltFile.text());
         xsltFilesSelect.appendChild(option);
       }
       xsltFilesSelect.selectedIndex = 0;
