@@ -50,12 +50,12 @@ export var openedCodeFiles = [];
         inputFilesSelect.appendChild(option);
       }
       inputFilesSelect.selectedIndex = 0;
-      inputFilesSelect.onchange = () => {
+      inputFilesSelect.onchange = function(evt) {
         console.log(this.value);
       }
     }
     catch (e) {
-      console.err(e);
+      console.error(e);
     }
   });
 
@@ -68,7 +68,7 @@ export var openedCodeFiles = [];
         inputFilesSelect.appendChild(option);
       }
       inputFilesSelect.selectedIndex = 0;
-      inputFilesSelect.onchange = () => {
+      inputFilesSelect.onchange = function(evt) {
         console.log(this.value);
       }
     }
