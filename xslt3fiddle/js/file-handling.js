@@ -1,4 +1,4 @@
-import { fileOpen, directoryOpen, fileSave, supported } from 'https://unpkg.com/browser-fs-access';
+import { fileOpen, directoryOpen, fileSave, supported } from 'https://cdn.jsdelivr.net/npm/browser-fs-access@0.35.0/+esm';// 'https://unpkg.com/browser-fs-access';
 
 const xmlFiles = {
   description: 'XML files',
