@@ -17,7 +17,7 @@
         <div id="results"></div>
     </xsl:template>
     
-    <xsl:template mode="ixsl:onclick" match="input[@id = 'sched-action-test']">
+    <xsl:template mode="ixsl:onclick" match="input[@id = 'sched-action-test1']">
         <ixsl:schedule-action document="{$doc-uris => string-join(' ')}">
             <xsl:call-template name="doc-processing-action">
                 <xsl:with-param name="docs" select="$doc-uris"/>
