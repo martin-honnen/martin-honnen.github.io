@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>schedule-action test 1</title>
+        <script src="/SaxonJS-2.6/SaxonJS2.rt.js"></script>
+        <script>
+        window.onload = () => {
+          SaxonJS.transform({stylesheetLocation : 'test-schedule-action1.xsl.sef.json' , destination: 'appendToBody' }, 'async');
+        };
+        </script>
+    </head>
+    <body></body>
+</html>
