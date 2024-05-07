@@ -1,0 +1,7 @@
+<?xml-stylesheet type="text/xsl" href="merge-dics.xsl"?>
+<lexicon>
+    <wordlist1>xml_english.xml</wordlist1>
+    <wordlist2>xml_swedish.xml</wordlist2>
+    <editor>Simon Bale</editor>
+    <logo>logo.svg</logo>
+</lexicon>
