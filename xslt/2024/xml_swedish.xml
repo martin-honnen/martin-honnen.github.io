@@ -1,0 +1,18 @@
+<wordlist
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation = "xsd_ordlista.xsd">
+    <language>Svenska</language>
+    <author>Karl Jonsson</author>
+    <words>
+        <word>natt</word>
+        <word>dag</word>
+        <word>vatten</word>
+        <word>bil</word>
+        <word>sol</word>
+        <word>himmel</word>
+        <word>stad</word>
+        <word>hus</word>
+        <word>katt</word>
+        <word>regn</word>
+    </words>
+</wordlist>
