@@ -4,6 +4,7 @@ var autoValidate = false;
 
 const schxsltVersions = {
   'schxslt-1.9.5' : 'schxslt/schxslt-1.9.5/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json',
+  'schxslt2-1.1' : 'schxslt/schxslt2-1.1/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json',
   'schxslt2-1.0' : 'schxslt/schxslt2-1.0/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json'
 };
 
