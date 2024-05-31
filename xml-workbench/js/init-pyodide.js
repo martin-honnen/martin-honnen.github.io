@@ -10,6 +10,7 @@ sys.version
     await pyodide.loadPackage("micropip");
     const micropip = pyodide.pyimport("micropip");
     await micropip.install('XMLSchema');
+    await micropip.install('lxml');
 };
 
 main();
