@@ -24,27 +24,28 @@
             <fieldset id="input-types">
                 <legend>input type</legend>
                 <label><input type="radio" name="input-type" value="XML" checked>XML</label>
-                <label><input type="radio" name="input-type" value="JSON">JSON</label>
+                <!--<label><input type="radio" name="input-type" value="JSON">JSON</label>
                 <label><input type="radio" name="input-type" value="TEXT">plain text</label>              
-                <label><input type="radio" name="input-type" value="None">No input</label>
+                <label><input type="radio" name="input-type" value="None">No input</label>-->
             </fieldset>
             <fieldset id="code-types">
                 <legend>code type</legend>
                 <label><input type="radio" name="code-type" value="XSLT" checked>XSLT</label>
-                <label><input type="radio" name="code-type" value="XQuery">XQuery</label>
-                <label><input type="radio" name="code-type" value="XPath">XPath</label>
+                <!--<label><input type="radio" name="code-type" value="XQuery">XQuery</label>
+                <label><input type="radio" name="code-type" value="XPath">XPath</label>-->
                 <label><input type="radio" name="code-type" value="XSD">XSD</label>
             </fieldset>
         </form>
         <input type="button" id="transform" value="XSLT transformation" accesskey="t"
                onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
                             transform_xslt_1(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), document.getElementById('results'));">
-        <input type="button" id="xquery" value="XQuery" accesskey="q"
+        <!--<input type="button" id="xquery" value="XQuery" accesskey="q"
                onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
                             xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, document.getElementById('results'));">
         <input type="button" id="xpath" value="XPath" accesskey="a"
                onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
                             xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, document.getElementById('results'));">
+        -->
          <input type="button" id="xsd" value="XSD" accesskey="V" title="validate XML against XSD schema"
                onclick="validate(inputEditor.session.getValue(), codeEditor.session.getValue(), document.getElementById('results'));">
         <input type="button" id="save" value="save as URL" accesskey="s"
