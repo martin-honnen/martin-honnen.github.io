@@ -15,7 +15,7 @@ try:
     result = str(transformation_result)
     js.setDocument(js.resultEditor, result, 'html');
     js.console.log(result)
-except Error as e:
+except Exception as e:
     js.setDocument(js.resultEditor, f'Error: {e}', 'text')
   `,
   {
