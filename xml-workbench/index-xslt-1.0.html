@@ -38,7 +38,7 @@
         </form>
         <input type="button" id="transform" value="XSLT transformation" accesskey="t"
                onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
-                            transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, document.getElementById('results'));">
+                            transform_xslt_1(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), document.getElementById('results'));">
         <input type="button" id="xquery" value="XQuery" accesskey="q"
                onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
                             xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, document.getElementById('results'));">
