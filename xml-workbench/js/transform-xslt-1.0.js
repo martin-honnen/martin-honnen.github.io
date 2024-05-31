@@ -13,7 +13,9 @@ try:
     xslt_transformer = ET.XSLT(xslt_tree)
     transformation_result = xslt_transformer(xml_tree)
     result = str(transformation_result)
-    js.setDocument(js.resultEditor, result, 'html');
+    js.setDocument(js.resultEditor, result, 'html')
+    if js.document.getElementById('render-box').checked:
+        js.writeResult(js.frames['current-result-frame'], result)
     js.console.log(result)
 except Exception as e:
     js.setDocument(js.resultEditor, f'Error: {e}', 'text')
