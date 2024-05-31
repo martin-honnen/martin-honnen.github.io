@@ -7,13 +7,16 @@ function transform_xslt_1(xml, xslt, resultsSelect) {
 import js
 import lxml
 from lxml import etree as ET
-xml_tree = ET.fromstring(xml)
-xslt_tree = ET.fromstring(xslt)
-xslt_transformer = ET.XSLT(xslt_tree)
-transformation_result = xslt_transformer(xml_tree)
-result = str(transformation_result)
-js.setDocument(js.resultEditor, result, 'text');
-js.console.log(result)
+try:
+    xml_tree = ET.fromstring(xml)
+    xslt_tree = ET.fromstring(xslt)
+    xslt_transformer = ET.XSLT(xslt_tree)
+    transformation_result = xslt_transformer(xml_tree)
+    result = str(transformation_result)
+    js.setDocument(js.resultEditor, result, 'html');
+    js.console.log(result)
+except Error as e:
+    js.setDocument(js.resultEditor, f'Error: {e}', 'text')
   `,
   {
     globals: pyodide.globals,
