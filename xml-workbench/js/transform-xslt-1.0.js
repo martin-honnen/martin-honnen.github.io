@@ -15,7 +15,7 @@ try:
     result = str(transformation_result)
     js.setDocument(js.resultEditor, result, 'html')
     if js.document.getElementById('render-box').checked:
-        js.writeResult(js.frames['current-result-frame'], result)
+        js.writeResult(getattr(js.frames, 'current-result-frame'), result)
     js.console.log(result)
 except Exception as e:
     js.setDocument(js.resultEditor, f'Error: {e}', 'text')
