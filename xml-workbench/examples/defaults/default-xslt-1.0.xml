@@ -1,12 +1,12 @@
 <html lang="en">
   <head>
-    <title>XML Workbench: XSLT 1.0 (lxml) and XSD 1.1 (xmlschema) powered by Python and Pyoide</title>
+    <title>XML Workbench: XSLT 1.0 (lxml) and XSD 1.1 (xmlschema) powered by Python and Pyodide</title>
   </head>
   <body>
     <section>
       <h1>Release 0.1.2 alpha of XML Workbench</h1>
       <section>
-        <h2>Features using Pyoide and libxslt and XmlSchema</h2>
+        <h2>Features using Pyodide and libxslt and XmlSchema</h2>
         <ul>
           <li>XSLT 1.0 (with broad EXSLT support) against XML input using <a href="https://pypi.org/project/lxml/">lxml</a></li>
           <li>XSD 1.1 validation of XML input using <a href="https://pypi.org/project/xmlschema/">xmlschema</a></li>
