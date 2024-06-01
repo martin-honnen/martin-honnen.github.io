@@ -3,7 +3,7 @@
 <xsl:template match="foo">
   <transformed-foo>
     <xsl:apply-templates/>
-  <transformed-foo>
+  </transformed-foo>
 </xsl:template>
 
 </xsl:stylesheet>
