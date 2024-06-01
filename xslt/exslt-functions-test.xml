@@ -42,8 +42,8 @@
 					</caption>
 					<thead>
 						<tr>
-							<th>function name</th>
 							<th>function namespace</th>
+							<th>function name</th>
 							<th>function-available()</th>
 						</tr>
 					</thead>
