@@ -38,7 +38,7 @@ class TestResolver(ET.Resolver):
 parser = ET.XMLParser(no_network=False)
 parser.resolvers.add(TestResolver())
 
-tree = ET.parse('http://localhost:8000/examples/defaults/exslt-functions-support-module.xsl', parser)
+tree = ET.parse(url, parser)
 
 tree.getroot().tag
   `;
