@@ -22,7 +22,9 @@ import lxml
 
 from lxml import etree as ET
 
-#js.console.log(urllib3.request('GET', 'http://localhost:8000/examples/defaults/exslt-functions-support-module.xsl').status)
+url = base_url + 'foo-transform-module.xsl'
+
+js.console.log(urllib3.request('GET', url).status)
 
 class TestResolver(ET.Resolver):
     def resolve(self, url, id, context):
@@ -46,7 +48,9 @@ tree.getroot().tag
 
         await pyodide.loadPackagesFromImports(python);
 
-        console.log(await pyodide.runPythonAsync(python));
+        const locals = new Map();
+        locals.set('base_url', window.location.href);
+        console.log(await pyodide.runPythonAsync(python, { locals : locals }));
     };
 
     main();
