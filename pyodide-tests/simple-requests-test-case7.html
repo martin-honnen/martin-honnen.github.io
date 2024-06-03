@@ -45,7 +45,7 @@ tree.getroot().tag
 
         await pyodide.loadPackagesFromImports(python);
 
-        const globals = { base_url = window.location.href.replace(/[^/]+?$/, '') };
+        const globals = { base_url : window.location.href.replace(/[^/]+?$/, '') };
 
         console.log(await pyodide.runPythonAsync(python, { globals : pyodide.toPy(globals) }));
     };
