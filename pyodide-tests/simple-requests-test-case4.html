@@ -9,8 +9,6 @@
 <h1>Test</h1>
 <p>Check browser console for output.</p>
 <script>
-
-
     const python = `
 import js
 
@@ -33,7 +31,6 @@ class TestResolver(ET.Resolver):
             return self.resolve_string(urllib3.request('GET', url).data, context, base_url=url)
         else:
             return False
-
 
 parser = ET.XMLParser(no_network=False)
 parser.resolvers.add(TestResolver())
