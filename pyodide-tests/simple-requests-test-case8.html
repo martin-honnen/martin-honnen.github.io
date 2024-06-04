@@ -45,10 +45,9 @@ tree.getroot().tag
 
         await pyodide.loadPackagesFromImports(python);
 
-        const locals = new Map();
-        locals.set('base_url', window.location.href.replace(/[^/]+?$/, ''));
+        pyodide.globals.base_url = window.location.href.replace(/[^/]+?$/, '');
 
-        console.log(await pyodide.runPythonAsync(python, { globals : pyodide.globals, locals : locals }));
+        console.log(await pyodide.runPythonAsync(python));
     };
 
     main();
