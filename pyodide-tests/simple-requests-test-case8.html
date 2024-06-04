@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.0/full/pyodide.js"></script>
+</head>
+<body>
+<h1>Test</h1>
+<p>Check browser console for output.</p>
+<script>
+    const python = `
+import js
+
+#import requests
+
+import urllib3
+
+import lxml
+
+from lxml import etree as ET
+
+url = base_url + 'foo-transform-module.xsl'
+
+js.console.log(urllib3.request('GET', url).status)
+
+class TestResolver(ET.Resolver):
+    def resolve(self, url, id, context):
+        print("Resolving URL '%s'" % url)
+        if url.startswith('http'):
+            return self.resolve_string(urllib3.request('GET', url).data, context, base_url=url)
+        else:
+            return False
+
+parser = ET.XMLParser(no_network=False)
+parser.resolvers.add(TestResolver())
+
+tree = ET.parse(url, parser)
+
+tree.getroot().tag
+  `;
+
+    async function main() {
+        let pyodide = await loadPyodide();
+
+        await pyodide.loadPackagesFromImports(python);
+
+        const locals = new Map();
+        locals.set('base_url', window.location.href.replace(/[^/]+?$/, ''));
+
+        console.log(await pyodide.runPythonAsync(python, { globals : pyodide.globals, locals : locals }));
+    };
+
+    main();
+</script>
+</body>
+</html>
