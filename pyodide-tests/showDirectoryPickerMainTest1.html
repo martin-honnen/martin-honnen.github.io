@@ -21,7 +21,7 @@
         'click',
         async () => {
             try {
-                let pyodide = loadPyodide();
+                let pyodide = await loadPyodide();
 
                 await pyodide.mountNativeFS('/native-fs-test1', dirHandle);
 
