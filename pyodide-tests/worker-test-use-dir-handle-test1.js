@@ -13,7 +13,7 @@ async function loadPyodideAndPackages() {
 
 self.onmessage = async (event) => {
     // make sure loading is done
-    await loadPyodideAndPackages;
+    await loadPyodideAndPackages();
 
     const { id, ...context } = event.data;
     
