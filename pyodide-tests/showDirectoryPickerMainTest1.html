@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Test</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.0/full/pyodide.js"></script>
+</head>
+<body>
+<input type="button" id="dir-picker-btn" value="pick directory">
+<input id="test-native-fs-btn" type="button" value="test native file system">
+<script>
+
+    var dirHandle = null;
+
+    document.getElementById('dir-picker-btn').addEventListener(
+        'click',
+        async() => {
+            dirHandle = await showDirectoryPicker({ mode : 'readwrite' });
+        }
+    )
+    document.getElementById('test-native-fs-btn').addEventListener(
+        'click',
+        async () => {
+            try {
+                let pyodide = loadPyodide();
+
+                await pyodide.mountNativeFS('/native-fs-test1', dirHandle);
+
+                pyodide.runPythonAsync(`
+import os
+print(os.listdir('/native-fs-test1'))
+`);
+            } catch (e) {
+                console.log(
+                    `Error in handler at ${e.filename}, Line: ${e.lineno}, ${e.message}`,
+                );
+
+            }
+        }
+    );
+</script>
+</body>
+</html>
