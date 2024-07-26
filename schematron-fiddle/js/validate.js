@@ -3,6 +3,7 @@ const doneTypingInterval = 1000;
 var autoValidate = false;
 
 const schxsltVersions = {
+  'schxslt-1.9.5' : 'schxslt/schxslt-1.19/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json',
   'schxslt-1.9.5' : 'schxslt/schxslt-1.9.5/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json',
   'schxslt2-1.1' : 'schxslt/schxslt2-1.1/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json',
   'schxslt2-1.0' : 'schxslt/schxslt2-1.0/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json'
@@ -18,7 +19,7 @@ function runAutoValidate() {
 
 function validateWithSchxslt(xml, schematron, resultEditor, schxsltVersion) {
   if (typeof schxsltVersion === 'undefined') {
-    schxsltVersion = 'schxslt-1.9.5';
+    schxsltVersion = 'schxslt-1.10';
   }
   let svrlResult = SaxonJS.transform(
       { 
