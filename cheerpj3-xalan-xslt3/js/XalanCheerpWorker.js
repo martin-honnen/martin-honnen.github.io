@@ -21,6 +21,7 @@ var TransformerFactoryClass = null;
 
 var TransformerFactory = null;
 
+var TransformerImpl = null;
 
 var StringReader = null;
 
@@ -69,6 +70,8 @@ var xalanInitialized = false;
   TransformerFactoryClass = await lib.javax.xml.transform.TransformerFactory;
   
   TransformerFactory = await TransformerFactoryClass.newInstance();
+
+  TransformerImpl = await org.apache.xalan.transformer.TransformerImpl;
   
   ErrorListenerImplementationClass = await lib.org.example.ErrorListenerHelper;
   
