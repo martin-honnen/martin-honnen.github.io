@@ -14,6 +14,9 @@ async function transform(input, xslt, inputType, inputUri, xsltUri, outputUri) {
       await TransformerFactory.setErrorListener(errorListenerHelper);
 
       transformer = await TransformerFactory.newTransformer(await new StreamSource(await new StringReader(xslt), xsltUri));
+
+      //const transformerImpl = await (TransformerImpl)transformer;
+      await transformer.setProperty(await TransformerImpl.XSL_EVALUATE_PROPERTY, true);
       
       errors = await getJavaScriptMessages(errorListenerHelper);
       
