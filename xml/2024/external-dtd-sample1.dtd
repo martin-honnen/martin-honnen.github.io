@@ -1,0 +1,7 @@
+<!ELEMENT tutorials (tutorial)+>
+<!ATTLIST tutorials type CDATA #REQUIRED>
+<!ELEMENT tutorial (name,url,author)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT url (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ENTITY writer "Site by Donald Duck">
