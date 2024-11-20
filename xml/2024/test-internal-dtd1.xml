@@ -1,0 +1,22 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE tutorials [
+<!ELEMENT tutorials (tutorial)+>
+<!ATTLIST tutorials type CDATA #REQUIRED>
+<!ELEMENT tutorial (name,url,author)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT url (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ENTITY writer "Site by Donald Duck">
+]>
+<tutorials type="web">
+  <tutorial>
+    <name>XML Tutorial</name>
+    <url>https://example.com/xml/tutorial</url>
+    <author>&writer;</author>
+  </tutorial>
+  <tutorial>
+    <name>HTML Tutorial</name>
+    <url>https://example.com/html/tutorial</url>
+    <author>&writer;</author>
+  </tutorial>
+</tutorials>
