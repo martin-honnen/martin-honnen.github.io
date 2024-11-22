@@ -72,7 +72,7 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
 
       var traces = await loggerWriter.toString();
 
-		  postMessage({ type : 'result', task: 'xquery',  results : [{ uri : '*** query result ***', content : stringResult}, { uri : '*** trace ***', content : traces}]});
+		  postMessage({ type : 'xquery-result', task: 'xquery',  results : [{ uri : '*** query result ***', content : stringResult}, { uri : '*** trace ***', content : traces}]});
 
 	  }
 	  catch (e) {
