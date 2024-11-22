@@ -54,6 +54,10 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
     try {
 		  var xquerySelector = await xqueryExecutable.load();
 
+      var loggerWriter = await new StringWriter;
+
+      await xquerySelector.setTraceFunctionDestination(await new SaxonLogger(loggerWriter));
+
 		  await xquerySelector.setContextItem(contextItem);
 
 		  var stringWriter = await new StringWriter;
@@ -66,7 +70,9 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
 
 		  var stringResult = await stringWriter.toString();
 
-		  postMessage({ type : 'result', task: 'xquery',  results : [stringResult] });
+      var traces = await loggerWriter.toString();
+
+		  postMessage({ type : 'result', task: 'xquery',  results : [{ uri : '*** query result ***', content : stringResult}, { uri : '*** trace ***', content : traces}]});
 
 	  }
 	  catch (e) {
