@@ -66,7 +66,7 @@
 	const saxonWorker = new Worker("js/SaxonHECheerpWorker.js");
 	
 	saxonWorker.onmessage = e => {
-	  if (e.data.type === 'XSLT-Results') {
+	  if (e.data.type === 'XSLT-Results' || e.data.type === 'xquery-result') {
 	    var results = e.data.results;
 		  renderXsltResults(results, document.querySelector('#results'));
 	  }
