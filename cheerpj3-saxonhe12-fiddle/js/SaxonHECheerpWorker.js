@@ -33,6 +33,8 @@ var JException = null;
 
 var SaxonApiException = null;
 
+var SaxonLogger = null;
+
 var saxonProcessor = null;
 
 var xsltCompiler = null;
@@ -75,6 +77,8 @@ var saxonInitialized = false;
   URI = await lib.java.net.URI;
   
   SaxonApiException = await lib.net.sf.saxon.s9api.SaxonApiException;
+
+  SaxonLogger = await lib.net.sf.saxon.lib.StandardLogger;
 
   saxonProcessor = await new SaxonProcessor(false);
   
