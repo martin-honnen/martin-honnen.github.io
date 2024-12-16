@@ -1,4 +1,4 @@
-importScripts("https://cjrtnc.leaningtech.com/3.0/cj3loader.js");//importScripts('https://cjrtnc.leaningtech.com/3.0rc2/cj3loader.js');
+importScripts("https://cjrtnc.leaningtech.com/3_20241213_572/cj3loader.js");//importScripts("https://cjrtnc.leaningtech.com/3.0/cj3loader.js");//importScripts('https://cjrtnc.leaningtech.com/3.0rc2/cj3loader.js');
 
 var filetypes = {
   '.htm': 'html',
