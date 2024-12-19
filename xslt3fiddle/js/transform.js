@@ -1,3 +1,7 @@
+var inputBaseURI = 'urn:from-string';
+
+var xsltBaseURI = 'urn:from-string';
+
 function transform(input, xslt, inputType, resultsSelect) {
 
   var transformationResult, responseData;
@@ -5,35 +9,38 @@ function transform(input, xslt, inputType, resultsSelect) {
   try {
     if (inputType === 'XML') {
       transformationResult = SaxonJS.XPath.evaluate(
-        "transform(map {'stylesheet-text': $stylesheet-text , 'source-node' : parse-xml($source-text), 'delivery-format' : 'serialized' })",
+        "transform(map {'stylesheet-text': $stylesheet-text , 'source-node' : parse-xml($source-text), 'delivery-format' : 'serialized', 'stylesheet-base-uri' : $stylesheet-base-uri })",
         [],
         {
           params: {
             'stylesheet-text': xslt,
-            'source-text': input
+            'source-text': input,
+            'stylesheet-base-uri' : xsltBaseURI
           }
         }
       );
     }
     else if (inputType === 'JSON') {
       transformationResult = SaxonJS.XPath.evaluate(
-        "let $json-input := parse-json($json-input-string) return transform(map {'stylesheet-text': $stylesheet-text , 'global-context-item' : $json-input, 'initial-match-selection' : $json-input, 'delivery-format' : 'serialized' })",
+        "let $json-input := parse-json($json-input-string) return transform(map {'stylesheet-text': $stylesheet-text , 'global-context-item' : $json-input, 'initial-match-selection' : $json-input, 'delivery-format' : 'serialized', 'stylesheet-base-uri' : $stylesheet-base-uri })",
         [],
         {
           params: {
             'stylesheet-text': xslt,
-            'json-input-string': input
+            'json-input-string': input,
+            'stylesheet-base-uri' : xsltBaseURI
           }
         }
       );
     }
     else if (inputType === 'TEXT') {
       transformationResult = SaxonJS.XPath.evaluate(
-        "transform(map {'stylesheet-text': $stylesheet-text , 'global-context-item' : ., 'initial-match-selection' : ., 'delivery-format' : 'serialized' })",
+        "transform(map {'stylesheet-text': $stylesheet-text , 'global-context-item' : ., 'initial-match-selection' : ., 'delivery-format' : 'serialized', 'stylesheet-base-uri' : $stylesheet-base-uri })",
         SaxonJS.atom(input),
         {
           params: {
-            'stylesheet-text': xslt
+            'stylesheet-text': xslt,
+            'stylesheet-base-uri' : xsltBaseURI
           }
         }
       );
@@ -41,22 +48,24 @@ function transform(input, xslt, inputType, resultsSelect) {
     else if (inputType === 'HTML') {
       var htmlDoc = new DOMParser().parseFromString(input, 'text/html');
       transformationResult = SaxonJS.XPath.evaluate(
-        "transform(map {'stylesheet-text': $stylesheet-text , 'source-node' : ., 'delivery-format' : 'serialized' })",
+        "transform(map {'stylesheet-text': $stylesheet-text , 'source-node' : ., 'delivery-format' : 'serialized', 'stylesheet-base-uri' : $stylesheet-base-uri })",
         htmlDoc,
         {
           params: {
-            'stylesheet-text': xslt
+            'stylesheet-text': xslt,
+            'stylesheet-base-uri' : xsltBaseURI
           }
         }
       );
     }
     else if (inputType === 'None') {
       transformationResult = SaxonJS.XPath.evaluate(
-        "transform(map {'stylesheet-text': $stylesheet-text, 'delivery-format' : 'serialized' })",
+        "transform(map {'stylesheet-text': $stylesheet-text, 'delivery-format' : 'serialized', 'stylesheet-base-uri' : $stylesheet-base-uri })",
         [],
         {
           params: {
             'stylesheet-text': xslt,
+            'stylesheet-base-uri' : xsltBaseURI
           }
         }
       );
