@@ -20,22 +20,28 @@ var inputType = null;
 function initFilesFromGist(xsltFileName, inputFileName) {
    if (currentGist != null) {
      let files = Object.values(currentGist.data.files);
-     if (currentGist.data.files[xsltFileName])
+     if (currentGist.data.files[xsltFileName]) {
        xsltCode = currentGist.data.files[xsltFileName].content;
+       xsltBaseURI = currentGist.data.files[xsltFileName].raw_url;
+     }
      else {
        let firstXsltFile = files.find(file => file.language === 'XSLT');
-       if (firstXsltFile)
+       if (firstXsltFile) {
          xsltCode = firstXsltFile.content;
+         xsltBaseURI = firstXsltFile.raw_url
+       }
      }
      if (currentGist.data.files[inputFileName]) {
        inputCode = currentGist.data.files[inputFileName].content;
        inputType = currentGist.data.files[inputFileName].language;
+       inputBaseURI = currentGist.data.files[inputFileName].raw_url;
      }
      else {
        let firstInputFile = files.find(file => file.language === 'XML' || file.language === 'JSON');
        if (firstInputFile) {
          inputCode = firstInputFile.content;
          inputType = firstInputFile.language;
+         inputBaseURI = firstInputFile.raw_url;
        }
        else {
          inputCode = '';
