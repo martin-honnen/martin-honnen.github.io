@@ -52,7 +52,7 @@ function initFilesFromGist(xsltFileName, inputFileName) {
 }
 
 async function getGist(gistId, xsltFileName, inputFileName) {
-    const result = await request('GET /gists/{gist_id}', {
+    const result = await request(`GET /gists/${gistId}`, {
       gist_id: gistId,
       headers: {
         'X-GitHub-Api-Version': '2022-11-28'
