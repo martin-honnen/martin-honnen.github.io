@@ -132,7 +132,7 @@ async function load(location) {
     const inputType = searchParams.get('input-type');
     const codeType = searchParams.get('code-type');
 
-    currentGist = await getGist(gistId, codeFileName, inputFileName), codeType, inputType);
+    currentGist = await getGist(gistId, codeFileName, inputFileName, codeType, inputType);
   }
 
     setDocument(codeEditor, code, 'xml');
