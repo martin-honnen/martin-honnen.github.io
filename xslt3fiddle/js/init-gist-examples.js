@@ -91,13 +91,15 @@ async function loadDefaults() {
 }
 
 
-function save(form) {
+export function save(form) {
   history.pushState(null, null, '?' + new URLSearchParams(
     {
       gistId: document.getElementById('gistId').value,
       xslt: xsltEditor.session.getValue(),
       input: inputEditor.session.getValue(),
-      'input-type': form.elements['input-type'].value
+      'input-type': form.elements['input-type'].value,
+      xsltFile: document.getElementById('xsltFile').value,
+      inputFile: document.getElementById('inputFile').value
     }
   ).toString());
 }
