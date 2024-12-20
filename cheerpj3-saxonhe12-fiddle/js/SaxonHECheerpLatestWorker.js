@@ -112,12 +112,12 @@ onmessage = async (e) => {
   var task = e.data.task;
   var data = e.data.data;
   if (task === 'transform') {
-    await transform(data.input, data.code, data.inputType, codeBaseURI, inputBaseURI);
+    await transform(data.input, data.code, data.inputType, data.codeBaseURI, data.inputBaseURI);
   }
   else if (task === 'xquery') {
-	  await xquery(data.input, data.code, data.inputType, codeBaseURI, inputBaseURI);  
+	  await xquery(data.input, data.code, data.inputType, data.codeBaseURI, data.inputBaseURI);  
   }
   else if (task === 'xpath') {
-	  await xpath(data.input, data.code, data.inputType, codeBaseURI, inputBaseURI);  
+	  await xpath(data.input, data.code, data.inputType, data.codeBaseURI, data.inputBaseURI);  
   }
 }
