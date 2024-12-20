@@ -124,13 +124,25 @@
 		<label>auto-evaluation <input type="checkbox" id="auto-evaluate"></label>
         <input type="button" id="transform" value="XSLT transformation" accesskey="t"
                onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
-                            transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, document.getElementById('results'));">
+                        var codeFileName = document.getElementById('codeFile').value;
+                        var inputFileName = document.getElementById('inputFile').value;
+                        var inputBaseURI = inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
+                        var codeBaseURI = codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
+                        transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));">
         <input type="button" id="xquery" value="XQuery" accesskey="q"
                onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
-                            xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, document.getElementById('results'));">
+                        var codeFileName = document.getElementById('codeFile').value;
+                        var inputFileName = document.getElementById('inputFile').value;
+                        var inputBaseURI = inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
+                        var codeBaseURI = codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
+                        xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));">
         <input type="button" id="xpath" value="XPath" accesskey="a"
                onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
-                            xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, document.getElementById('results'));">
+                        var codeFileName = document.getElementById('codeFile').value;
+                        var inputFileName = document.getElementById('inputFile').value;
+                        var inputBaseURI = inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
+                        var codeBaseURI = codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
+                        xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));">
          <!--<input type="button" id="xsd" value="XSD" accesskey="V" title="validate XML against XSD schema"
                onclick="validate(inputEditor.session.getValue(), codeEditor.session.getValue(), document.getElementById('results'));">-->
         <input type="button" id="save" value="save as URL" accesskey="s">
