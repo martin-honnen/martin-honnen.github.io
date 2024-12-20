@@ -75,7 +75,7 @@ document.addEventListener(
     'click',
     async () => {
       await getGist(document.getElementById('gistId').value, document.getElementById('codeFile').value, document.getElementById('inputFile').value, document.getElementById('input-type-form').elements['code-type'].value, document.getElementById('input-type-form').elements['input-type'].value);
-      setDocument(codeEditor, code, codeTRype.toLowerCase());
+      setDocument(codeEditor, code, codeType.toLowerCase());
       setDocument(inputEditor, inputCode, inputType === 'JSON' ? 'json' : inputType === 'HTML' ? 'html' : 'xml');
 
       document.getElementById('input-type-form').elements['input-type'].value = inputType;      
