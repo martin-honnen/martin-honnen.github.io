@@ -1,9 +1,9 @@
-function transform(input, xslt, inputType, resultsSelect) {
+function transform(input, xslt, inputType, xsltBaseURI, inputBaseURI, resultsSelect) {
 
   if (!autoEvaluation)
 	  setDocument(resultEditor, "Processing your XSLT...", "text");
 
-  saxonWorker.postMessage({ task: 'transform', data : { input : input, code: xslt, inputType: inputType }});
+  saxonWorker.postMessage({ task: 'transform', data : { input : input, code: xslt, inputType: inputType, xsltBaseURI: xsltBaseURI, inputBaseURI: inputBaseURI }});
 /*   if (saxonInitialized) {
 	  try {
 		  var contextItem = null;
