@@ -110,6 +110,7 @@ export function save(form) {
       code: codeEditor.session.getValue(),
       input: inputEditor.session.getValue(),
       'input-type': form.elements['input-type'].value,
+      'code-type': form.elements['code-type'].value,
       codeFile: document.getElementById('codeFile').value,
       inputFile: document.getElementById('inputFile').value
     }
@@ -129,8 +130,9 @@ async function load(location) {
     const codeFileName = searchParams.get('codeFile');
     document.getElementById('codeFile').value = codeFileName;
     const inputType = searchParams.get('input-type');
+    const codeType = searchParams.get('code-type');
 
-    currentGist = await getGist(gistId, codeFileName, inputFileName);
+    currentGist = await getGist(gistId, codeFileName, inputFileName), codeType, inputType);
   }
 
     setDocument(codeEditor, code, 'xml');
