@@ -21,8 +21,8 @@
 		var codeType = document.getElementById('input-types').form['code-type'].value;
     var codeFileName = document.getElementById('codeFile').value;
     var inputFileName = document.getElementById('inputFile').value;
-    var inputBaseURI = inputFileName != '' && gistId != null ? new URL('../' + inputFileName, gistBaseURI) : 'urn:from-string';
-    var codeBaseURI = codeFileName != '' && gistId != null ? new URL('../' + codeFileName, gistBaseURI) : 'urn:from-string';
+    var inputBaseURI = inputFileName != '' && gistId != null ? new URL('../' + inputFileName, gistBaseURI).href : 'urn:from-string';
+    var codeBaseURI = codeFileName != '' && gistId != null ? new URL('../' + codeFileName, gistBaseURI).href : 'urn:from-string';
 		if (codeType === 'XSLT')
 		  transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));
 		else if (codeType === 'XQuery')
