@@ -35,8 +35,7 @@
             <input type="button" id="transform" value="transform" accesskey="t"
                    onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
                             transform(inputType !== 'None' ? inputEditor.session.getValue() : null, xsltEditor.session.getValue(), inputType, document.getElementById('results'));">
-            <input type="button" id="save" value="save as URL" accesskey="s"
-                   onclick="save(document.getElementById('input-type-form'));">
+            <input type="button" id="save" value="save as URL" accesskey="s">
             <input type="button" id="printResult" value="print result" onclick="var rf = window.frames['current-result-frame']; rf.print();">
         </nav>
     </header>
