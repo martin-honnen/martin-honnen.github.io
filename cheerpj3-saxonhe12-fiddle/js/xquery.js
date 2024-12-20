@@ -1,9 +1,9 @@
-function xquery(input, xquery, inputType, resultsSelect) {
+function xquery(input, xquery, inputType,codeBaseURI, inputBaseURI, resultsSelect) {
 
   if (!autoEvaluation)
     setDocument(resultEditor, "Processing your XQuery...", "text");
   
-  saxonWorker.postMessage({ task: 'xquery', data : { input : input, code: xquery, inputType: inputType }});
+  saxonWorker.postMessage({ task: 'xquery', data : { input : input, code: xquery, inputType: inputType, xqueryBaseURI: codeBaseURI, inputBaseURI: inputBaseURI }});
     
 }
 
