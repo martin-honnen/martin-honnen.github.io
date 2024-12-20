@@ -28,6 +28,7 @@ function initFilesFromGist(codeFileName, inputFileName, codeFileType, inputFileT
      let files = Object.values(currentGist.data.files);
      if (currentGist.data.files[codeFileName]) {
        code = currentGist.data.files[codeFileName].content;
+       codeType = currentGist.data.files[codeFileName].language;
        codeBaseURI = new URL('../' + codeFileName, currentGist.data.files[codeFileName].raw_url).href;
        gistBaseURI = new URL('..', currentGist.data.files[codeFileName].raw_url).href;
      }
@@ -35,6 +36,7 @@ function initFilesFromGist(codeFileName, inputFileName, codeFileType, inputFileT
        let firstCodeFile = files.find(file => file.language === codeFileType);
        if (firstCodeFile) {
          code = firstCodeFile.content;
+         codeType = firstCodeFile.language;
          codeBaseURI = new URL('../' + firstCodeFile.filename, firstCodeFile.raw_url).href;
          gistBaseURI = new URL('..', firstCodeFile.raw_url).href;
        }
