@@ -29,12 +29,14 @@ function initFilesFromGist(codeFileName, inputFileName, codeFileType, inputFileT
      if (currentGist.data.files[codeFileName]) {
        code = currentGist.data.files[codeFileName].content;
        codeBaseURI = new URL('../' + codeFileName, currentGist.data.files[codeFileName].raw_url).href;
+       gistBaseURI = new URL('..', currentGist.data.files[codeFileName].raw_url).href;
      }
      else {
        let firstCodeFile = files.find(file => file.language === codeFileType);
        if (firstCodeFile) {
          code = firstCodeFile.content;
          codeBaseURI = new URL('../' + firstCodeFile.filename, firstCodeFile.raw_url).href;
+         gistBaseURI = new URL('..', firstCodeFile.raw_url).href;
        }
      }
      if (currentGist.data.files[inputFileName]) {
@@ -65,6 +67,8 @@ async function getGist(gistId, codeFileName, inputFileName, codeFileType, inputF
       }
     });
     currentGist = result;
+    window.gistId = gistId,
+    
     initFilesFromGist(codeFileName, inputFileName, codeFileType, inputFileType);
 }
 
