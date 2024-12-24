@@ -104,9 +104,9 @@ async function loadDefaults() {
   document.getElementById('gistId').value = sampleDefaults.gistId;
   document.getElementById('codeFile').value = sampleDefaults.code;
   document.getElementById('inputFile').value = sampleDefaults.input;
-  document.getElementById('input-type-form').elements['code-type'].value = sampleDefault.codeType;
-  document.getElementById('input-type-form').elements['input-type'].value = sampleDefault.inputType;
-  await getGist(sampleDefaults.gistId, sampleDefaults.code, sampleDefaults.input, sampleDefault.codeType, sampleDefault.inputType);
+  document.getElementById('input-type-form').elements['code-type'].value = sampleDefaults.codeType;
+  document.getElementById('input-type-form').elements['input-type'].value = sampleDefaults.inputType;
+  await getGist(sampleDefaults.gistId, sampleDefaults.code, sampleDefaults.input, sampleDefaults.codeType, sampleDefaults.inputType);
 }
 
 
