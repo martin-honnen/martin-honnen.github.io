@@ -121,7 +121,7 @@ export function save(form) {
 
 async function load(location) {
   if (!location.search) {
-    await getGist(sampleDefaults.gistId, sampleDefaults.code, sampleDefaults.input, 'XSLT');
+    awaitloadDefaults(); //getGist(sampleDefaults.gistId, sampleDefaults.code, sampleDefaults.input, 'XSLT');
   }
   var searchParams = new URL(location).searchParams;
   if (searchParams.has("gistId")) {
