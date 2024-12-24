@@ -99,6 +99,7 @@ const sampleDefaults = {
 async function loadDefaults() {
   //setEditorFromUrl('examples/defaults/default.xml', inputEditor);
   //setEditorFromUrl('examples/defaults/default.xsl', xsltEditor);
+  document.getElementById('gistId').value = sampleDefaults.gistId;
   document.getElementById('codeFile').value = sampleDefaults.code;
   document.getElementById('inputFile').value = sampleDefaults.input;
   await getGist(sampleDefaults.gistId, sampleDefaults.code, sampleDefaults.input, 'XSLT', 'XML');
@@ -121,7 +122,7 @@ export function save(form) {
 
 async function load(location) {
   if (!location.search) {
-    awaitloadDefaults(); //getGist(sampleDefaults.gistId, sampleDefaults.code, sampleDefaults.input, 'XSLT');
+    await loadDefaults(); //getGist(sampleDefaults.gistId, sampleDefaults.code, sampleDefaults.input, 'XSLT');
   }
   var searchParams = new URL(location).searchParams;
   if (searchParams.has("gistId")) {
