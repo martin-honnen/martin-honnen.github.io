@@ -37,6 +37,7 @@ async function xpath(input, xpathCode, inputType, inputUri, xpathUri) {
 	  }	
     
     try {
+      await xpathProcessor.setBaseURI(await new URI(xpathUri));
       var xpathResult = await xpathProcessor.evaluate(xpathCode, contextItem);   
       
       var stringResult = await xpathResult.toString();
