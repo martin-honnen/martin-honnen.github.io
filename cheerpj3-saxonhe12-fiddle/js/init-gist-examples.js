@@ -99,6 +99,8 @@ const sampleDefaults = {
 async function loadDefaults() {
   //setEditorFromUrl('examples/defaults/default.xml', inputEditor);
   //setEditorFromUrl('examples/defaults/default.xsl', xsltEditor);
+  document.getElementById('codeFile').value = sampleDefaults.code;
+  document.getElementById('inputFile').value = sampleDefaults.input;
   await getGist(sampleDefaults.gistId, sampleDefaults.code, sampleDefaults.input, 'XSLT', 'XML');
 }
 
