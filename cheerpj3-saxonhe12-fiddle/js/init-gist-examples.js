@@ -145,6 +145,7 @@ async function load(location) {
     setDocument(codeEditor, code, 'xml');
     setDocument(inputEditor, inputCode, inputType === 'JSON' ? 'json' : inputType === 'HTML' ? 'html' : 'xml');
 
+    document.getElementById('input-type-form').elements['code-type'].value = codeType;
     document.getElementById('input-type-form').elements['input-type'].value = inputType;
 }
   //else {
