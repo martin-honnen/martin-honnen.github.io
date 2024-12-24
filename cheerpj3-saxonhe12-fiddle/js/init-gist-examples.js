@@ -93,7 +93,9 @@ document.addEventListener(
 const sampleDefaults = {
   gistId : '5564ed0897a7e28bd974a96a562fe886',
   code: 'resolve-uri-test1.xsl',
-  input: 'sample1.xml'
+  codeType: 'XSLT',
+  input: 'sample1.xml',
+  inputType: 'XML'
 };
 
 async function loadDefaults() {
@@ -102,7 +104,9 @@ async function loadDefaults() {
   document.getElementById('gistId').value = sampleDefaults.gistId;
   document.getElementById('codeFile').value = sampleDefaults.code;
   document.getElementById('inputFile').value = sampleDefaults.input;
-  await getGist(sampleDefaults.gistId, sampleDefaults.code, sampleDefaults.input, 'XSLT', 'XML');
+  document.getElementById('input-type-form').elements['code-type'].value = sampleDefault.codeType;
+  document.getElementById('input-type-form').elements['input-type'].value = sampleDefault.inputType;
+  await getGist(sampleDefaults.gistId, sampleDefaults.code, sampleDefaults.input, sampleDefault.codeType, sampleDefault.inputType);
 }
 
 
