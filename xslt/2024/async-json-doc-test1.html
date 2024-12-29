@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang=en>
+<head>
+  <title>SaxonJS 3 async test</title>
+  <script src="/SaxonJS-3.0.0-beta1/SaxonJS3.js"></script>
+  <script>
+    document.addEventListener(
+      'DOMContentLoaded',
+      () => {
+        SaxonJS.transform(
+          {
+            stylesheetLocation : '/xslt/2024/async-json-doc-test2.xsl.sef.json',
+            sourceLocation : '/xslt/2024/books.xml'
+          }
+        );
+      }
+    );
+  </script>
+</head>
+<body>
+  <section>
+    <h1>SaxonJS 3 async test</h1>
+    <section>
+      <h2>normal result doc</h2>
+      <div id=result1></div>
+    </section>
+    <section>
+      <h2>async result doc</h2>
+      <div id=async-result1></div>
+    </section>
+  </section>
+</body>
+</html>
