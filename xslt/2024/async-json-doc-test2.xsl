@@ -11,6 +11,7 @@
   <xsl:function name="mf:result-doc-test1" ixsl:updating="true">
     <xsl:result-document href="#result1">
       <div>
+        <xsl:text>Run with {system-property('xsl:product-name')} {system-property('xsl:product-version')} {system-property('Q{http://saxon.sf.net/}platform')}</xsl:text>
         <xsl:comment>Run with {system-property('xsl:product-name')} {system-property('xsl:product-version')} {system-property('Q{http://saxon.sf.net/}platform')}</xsl:comment>      
       </div>
     </xsl:result-document>
