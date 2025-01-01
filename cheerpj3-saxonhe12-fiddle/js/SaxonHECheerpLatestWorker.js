@@ -15,6 +15,14 @@ var filetypes = {
   '.text' : 'text'
 };
 
+const predefinedNamespaces = {
+  'map' : 'http://www.w3.org/2005/xpath-functions/map',
+  'array' : 'http://www.w3.org/2005/xpath-functions/array',
+  'math' : 'http://www.w3.org/2005/xpath-functions/math',
+  'err' : 'http://www.w3.org/2005/xqt-errors',
+  'xs' : 'http://www.w3.org/2001/XMLSchema'
+};
+
 var lib = null;
 
 var SaxonProcessor = null;
@@ -85,6 +93,10 @@ var saxonInitialized = false;
   await SaxonHelpers.setProcessor(saxonProcessor);
 
   xpathProcessor = await saxonProcessor.newXPathCompiler();
+
+  for (const [prefix, namespace] of Object.entries(predefinedNamespaces)) {
+    await xpathProcessor.declareNamespace(prefix, namespace);
+  }
 
   docBuilder = await saxonProcessor.newDocumentBuilder();
 
