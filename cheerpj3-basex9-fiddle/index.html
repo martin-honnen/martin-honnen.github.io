@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CheerpJ 3 BaseX 9 XQuery 3.1 fiddle</title>
+
+  <link rel="stylesheet" href="css/ace-fiddle.css">
+
+	<script>
+  var gistId = null;
+  var gistBaseURI = null;
+    
+  var doneTypingInterval = 1000;
+  var typingTimeout;
+
+  var autoEvaluation = false;
+
+	function evaluate() {
+		var inputType = document.getElementById('input-types').form['input-type'].value;
+		var codeType = 'XQuery'; //document.getElementById('input-types').form['code-type'].value;
+    var codeFileInput = document.getElementById('codeFile');
+    var codeFileName = codeFileInput != null ? codeFileInput.value : '';
+    var inputFileInput = document.getElementById('inputFile');
+    var inputFileName = inputFileInput != null ? inputFileInput.value : '';
+    var inputBaseURI = inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
+    var codeBaseURI = codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
+		if (codeType === 'XQuery')
+		  xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType,  codeBaseURI, inputBaseURI, document.getElementById('results'));
+	}
+
+  function wait(time) {
+	  return new Promise(res => setTimeout(res, time));
+	}
+	
+	function autoEvaluate() {
+		typingTimeout = autoEvaluation ? setTimeout(evaluate, doneTypingInterval) : 0;//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
+	}
+	
+  function renderXsltResults(results, resultsSelect) {
+
+    resultsSelect.length = 0;
+
+    results.forEach((result, index) => {
+      resultsSelect.appendChild(new Option(result.uri, result.uri));
+      if (index === 0) {
+        writeResult(window.frames['current-result-frame'], result.content);
+      }
+    });
+
+    resultsSelect.onchange = function (evt) {
+      var selectedResult = results[this.selectedIndex];
+      setDocument(resultEditor, selectedResult.content, selectedResult.method);
+
+      if (document.getElementById('render-box').checked) {
+        writeResult(window.frames['current-result-frame'], results[this.selectedIndex].content);
+      }
+    };
+
+    setDocument(resultEditor, results[0].content, results[0].method);
+
+  }
+
+	function renderResults(results, resultsSelect) {
+    resultsSelect.length = 0;
+    var principalResult = results[0];
+    setDocument(resultEditor, principalResult, 'xml');
+    writeResult(window.frames['current-result-frame'], principalResult);	
+	}	
+  
+	const saxonWorker = new Worker("js/BaseXCheerpWorker.js");
+	
+	saxonWorker.onmessage = e => {
+	  if (e.data.type === 'xquery-result') {
+	    var results = e.data.results;
+		  renderXsltResults(results, document.querySelector('#results'));
+	  }
+    else if (e.data.type === 'result') {
+      var results = e.data.results;
+      renderResults(results, document.querySelector('#results'));      
+    }
+	  else if (e.data.type === 'message' && e.data.message === 'hide') {
+	    document.getElementById(e.data.id).style.display = 'none';
+	  }
+	  else {
+	    setDocument(resultEditor, e.data.message, 'text');
+	  }  
+	}
+	
+	document.addEventListener('DOMContentLoaded', autoEvaluate, false);
+	</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.4/ace.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.4/mode-xml.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.4/mode-html.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.4/mode-json.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.4/mode-xquery.js"></script>
+</head>
+<body class="container">
+<header>
+    <nav class="grid-row button-bar">
+        <h2>BaseX 9 XQuery fiddle</h2>
+        <form id="input-type-form" onsubmit="return false;">
+            <fieldset id="input-types">
+                <legend>input type</legend>
+                <label><input type="radio" name="input-type" value="XML" checked>XML</label>
+                <label><input type="radio" name="input-type" value="JSON">JSON</label>
+                <label><input type="radio" name="input-type" value="None">No input</label>
+            </fieldset>
+        </form>
+		<label>auto-evaluation <input type="checkbox" id="auto-evaluate"></label>
+        <input type="button" id="xquery" value="XQuery" accesskey="q"
+               onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
+		                    var codeType = 'XQuery'; //document.getElementById('input-types').form['code-type'].value;
+                        var codeFileInput = document.getElementById('codeFile');
+                        var codeFileName = codeFileInput != null ? codeFileInput.value : '';
+                        var inputFileInput = document.getElementById('inputFile');
+                        var inputFileName = inputFileInput != null ? inputFileInput.value : '';
+                        var inputBaseURI = inputFileName != '' && gistId != null ? new window.URL(inputFileName, gistBaseURI).href : 'urn:from-string';
+                        var codeBaseURI = codeFileName != '' && gistId != null ? new window.URL(codeFileName, gistBaseURI).href : 'urn:from-string';
+                        xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));">
+
+        <input type="button" id="save" value="save as URL" accesskey="s"
+               onclick="save(document.getElementById('input-type-form'));">
+    </nav>
+</header>
+<div id="cheerpj3-load-indicator" style="color: red; font-weight: bolder; text-align: center;">CheerpJ 3 is not (yet) initialized.</div>
+<div id="basex-load-indicator" style="color: red; font-weight: bolder; text-align: center;">BaseX is not (yet) initialized.</div>
+<div class="view-container">
+
+    <main role="main" class="pb-3 view-container">
+
+        <section class="grid-row">
+            <div id="input-col" class="grid-item">
+                <div id="input-editor" class="editor"></div>
+                <input type="button" id="load-input" value="load" onclick="document.getElementById('load-input-file').click();">
+                <input type="file" id="load-input-file" onchange="this.files[0].text().then(t => inputEditor.session.setValue(t));" accept=".xml,.json,text/xml,application/xml,application/json">
+            </div>
+            <div class="grid-item">
+                <div id="code-editor" class="editor"></div>
+                <input type="button" id="load-code" value="load" onclick="document.getElementById('load-code-file').click();">
+                <input type="file" id="load-code-file" onchange="this.files[0].text().then(t => codeEditor.session.setValue(t));" accept=".xq,.xquery,.xpm,application/xquery">
+            </div>
+        </section>
+        <section class="grid-row button-bar">
+            <label>
+                Result documents:
+                <select name="results" id="results"></select>
+            </label>
+            <label id="render-result">
+                render result
+                <input type="checkbox" id="render-box" name="render-box" checked>
+            </label>
+        </section>
+        <section class="grid-row">
+            <div class="grid-item">
+                <div id="result-editor" class="editor"></div>
+                <a id="save-result" onclick="var blob = new Blob([resultEditor.session.getValue()], { type: 'text/html' }); this.download = document.getElementById('results').value; this.href = window.URL.createObjectURL(blob);">save</a>
+            </div>
+            <div id="result-frame-container" class="grid-item">
+                <iframe id="current-result-frame" name="current-result-frame" src="about:blank" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+
+<script src="js/frame-write.js"></script>
+<script src="js/ace-modes.js"></script>
+<script src="js/xquery.js"></script>
+<script src="js/ace-editors-init.js"></script>
+<script src="js/event-listeners-init.js"></script>
+<script src="js/init-examples.js"></script>
+<!--<script src="js/validate.js"></script>-->
+
+
+</body>
+</html>
