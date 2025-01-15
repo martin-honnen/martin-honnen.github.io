@@ -25,11 +25,17 @@ var QueryException = null;
 
 var Value = null;
 
+var Iter = null;
+
+var Serializer = null;
+
 var StringReader = null;
 
 var StringWriter = null;
 
 var StreamSource = null;
+
+var ByteArrayOutputStream = null;
 
 var URI = null;
 
@@ -63,6 +69,12 @@ var queryProcessor = null;
   QueryException = await lib.org.basex.query.QueryException;
 
   Value = await lib.org.basex.query.value.Value;
+
+  ByteArrayOutputStream = await lib.java.io.ByteArrayOutputStream;
+
+  Iter = await lib.org.basex.query.iter.Iter;
+  
+  Serializer = await lib.org.basex.io.serial.Serializer;
   
   StringReader = await lib.java.io.StringReader;
 
