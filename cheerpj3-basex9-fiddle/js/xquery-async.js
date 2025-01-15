@@ -36,7 +36,7 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
         item = await iter.next();
       }
 
-		  postMessage({ type : 'xquery-result', task: 'xquery',  results : [{ uri : '*** query result ***', content : await os.toString(), method: 'xml'}]});
+		  postMessage({ type : 'xquery-result', task: 'xquery',  results : [{ uri : '*** query result ***', content : await os.toString('utf8'), method: 'xml'}]});
 
 	  }
 	  catch (e) {
