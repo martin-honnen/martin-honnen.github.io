@@ -7,7 +7,14 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
     
 
     try {
-		  queryProcessor = await new QueryProcessor(xquery, context);
+      if (inputType === 'None')
+		    queryProcessor = await new QueryProcessor(xquery, context);
+      else if (inputType === 'XML')
+        queryProcessor = await new QueryProcessor('declare context item external; ' + xquery, context);
+        await queryProcessor.context(input);
+      else if (inputType === 'JSON')
+        queryProcessor = await new QueryProcessor('declare context item external; ' + xquery, context);
+        await queryProcessor.context(input);
 
       var result = await queryProcessor.value();
 
