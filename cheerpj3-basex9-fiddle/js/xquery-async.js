@@ -7,16 +7,18 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
     
 
     try {
-      if (inputType === 'None') {
-		    queryProcessor = await new QueryProcessor(xquery, context);
-      }
-      else if (inputType === 'XML') {
-        queryProcessor = await new QueryProcessor('declare context item external; ' + xquery, context);
-        await queryProcessor.context(input);
+      queryProcessor = await new QueryProcessor(xquery, context);
+      if (inputType === 'XML') {
+        var xmlParser = await new XQueryProcessor('parse-xml(.)', context);
+        await xmlParser.context(input);
+        var xmlInput = await xmlParser.value();		    
+        await queryProcessor.context(xmlInput);
       }
       else if (inputType === 'JSON') {
-        queryProcessor = await new QueryProcessor('declare context item external; ' + xquery, context);
-        await queryProcessor.context(input);
+        var jsonParser = await new XQueryProcessor('parse-json(.)', context);
+        await jsonParser.context(input);
+        var jsonInput = await jsonParser.value();		    
+        await queryProcessor.context(jsonInput);
       }
 
       var result = await queryProcessor.value();
