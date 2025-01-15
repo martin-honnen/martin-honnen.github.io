@@ -13,6 +13,8 @@
           <li>optional automatic evaluation of XQuery as CheerpJ 3 also allows to run Java code (e.g. BaseX) from a web worker</li>
         </ul>
       </section>
+      <p>BaseX 9 is Copyright (c) 2005-22 BaseX Team and used under <a href="https://github.com/BaseXdb/basex/blob/9.7.4/LICENSE">The BSD 3-Clause License</a>.</p>
+      <p>CheerpJ 3 is used under <a href="https://cheerpj.com/docs/licensing">the community license</a> that is free to use for personal projects.</p>
     </section>
   </body>
 </html>
