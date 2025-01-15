@@ -27,7 +27,7 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
 	  catch (e) {
  		  console.log('Error evaluating XQuery');
       if (e instanceof QueryException) {
-        postMessage({ type: 'error', message: 'Error evaluating XQuery: ' + await e.getMessage() + ' (Line ' + await e.getLineNumber() + ')' });
+        postMessage({ type: 'error', message: 'Error evaluating XQuery: ' + await e.getMessage() + ' (Line ' + await e.line() + ':' + await e.column() + ')' });
         await e.printStackTrace();
       }
       else if (e instanceof JException) {
