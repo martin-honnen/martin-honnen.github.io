@@ -21,9 +21,22 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
         await queryProcessor.context(jsonInput);
       }
 
-      var result = await queryProcessor.value();
+      //var result = await queryProcessor.value();
 
-		  postMessage({ type : 'xquery-result', task: 'xquery',  results : [{ uri : '*** query result ***', content : await result.toString(), method: 'xml'}]});
+      var os = await new ByteArrayOutputStream();
+
+      var iter = await queryProcessor.iter();
+      
+      var serializer = await queryProcessor.getSerializer(os);
+
+      var item = iter.next();
+
+      while (item != null) {
+        await serializer.serialize(item);
+        await item = iter.next();
+      }
+
+		  postMessage({ type : 'xquery-result', task: 'xquery',  results : [{ uri : '*** query result ***', content : await os.toString(), method: 'xml'}]});
 
 	  }
 	  catch (e) {
