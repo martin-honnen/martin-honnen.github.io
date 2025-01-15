@@ -9,13 +9,13 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
     try {
       queryProcessor = await new QueryProcessor(xquery, context);
       if (inputType === 'XML') {
-        var xmlParser = await new XQueryProcessor('parse-xml(.)', context);
+        var xmlParser = await new QueryProcessor('parse-xml(.)', context);
         await xmlParser.context(input);
         var xmlInput = await xmlParser.value();		    
         await queryProcessor.context(xmlInput);
       }
       else if (inputType === 'JSON') {
-        var jsonParser = await new XQueryProcessor('parse-json(.)', context);
+        var jsonParser = await new QueryProcessor('parse-json(.)', context);
         await jsonParser.context(input);
         var jsonInput = await jsonParser.value();		    
         await queryProcessor.context(jsonInput);
