@@ -12,7 +12,7 @@ inputEditor.session.on('change', autoEvaluate);
 
 if (document.getElementById('code-editor')) {
 var codeEditor = ace.edit('code-editor');
-codeEditor.session.setMode('ace/mode/xml');
+codeEditor.session.setMode('ace/mode/xquery');
 
 codeEditor.session.setTabSize(2);
 codeEditor.session.setUseSoftTabs(true);
