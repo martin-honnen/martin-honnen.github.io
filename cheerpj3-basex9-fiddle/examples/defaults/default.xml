@@ -10,7 +10,7 @@
         <h2>Features using BaseX 9</h2>
         <ul>
           <li>XQuery 3.1 against XML or JSON input or no input</li>
-          <li>optional automatic evaluation of XSLT/XQuery/XPath as CheerpJ 3 also allows to run Java code (e.g. Saxon) from a web worker</li>
+          <li>optional automatic evaluation of XQuery as CheerpJ 3 also allows to run Java code (e.g. BaseX) from a web worker</li>
         </ul>
       </section>
     </section>
