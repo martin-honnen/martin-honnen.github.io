@@ -29,11 +29,11 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
       
       var serializer = await queryProcessor.getSerializer(os);
 
-      var item = iter.next();
+      var item = await iter.next();
 
       while (item != null) {
         await serializer.serialize(item);
-        await item = iter.next();
+        item = await iter.next();
       }
 
 		  postMessage({ type : 'xquery-result', task: 'xquery',  results : [{ uri : '*** query result ***', content : await os.toString(), method: 'xml'}]});
