@@ -68,9 +68,9 @@
     writeResult(window.frames['current-result-frame'], principalResult);	
 	}	
   
-	const saxonWorker = new Worker("js/BaseXCheerpWorker.js");
+	const basexWorker = new Worker("js/BaseXCheerpWorker.js");
 	
-	saxonWorker.onmessage = e => {
+	basexWorker.onmessage = e => {
 	  if (e.data.type === 'xquery-result') {
 	    var results = e.data.results;
 		  renderXsltResults(results, document.querySelector('#results'));
@@ -90,11 +90,11 @@
 	document.addEventListener('DOMContentLoaded', autoEvaluate, false);
 	</script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.4/ace.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.4/mode-xml.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.4/mode-html.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.4/mode-json.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.4/mode-xquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.2/ace.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.2/mode-xml.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.2/mode-html.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.2/mode-json.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.2/mode-xquery.js"></script>
 </head>
 <body class="container">
 <header>
