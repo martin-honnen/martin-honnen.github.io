@@ -80,7 +80,7 @@ var queryProcessor = null;
 
   console.log('Worker BaseX initialized');
   
-  postMessage({ type: 'message', message : 'hide', id : 'saxon-load-indicator' });
+  postMessage({ type: 'message', message : 'hide', id : 'basex-load-indicator' });
 
 })();
 
