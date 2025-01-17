@@ -3,7 +3,7 @@ if (document.getElementById('input-editor')) {
     document.getElementById('input-editor'),
     { 
       mode : 'xml',
-      lineNumber: true
+      lineNumbers: true
     }
   );
     ;
@@ -22,7 +22,7 @@ var codeEditor = CodeMirror(
   document.getElementById('code-editor'),
   { 
     mode : 'xquery',
-    lineNumber: true
+    lineNumbers: true
   }
 );
 //codeEditor.session.setMode('ace/mode/xquery');
@@ -38,7 +38,7 @@ var resultEditor = CodeMirror(
   document.getElementById('result-editor'),
   { 
     mode : 'xml',
-    lineNumber: true
+    lineNumbers: true
   }
 );
 //resultEditor.session.setMode('ace/mode/xml');
