@@ -29,6 +29,10 @@ var Iter = null;
 
 var Serializer = null;
 
+var OutputSerializer = null;
+
+var SerializerOptions = null;
+
 var StringReader = null;
 
 var StringWriter = null;
@@ -75,6 +79,10 @@ var queryProcessor = null;
   Iter = await lib.org.basex.query.iter.Iter;
   
   Serializer = await lib.org.basex.io.serial.Serializer;
+
+  OutputSerializer = await lib.org.basex.io.serial.OutputSerializer;
+
+  SerializerOptions = await lib.org.basex.io.serial.SerializerOptions; 
   
   StringReader = await lib.java.io.StringReader;
 
