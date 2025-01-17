@@ -29,7 +29,7 @@
   
     const context = await new Context();
   
-    const xquery = `declare option output method 'xml'; <result>{current-dateTime()}</result>`;
+    const xquery = `declare option output:method 'xml'; <result>{current-dateTime()}</result>`;
   
     try {
       const queryProcessor = await new QueryProcessor(xquery, context);
