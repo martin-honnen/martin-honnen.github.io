@@ -2,9 +2,9 @@ if (document.getElementById('input-editor')) {
   // Prefix use in button ID naming
 // Default : CMEditorPrefix
 // More explanation on Buttons Section
-var EditorPrefix = 'CMEditorPrefix';
+var EditorPrefixInputEditor = 'CMEditorPrefixInputEditor';
 // EditorSetting[ParentName]
-var EditorSetting = {
+var EditorSettingInputEditor = {
 'input-editor' : {
     // Global var to save editor doc into, if updatelistener is true
     // In wrapper will be : window[EditorSetting['editor']['data']]
@@ -64,6 +64,10 @@ var EditorSetting = {
 }
 };
 
+$(document).ready(function() {
+    // Editor init
+    $("#CMEditorPrefixInputEditor-command").val('neweditor-input-editor').click();
+});
 }
 
 
@@ -71,9 +75,9 @@ if (document.getElementById('code-editor')) {
 // Prefix use in button ID naming
 // Default : CMEditorPrefix
 // More explanation on Buttons Section
-var EditorPrefix = 'CMEditorPrefix';
+var EditorPrefixCodeEditor = 'CMEditorPrefixCodeEditor';
 // EditorSetting[ParentName]
-var EditorSetting = {
+var EditorSettingCodeEditor = {
 'code-editor' : {
     // Global var to save editor doc into, if updatelistener is true
     // In wrapper will be : window[EditorSetting['editor']['data']]
@@ -133,15 +137,18 @@ var EditorSetting = {
 }
 };
 
-
+$(document).ready(function() {
+    // Editor init
+    $("#CMEditorPrefixCodeEditor-command").val('neweditor-code-editor').click();
+});
 }
 
 // Prefix use in button ID naming
 // Default : CMEditorPrefix
 // More explanation on Buttons Section
-var EditorPrefix = 'CMEditorPrefix';
+var EditorPrefixResultEditor = 'CMEditorPrefixResultEditor';
 // EditorSetting[ParentName]
-var EditorSetting = {
+var EditorSettingResultEditor = {
 'result-editor' : {
     // Global var to save editor doc into, if updatelistener is true
     // In wrapper will be : window[EditorSetting['editor']['data']]
@@ -202,4 +209,9 @@ var EditorSetting = {
 
 }
 };
+
+$(document).ready(function() {
+    // Editor init
+    $("#CMEditorPrefixResultEditor-command").val('neweditor-result-editor').click();
+});
 
