@@ -34,7 +34,7 @@
     var inputBaseURI = inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
     var codeBaseURI = codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
 		if (codeType === 'XQuery')
-		  xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType,  codeBaseURI, inputBaseURI, document.getElementById('results'));
+		  xquery(inputType !== 'None' ? inputEditor.getDoc().getValue() : null, codeEditor.getDoc().getValue(), inputType,  codeBaseURI, inputBaseURI, document.getElementById('results'));
 	}
 
   function wait(time) {
@@ -121,7 +121,7 @@
                         var inputFileName = inputFileInput != null ? inputFileInput.value : '';
                         var inputBaseURI = inputFileName != '' && gistId != null ? new window.URL(inputFileName, gistBaseURI).href : 'urn:from-string';
                         var codeBaseURI = codeFileName != '' && gistId != null ? new window.URL(codeFileName, gistBaseURI).href : 'urn:from-string';
-                        xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));">
+                        xquery(inputType !== 'None' ? inputEditor.getDoc().getValue() : null, codeEditor.getDoc().getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));">
 
         <input type="button" id="save" value="save as URL" accesskey="s"
                onclick="save(document.getElementById('input-type-form'));">
@@ -137,12 +137,12 @@
             <div id="input-col" class="grid-item">
                 <div id="input-editor" class="editor"></div>
                 <input type="button" id="load-input" value="load" onclick="document.getElementById('load-input-file').click();">
-                <input type="file" id="load-input-file" onchange="this.files[0].text().then(t => inputEditor.session.setValue(t));" accept=".xml,.json,text/xml,application/xml,application/json">
+                <input type="file" id="load-input-file" onchange="this.files[0].text().then(t => inputEditor.getDoc().setValue(t));" accept=".xml,.json,text/xml,application/xml,application/json">
             </div>
             <div class="grid-item">
                 <div id="code-editor" class="editor"></div>
                 <input type="button" id="load-code" value="load" onclick="document.getElementById('load-code-file').click();">
-                <input type="file" id="load-code-file" onchange="this.files[0].text().then(t => codeEditor.session.setValue(t));" accept=".xq,.xquery,.xpm,application/xquery">
+                <input type="file" id="load-code-file" onchange="this.files[0].text().then(t => codeEditor.getDoc().setValue(t));" accept=".xq,.xquery,.xpm,application/xquery">
             </div>
         </section>
         <section class="grid-row button-bar">
@@ -158,7 +158,7 @@
         <section class="grid-row">
             <div class="grid-item">
                 <div id="result-editor" class="editor"></div>
-                <a id="save-result" onclick="var blob = new Blob([resultEditor.session.getValue()], { type: 'text/html' }); this.download = document.getElementById('results').value; this.href = window.URL.createObjectURL(blob);">save</a>
+                <a id="save-result" onclick="var blob = new Blob([resultEditor.getDoc().getValue()], { type: 'text/html' }); this.download = document.getElementById('results').value; this.href = window.URL.createObjectURL(blob);">save</a>
             </div>
             <div id="result-frame-container" class="grid-item">
                 <iframe id="current-result-frame" name="current-result-frame" src="about:blank" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
