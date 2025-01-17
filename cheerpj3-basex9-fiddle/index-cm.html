@@ -6,6 +6,14 @@
   <title>CheerpJ 3 BaseX 9 XQuery 3.1 fiddle</title>
 
   <link rel="stylesheet" href="css/cm-fiddle.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js" integrity="sha512-8RnEqURPUc5aqFEN04aQEiPlSAdE0jlFS/9iGgUyNtwFnSKCXhmB6ZTNl7LnDtDWKabJIASzXrzD0K+LYexU9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/xml/xml.min.js" integrity="sha512-LarNmzVokUmcA7aUDtqZ6oTS+YXmUKzpGdm8DxC46A6AHu+PQiYCUlwEGWidjVYMo/QXZMFMIadZtrkfApYp/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/xquery/xquery.min.js" integrity="sha512-Nv2wa68YWiM9e+CMp+ne3fKEXM0UfADDsrtv25nUPlauAmm9gvhFYBLLSXlPljZXeX3piWQ2daSH5a9VG2qNKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 	<script>
   var gistId = null;
@@ -127,12 +135,12 @@
 
         <section class="grid-row">
             <div id="input-col" class="grid-item">
-                <div id="inputEditor" class="editor"></div>
+                <div id="input-editor" class="editor"></div>
                 <input type="button" id="load-input" value="load" onclick="document.getElementById('load-input-file').click();">
                 <input type="file" id="load-input-file" onchange="this.files[0].text().then(t => inputEditor.session.setValue(t));" accept=".xml,.json,text/xml,application/xml,application/json">
             </div>
             <div class="grid-item">
-                <div id="codeEditor" class="editor"></div>
+                <div id="code-editor" class="editor"></div>
                 <input type="button" id="load-code" value="load" onclick="document.getElementById('load-code-file').click();">
                 <input type="file" id="load-code-file" onchange="this.files[0].text().then(t => codeEditor.session.setValue(t));" accept=".xq,.xquery,.xpm,application/xquery">
             </div>
@@ -149,7 +157,7 @@
         </section>
         <section class="grid-row">
             <div class="grid-item">
-                <div id="resultEditor" class="editor"></div>
+                <div id="result-editor" class="editor"></div>
                 <a id="save-result" onclick="var blob = new Blob([resultEditor.session.getValue()], { type: 'text/html' }); this.download = document.getElementById('results').value; this.href = window.URL.createObjectURL(blob);">save</a>
             </div>
             <div id="result-frame-container" class="grid-item">
@@ -160,18 +168,10 @@
     </main>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!--
-GitHub Page
-https://a99us.github.io/CM6-Browser-Wrapper/cm6-browser-wrapper.min.js
-JSDelivr CDN
-https://cdn.jsdelivr.net/gh/A99US/CM6-Browser-Wrapper/cm6-browser-wrapper.min.js
--->
-<script src="https://a99us.github.io/CM6-Browser-Wrapper/cm6-browser-wrapper.min.js"></script>
 <script src="js/frame-write.js"></script>
 <script src="js/cm-modes.js"></script>
 <script src="js/xquery.js"></script>
-<script src="js/cm-editors-init-test1.js"></script>
+<script src="js/cm-editors-init.js"></script>
 <script src="js/event-listeners-init.js"></script>
 <script src="js/init-cm-examples.js"></script>
 <!--<script src="js/validate.js"></script>-->
