@@ -29,6 +29,14 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
       
       var serializer = await queryProcessor.getSerializer(os);
 
+      var outputSerializer = await (OutputSerializer)serializer;
+
+      const soptsField = await OutputSerializer.getDeclaredField("sopts");
+
+      await soptsField.setAccessible(true);
+
+      const method = await sopts.get(await SerializerOptions.METHOD).toString();
+
       var item = await iter.next();
 
       while (item != null) {
@@ -36,7 +44,7 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
         item = await iter.next();
       }
 
-		  postMessage({ type : 'xquery-result', task: 'xquery',  results : [{ uri : '*** query result ***', content : await os.toString('utf8'), method: 'xml'}]});
+		  postMessage({ type : 'xquery-result', task: 'xquery',  results : [{ uri : '*** query result ***', content : await os.toString('utf8'), method: method === 'basex' ? 'xml' : method }]});
 
 	  }
 	  catch (e) {
