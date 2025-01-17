@@ -1,15 +1,15 @@
-if (document.getElementById('input-editor')) {
+if (document.getElementById('inputEditor')) {
   // Prefix use in button ID naming
 // Default : CMEditorPrefix
 // More explanation on Buttons Section
 var EditorPrefixInputEditor = 'CMEditorPrefixInputEditor';
 // EditorSetting[ParentName]
 var EditorSettingInputEditor = {
-'input-editor' : {
+'inputEditor' : {
     // Global var to save editor doc into, if updatelistener is true
     // In wrapper will be : window[EditorSetting['editor']['data']]
     // Default : ParentName + "data"
-    data: "editordoc",
+    data: "inputEditorDoc",
     // Editor doc update listener, in miliseconds
     // Default : false
     updatelistener: 300,
@@ -66,23 +66,23 @@ var EditorSettingInputEditor = {
 
 $(document).ready(function() {
     // Editor init
-    $("#CMEditorPrefixInputEditor-command").val('neweditor-input-editor').click();
+    $("#CMEditorPrefixInputEditor-command").val('neweditor-inputEditor').click();
 });
 }
 
 
-if (document.getElementById('code-editor')) {
+if (document.getElementById('codeEditor')) {
 // Prefix use in button ID naming
 // Default : CMEditorPrefix
 // More explanation on Buttons Section
 var EditorPrefixCodeEditor = 'CMEditorPrefixCodeEditor';
 // EditorSetting[ParentName]
 var EditorSettingCodeEditor = {
-'code-editor' : {
+'codeEditor' : {
     // Global var to save editor doc into, if updatelistener is true
     // In wrapper will be : window[EditorSetting['editor']['data']]
     // Default : ParentName + "data"
-    data: "editordoc",
+    data: "codeEditorDoc",
     // Editor doc update listener, in miliseconds
     // Default : false
     updatelistener: 300,
@@ -139,7 +139,7 @@ var EditorSettingCodeEditor = {
 
 $(document).ready(function() {
     // Editor init
-    $("#CMEditorPrefixCodeEditor-command").val('neweditor-code-editor').click();
+    $("#CMEditorPrefixCodeEditor-command").val('neweditor-codeEditor').click();
 });
 }
 
@@ -149,11 +149,11 @@ $(document).ready(function() {
 var EditorPrefixResultEditor = 'CMEditorPrefixResultEditor';
 // EditorSetting[ParentName]
 var EditorSettingResultEditor = {
-'result-editor' : {
+'resultEditor' : {
     // Global var to save editor doc into, if updatelistener is true
     // In wrapper will be : window[EditorSetting['editor']['data']]
     // Default : ParentName + "data"
-    data: "editordoc",
+    data: "resultEditorDoc",
     // Editor doc update listener, in miliseconds
     // Default : false
     updatelistener: 300,
@@ -165,7 +165,7 @@ var EditorSettingResultEditor = {
     lang: 'json',
     // Snippets to be used in editor
     // Array : ['html', 'javascript', 'jquery', 'php']
-    snippets: ['html', 'javascript'],
+    snippets: ['html', 'xml', 'text'],
     // Default : DefaultTheme (Ace Cobalt)
     theme: 'DefaultTheme',
     // Enable extension
@@ -212,6 +212,6 @@ var EditorSettingResultEditor = {
 
 $(document).ready(function() {
     // Editor init
-    $("#CMEditorPrefixResultEditor-command").val('neweditor-result-editor').click();
+    $("#CMEditorPrefixResultEditor-command").val('neweditor-resultEditor').click();
 });
 
