@@ -127,12 +127,12 @@
 
         <section class="grid-row">
             <div id="input-col" class="grid-item">
-                <div id="input-editor" class="editor"></div>
+                <div id="inputEditor" class="editor"></div>
                 <input type="button" id="load-input" value="load" onclick="document.getElementById('load-input-file').click();">
                 <input type="file" id="load-input-file" onchange="this.files[0].text().then(t => inputEditor.session.setValue(t));" accept=".xml,.json,text/xml,application/xml,application/json">
             </div>
             <div class="grid-item">
-                <div id="code-editor" class="editor"></div>
+                <div id="codeEditor" class="editor"></div>
                 <input type="button" id="load-code" value="load" onclick="document.getElementById('load-code-file').click();">
                 <input type="file" id="load-code-file" onchange="this.files[0].text().then(t => codeEditor.session.setValue(t));" accept=".xq,.xquery,.xpm,application/xquery">
             </div>
@@ -149,7 +149,7 @@
         </section>
         <section class="grid-row">
             <div class="grid-item">
-                <div id="result-editor" class="editor"></div>
+                <div id="resultEditor" class="editor"></div>
                 <a id="save-result" onclick="var blob = new Blob([resultEditor.session.getValue()], { type: 'text/html' }); this.download = document.getElementById('results').value; this.href = window.URL.createObjectURL(blob);">save</a>
             </div>
             <div id="result-frame-container" class="grid-item">
