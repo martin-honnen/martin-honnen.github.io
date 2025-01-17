@@ -2,7 +2,7 @@ if (document.getElementById('inputEditor')) {
   // Prefix use in button ID naming
 // Default : CMEditorPrefix
 // More explanation on Buttons Section
-var EditorPrefixInputEditor = 'CMEditorPrefixInputEditor';
+var EditorPrefixInputEditor = 'CMEditorPrefix';
 // EditorSetting[ParentName]
 var EditorSettingInputEditor = {
 'inputEditor' : {
@@ -75,7 +75,7 @@ if (document.getElementById('codeEditor')) {
 // Prefix use in button ID naming
 // Default : CMEditorPrefix
 // More explanation on Buttons Section
-var EditorPrefixCodeEditor = 'CMEditorPrefixCodeEditor';
+var EditorPrefixCodeEditor = 'CMEditorPrefix';
 // EditorSetting[ParentName]
 var EditorSettingCodeEditor = {
 'codeEditor' : {
@@ -146,7 +146,7 @@ $(document).ready(function() {
 // Prefix use in button ID naming
 // Default : CMEditorPrefix
 // More explanation on Buttons Section
-var EditorPrefixResultEditor = 'CMEditorPrefixResultEditor';
+var EditorPrefixResultEditor = 'CMEditorPrefix';
 // EditorSetting[ParentName]
 var EditorSettingResultEditor = {
 'resultEditor' : {
