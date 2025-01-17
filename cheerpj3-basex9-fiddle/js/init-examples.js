@@ -1,15 +1,15 @@
-function setEditorFromUrl(url, editor) {
+function setEditorFromUrl(url, editor, mode) {
     var req = new XMLHttpRequest();
     req.open('GET', url);
     req.onload = function () {
-        setDocument(editor, req.responseText, 'xml');
+        setDocument(editor, req.responseText, mode);
     };
     req.send();
 }
 
 function loadDefaults() {
-    setEditorFromUrl('examples/defaults/default.xml', inputEditor);
-    setEditorFromUrl('examples/defaults/default.xq', codeEditor);
+    setEditorFromUrl('examples/defaults/default.xml', inputEditor, 'xml');
+    setEditorFromUrl('examples/defaults/default.xq', codeEditor, 'xquery');
 }
 
 
