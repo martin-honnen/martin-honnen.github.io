@@ -29,7 +29,7 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
       
       var serializer = await queryProcessor.getSerializer(os);
 
-      var outputSerializer = await (OutputSerializer)serializer;
+      var outputSerializer = serializer;
 
       const soptsField = await OutputSerializer.getDeclaredField("sopts");
 
