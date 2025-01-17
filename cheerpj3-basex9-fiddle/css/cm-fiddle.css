@@ -69,6 +69,10 @@ html, body {
     height: 100%;
 }
 
+.CodeMirror {
+    height: 100% !important;
+}
+
 #load-input, #load-code, #save-result {
     position: absolute;
     right: 9px;
