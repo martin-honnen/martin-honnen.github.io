@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CheerpJ 3 BaseX 9 XQuery 3.1 test</title>
+  <script src="https://cjrtnc.leaningtech.com/3_20250116_577/cj3loader.js"></script>
+  <!--<script src="https://cjrtnc.leaningtech.com/3_20250113_576/cj3loader.js"></script>-->
+</head>
+<body>
+  <script>
+  (async () => {
+    await cheerpjInit();
+    const cj = await cheerpjRunLibrary("/app/cheerpj3-basex9-fiddle/BaseX974.jar");
+  
+    const Context = await cj.org.basex.core.Context;
+    
+    const QueryProcessor = await cj.org.basex.query.QueryProcessor;
+  
+    const QueryException = await cj.org.basex.query.QueryException;
+  
+    const Value = await cj.org.basex.query.value.Value;
+  
+    const ByteArrayOutputStream = await cj.java.io.ByteArrayOutputStream;
+  
+    const Iter = await cj.org.basex.query.iter.Iter;
+    
+    const Serializer = await cj.org.basex.io.serial.Serializer;
+
+    const SerializerOptions = await cj.org.basex.io.serial.SerializerOptions;
+  
+    const context = await new Context();
+  
+    const xquery = `declare option output:method 'xml'; <result>{current-dateTime()}</result>`;
+  
+    //try {
+      const queryProcessor = await new QueryProcessor(xquery, context);
+    
+      const os = await new ByteArrayOutputStream();
+    
+      const iter = await queryProcessor.iter();
+    
+      const serializer = await queryProcessor.getSerializer(os);
+
+      const methodOption = await SerializerOptions.METHOD;
+ 
+      console.log(methodOption);
+
+      const outputSerializerClass = await serializer.getClass();
+
+      const soptsField = await outputSerializerClass.getDeclaredField("sopts");
+
+      await soptsField.setAccessible(true);
+
+      const sopts = await soptsField.get(serializer);
+
+      const method = await (await sopts.get(methodOption)).toString();
+
+      console.log('method: ' + method);
+    
+      const item = await iter.next();
+    
+      if (item != null) {
+        await serializer.serialize(item);
+      }
+    
+      const stringResult = await os.toString('utf8');
+  
+      console.log(stringResult);
+    //}
+    //catch (e) {
+    //  console.log(e);
+    //}
+  })();
+    
+  </script>
+</body>
+</html>
