@@ -37,7 +37,7 @@ var codeEditor = CodeMirror(
 var resultEditor = CodeMirror(
   document.getElementById('result-editor'),
   { 
-    mode : 'xml',
+    mode : 'html',
     lineNumbers: true
   }
 );
