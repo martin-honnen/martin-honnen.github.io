@@ -35,6 +35,8 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
 
       await soptsField.setAccessible(true);
 
+      const sopts = await soptsField.get(outputSerializer);
+
       const method = await sopts.get(await SerializerOptions.METHOD).toString();
 
       var item = await iter.next();
