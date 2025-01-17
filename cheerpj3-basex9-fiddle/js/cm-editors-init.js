@@ -1,7 +1,10 @@
 if (document.getElementById('input-editor')) {
   var inputEditor = CodeMirror(
     document.getElementById('input-editor'),
-    { mode : 'xml' }
+    { 
+      mode : 'xml',
+      lineNumber: true
+    }
   );
     ;
 //inputEditor.session.setMode('ace/mode/xml');
@@ -17,7 +20,10 @@ if (document.getElementById('input-editor')) {
 if (document.getElementById('code-editor')) {
 var codeEditor = CodeMirror(
   document.getElementById('code-editor'),
-  { mode : 'xquery' }
+  { 
+    mode : 'xquery',
+    lineNumber: true
+  }
 );
 //codeEditor.session.setMode('ace/mode/xquery');
 
@@ -30,7 +36,10 @@ var codeEditor = CodeMirror(
 
 var resultEditor = CodeMirror(
   document.getElementById('result-editor'),
-  { mode : 'xml' }
+  { 
+    mode : 'xml',
+    lineNumber: true
+  }
 );
 //resultEditor.session.setMode('ace/mode/xml');
 
