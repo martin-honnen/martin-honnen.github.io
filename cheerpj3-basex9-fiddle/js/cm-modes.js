@@ -27,7 +27,7 @@ function setDocument(editor, content, mode) {
     //    editor.session.setUseWrapMode(mode === 'text');
     //}
     if (mode) {
-      editor.setOption('mode', mode);
+      editor.setOption('mode', mode === 'html' ? 'htmlmixed' : mode === 'json' ? 'javascript' : mode);
     }
     editor.getDoc().setValue(content);
 }
