@@ -29,15 +29,9 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
       
       var serializer = await queryProcessor.getSerializer(os);
 
-      var outputSerializerClass = await serializer.getClass();
+      const method = await BaseX9Helper.getSerializerMethod(serializer);
 
-      const soptsField = await outputSerializerClass.getDeclaredField("sopts");
-
-      await soptsField.setAccessible(true);
-
-      const sopts = await soptsField.get(serializer);
-
-      const method = await (await sopts.get(await SerializerOptions.METHOD)).toString();
+      console.log('method: ' + method);
 
       var item = await iter.next();
 
