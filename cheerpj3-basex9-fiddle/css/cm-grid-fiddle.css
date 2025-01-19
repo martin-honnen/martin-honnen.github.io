@@ -9,7 +9,7 @@ html, body {
     box-sizing: border-box;
 }
 
-header {
+nav {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
