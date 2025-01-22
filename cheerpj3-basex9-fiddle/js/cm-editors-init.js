@@ -3,7 +3,8 @@ if (document.getElementById('input-editor')) {
     document.getElementById('input-editor'),
     { 
       mode : 'xml',
-      lineNumbers: true
+      lineNumbers: true,
+      '.cm-scroller' : { overflow: 'auto' }
     }
   );
     ;
@@ -22,7 +23,8 @@ var codeEditor = CodeMirror(
   document.getElementById('code-editor'),
   { 
     mode : 'xquery',
-    lineNumbers: true
+    lineNumbers: true,
+    '.cm-scroller' : { overflow: 'auto' }
   }
 );
 //codeEditor.session.setMode('ace/mode/xquery');
@@ -38,7 +40,8 @@ var resultEditor = CodeMirror(
   document.getElementById('result-editor'),
   { 
     mode : 'html',
-    lineNumbers: true
+    lineNumbers: true,
+    '.cm-scroller' : { overflow: 'auto' }
   }
 );
 //resultEditor.session.setMode('ace/mode/xml');
