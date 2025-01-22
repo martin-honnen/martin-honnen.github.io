@@ -73,6 +73,8 @@ html, body {
     height: 100% !important;
 }
 
+.cm-scroller : { overflow: 'auto' !important; }
+
 #load-input, #load-code, #save-result {
     position: absolute;
     right: 9px;
