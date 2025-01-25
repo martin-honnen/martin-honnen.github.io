@@ -9,7 +9,7 @@
     <script>
     async function buildDirList(dirHandle) {
       const ul = document.createElement('ul');
-      ul.appendChild(document.createTextNode(dirHandle.name);
+      ul.appendChild(document.createTextNode(dirHandle.name));
       await buildDirList(dirHandle, rootDirHandle, ul);
     }
     async function buildDirList(dirHandle, rootDirHandle, parentElement) {
