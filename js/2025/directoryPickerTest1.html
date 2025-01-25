@@ -11,6 +11,7 @@
       const ul = document.createElement('ul');
       document.body.appendChild(ul);
       const li = document.createElement('li');
+      ul.appendChild(li);
       li.appendChild(document.createTextNode(dirHandle.name));
       await buildDirList(dirHandle, dirHandle, li);
     }
