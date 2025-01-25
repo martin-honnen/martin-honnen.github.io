@@ -21,8 +21,8 @@
       for await (const entry of dirHandle.values()) {
         const li = document.createElement('li');
         ul.appendChild(li);
-        const file = await entry.getFile();
-        li.appendChild(document.createTextNode(`${entry.name} (${file.webkitRelativePath})`));
+        const file = entry.kind === 'directory' ? await entry.getFile() : null;
+        li.appendChild(document.createTextNode(`${entry.name} (${file?.webkitRelativePath})`));
         if (entry.kind === 'directory') {
           await buildDirList(entry, rootDirHandle, li);
         }
