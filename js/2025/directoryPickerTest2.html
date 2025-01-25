@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title>DirectoryPicker test</title>
+  </head>
+  <body>
+    <input type=button id=dp1 value=test>
+    <script>
+    async function checkEntry(dirHandle, fileHandle) {
+      const relative_path = await dirHandle.resolve(fileHandle);
+      if (relative_path === null) {
+          console.log(`Error: path ${relative_path} not inside of ${dirHandle.name}`);
+      } else {
+          // relative_path is an array of names, giving the relative path
+          // from dir_ref to the file that is represented by file_ref:
+          assert relative_path.pop() === fileHandle.name;
+      
+          let entry = dirHandle;
+          for (const name of relative_path) {
+              entry = await entry.getDirectory(name);
+          }
+          entry = await entry.getFile(fileHandle.name);
+      
+          // Now |entry| will represent the same file on disk as |file_ref|.
+          assert await entry.isSameEntry(fileHandle) === true;
+}
+    }
+    async function checkEntries(dirHandle) {
+      for await (const entry of dirHandle.values()) {
+        if (entry.kind === 'directory') {
+          await checkEntries(entry);
+        }
+        else {
+          await checkEntry(dirHandle, entry);
+        }
+      }
+    }
+    document.getElementById('dp1').addEventListener('click', async () => {
+      const dirHandle = await window.showDirectoryPicker();
+      await checkEntries(dirHandle);
+    });    
+    </script>
+  </body>
+</html>
