@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title>DirectoryPicker test</title>
+  </head>
+  <body>
+    <input type=button id=dp1 value=test>
+    <script>
+    async function buildRootDirList(dirHandle) {
+      const ul = document.createElement('ul');
+      document.body.appendChild(ul);
+      const li = document.createElement('li');
+      ul.appendChild(li);
+      li.appendChild(document.createTextNode(dirHandle.name));
+      await buildDirList(dirHandle, dirHandle, li);
+    }
+    async function buildDirList(dirHandle, rootDirHandle, parentElement) {
+      const ul = document.createElement('ul');
+      parentElement.appendChild(ul);
+      for await (const entry of dirHandle.values()) {
+        const li = document.createElement('li');
+        ul.appendChild(li);
+        li.appendChild(document.createTextNode(`${entry.name} (${entry.webkitRelativePath})`));
+        if (entry.kind === 'directory') {
+          await buildDirList(entry, rootDirHandle, li);
+        }
+      }
+    }
+    document.getElementById('dp1').addEventListener('click', async () => {
+      const dirHandle = await window.showDirectoryPicker();
+      await buildRootDirList(dirHandle);
+    });    
+    </script>
+  </body>
+</html>
