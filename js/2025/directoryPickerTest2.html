@@ -14,7 +14,7 @@
       } else {
           // relative_path is an array of names, giving the relative path
           // from dir_ref to the file that is represented by file_ref:
-          assert relative_path.pop() === fileHandle.name;
+          console.assert(relative_path.pop() === fileHandle.name, '%p1 === %name', relative_path.pop(), fileHandle.name);
       
           let entry = dirHandle;
           for (const name of relative_path) {
@@ -23,7 +23,7 @@
           entry = await entry.getFile(fileHandle.name);
       
           // Now |entry| will represent the same file on disk as |file_ref|.
-          assert await entry.isSameEntry(fileHandle) === true;
+          console.assert(await entry.isSameEntry(fileHandle) === true, 'isSameEntry failed for %name', fileHandle.name);
 }
     }
     async function checkEntries(dirHandle) {
