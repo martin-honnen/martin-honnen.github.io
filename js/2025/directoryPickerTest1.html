@@ -10,18 +10,19 @@
     async function buildRootDirList(dirHandle) {
       const ul = document.createElement('ul');
       document.body.appendChild(ul);
-      ul.appendChild(document.createTextNode(dirHandle.name));
-      await buildDirList(dirHandle, dirHandle, ul);
+      const li = document.createElement('li');
+      li.appendChild(document.createTextNode(dirHandle.name));
+      await buildDirList(dirHandle, dirHandle, li);
     }
     async function buildDirList(dirHandle, rootDirHandle, parentElement) {
+      const ul = document.createElement('ul');
+      parentElement.appendChild(ul);
       for await (const entry of dirHandle.values()) {
         const li = document.createElement('li');
-        parentElement.appendChild(li);
-        li.appendChild(document.createTextNode(`${entry.name} ({$rootDirHandle.resolve(entry).join('/')})`));
+        ul.appendChild(li);
+        li.appendChild(document.createTextNode(`${entry.name} (${rootDirHandle.resolve(entry).join('/')})`));
         if (entry.kind === 'directory') {
-          const ul = document.createElement('ul');
-          li.appendChild(ul);
-          await buildDirList(entry, rootDirHandle, ul);
+          await buildDirList(entry, rootDirHandle, li);
         }
       }
     }
