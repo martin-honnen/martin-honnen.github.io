@@ -7,7 +7,7 @@
   <body>
     <input type=button id=dp1 value=test>
     <script>
-    async function buildDirList(dirHandle) {
+    async function buildRootDirList(dirHandle) {
       const ul = document.createElement('ul');
       document.body.appendChild(ul);
       ul.appendChild(document.createTextNode(dirHandle.name));
@@ -27,7 +27,7 @@
     }
     document.getElementById('dp1').addEventListener('click', async () => {
       const dirHandle = await window.showDirectoryPicker();
-      await buildDirList(dirHandle);
+      await buildRootDirList(dirHandle);
     });    
     </script>
   </body>
