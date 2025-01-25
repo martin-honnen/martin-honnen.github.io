@@ -20,7 +20,7 @@
       for await (const entry of dirHandle.values()) {
         const li = document.createElement('li');
         ul.appendChild(li);
-        li.appendChild(document.createTextNode(`${entry.name} (${rootDirHandle.resolve(entry).join('/')})`));
+        li.appendChild(document.createTextNode(`${entry.name} (${(await rootDirHandle.resolve(entry)).join('/')})`));
         if (entry.kind === 'directory') {
           await buildDirList(entry, rootDirHandle, li);
         }
