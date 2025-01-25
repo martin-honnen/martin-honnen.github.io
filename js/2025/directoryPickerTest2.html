@@ -18,7 +18,7 @@
       
           let entry = dirHandle;
           for (const name of relative_path) {
-              entry = await entry.getDirectory(name);
+              entry = await entry.getDirectoryHandle(name);
           }
           entry = await entry.getFileHandle(fileHandle.name);
       
