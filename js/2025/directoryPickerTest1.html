@@ -11,7 +11,7 @@
       const ul = document.createElement('ul');
       document.body.appendChild(ul);
       ul.appendChild(document.createTextNode(dirHandle.name));
-      await buildDirList(dirHandle, rootDirHandle, ul);
+      await buildDirList(dirHandle, dirHandle, ul);
     }
     async function buildDirList(dirHandle, rootDirHandle, parentElement) {
       for await (const entry of dirHandle.values()) {
