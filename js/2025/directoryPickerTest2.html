@@ -20,7 +20,7 @@
           for (const name of relative_path) {
               entry = await entry.getDirectory(name);
           }
-          entry = await entry.getFile(fileHandle.name);
+          entry = await entry.getFileHandle(fileHandle.name);
       
           // Now |entry| will represent the same file on disk as |file_ref|.
           console.assert(await entry.isSameEntry(fileHandle) === true, 'isSameEntry failed for %name', fileHandle.name);
