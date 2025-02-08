@@ -257,7 +257,7 @@ async function writeStringToFile(fileName, content) {
   const file = await new JFile(fileName); 
   const parentFile = await file.getParentFile(); 
   if (parentFile != null) {
-    await parentFile.mkdirs())
+    await parentFile.mkdirs();
   }
   const fileWriter = await new JFileWriter(fileName); 
   await fileWriter.write(content);  
