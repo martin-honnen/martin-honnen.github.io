@@ -21,11 +21,13 @@
 		var inputType = document.getElementById('input-types').form['input-type'].value;
 		var codeType = document.getElementById('input-types').form['code-type'].value;
     //var codeFileInput = document.getElementById('codeFile');
+    var codeFileSelect = document.getElementById('code-editor-file-list');
+    var inputFileSelect = document.getElementById('input-editor-file-list');
     var dirHandle = currentDirectory?.dirHandle;
     var baseUri = dirHandle ? `/str/${dirHandle.name}/` : 'urn:from-string';
-    var codeFileName = dirHandle ? document.getElementById('code-editor-file-list').value : '';
+    var codeFileName = dirHandle && codeFileSelect.selectedIndex > 0 ? codeFileSelect.value : '';
     //var inputFileInput = document.getElementById('inputFile');
-    var inputFileName = dirHandle ? document.getElementById('input-editor-file-list').value : '';
+    var inputFileName = dirHandle && inputFileSelect.selectedIndex > 0 ? inputFileSelect.value : '';
     var inputBaseURI = inputFileName != '' ? baseUri + inputFileName : 'urn:from-string'; //inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
     var codeBaseURI = codeFileName != '' ? baseUri + codeFileName : 'urn:from-string'; //codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
 		if (codeType === 'XSLT')
@@ -43,6 +45,21 @@
 	function autoEvaluate() {
 		typingTimeout = autoEvaluation ? setTimeout(evaluate, doneTypingInterval) : 0;//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
 	}
+
+  function transformBtnClickHandler() {
+    var inputType = document.getElementById('input-types').form['input-type'].value;
+		var codeType = document.getElementById('input-types').form['code-type'].value;
+    var codeFileSelect = document.getElementById('code-editor-file-list');
+    var inputFileSelect = document.getElementById('input-editor-file-list');
+    var dirHandle = currentDirectory?.dirHandle;
+    var baseUri = dirHandle ? `/str/${dirHandle.name}/` : 'urn:from-string';
+    var codeFileName = dirHandle && codeFileSelect.selectedIndex > 0 ? codeFileSelect.value : '';
+    //var inputFileInput = document.getElementById('inputFile');
+    var inputFileName = dirHandle && inputFileSelect.selectedIndex > 0 ? inputFileSelect.value : '';
+    var inputBaseURI = inputFileName != '' ? baseUri + inputFileName : 'urn:from-string'; //inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
+    var codeBaseURI = codeFileName != '' ? baseUri + codeFileName : 'urn:from-string'; //codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
+    transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));
+  }
 	
   function renderXsltResults(results, resultsSelect) {
 
@@ -124,16 +141,7 @@
         </form>
 		<label>auto-evaluation <input type="checkbox" id="auto-evaluate"></label>
         <input type="button" id="transform-btn" value="XSLT transformation" accesskey="t"
-               onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
-		                    var codeType = document.getElementById('input-types').form['code-type'].value;
-                        var dirHandle = window.currentDirectory?.dirHandle;
-                        var baseUri = dirHandle ? `/str/${dirHandle.name}/` : 'urn:from-string';
-                        var codeFileName = dirHandle ? document.getElementById('code-editor-file-list').value : '';
-                        //var inputFileInput = document.getElementById('inputFile');
-                        var inputFileName = dirHandle ? document.getElementById('input-editor-file-list').value : '';
-                        var inputBaseURI = inputFileName != '' ? baseUri + inputFileName : 'urn:from-string'; //inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
-                        var codeBaseURI = codeFileName != '' ? baseUri + codeFileName : 'urn:from-string'; //codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
-                        transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));">
+               onclick="transformBtnClickHandler();">
         <input type="button" id="xquery-btn" value="XQuery" accesskey="q"
                onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
 		                    var codeType = document.getElementById('input-types').form['code-type'].value;
