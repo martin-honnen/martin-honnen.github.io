@@ -24,7 +24,7 @@
     var codeFileSelect = document.getElementById('code-editor-file-list');
     var inputFileSelect = document.getElementById('input-editor-file-list');
     var dirHandle = currentDirectory?.dirHandle;
-    var baseUri = dirHandle ? `/str/${dirHandle.name}/` : 'urn:from-string';
+    var baseUri = dirHandle ? `/files/${dirHandle.name}/` : 'urn:from-string';
     var codeFileName = dirHandle && codeFileSelect.selectedIndex > 0 ? codeFileSelect.value : '';
     //var inputFileInput = document.getElementById('inputFile');
     var inputFileName = dirHandle && inputFileSelect.selectedIndex > 0 ? inputFileSelect.value : '';
@@ -52,7 +52,7 @@
     var codeFileSelect = document.getElementById('code-editor-file-list');
     var inputFileSelect = document.getElementById('input-editor-file-list');
     var dirHandle = currentDirectory?.dirHandle;
-    var baseUri = dirHandle ? `/str/${dirHandle.name}/` : 'urn:from-string';
+    var baseUri = dirHandle ? `/files/${dirHandle.name}/` : 'urn:from-string';
     var codeFileName = dirHandle && codeFileSelect.selectedIndex > 0 ? codeFileSelect.value : '';
     //var inputFileInput = document.getElementById('inputFile');
     var inputFileName = dirHandle && inputFileSelect.selectedIndex > 0 ? inputFileSelect.value : '';
@@ -67,7 +67,7 @@
     var codeFileSelect = document.getElementById('code-editor-file-list');
     var inputFileSelect = document.getElementById('input-editor-file-list');
     var dirHandle = window.currentDirectory?.dirHandle;
-    var baseUri = dirHandle ? `/str/${dirHandle.name}/` : 'urn:from-string';
+    var baseUri = dirHandle ? `/files/${dirHandle.name}/` : 'urn:from-string';
     var codeFileName = dirHandle && codeFileSelect.selectedIndex > 0 ? codeFileSelect.value : '';
     //var inputFileInput = document.getElementById('inputFile');
     var inputFileName = dirHandle && inputFileSelect.selectedIndex > 0 ? inputFileSelect.value : '';
@@ -82,7 +82,7 @@
     var codeFileSelect = document.getElementById('code-editor-file-list');
     var inputFileSelect = document.getElementById('input-editor-file-list');
     var dirHandle = window.currentDirectory?.dirHandle;
-    var baseUri = dirHandle ? `/str/${dirHandle.name}/` : 'urn:from-string';
+    var baseUri = dirHandle ? `/files/${dirHandle.name}/` : 'urn:from-string';
     var codeFileName = dirHandle && codeFileSelect.selectedIndex > 0 ? codeFileSelect.value : '';
     //var inputFileInput = document.getElementById('inputFile');
     var inputFileName = dirHandle && inputFileSelect.selectedIndex > 0 ? inputFileSelect.value : '';
@@ -236,14 +236,32 @@
 //     pyodide = await loadPyodide();
 // }
 
+var javaLib = null;
+  
+var JFile = null;
+var JFileWriter = null;
+  
 var cheerpJInitialized = false;
 
 async function initCheerpJ() {
   if (!cheerpJInitialized) {
     await cheerpjInit();
     cheerpJInitialized = true;
+    javaLib = await cheerpjRunLibrary('');
+    JFile = await javaLib.java.io.File;
+    JFilerWriter = await javaLib.java.io.FileWriter;
   }
 }
+
+async function writeStringToFile(fileName, content) { 
+  const file = await new JFile(fileName); 
+  const parentFile = await file.getParentFile(); 
+  if (parentFile != null && await parentFile.mkdirs()) { 
+    const fileWriter = await new JFileWriter(fileName); 
+    await fileWriter.write(content);  
+    await fileWriter.close(); 
+  } 
+}  
 
 const loadedDirectories = {};
 
@@ -280,9 +298,10 @@ async function getFilesRoot(dirHandle, rootHandle) {
                 paths = paths[1].replace(/^primary%3ADocuments%2F/g, '').replace('%2F', '/').split('/').slice(1);
             }
             var path = paths.join('/');
-            var fileName = '/str/' + rootHandle.name + '/' + path;
-            console.log(`Writing str file ${fileName}`);
-            cheerpOSAddStringFile(fileName, await (await entry.getFile()).text());
+            var fileName = '/files/' + rootHandle.name + '/' + path;
+            console.log(`Writing /files file ${fileName}`);
+            //cheerpOSAddStringFile(fileName, await (await entry.getFile()).text());
+            await writeStringToFile(fileName, await (await entry.getFile()).text());
             files.push(path);
         }
         else if (entry.kind === 'directory') {
