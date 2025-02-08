@@ -214,6 +214,15 @@
 //     pyodide = await loadPyodide();
 // }
 
+var cheerpJInitialized = false;
+
+async function initCheerpJ() {
+  if (!cheerpJInitialized) {
+    await cheerpjInit();
+    cheerpJInitialized = true;
+  }
+}
+
 const loadedDirectories = {};
 
 const currentDirectory = { dirHandle : null };
@@ -264,6 +273,7 @@ async function getFiles(dirHandle) {
 
 async function loadDirectory() {
     //await preLoadPyodide();
+    await initCheerpJ();
     const dirHandle = await showDirectoryPicker(); //{mode: "readwrite"});
     // const permissionStatus = await dirHandle.requestPermission({
     //    mode: "readwrite",
