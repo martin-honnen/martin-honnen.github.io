@@ -256,10 +256,13 @@ async function initCheerpJ() {
 async function writeStringToFile(fileName, content) { 
   const file = await new JFile(fileName); 
   const parentFile = await file.getParentFile(); 
-  if (parentFile != null && await parentFile.mkdirs()) { 
-    const fileWriter = await new JFileWriter(fileName); 
-    await fileWriter.write(content);  
-    await fileWriter.close(); 
+  if (parentFile != null) {
+    await parentFile.mkdirs())
+  }
+  const fileWriter = await new JFileWriter(fileName); 
+  await fileWriter.write(content);  
+  await fileWriter.close(); 
+  console.log(`Wrote ${fileName}.`);
   } 
 }  
 
@@ -299,7 +302,7 @@ async function getFilesRoot(dirHandle, rootHandle) {
             }
             var path = paths.join('/');
             var fileName = '/files/' + rootHandle.name + '/' + path;
-            console.log(`Writing /files file ${fileName}`);
+            console.log(`Trying to write /files file ${fileName}`);
             //cheerpOSAddStringFile(fileName, await (await entry.getFile()).text());
             await writeStringToFile(fileName, await (await entry.getFile()).text());
             files.push(path);
