@@ -257,7 +257,7 @@ async function getFilesRoot(dirHandle, rootHandle) {
             if (paths.length === 2 && paths[0] === 'document' && paths[1].startsWith('primary%3ADocuments%2F')) {
                 paths = paths[1].replace(/^primary%3ADocuments%2F/g, '').replace('%2F', '/').split('/').slice(1);
             }
-            cheerpOSAddStringFile("/str/" + rootHandle.name + '/' + paths.join('/'), await (await fileHandle.getFile()).text());
+            cheerpOSAddStringFile("/str/" + rootHandle.name + '/' + paths.join('/'), await (await entry.getFile()).text());
             files.push(paths.join('/'));
         }
         else if (entry.kind === 'directory') {
