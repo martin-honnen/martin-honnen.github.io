@@ -124,7 +124,7 @@ onmessage = async (e) => {
   var task = e.data.task;
   var data = e.data.data;
   if (task === 'transform') {
-    await transform(data.input, data.code, data.inputType);
+    await transform(data.input, data.code, data.inputType, data.inputBaseURI, data.xsltBaseURI);
   }
   else if (task === 'xquery') {
 	  await xquery(data.input, data.code, data.inputType);  
