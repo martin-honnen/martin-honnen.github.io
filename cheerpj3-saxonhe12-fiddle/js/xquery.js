@@ -1,4 +1,4 @@
-function xquery(input, xquery, inputType,codeBaseURI, inputBaseURI, resultsSelect) {
+function xquery(input, xquery, inputType, codeBaseURI, inputBaseURI, resultsSelect) {
 
   if (!autoEvaluation)
     setDocument(resultEditor, "Processing your XQuery...", "text");
