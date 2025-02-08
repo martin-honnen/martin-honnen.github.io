@@ -126,7 +126,7 @@
         <input type="button" id="transform" value="XSLT transformation" accesskey="t"
                onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
 		                    var codeType = document.getElementById('input-types').form['code-type'].value;
-                        var dirHandle = currentDirectory?.dirHandler;
+                        var dirHandle = window.currentDirectory?.dirHandler;
                         var baseUri = dirHandle ? `/str/$[dirHandle.name}/` : 'urn:from-string';
                         var codeFileName = dirHandle ? document.getElementById('code-editor-file-list').value : '';
                         //var inputFileInput = document.getElementById('inputFile');
