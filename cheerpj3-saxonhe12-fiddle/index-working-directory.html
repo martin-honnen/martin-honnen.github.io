@@ -22,7 +22,7 @@
 		var codeType = document.getElementById('input-types').form['code-type'].value;
     //var codeFileInput = document.getElementById('codeFile');
     var dirHandle = currentDirectory?.dirHandle;
-    var baseUri = dirHandle ? `/str/$[dirHandle.name}/` : 'urn:from-string';
+    var baseUri = dirHandle ? `/str/${dirHandle.name}/` : 'urn:from-string';
     var codeFileName = dirHandle ? document.getElementById('code-editor-file-list').value : '';
     //var inputFileInput = document.getElementById('inputFile');
     var inputFileName = dirHandle ? document.getElementById('input-editor-file-list').value : '';
@@ -127,7 +127,7 @@
                onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
 		                    var codeType = document.getElementById('input-types').form['code-type'].value;
                         var dirHandle = window.currentDirectory?.dirHandle;
-                        var baseUri = dirHandle ? `/str/$[dirHandle.name}/` : 'urn:from-string';
+                        var baseUri = dirHandle ? `/str/${dirHandle.name}/` : 'urn:from-string';
                         var codeFileName = dirHandle ? document.getElementById('code-editor-file-list').value : '';
                         //var inputFileInput = document.getElementById('inputFile');
                         var inputFileName = dirHandle ? document.getElementById('input-editor-file-list').value : '';
