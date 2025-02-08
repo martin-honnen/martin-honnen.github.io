@@ -60,6 +60,36 @@
     var codeBaseURI = codeFileName != '' ? baseUri + codeFileName : 'urn:from-string'; //codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
     transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));
   }
+
+  function xqueryBtnClickHandler() {
+    var inputType = document.getElementById('input-types').form['input-type'].value;
+		var codeType = document.getElementById('input-types').form['code-type'].value;
+    var codeFileSelect = document.getElementById('code-editor-file-list');
+    var inputFileSelect = document.getElementById('input-editor-file-list');
+    var dirHandle = window.currentDirectory?.dirHandle;
+    var baseUri = dirHandle ? `/str/${dirHandle.name}/` : 'urn:from-string';
+    var codeFileName = dirHandle && codeFileSelect.selectedIndex > 0 ? codeFileSelect.value : '';
+    //var inputFileInput = document.getElementById('inputFile');
+    var inputFileName = dirHandle && inputFileSelect.selectedIndex > 0 ? inputFileSelect.value : '';
+    var inputBaseURI = inputFileName != '' ? baseUri + inputFileName : 'urn:from-string'; //inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
+    var codeBaseURI = codeFileName != '' ? baseUri + codeFileName : 'urn:from-string'; //codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
+    xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));
+  }
+
+  function xpathBtnClickHandler() {
+    var inputType = document.getElementById('input-types').form['input-type'].value;
+		var codeType = document.getElementById('input-types').form['code-type'].value;
+    var codeFileSelect = document.getElementById('code-editor-file-list');
+    var inputFileSelect = document.getElementById('input-editor-file-list');
+    var dirHandle = window.currentDirectory?.dirHandle;
+    var baseUri = dirHandle ? `/str/${dirHandle.name}/` : 'urn:from-string';
+    var codeFileName = dirHandle && codeFileSelect.selectedIndex > 0 ? codeFileSelect.value : '';
+    //var inputFileInput = document.getElementById('inputFile');
+    var inputFileName = dirHandle && inputFileSelect.selectedIndex > 0 ? inputFileSelect.value : '';
+    var inputBaseURI = inputFileName != '' ? baseUri + inputFileName : 'urn:from-string'; //inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
+    var codeBaseURI = codeFileName != '' ? baseUri + codeFileName : 'urn:from-string'; //codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
+    xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));
+  }
 	
   function renderXsltResults(results, resultsSelect) {
 
@@ -143,27 +173,9 @@
         <input type="button" id="transform-btn" value="XSLT transformation" accesskey="t"
                onclick="transformBtnClickHandler();">
         <input type="button" id="xquery-btn" value="XQuery" accesskey="q"
-               onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
-		                    var codeType = document.getElementById('input-types').form['code-type'].value;
-                        var dirHandle = window.currentDirectory?.dirHandle;
-                        var baseUri = dirHandle ? `/str/${dirHandle.name}/` : 'urn:from-string';
-                        var codeFileName = dirHandle ? document.getElementById('code-editor-file-list').value : '';
-                        //var inputFileInput = document.getElementById('inputFile');
-                        var inputFileName = dirHandle ? document.getElementById('input-editor-file-list').value : '';
-                        var inputBaseURI = inputFileName != '' ? baseUri + inputFileName : 'urn:from-string'; //inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
-                        var codeBaseURI = codeFileName != '' ? baseUri + codeFileName : 'urn:from-string'; //codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
-                        xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));">
+               onclick="xqueryBtnClickHanlder();">
         <input type="button" id="xpath-btn" value="XPath" accesskey="a"
-               onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
-		                    var codeType = document.getElementById('input-types').form['code-type'].value;
-                        var dirHandle = window.currentDirectory?.dirHandle;
-                        var baseUri = dirHandle ? `/str/${dirHandle.name}/` : 'urn:from-string';
-                        var codeFileName = dirHandle ? document.getElementById('code-editor-file-list').value : '';
-                        //var inputFileInput = document.getElementById('inputFile');
-                        var inputFileName = dirHandle ? document.getElementById('input-editor-file-list').value : '';
-                        var inputBaseURI = inputFileName != '' ? baseUri + inputFileName : 'urn:from-string'; //inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
-                        var codeBaseURI = codeFileName != '' ? baseUri + codeFileName : 'urn:from-string'; //codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
-                        xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));">
+               onclick="xpathBtnClickHandler();">
          <!--<input type="button" id="xsd" value="XSD" accesskey="V" title="validate XML against XSD schema"
                onclick="validate(inputEditor.session.getValue(), codeEditor.session.getValue(), document.getElementById('results'));">-->
         <input type="button" id="save" value="save as URL" accesskey="s"
@@ -267,8 +279,11 @@ async function getFilesRoot(dirHandle, rootHandle) {
             if (paths.length === 2 && paths[0] === 'document' && paths[1].startsWith('primary%3ADocuments%2F')) {
                 paths = paths[1].replace(/^primary%3ADocuments%2F/g, '').replace('%2F', '/').split('/').slice(1);
             }
-            cheerpOSAddStringFile("/str/" + rootHandle.name + '/' + paths.join('/'), await (await entry.getFile()).text());
-            files.push(paths.join('/'));
+            var path = paths.join('/');
+            var fileName = '/str/' + rootHandle.name + '/' + path;
+            console.log(`Writing str file ${fileName}`);
+            cheerpOSAddStringFile(fileName, await (await entry.getFile()).text());
+            files.push(path);
         }
         else if (entry.kind === 'directory') {
             files.push(... await getFilesRoot(entry, rootHandle));
