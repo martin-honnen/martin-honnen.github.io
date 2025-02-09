@@ -181,25 +181,33 @@
         <input type="button" id="save" value="save as URL" accesskey="s"
                onclick="save(document.getElementById('input-type-form'));">
     </nav>
+    <div class="grid-row button-bar">
+        <span><label>working directory: <input id="working-directory" type="text" size="38"></label>
+                <input id="load-directory-btn" type="button" value="select working directory"></span>
+    </div>
+    <div class="grid-row button-bar">
+       <select id="input-editor-file-list" class="grid-item"></select>
+      <select id="code-editor-file-list" class="grid-item"></select>
+    </div>
 </header>
 <div id="cheerpj3-load-indicator" style="color: red; font-weight: bolder; text-align: center;">CheerpJ 3 is not (yet) initialized.</div>
 <div id="saxon-load-indicator" style="color: red; font-weight: bolder; text-align: center;">Saxon is not (yet) initialized.</div>
 <div class="view-container">
 
     <main role="main" class="pb-3 view-container">
-        <section class="grid-row button-bar">
+        <!--<section class="grid-row button-bar">
             <span><label>working directory: <input id="working-directory" type="text" size="38"></label>
                 <input id="load-directory-btn" type="button" value="select working directory"></span>
-        </section>
+        </section>-->
         <section class="grid-row">
             <div id="input-col" class="grid-item">
-                <select id="input-editor-file-list"></select>
+                <!--<select id="input-editor-file-list"></select>-->
                 <div id="input-editor" class="editor"></div>
                 <input type="button" id="load-input" value="load" onclick="document.getElementById('load-input-file').click();">
                 <input type="file" id="load-input-file" onchange="this.files[0].text().then(t => inputEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,.json,.html,.htm,text/xml,application/xml,application/json,application/xml+xslt,text/html">
             </div>
             <div class="grid-item">
-                <select id="code-editor-file-list"></select>
+                <!--<select id="code-editor-file-list"></select>-->
                 <div id="code-editor" class="editor"></div>
                 <input type="button" id="load-code" value="load" onclick="document.getElementById('load-code-file').click();">
                 <input type="file" id="load-code-file" onchange="this.files[0].text().then(t => codeEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,.xsd,text/xml,application/xml,application/xml+xslt">
