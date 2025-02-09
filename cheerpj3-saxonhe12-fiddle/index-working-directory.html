@@ -297,7 +297,7 @@ async function getFilesRoot(dirHandle, rootHandle) {
         if (entry.kind === 'file') {
             var paths = await rootHandle.resolve(entry);
             if (paths.length === 2 && paths[0] === 'document' && paths[1].startsWith('primary%3ADocuments%2F')) {
-                paths = paths[1].replace(/^primary%3ADocuments%2F/g, '').replace('%2F', '/').split('/').slice(1);
+                paths = paths[1].replace(/^primary%3ADocuments%2F/g, '').replace(/%2F/g, '/').split('/').slice(1);
             }
             var path = paths.join('/');
             var fileName = '/files/' + rootHandle.name + '/' + path;
