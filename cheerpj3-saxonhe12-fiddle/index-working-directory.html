@@ -270,7 +270,7 @@ async function writeStringToFile(fileName, content) {
   const fileWriter = await new JFileWriter(fileName); 
   await fileWriter.write(content);  
   await fileWriter.close(); 
-  console.log(`Wrote ${fileName}.`);
+  //console.log(`Wrote ${fileName}.`);
 }  
 
 const loadedDirectories = {};
@@ -309,7 +309,7 @@ async function getFilesRoot(dirHandle, rootHandle) {
             }
             var path = paths.join('/');
             var fileName = '/files/' + rootHandle.name + '/' + path;
-            console.log(`Trying to write /files file ${fileName}`);
+            //console.log(`Trying to write /files file ${fileName}`);
             //cheerpOSAddStringFile(fileName, await (await entry.getFile()).text());
             await writeStringToFile(fileName, await (await entry.getFile()).text());
             files.push(path);
