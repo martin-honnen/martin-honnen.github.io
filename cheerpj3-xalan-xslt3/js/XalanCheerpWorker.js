@@ -17,7 +17,7 @@ var filetypes = {
 
 var lib = null;
 
-//var TransformerFactoryClass = null;
+var TransformerFactoryClass = null;
 
 var TransformerFactory = null;
 
@@ -68,9 +68,9 @@ var xalanInitialized = false;
   
   JSAXParseException = await lib.org.xml.sax.SAXParseException;
   
-  //TransformerFactoryClass = await lib.org.apache.xalan.processor.XSL3TransformerFactoryImpl; //lib.javax.xml.transform.TransformerFactory;
+  TransformerFactoryClass = await lib.org.apache.xalan.processor.XSL3TransformerFactoryImpl; //lib.javax.xml.transform.TransformerFactory;
   
-  TransformerFactory = await lib.org.apache.xalan.processor.XSL3TransformerFactoryImpl; //await TransformerFactoryClass.newInstance();
+  TransformerFactory = await new TransformerFactoryClass(); //lib.org.apache.xalan.processor.XSL3TransformerFactoryImpl; //await TransformerFactoryClass.newInstance();
 
   TransformerImpl = await TransformerFactory.newTransformer();//lib.org.apache.xalan.transformer.TransformerImpl;
   
