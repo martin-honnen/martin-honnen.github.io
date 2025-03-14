@@ -68,7 +68,7 @@ var xalanInitialized = false;
   
   JSAXParseException = await lib.org.xml.sax.SAXParseException;
   
-  TransformerFactoryClass = await lib.javax.xml.transform.TransformerFactory;
+  TransformerFactoryClass = await lib.org.apache.xalan.processor.XSL3TransformerFactoryImpl; //lib.javax.xml.transform.TransformerFactory;
   
   TransformerFactory = await TransformerFactoryClass.newInstance();
 
