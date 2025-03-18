@@ -10,7 +10,17 @@
     const xquery = `declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
     declare option output:method "xhtml";
     declare option output:indent "yes";
-    parse-html("<p>This is a test.<br>This is a test.<p>This is a test.")`;
+    xslt:processor(),
+    xslt:version(),
+    parse-html("<p>This is a test.<br>This is a test.<p>This is a test.") => xslt:transform(
+      <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="3.0">
+        <xsl:mode on-no-match="shallow-copy"/>
+        <xsl:template match="/">
+          <xsl:copy>
+            <xsl:apply-templates/>
+            <xsl:comment expand-text="yes">Run with {{system-property('xsl:product-name')}} {{system-property('xsl:product-version')}} at {{current-dateTime()}}</xsl:comment>
+          </xsl:copy>
+      </xsl:stylesheet>)`;
     (async function () {
         await cheerpjInit({version:11});
         //cheerpjCreateDisplay(800, 600);
