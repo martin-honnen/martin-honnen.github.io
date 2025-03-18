@@ -20,6 +20,7 @@
             <xsl:apply-templates/>
             <xsl:comment expand-text="yes">Run with {{system-property('xsl:product-name')}} {{system-property('xsl:product-version')}} at {{current-dateTime()}}</xsl:comment>
           </xsl:copy>
+        </xsl:template>
       </xsl:stylesheet>)`;
     (async function () {
         await cheerpjInit({version:11});
