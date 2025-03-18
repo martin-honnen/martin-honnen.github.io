@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Running XML Calabash 3 with CheerpJ</title>
+  <script src="https://cjrtnc.leaningtech.com/3_20250318_631/cj3loader.js"></script>
+</head>
+<body>
+
+<script>
+var xproc3Code = `<p:declare-step xmlns:p="http://www.w3.org/ns/xproc"
+                exclude-inline-prefixes="#all"
+                version="3.0">
+  <p:output port="result"/>
+
+  <p:identity>
+    <p:with-input>
+      <helloWorld>This is {p:system-property('p:product-name')
+      } version {p:system-property('p:product-version')}.
+Share and enjoy!</helloWorld>
+    </p:with-input>
+  </p:identity>
+
+</p:declare-step>`;
+
+(async function () {
+  await cheerpjInit({version:11});
+  //cheerpjCreateDisplay(800, 600);
+  const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.0-alpha24.jar", "/app/cheerpj-xproc3/helloWord.xpl");
+  console.log(`XML Calabash exited with code ${exitCode}`);
+})();
+</script>
+
+</body>
+</html>
