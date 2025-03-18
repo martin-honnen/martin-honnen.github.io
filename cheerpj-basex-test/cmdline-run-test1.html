@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title>Test CheerpJ nightly with Java 11 support with BaseX</title>
+    <script src="https://cjrtnc.leaningtech.com/3_20250318_631/cj3loader.js"></script>
+  </head>
+  <body>
+    <script>
+    (async function () {
+        await cheerpjInit({version:11});
+        //cheerpjCreateDisplay(800, 600);
+        const exitCode = await cheerpjRunMain("org.basex.BaseX", "/app/cheerpj-basex-test/basex-11.7.jar", "-h");
+        console.log(`BaseX exited with code ${exitCode}`);
+      })();
+    </script>
+  </body>
+</html>  
+
+  
+
+
