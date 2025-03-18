@@ -26,7 +26,8 @@ Share and enjoy!</helloWorld>
 (async function () {
   await cheerpjInit({version:11});
   //cheerpjCreateDisplay(800, 600);
-  const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.0-alpha24.jar", "/app/cheerpj-xproc3/helloWord.xpl");
+  cheerpOSAddStringFile("/str/helloWord.xpl", xproc3Code);
+  const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.0-alpha24.jar", "/str/helloWord.xpl");
   console.log(`XML Calabash exited with code ${exitCode}`);
 })();
 </script>
