@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Running XML Calabash 3 with CheerpJ</title>
+  <script src="https://cjrtnc.leaningtech.com/3_20250319_724/cj3loader.js"></script>
+</head>
+<body>
+
+<script>
+  var xproc3Code = `<p:declare-step name="identity-test3" xmlns:p="http://www.w3.org/ns/xproc"
+    xmlns:c="http://www.w3.org/ns/xproc-step" version="3.0">
+    <p:input port="source">
+        <p:inline>
+            <root>
+                <items>
+                    <item>
+                        <foo>foo1</foo>
+                        <bar>bar1</bar>
+                        <value>value 1</value>
+                    </item>
+                    <item>
+                        <foo>foo2</foo>
+                        <bar>bar2</bar>
+                        <value>value 2</value>
+                    </item>
+                    <item>
+                        <foo>foo1</foo>
+                        <bar>bar1</bar>
+                        <value>value 3</value>
+                    </item>
+                    <item>
+                        <foo>foo1</foo>
+                        <bar>bar2</bar>
+                        <value>value 4</value>
+                    </item>
+                    <item>
+                        <foo>foo2</foo>
+                        <bar>bar2</bar>
+                        <value>value 5</value>
+                    </item>
+                </items>
+            </root>
+        </p:inline>
+    </p:input>
+    <p:output port="result"/>
+    <p:xquery name="xquery-group-into-array-of-arrays">
+        <p:with-input port="query" expand-text="false">
+            <c:query>
+                declare namespace array = "http://www.w3.org/2005/xpath-functions/array";
+
+                declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
+
+                declare option output:method 'adaptive';
+
+                fold-left(
+                    for $item at $pos in root/items/item
+                    group by $key1 := $item/foo, $key2 := $item/bar
+                    order by head($pos)
+                    return
+                      array { $item },
+                    [],
+                    function($a, $b) { array:append($a, $b?*) }
+                )</c:query>
+        </p:with-input>
+    </p:xquery>
+    <p:xslt name="xslt-group-into-array-of-arrays">
+        <p:with-input port="source" pipe="source@identity-test3"/>
+        <p:with-input port="stylesheet" expand-text="false">
+            <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:array="http://www.w3.org/2005/xpath-functions/array"
+                exclude-result-prefixes="#all"
+                version="3.0">
+
+                <xsl:mode on-no-match="shallow-skip"/>
+
+                <xsl:output method="adaptive" build-tree="no"/>
+
+                <xsl:template match="root/items">
+                    <xsl:variable name="sequence-of-arrays" as="array(node()*)*">
+                        <xsl:for-each-group select="item" composite="yes" group-by="foo, bar">
+                            <xsl:sequence select="array { current-group() }"/>
+                        </xsl:for-each-group>
+                    </xsl:variable>
+                    <xsl:sequence select="fold-left($sequence-of-arrays, [], function($a, $b) { array:append($a, $b?*) })"/>
+                </xsl:template>
+
+            </xsl:stylesheet>
+        </p:with-input>
+    </p:xslt>
+    <p:xquery>
+        <p:with-input port="query">
+            <c:query>declare variable $xslt-result external;
+                     every $item in ?*
+                     satisfies
+                       some $item2 in $xslt-result?*
+                       satisfies
+                         $item is $item2</c:query>
+        </p:with-input>
+        <p:with-input port="source" pipe="result@xquery-group-into-array-of-arrays"/>
+        <p:with-option name="parameters" select="map { 'xslt-result': . }">
+            <p:pipe step="xslt-group-into-array-of-arrays" port="result"/>
+        </p:with-option>
+    </p:xquery>
+</p:declare-step>`;
+
+  (async function () {
+    await cheerpjInit({version:11});
+    //cheerpjCreateDisplay(800, 600);
+    cheerpOSAddStringFile("/str/helloWord.xpl", xproc3Code);
+    const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.0-alpha24.jar", "/str/helloWord.xpl");
+    console.log(`XML Calabash exited with code ${exitCode}`);
+  })();
+</script>
+
+</body>
+</html>
