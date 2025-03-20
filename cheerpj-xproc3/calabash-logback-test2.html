@@ -70,9 +70,10 @@ Share and enjoy!</helloWorld>
 </p:declare-step>`;
 
   (async function () {
-    cheerpOSAddStringFile("/str/logback.xml", logback);
 
     await cheerpjInit({version:11, javaProperties:['-Dlogback.configurationFile=/str/logback.xml']});
+
+    cheerpOSAddStringFile("/str/logback.xml", logback);
 
     cheerpOSAddStringFile("/str/helloWord.xpl", xproc3Code);
 
