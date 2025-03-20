@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Running XML Calabash 3 with CheerpJ</title>
+  <script src="https://cjrtnc.leaningtech.com/3_20250319_724/cj3loader.js"></script>
+</head>
+<body>
+
+<script>
+  const logback = `<configuration>
+  <!-- The default logger only logs to STDERR and uses a dynamic threshold
+       filter to control the level. If you want something else, use
+       your own logback.xml configuration...
+  -->
+
+  <turboFilter class="ch.qos.logback.classic.turbo.DynamicThresholdFilter">
+    <Key>LOG_LEVEL</Key>
+    <DefaultThreshold>WARN</DefaultThreshold>
+    <OnHigherOrEqual>ACCEPT</OnHigherOrEqual>
+    <OnLower>DENY</OnLower>
+    <MDCValueLevelPair>
+      <value>TRACE</value>
+      <level>TRACE</level>
+    </MDCValueLevelPair>
+    <MDCValueLevelPair>
+      <value>DEBUG</value>
+      <level>DEBUG</level>
+    </MDCValueLevelPair>
+    <MDCValueLevelPair>
+      <value>INFO</value>
+      <level>INFO</level>
+    </MDCValueLevelPair>
+    <MDCValueLevelPair>
+      <value>WARN</value>
+      <level>WARN</level>
+    </MDCValueLevelPair>
+    <MDCValueLevelPair>
+      <value>ERROR</value>
+      <level>ERROR</level>
+    </MDCValueLevelPair>
+  </turboFilter>
+
+  <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+    <target>System.err</target>
+    <encoder>
+      <pattern>%-5level %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="WARN" additivity="false">
+    <appender-ref ref="STDERR"/>
+  </root>
+</configuration>
+`;
+
+  var xproc3Code = `<p:declare-step xmlns:p="http://www.w3.org/ns/xproc"
+                exclude-inline-prefixes="#all"
+                version="3.0">
+  <p:output port="result"/>
+
+  <p:identity>
+    <p:with-input>
+      <helloWorld>This is {p:system-property('p:product-name')
+      } version {p:system-property('p:product-version')}.
+Share and enjoy!</helloWorld>
+    </p:with-input>
+  </p:identity>
+
+</p:declare-step>`;
+
+  (async function () {
+    cheerpOSAddStringFile("/str/logback.xml", logback);
+
+    await cheerpjInit({version:11, javaProperties:['-Dlogback.configurationFile=/str/logback.xml']});
+
+    cheerpOSAddStringFile("/str/helloWord.xpl", xproc3Code);
+
+    const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.0-alpha24.jar", "/str/helloWord.xpl");
+    console.log(`XML Calabash exited with code ${exitCode}`);
+  })();
+</script>
+
+</body>
+</html>
