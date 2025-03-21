@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <html lang="en">
   <head>
-    <title>CheerpJ BaseX 11.7 XQuery 3.1 fiddle</title>
+    <title>CheerpJ BaseX 11.8 XQuery 3.1 fiddle</title>
   </head>
   <body>
     <section>
-      <h1>Release 0.0.1 alpha</h1>
+      <h1>Release 0.0.2 alpha</h1>
       <section>
         <h2>Features using BaseX 11</h2>
         <ul>
@@ -14,7 +14,7 @@
           <li>output pane should now switch the used editor to the output mode based on the used serialization method/option of the XQuery code</li>
         </ul>
       </section>
-      <p>BaseX 11 is Copyright (c) BaseX Team and used under <a href="https://github.com/BaseXdb/basex/blob/11.7/LICENSE">The BSD 3-Clause License</a>.</p>
+      <p>BaseX 11 is Copyright (c) BaseX Team and used under <a href="https://github.com/BaseXdb/basex/blob/11.8/LICENSE">The BSD 3-Clause License</a>.</p>
       <p>CheerpJ is used under <a href="https://cheerpj.com/docs/licensing">the community license</a> that is free to use for personal projects.</p>
     </section>
   </body>
