@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fontoxpath evaluate test 1</title>
+</head>
+<body>
+<script type=module>
+  // See https://www.npmjs.com/package/fontoxpath documentation.
+  import * as fontoxpath from 'https://esm.run/fontoxpath';
+
+  const namespaceBindings = { 'fonto' : 'http://fontoxml.com/fontoxpath' };
+
+  const exampleXML1 = `<root>
+  <item xpath="/root/data/value"/>
+  <data>
+    <value>foo</value>
+    <value>bar</value>
+  </data>
+</root>`;
+
+
+  const exampleXML1Doc = new DOMParser().parseFromString(exampleXML1, 'application/xml');
+
+  console.log(fontoxpath.evaluateXPathToString(
+    `root/item/fonto:evaluate(string(@xpath), map { '.' : / })`,
+    exampleXML1Doc,
+    null,
+    null,
+    { namespaceResolver: (prefix) => namespaceBindings[prefix]}
+  ));
+</script>
+</body>
+</html>
