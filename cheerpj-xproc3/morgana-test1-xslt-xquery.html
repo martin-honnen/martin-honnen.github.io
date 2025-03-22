@@ -109,8 +109,8 @@
     await cheerpjInit({version:11});
     //cheerpjCreateDisplay(800, 600);
     cheerpOSAddStringFile("/str/pipeline.xpl", xproc3Code);
-    const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/MorganaXProc-IIIse.jar", "/str/pipeline.xpl", "-xslt-connector=saxon12-3");
-    console.log(`MorganaXProcIII exited with code ${exitCode}`);
+    const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/MorganaXProc-IIIse.jar", "/str/pipeline.xpl", "-xslt-connector=saxon12-3", "-xquery-connector=saxon12-3");
+    console.log(`MorganaXProc-III exited with code ${exitCode}`);
   })();
 </script>
 
