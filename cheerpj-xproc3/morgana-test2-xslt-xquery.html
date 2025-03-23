@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Running MorganaXProc-III with CheerpJ</title>
+  <script src="https://cjrtnc.leaningtech.com/3_20250321_764/cj3loader.js"></script>
+</head>
+<body>
+
+<script>
+  var xproc3Code = `<p:declare-step name="identity-test3" xmlns:p="http://www.w3.org/ns/xproc"
+    xmlns:c="http://www.w3.org/ns/xproc-step" version="3.0">
+    <p:input port="source">
+        <p:inline>
+            <root>
+                <items>
+                    <item>
+                        <foo>foo1</foo>
+                        <bar>bar1</bar>
+                        <value>value 1</value>
+                    </item>
+                    <item>
+                        <foo>foo2</foo>
+                        <bar>bar2</bar>
+                        <value>value 2</value>
+                    </item>
+                    <item>
+                        <foo>foo1</foo>
+                        <bar>bar1</bar>
+                        <value>value 3</value>
+                    </item>
+                    <item>
+                        <foo>foo1</foo>
+                        <bar>bar2</bar>
+                        <value>value 4</value>
+                    </item>
+                    <item>
+                        <foo>foo2</foo>
+                        <bar>bar2</bar>
+                        <value>value 5</value>
+                    </item>
+                </items>
+            </root>
+        </p:inline>
+    </p:input>
+    <p:output port="result"/>
+    <p:xquery name="xquery-group-into-array-of-arrays">
+        <p:with-input port="query" expand-text="false">
+            <c:query>
+                declare namespace array = "http://www.w3.org/2005/xpath-functions/array";
+
+                declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
+
+                declare option output:method 'adaptive';
+
+                fold-left(
+                    for $item at $pos in root/items/item
+                    group by $key1 := $item/foo, $key2 := $item/bar
+                    order by head($pos)
+                    return
+                      array { $item },
+                    [],
+                    function($a, $b) { array:append($a, $b?*) }
+                )</c:query>
+        </p:with-input>
+    </p:xquery>
+    <p:xslt name="xslt-group-into-array-of-arrays">
+        <p:with-input port="source" pipe="source@identity-test3"/>
+        <p:with-input port="stylesheet" expand-text="false">
+            <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:array="http://www.w3.org/2005/xpath-functions/array"
+                exclude-result-prefixes="#all"
+                version="3.0">
+
+                <xsl:mode on-no-match="shallow-skip"/>
+
+                <xsl:output method="adaptive" build-tree="no"/>
+
+                <xsl:template match="root/items">
+                    <xsl:variable name="sequence-of-arrays" as="array(node()*)*">
+                        <xsl:for-each-group select="item" composite="yes" group-by="foo, bar">
+                            <xsl:sequence select="array { current-group() }"/>
+                        </xsl:for-each-group>
+                    </xsl:variable>
+                    <xsl:sequence select="fold-left($sequence-of-arrays, [], function($a, $b) { array:append($a, $b?*) })"/>
+                </xsl:template>
+
+            </xsl:stylesheet>
+        </p:with-input>
+    </p:xslt>
+    <p:xquery>
+        <p:with-input port="query">
+            <c:query>declare variable $xslt-result external;
+                     every $item in ?*
+                     satisfies
+                       some $item2 in $xslt-result?*
+                       satisfies
+                         $item is $item2</c:query>
+        </p:with-input>
+        <p:with-input port="source" pipe="result@xquery-group-into-array-of-arrays"/>
+        <p:with-option name="parameters" select="map { 'xslt-result': . }">
+            <p:pipe step="xslt-group-into-array-of-arrays" port="result"/>
+        </p:with-option>
+    </p:xquery>
+</p:declare-step>`;
+
+  (async function () {
+    await cheerpjInit({version:11});
+    //cheerpjCreateDisplay(800, 600);
+    cheerpOSAddStringFile("/str/pipeline.xpl", xproc3Code);
+    const exitCode = await cheerpjRunMain("com.xml_project.morganaxproc3.XProcEngine", "/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/BlitzMarkupConnector.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/htmlparser-1.4.15.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/jing.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/NineMLConnector.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/httpclient-4.5.10.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/json-schema-validator-1.0.79.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/Saxon10Connector.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/httpcore-4.4.12.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/kryo-4.0.1.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/Saxon11Connector.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/httpmime-4.5.10.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/quasar-actors-0.7.9.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/Saxon12-3Connector.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/itu-1.7.0.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/quasar-core-0.7.9.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/Saxon12Connector.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/jackson-annotations-2.14.2.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/saxon-he-12.5.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/Saxon99Connector.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/jackson-core-2.14.2.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/slf4j-api-1.7.36.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/commons-codec-1.11.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/jackson-databind-2.14.2.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/slf4j-nop-1.7.36.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/commons-lang3-3.12.0.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/jackson-dataformat-yaml-2.14.2.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/snakeyaml-1.33.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/commons-logging-1.2.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/javax.activation-1.2.0.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/xmlresolver-6.0.14.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/guava-23.0.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/javax.mail-1.6.2.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse.jar", "/str/pipeline.xpl", "-xquery-connector=saxon12-3", "-xslt-connector=saxon12-3");
+    console.log(`MorganaXProc-III exited with code ${exitCode}`);
+  })();
+</script>
+
+</body>
+</html>
