@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Running XML Calabash 3 with CheerpJ</title>
+  <script src="https://cjrtnc.leaningtech.com/3_20250319_724/cj3loader.js"></script>
+</head>
+<body>
+
+<script>
+  var xproc3Code = `<p:declare-step name="ixml-test1" xmlns:p="http://www.w3.org/ns/xproc"
+    xmlns:c="http://www.w3.org/ns/xproc-step" version="3.1">
+    <p:input port="source" primary="true">
+        <p:inline content-type="text/plain">26 March 2025</p:inline>
+    </p:input>
+    <p:input port="grammar">
+        <p:inline content-type="text/plain">date: s?, day, s, month, (s, year)? .
+-s: -" "+ .
+day: digit, digit? .
+-digit: "0"; "1"; "2"; "3"; "4"; "5"; "6"; "7"; "8"; "9".
+month: "January"; "February"; "March"; "April";
+"May"; "June"; "July"; "August";
+"September"; "October"; "November"; "December".
+year: (digit, digit)?, digit, digit .</p:inline>
+    </p:input>
+    <p:output port="result"/>
+    <p:invisible-xml>
+        <p:with-input port="grammar" pipe="grammar@ixml-test1"/>
+    </p:invisible-xml>
+</p:declare-step>`;
+
+  (async function () {
+    await cheerpjInit({version:11});
+    //cheerpjCreateDisplay(800, 600);
+    cheerpOSAddStringFile("/str/pipeline.xpl", xproc3Code);
+    const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.0-alpha24.jar", "/str/pipeline.xpl");
+    console.log(`XML Calabash exited with code ${exitCode}`);
+  })();
+</script>
+
+</body>
+</html>
