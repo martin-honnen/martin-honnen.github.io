@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>urn URI test 1</title>
+  <script src="https://cjrtnc.leaningtech.com/3.1/cj3loader.js"></script>
+</head>
+<body>
+<script>
+  (async function() {
+    await cheerpjInit();
+    const lib = await cheerpjRunLibrary("");
+
+    const URL = await lib.java.net.URL;
+    const url1 = await new URL("urn:from-string");
+
+    console.log(url1);
+  })();
+</script>
+
+</body>
+</html>
