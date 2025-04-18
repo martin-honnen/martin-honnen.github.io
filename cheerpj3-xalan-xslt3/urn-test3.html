@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>urn URL test 1</title>
+  <title>urn URI test 1</title>
   <script src="https://cjrtnc.leaningtech.com/3.1/cj3loader.js"></script>
 </head>
 <body>
@@ -11,10 +11,10 @@
     await cheerpjInit();
     const lib = await cheerpjRunLibrary("");
 
-    const URL = await lib.java.net.URL;
-    const url1 = await new URL("urn:from-string");
+    const URI = await lib.java.net.URI;
+    const uri1 = await new URI("urn:from-string");
 
-    console.log(url1);
+    console.log(uri1);
   })();
 </script>
 
