@@ -1,7 +1,12 @@
 async function transform(input, xslt, inputType, inputUri, xsltUri, outputUri) {
 
   inputUri = inputUri || 'urn:from-string';
-  xsltUri = xsltUri || 'file:/files/fiddle-xslt-input-dummy';//xsltUri || 'urn:from-string';
+
+  if (!xsltUri) {
+    xsltUri = '/str/fiddle-xslt-input.xsl';
+    cheerpOSAddStringFile(xsltUri, xslt);
+  }
+  //xsltUri = xsltUri || 'file:/files/fiddle-xslt-input-dummy';//xsltUri || 'urn:from-string';
   outputUri = outputUri || 'file:/files/xslt-output';
 
   if (xalanInitialized) {
