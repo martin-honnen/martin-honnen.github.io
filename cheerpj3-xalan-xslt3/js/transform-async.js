@@ -1,7 +1,7 @@
 async function transform(input, xslt, inputType, inputUri, xsltUri, outputUri) {
 
-  inputUri = inputUri || 'urn:from-string';
-  xsltUri = xsltUri || 'urn:from-string';
+  //inputUri = inputUri || 'urn:from-string';
+  //xsltUri = xsltUri || 'urn:from-string';
   outputUri = outputUri || 'file:/files/xslt-output';
 
   if (xalanInitialized) {
@@ -13,7 +13,7 @@ async function transform(input, xslt, inputType, inputUri, xsltUri, outputUri) {
       
       await TransformerFactory.setErrorListener(errorListenerHelper);
 
-      transformer = await TransformerFactory.newTransformer(await new StreamSource(await new StringReader(xslt), xsltUri));
+      transformer = await TransformerFactory.newTransformer(xsltUri ? await new StreamSource(await new StringReader(xslt), xsltUri) : await new StreamSource(await new StringReader(xslt)));
 
       //const transformerImpl = await (TransformerImpl)transformer;
       await transformer.setProperty("http://apache.org/xalan/xslevaluate", true); //await transformer.XSL_EVALUATE_PROPERTY
@@ -80,7 +80,7 @@ async function transform(input, xslt, inputType, inputUri, xsltUri, outputUri) {
     var transformationResult = await new StreamResult(resultWriter);
         
     try {
-      await transformer.transform(await new StreamSource(await new StringReader(input), inputUri), transformationResult);
+      await transformer.transform(inputUri ? await new StreamSource(await new StringReader(input), inputUri) : await new StreamSource(await new StringReader(input)), transformationResult);
       
       errors = await getJavaScriptMessages(errorListenerHelper);
    
