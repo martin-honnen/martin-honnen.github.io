@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Running MorganaXProcIII with CheerpJ</title>
+  <script src="https://cjrtnc.leaningtech.com/3_20250414_1093/cj3loader.js"></script>
+</head>
+<body>
+  <pre id=console></pre>
+
+<script>
+  var xproc3Code = `<p:declare-step xmlns:p="http://www.w3.org/ns/xproc"
+\txmlns:xs="http://www.w3.org/2001/XMLSchema" version="3.0">
+
+\t<p:output port="result" serialization="map{'indent' : true()}" />
+\t
+\t<p:identity>
+\t\t<p:with-input>
+\t\t\t<p:inline content-type="text/plain">Hello world. This is an XProc 3.0 pipeline running.</p:inline>
+\t\t</p:with-input>
+\t</p:identity>
+
+</p:declare-step>`;
+
+  (async function () {
+    await cheerpjInit({version:11});
+    //cheerpjCreateDisplay(800, 600);
+    cheerpOSAddStringFile("/str/pipeline.xpl", xproc3Code);
+    const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/MorganaXProc-IIIse.jar", "/str/pipeline.xpl", "-xslt-connector=saxon12-3");
+    console.log(`MorganaXProcIII exited with code ${exitCode}`);
+  })();
+</script>
+
+</body>
+</html>
