@@ -14,7 +14,7 @@
           <li>output pane should now switch the used editor to the output mode based on the used serialization method/option of the XQuery code</li>
         </ul>
       </section>
-      <p>BaseX 11 is Copyright (c) BaseX Team and used under <a href="https://github.com/BaseXdb/basex/blob/11.8/LICENSE">The BSD 3-Clause License</a>.</p>
+      <p>BaseX 11 is Copyright (c) BaseX Team and used under <a href="https://github.com/BaseXdb/basex/blob/11.9/LICENSE">The BSD 3-Clause License</a>.</p>
       <p>CheerpJ is used under <a href="https://cheerpj.com/docs/licensing">the community license</a> that is free to use for personal projects.</p>
     </section>
   </body>
