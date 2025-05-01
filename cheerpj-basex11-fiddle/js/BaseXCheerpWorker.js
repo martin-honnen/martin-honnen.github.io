@@ -61,7 +61,7 @@ var queryProcessor = null;
 
   //lib = await cheerpjRunLibrary("/app/saxon-he-12.4.jar:/app/Cheerp3Helpers.jar");
   //lib = await cheerpjRunLibrary("/app/cheerpj-basex-test/basex-11.7.jar:/app/cheerpj-basex-test/CheerpJBaseX11Helper.jar:/app/cheerpj-basex-test/lib/htmlparser-1.4.16.jar:/app/cheerpj-basex-test/lib/markup-blitz-1.6.jar:/app/cheerpj-basex-test/lib/jing-20220510.jar:/app/cheerpj-basex-test/lib/lucene-stemmers-3.4.0.jar:/app/cheerpj-basex-test/lib/jline-2.14.6.jar:/app/cheerpj-basex-test/lib/custom/saxon-he-12.4.jar");
-  lib = await cheerpjRunLibrary("/app/cheerpj-basex-test/BaseX.jar:/app/cheerpj-basex-test/CheerpJBaseX11Helper.jar:/app/cheerpj-basex-test/lib/htmlparser-1.4.16.jar:/app/cheerpj-basex-test/lib/markup-blitz-1.8.jar:/app/cheerpj-basex-test/lib/jing-20220510.jar:/app/cheerpj-basex-test/lib/lucene-stemmers-3.4.0.jar:/app/cheerpj-basex-test/lib/jline-2.14.6.jar:/app/cheerpj-basex-test/lib/custom/saxon-he-12.4.jar");
+  lib = await cheerpjRunLibrary("/app/cheerpj-basex11-fiddle/BaseX.jar:/app/cheerpj-basex11-fiddle/CheerpJBaseX11Helper.jar:/app/cheerpj-basex11-fiddle/lib/htmlparser-1.4.16.jar:/app/cheerpj-basex11-fiddle/lib/markup-blitz-1.8.jar:/app/cheerpj-basex11-fiddle/lib/jing-20220510.jar:/app/cheerpj-basex11-fiddle/lib/lucene-stemmers-3.4.0.jar:/app/cheerpj-basex11-fiddle/lib/jline-2.14.6.jar:/app/cheerpj-basex11-fiddle/lib/custom/saxon-he-12.5.jar");
 
   console.log('Worker CheerpJ library initialized');
   
