@@ -8,62 +8,71 @@
   <link rel="stylesheet" href="css/ace-fiddle.css">
 
 	<script>
-  var doneTypingInterval = 1000;
-  var typingTimeout;
+    var gistId = null;
+    var gistBaseURI = null;
 
-  var autoEvaluation = false;
+    var doneTypingInterval = 1000;
+    var typingTimeout;
 
-	function evaluate() {
-		var inputType = document.getElementById('input-types').form['input-type'].value;
-		var codeType = document.getElementById('input-types').form['code-type'].value;
-		if (codeType === 'XSLT')
-		  transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, document.getElementById('results'));
-		else if (codeType === 'XQuery')
-		  xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, document.getElementById('results'));
-		else if (codeType === 'XPath')
-		  xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, document.getElementById('results'));
-	}
+    var autoEvaluation = false;
 
-  function wait(time) {
-	  return new Promise(res => setTimeout(res, time));
-	}
-	
-	function autoEvaluate() {
-		typingTimeout = autoEvaluation ? setTimeout(evaluate, doneTypingInterval) : 0;//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
-	}
-	
-  function renderXsltResults(results, resultsSelect) {
+    function evaluate() {
+      var inputType = document.getElementById('input-types').form['input-type'].value;
+      var codeType = document.getElementById('input-types').form['code-type'].value;
+      var codeFileInput = document.getElementById('codeFile');
+      var codeFileName = codeFileInput != null ? codeFileInput.value : '';
+      var inputFileInput = document.getElementById('inputFile');
+      var inputFileName = inputFileInput != null ? inputFileInput.value : '';
+      var inputBaseURI = inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
+      var codeBaseURI = codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
+      if (codeType === 'XSLT')
+        transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));
+      else if (codeType === 'XQuery')
+        xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType,  codeBaseURI, inputBaseURI, document.getElementById('results'));
+      else if (codeType === 'XPath')
+        xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType,  codeBaseURI, inputBaseURI, document.getElementById('results'));
+    }
 
-    resultsSelect.length = 0;
+    function wait(time) {
+      return new Promise(res => setTimeout(res, time));
+    }
 
-    results.forEach((result, index) => {
-      resultsSelect.appendChild(new Option(result.uri, result.uri));
-      if (index === 0) {
-        writeResult(window.frames['current-result-frame'], result.content);
-      }
-    });
+    function autoEvaluate() {
+      typingTimeout = autoEvaluation ? setTimeout(evaluate, doneTypingInterval) : 0;//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
+    }
 
-    resultsSelect.onchange = function (evt) {
-      var selectedResult = results[this.selectedIndex];
-      setDocument(resultEditor, selectedResult.content, selectedResult.method);
+    function renderXsltResults(results, resultsSelect) {
 
-      if (document.getElementById('render-box').checked) {
-        writeResult(window.frames['current-result-frame'], results[this.selectedIndex].content);
-      }
-    };
+      resultsSelect.length = 0;
 
-    setDocument(resultEditor, results[0].content, results[0].method);
+      results.forEach((result, index) => {
+        resultsSelect.appendChild(new Option(result.uri, result.uri));
+        if (index === 0) {
+          writeResult(window.frames['current-result-frame'], result.content);
+        }
+      });
 
-  }
+      resultsSelect.onchange = function (evt) {
+        var selectedResult = results[this.selectedIndex];
+        setDocument(resultEditor, selectedResult.content, selectedResult.method);
 
-	function renderResults(results, resultsSelect) {
-    resultsSelect.length = 0;
-    var principalResult = results[0];
-    setDocument(resultEditor, principalResult, 'xml');
-    writeResult(window.frames['current-result-frame'], principalResult);	
-	}	
-  
-	const saxonWorker = new Worker("js/SaxonHECheerpLatestWorkerNoPreload.js");
+        if (document.getElementById('render-box').checked) {
+          writeResult(window.frames['current-result-frame'], results[this.selectedIndex].content);
+        }
+      };
+
+      setDocument(resultEditor, results[0].content, results[0].method);
+
+    }
+
+    function renderResults(results, resultsSelect) {
+      resultsSelect.length = 0;
+      var principalResult = results[0];
+      setDocument(resultEditor, principalResult, 'xml');
+      writeResult(window.frames['current-result-frame'], principalResult);
+    }
+
+    const saxonWorker = new Worker("js/SaxonHECheerpLatestWorkerNoPreload.js");
 	
 	saxonWorker.onmessage = e => {
 	  if (e.data.type === 'XSLT-Results' || e.data.type === 'xquery-result') {
@@ -110,7 +119,7 @@
                 <!--<label><input type="radio" name="code-type" value="XSD">XSD</label>-->
             </fieldset>
         </form>
-		<label>auto-evaluation <input type="checkbox" id="auto-evaluate"></label>
+		<!--<label>auto-evaluation <input type="checkbox" id="auto-evaluate"></label>
         <input type="button" id="transform" value="XSLT transformation" accesskey="t"
                onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
                             transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, document.getElementById('results'));">
@@ -120,13 +129,48 @@
         <input type="button" id="xpath" value="XPath" accesskey="a"
                onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
                             xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, document.getElementById('results'));">
-         <!--<input type="button" id="xsd" value="XSD" accesskey="V" title="validate XML against XSD schema"
-               onclick="validate(inputEditor.session.getValue(), codeEditor.session.getValue(), document.getElementById('results'));">-->
+         &lt;!&ndash;<input type="button" id="xsd" value="XSD" accesskey="V" title="validate XML against XSD schema"
+               onclick="validate(inputEditor.session.getValue(), codeEditor.session.getValue(), document.getElementById('results'));">&ndash;&gt;
         <input type="button" id="save" value="save as URL" accesskey="s"
-               onclick="save(document.getElementById('input-type-form'));">
+               onclick="save(document.getElementById('input-type-form'));">-->
+      <label>auto-evaluation <input type="checkbox" id="auto-evaluate"></label>
+      <input type="button" id="transform" value="XSLT transformation" accesskey="t"
+             onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
+		                    var codeType = document.getElementById('input-types').form['code-type'].value;
+                        var codeFileInput = document.getElementById('codeFile');
+                        var codeFileName = codeFileInput != null ? codeFileInput.value : '';
+                        var inputFileInput = document.getElementById('inputFile');
+                        var inputFileName = inputFileInput != null ? inputFileInput.value : '';
+                        var inputBaseURI = inputFileName != '' && gistId != null ? new window.URL(inputFileName, gistBaseURI).href : 'urn:from-string';
+                        var codeBaseURI = codeFileName != '' && gistId != null ? new window.URL(codeFileName, gistBaseURI).href : 'urn:from-string';
+                        transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));">
+      <input type="button" id="xquery" value="XQuery" accesskey="q"
+             onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
+		                    var codeType = document.getElementById('input-types').form['code-type'].value;
+                        var codeFileInput = document.getElementById('codeFile');
+                        var codeFileName = codeFileInput != null ? codeFileInput.value : '';
+                        var inputFileInput = document.getElementById('inputFile');
+                        var inputFileName = inputFileInput != null ? inputFileInput.value : '';
+                        var inputBaseURI = inputFileName != '' && gistId != null ? new window.URL(inputFileName, gistBaseURI).href : 'urn:from-string';
+                        var codeBaseURI = codeFileName != '' && gistId != null ? new window.URL(codeFileName, gistBaseURI).href : 'urn:from-string';
+                        xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));">
+      <input type="button" id="xpath" value="XPath" accesskey="a"
+             onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
+		                    var codeType = document.getElementById('input-types').form['code-type'].value;
+                        var codeFileInput = document.getElementById('codeFile');
+                        var codeFileName = codeFileInput != null ? codeFileInput.value : '';
+                        var inputFileInput = document.getElementById('inputFile');
+                        var inputFileName = inputFileInput != null ? inputFileInput.value : '';
+                        var inputBaseURI = inputFileName != '' && gistId != null ? new window.URL(inputFileName, gistBaseURI).href : 'urn:from-string';
+                        var codeBaseURI = codeFileName != '' && gistId != null ? new window.URL(codeFileName, gistBaseURI).href : 'urn:from-string';
+                        xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));">
+      <!--<input type="button" id="xsd" value="XSD" accesskey="V" title="validate XML against XSD schema"
+            onclick="validate(inputEditor.session.getValue(), codeEditor.session.getValue(), document.getElementById('results'));">-->
+      <input type="button" id="save" value="save as URL" accesskey="s"
+             onclick="save(document.getElementById('input-type-form'));">
     </nav>
 </header>
-<div id="cheerpj3-load-indicator" style="color: red; font-weight: bolder; text-align: center;">CheerpJ 3 is not (yet) initialized.</div>
+<div id="cheerpj3-load-indicator" style="color: red; font-weight: bolder; text-align: center;">CheerpJ 4 is not (yet) initialized.</div>
 <div id="saxon-load-indicator" style="color: red; font-weight: bolder; text-align: center;">Saxon is not (yet) initialized.</div>
 <div class="view-container">
 
