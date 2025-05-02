@@ -8,7 +8,7 @@ function setEditorFromUrl(url, editor) {
 }
 
 function loadDefaults() {
-    setEditorFromUrl('examples/defaults/default-cheerpp4-java11.xml', inputEditor);
+    setEditorFromUrl('examples/defaults/default-cheerpj4-java11.xml', inputEditor);
     setEditorFromUrl('examples/defaults/default.xsl', codeEditor);
 }
 
