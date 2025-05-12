@@ -364,7 +364,7 @@ var cheerpJInitialized = false;
 
   async function runExample(exampleUri) {
     document.getElementById('console').textContent = '';
-    document.getElementById('xproc-code').value = await fetch(exampleUri);
+    document.getElementById('xproc-code').value = await (await fetch(exampleUri)).text();
     document.getElementById('status').textContent = `Running XProc pipeline ${exampleUri}...`;
     const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.0-beta1.jar", `/app/cheerpj-xproc3/${exampleUri}`);
     console.log(`XProc 3 processor exited with code ${exitCode}`);
