@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Running XProc 3 examples with CheerpJ</title>
+  <script src="https://cjrtnc.leaningtech.com/4.0/loader.js"></script>
+</head>
+<body>
+  <pre id=loading style="color: red;">CheerpJ is loading...</pre>
+  <pre id=status>XProc to be run...</pre>
+  <section>
+    <h2>XProc output</h2>
+    <pre id=console></pre>
+  </section>
+
+<script>
+  var xproc3Code = `<?xml version="1.0" encoding="UTF-8"?>
+<p:declare-step xmlns:p="http://www.w3.org/ns/xproc" version="3.0">
+
+  <p:input port="source">
+    <texts>
+      <text>Hello there!</text>
+      <text>This is funny…</text>
+      <text type="normal">And that's normal.</text>
+    </texts>
+  </p:input>
+  <p:output port="result"/>
+
+  <p:add-attribute match="text" attribute-name="type" attribute-value="special"/>
+
+</p:declare-step>`;
+function showPreloadProgress(preloadDone, preloadTotal) {
+  document.getElementById('status').textContent = ("Percentage loaded " + (preloadDone * 100) / preloadTotal);
+}
+
+  (async function () {
+    await cheerpjInit({version:11, preloadProgress: showPreloadProgress});
+    document.getElementById('loading').style.display = 'none';
+    //cheerpjCreateDisplay(800, 600);
+    //cheerpOSAddStringFile("/str/pipeline.xpl", xproc3Code);
+    const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.0-beta1.jar", "/app/cheerpj-xproc3/examples/add-xml-base/add-xml-base-01.xpl", "-xslt-connector=saxon12-3");
+    console.log(`XProc 3 processor exited with code ${exitCode}`);
+    document.getElementById('status').textContent = `XProc 3 processor exited with code ${exitCode}`;
+  })();
+</script>
+
+</body>
+</html>
