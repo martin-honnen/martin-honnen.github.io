@@ -1,0 +1,11 @@
+<body>
+  <p>Let's do some additions:</p>
+  <ul>
+    <li>
+      <generate href-pipeline="add-them.xpl" a="1" b="1"/>
+    </li>
+    <li>
+      <generate href-pipeline="add-them.xpl" a="7" b="3"/>
+    </li>
+  </ul>
+</body>

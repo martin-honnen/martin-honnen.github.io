@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weird-root-element>
+  <things>
+    <thing>A thing...</thing>
+    <thing>Another thing...</thing>
+  </things>
+  <things/>
+</weird-root-element>

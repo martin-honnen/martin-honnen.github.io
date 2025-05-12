@@ -1,0 +1,8 @@
+<rules xmlns="http://purl.oclc.org/dsdl/nvdl/ns/structure/1.0">
+  <namespace ns="https://www.xprocref.org/ns/thingies">
+    <validate schema="thingies.xsd"/>
+  </namespace>
+  <anyNamespace>
+    <allow/>
+  </anyNamespace>
+</rules>

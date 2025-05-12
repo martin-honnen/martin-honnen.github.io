@@ -1,0 +1,3 @@
+XProc steps rock!
+An important addition to our XML processing toolkit.
+What a joy!

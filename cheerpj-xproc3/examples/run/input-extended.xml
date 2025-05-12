@@ -1,0 +1,11 @@
+<body>
+  <p>Laten we optellen:</p>
+  <ul>
+    <li>
+      <generate href-pipeline="add-them-extended.xpl" a="1" b="1"/>
+    </li>
+    <li>
+      <generate href-pipeline="add-them-extended.xpl" a="7" b="3"/>
+    </li>
+  </ul>
+</body>

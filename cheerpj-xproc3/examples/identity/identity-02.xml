@@ -1,0 +1,5 @@
+<p:identity>
+  <p:with-input>
+    <report timestamp="{current-dateTime()}" href-result="{$href-result-location}" … />
+  </p:with-input>
+</p:identity>

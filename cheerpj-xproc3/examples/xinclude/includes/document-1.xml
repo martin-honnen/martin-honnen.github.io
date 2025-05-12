@@ -1,0 +1,4 @@
+<document-1 xmlns:xi="http://www.w3.org/2001/XInclude">
+  <description>This is include document 1</description>
+  <xi:include href="document-2.xml"/>
+</document-1>

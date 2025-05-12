@@ -1,0 +1,16 @@
+<p:declare-step xmlns:p="http://www.w3.org/ns/xproc" version="3.0">
+
+  <!-- Some complicated computations… -->
+
+  <p:identity name="raw-version"/>
+
+  <!-- Some more complicated computations… -->
+
+  <!-- And then a step refers back to the raw version: -->
+  <p:insert match="/*" position="first-child">
+    <p:port port="insertion" pipe="@raw-version"/>
+  </p:insert>
+
+  <!-- And some more computations… -->
+
+</p:declare-step>

@@ -1,0 +1,7 @@
+<p:catch>
+  <p:identity>
+    <p:with-input>
+      <error … />
+    </p:with-input>
+  </p:identity>
+</p:catch>

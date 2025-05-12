@@ -1,0 +1,5 @@
+<document-0 xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en-us">
+  <description>This is the master document</description>
+  <xi:include href="includes/document-1.xml"/>
+  <xi:include href="includes/document-2.xml"/>
+</document-0>

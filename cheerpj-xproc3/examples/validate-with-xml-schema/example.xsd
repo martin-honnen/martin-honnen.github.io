@@ -1,0 +1,10 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="things">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="thing" type="xs:string"/>
+      </xs:sequence>
+      <xs:attribute default="normal" name="status" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

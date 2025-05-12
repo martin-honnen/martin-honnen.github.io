@@ -1,0 +1,14 @@
+{
+  "method": "GET",
+  "protocol": "https",
+  "host": "echo.free.beeceptor.com",
+  "path": "/",
+  "ip": "84.29.5.211:52418",
+  "headers": {
+    "Host": "echo.free.beeceptor.com",
+    "User-Agent": "Apache-HttpClient/4.5.10 (Java/17.0.12)",
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip,deflate"
+  },
+  "parsedQueryParams": {}
+}

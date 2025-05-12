@@ -1,0 +1,3 @@
+<p:identity message="We started processing!"/>
+<p:identity message="- Input document {$href-input}"/>
+<p:identity message="- Processing type {$processing-type}"/>
