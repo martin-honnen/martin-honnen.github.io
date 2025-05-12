@@ -321,6 +321,9 @@
         <option value="examples/xslt/xslt-03.xpl">xslt/xslt-03.xpl</option>
       </optgroup></select>
   </section>
+  <section style="width: 100%; height: 100%;">
+    <textarea id="xproc-code" rows="25" cols="80" readonly style="width: 100%; height: 100%;"></textarea>
+  </section>
   <section>
     <h2>XProc output</h2>
     <pre id=console></pre>
@@ -361,6 +364,7 @@ var cheerpJInitialized = false;
 
   async function runExample(exampleUri) {
     document.getElementById('console').textContent = '';
+    document.getElementById('xproc-code').value = await fetch(exampleUri);
     document.getElementById('status').textContent = `Running XProc pipeline ${exampleUri}...`;
     const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.0-beta1.jar", `/app/cheerpj-xproc3/${exampleUri}`);
     console.log(`XProc 3 processor exited with code ${exitCode}`);
