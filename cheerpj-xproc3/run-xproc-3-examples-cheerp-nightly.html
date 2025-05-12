@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Running XProc 3 examples with CheerpJ</title>
+  <script src="https://cjrtnc.leaningtech.com/3_20250509_1325/loader.js"></script>
+</head>
+<body>
+  <pre id=loading style="color: red;">CheerpJ is loading...</pre>
+  <pre id=status>Status messages appear here...</pre>
+  <section>
+    <select id="examples-select">
+      <option value="">Select an XProc example</option>
+      <optgroup label="examples/add-attribute">
+        <option value="examples/add-attribute/add-attribute-01.xpl">add-attribute/add-attribute-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/add-xml-base">
+        <option value="examples/add-xml-base/add-xml-base-01.xpl">add-xml-base/add-xml-base-01.xpl</option>
+        <option value="examples/add-xml-base/add-xml-base-02.xpl">add-xml-base/add-xml-base-02.xpl</option>
+        <option value="examples/add-xml-base/add-xml-base-03.xpl">add-xml-base/add-xml-base-03.xpl</option>
+        <option value="examples/add-xml-base/add-xml-base-04.xpl">add-xml-base/add-xml-base-04.xpl</option>
+      </optgroup>
+      <optgroup label="examples/archive">
+        <option value="examples/archive/archive-01.xpl">archive/archive-01.xpl</option>
+        <option value="examples/archive/archive-02.xpl">archive/archive-02.xpl</option>
+        <option value="examples/archive/archive-03.xpl">archive/archive-03.xpl</option>
+      </optgroup>
+      <optgroup label="examples/archive-manifest">
+        <option value="examples/archive-manifest/archive-manifest-01.xpl">archive-manifest/archive-manifest-01.xpl</option>
+        <option value="examples/archive-manifest/archive-manifest-02.xpl">archive-manifest/archive-manifest-02.xpl</option>
+        <option value="examples/archive-manifest/archive-manifest-03.xpl">archive-manifest/archive-manifest-03.xpl</option>
+      </optgroup>
+      <optgroup label="examples/cast-content-type">
+        <option value="examples/cast-content-type/cast-content-type-01.xpl">cast-content-type/cast-content-type-01.xpl</option>
+        <option value="examples/cast-content-type/cast-content-type-02.xpl">cast-content-type/cast-content-type-02.xpl</option>
+        <option value="examples/cast-content-type/cast-content-type-03.xpl">cast-content-type/cast-content-type-03.xpl</option>
+        <option value="examples/cast-content-type/cast-content-type-04.xpl">cast-content-type/cast-content-type-04.xpl</option>
+        <option value="examples/cast-content-type/cast-content-type-05.xpl">cast-content-type/cast-content-type-05.xpl</option>
+        <option value="examples/cast-content-type/cast-content-type-07.xpl">cast-content-type/cast-content-type-07.xpl</option>
+        <option value="examples/cast-content-type/cast-content-type-08.xpl">cast-content-type/cast-content-type-08.xpl</option>
+      </optgroup>
+      <optgroup label="examples/compare">
+        <option value="examples/compare/compare-01-31.xpl">compare/compare-01-31.xpl</option>
+        <option value="examples/compare/compare-01.xpl">compare/compare-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/count">
+        <option value="examples/count/count-01.xpl">count/count-01.xpl</option>
+        <option value="examples/count/count-01b.xpl">count/count-01b.xpl</option>
+        <option value="examples/count/count-02.xpl">count/count-02.xpl</option>
+        <option value="examples/count/count-03.xpl">count/count-03.xpl</option>
+      </optgroup>
+      <optgroup label="examples/css-formatter">
+        <option value="examples/css-formatter/css-formatter-01.xpl">css-formatter/css-formatter-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/delete">
+        <option value="examples/delete/delete-01.xpl">delete/delete-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/directory-list">
+        <option value="examples/directory-list/directory-list-01.xpl">directory-list/directory-list-01.xpl</option>
+        <option value="examples/directory-list/directory-list-02.xpl">directory-list/directory-list-02.xpl</option>
+        <option value="examples/directory-list/directory-list-03.xpl">directory-list/directory-list-03.xpl</option>
+        <option value="examples/directory-list/directory-list-04.xpl">directory-list/directory-list-04.xpl</option>
+        <option value="examples/directory-list/directory-list-05.xpl">directory-list/directory-list-05.xpl</option>
+        <option value="examples/directory-list/directory-list-06.xpl">directory-list/directory-list-06.xpl</option>
+        <option value="examples/directory-list/directory-list-07.xpl">directory-list/directory-list-07.xpl</option>
+        <option value="examples/directory-list/directory-list-08.xpl">directory-list/directory-list-08.xpl</option>
+        <option value="examples/directory-list/directory-list-09.xpl">directory-list/directory-list-09.xpl</option>
+        <option value="examples/directory-list/directory-list-10.xpl">directory-list/directory-list-10.xpl</option>
+      </optgroup>
+      <optgroup label="examples/encode">
+        <option value="examples/encode/encode-01.xpl">encode/encode-01.xpl</option>
+        <option value="examples/encode/encode-02.xpl">encode/encode-02.xpl</option>
+        <option value="examples/encode/encode-03.xpl">encode/encode-03.xpl</option>
+      </optgroup>
+      <optgroup label="examples/error">
+        <option value="examples/error/error-01.xpl">error/error-01.xpl</option>
+        <option value="examples/error/error-02.xpl">error/error-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/file-copy">
+        <option value="examples/file-copy/file-copy-02.xpl">file-copy/file-copy-02.xpl</option>
+        <option value="examples/file-copy/file-copy-03.xpl">file-copy/file-copy-03.xpl</option>
+      </optgroup>
+      <optgroup label="examples/file-create-tempfile">
+        <option value="examples/file-create-tempfile/file-create-tempfile-01.xpl">file-create-tempfile/file-create-tempfile-01.xpl</option>
+        <option value="examples/file-create-tempfile/file-create-tempfile-02.xpl">file-create-tempfile/file-create-tempfile-02.xpl</option>
+        <option value="examples/file-create-tempfile/file-create-tempfile-03.xpl">file-create-tempfile/file-create-tempfile-03.xpl</option>
+      </optgroup>
+      <optgroup label="examples/file-delete">
+        <option value="examples/file-delete/file-delete-01.xpl">file-delete/file-delete-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/file-info">
+        <option value="examples/file-info/file-info-01.xpl">file-info/file-info-01.xpl</option>
+        <option value="examples/file-info/file-info-02.xpl">file-info/file-info-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/file-mkdir">
+        <option value="examples/file-mkdir/file-mkdir-01.xpl">file-mkdir/file-mkdir-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/file-move">
+        <option value="examples/file-move/file-move-01.xpl">file-move/file-move-01.xpl</option>
+        <option value="examples/file-move/file-move-02.xpl">file-move/file-move-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/file-touch">
+        <option value="examples/file-touch/file-touch-01.xpl">file-touch/file-touch-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/filter">
+        <option value="examples/filter/filter-01.xpl">filter/filter-01.xpl</option>
+        <option value="examples/filter/filter-01a.xpl">filter/filter-01a.xpl</option>
+        <option value="examples/filter/filter-02.xpl">filter/filter-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/hash">
+        <option value="examples/hash/hash-01.xpl">hash/hash-01.xpl</option>
+        <option value="examples/hash/hash-02.xpl">hash/hash-02.xpl</option>
+        <option value="examples/hash/hash-03.xpl">hash/hash-03.xpl</option>
+      </optgroup>
+      <optgroup label="examples/http-request">
+        <option value="examples/http-request/http-request-01.xpl">http-request/http-request-01.xpl</option>
+        <option value="examples/http-request/http-request-02.xpl">http-request/http-request-02.xpl</option>
+        <option value="examples/http-request/http-request-03.xpl">http-request/http-request-03.xpl</option>
+        <option value="examples/http-request/http-request-04.xpl">http-request/http-request-04.xpl</option>
+      </optgroup>
+      <optgroup label="examples/insert">
+        <option value="examples/insert/insert-01.xpl">insert/insert-01.xpl</option>
+        <option value="examples/insert/insert-02.xpl">insert/insert-02.xpl</option>
+        <option value="examples/insert/insert-03.xpl">insert/insert-03.xpl</option>
+        <option value="examples/insert/insert-04.xpl">insert/insert-04.xpl</option>
+        <option value="examples/insert/insert-05.xpl">insert/insert-05.xpl</option>
+      </optgroup>
+      <optgroup label="examples/invisible-xml">
+        <option value="examples/invisible-xml/invisible-xml-01.xpl">invisible-xml/invisible-xml-01.xpl</option>
+        <option value="examples/invisible-xml/invisible-xml-02.xpl">invisible-xml/invisible-xml-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/json-join">
+        <option value="examples/json-join/json-join-01.xpl">json-join/json-join-01.xpl</option>
+        <option value="examples/json-join/json-join-02.xpl">json-join/json-join-02.xpl</option>
+        <option value="examples/json-join/json-join-03.xpl">json-join/json-join-03.xpl</option>
+        <option value="examples/json-join/json-join-04.xpl">json-join/json-join-04.xpl</option>
+      </optgroup>
+      <optgroup label="examples/json-merge">
+        <option value="examples/json-merge/json-merge-01.xpl">json-merge/json-merge-01.xpl</option>
+        <option value="examples/json-merge/json-merge-02.xpl">json-merge/json-merge-02.xpl</option>
+        <option value="examples/json-merge/json-merge-03.xpl">json-merge/json-merge-03.xpl</option>
+      </optgroup>
+      <optgroup label="examples/label-elements">
+        <option value="examples/label-elements/label-elements-01.xpl">label-elements/label-elements-01.xpl</option>
+        <option value="examples/label-elements/label-elements-02.xpl">label-elements/label-elements-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/load">
+        <option value="examples/load/load-01.xpl">load/load-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/make-absolute-uris">
+        <option value="examples/make-absolute-uris/make-absolute-uris-01.xpl">make-absolute-uris/make-absolute-uris-01.xpl</option>
+        <option value="examples/make-absolute-uris/make-absolute-uris-02.xpl">make-absolute-uris/make-absolute-uris-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/markdown-to-html">
+        <option value="examples/markdown-to-html/markdown-to-html-01.xpl">markdown-to-html/markdown-to-html-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/message">
+        <option value="examples/message/message-01.xpl">message/message-01.xpl</option>
+        <option value="examples/message/message-02.xpl">message/message-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/namespace-delete">
+        <option value="examples/namespace-delete/namespace-delete-01.xpl">namespace-delete/namespace-delete-01.xpl</option>
+        <option value="examples/namespace-delete/namespace-delete-02.xpl">namespace-delete/namespace-delete-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/namespace-rename">
+        <option value="examples/namespace-rename/namespace-rename-01.xpl">namespace-rename/namespace-rename-01.xpl</option>
+        <option value="examples/namespace-rename/namespace-rename-02.xpl">namespace-rename/namespace-rename-02.xpl</option>
+        <option value="examples/namespace-rename/namespace-rename-03.xpl">namespace-rename/namespace-rename-03.xpl</option>
+        <option value="examples/namespace-rename/namespace-rename-04.xpl">namespace-rename/namespace-rename-04.xpl</option>
+      </optgroup>
+      <optgroup label="examples/os-exec">
+        <option value="examples/os-exec/os-exec-01.xpl">os-exec/os-exec-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/os-info">
+        <option value="examples/os-info/os-info-01.xpl">os-info/os-info-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/pack">
+        <option value="examples/pack/pack-01.xpl">pack/pack-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/rename">
+        <option value="examples/rename/rename-01.xpl">rename/rename-01.xpl</option>
+        <option value="examples/rename/rename-02.xpl">rename/rename-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/replace">
+        <option value="examples/replace/replace-01.xpl">replace/replace-01.xpl</option>
+        <option value="examples/replace/replace-02.xpl">replace/replace-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/run">
+        <option value="examples/run/add-them-extended.xpl">run/add-them-extended.xpl</option>
+        <option value="examples/run/add-them.xpl">run/add-them.xpl</option>
+        <option value="examples/run/run-01.xpl">run/run-01.xpl</option>
+        <option value="examples/run/run-02.xpl">run/run-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/send-mail">
+        <option value="examples/send-mail/send-mail-01.xpl">send-mail/send-mail-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/set-attributes">
+        <option value="examples/set-attributes/set-attributes-01.xpl">set-attributes/set-attributes-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/split-sequence">
+        <option value="examples/split-sequence/split-sequence-01.xpl">split-sequence/split-sequence-01.xpl</option>
+        <option value="examples/split-sequence/split-sequence-02.xpl">split-sequence/split-sequence-02.xpl</option>
+        <option value="examples/split-sequence/split-sequence-03.xpl">split-sequence/split-sequence-03.xpl</option>
+        <option value="examples/split-sequence/split-sequence-04.xpl">split-sequence/split-sequence-04.xpl</option>
+      </optgroup>
+      <optgroup label="examples/store">
+        <option value="examples/store/store-01.xpl">store/store-01.xpl</option>
+        <option value="examples/store/store-02.xpl">store/store-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/string-replace">
+        <option value="examples/string-replace/string-replace-01.xpl">string-replace/string-replace-01.xpl</option>
+        <option value="examples/string-replace/string-replace-02.xpl">string-replace/string-replace-02.xpl</option>
+        <option value="examples/string-replace/string-replace-03.xpl">string-replace/string-replace-03.xpl</option>
+        <option value="examples/string-replace/string-replace-03x.xpl">string-replace/string-replace-03x.xpl</option>
+        <option value="examples/string-replace/string-replace-04.xpl">string-replace/string-replace-04.xpl</option>
+        <option value="examples/string-replace/string-replace-04x.xpl">string-replace/string-replace-04x.xpl</option>
+      </optgroup>
+      <optgroup label="examples/text-count">
+        <option value="examples/text-count/text-count-01.xpl">text-count/text-count-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/text-head">
+        <option value="examples/text-head/text-head-01.xpl">text-head/text-head-01.xpl</option>
+        <option value="examples/text-head/text-head-02.xpl">text-head/text-head-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/text-join">
+        <option value="examples/text-join/text-join-01.xpl">text-join/text-join-01.xpl</option>
+        <option value="examples/text-join/text-join-02.xpl">text-join/text-join-02.xpl</option>
+        <option value="examples/text-join/text-join-03.xpl">text-join/text-join-03.xpl</option>
+      </optgroup>
+      <optgroup label="examples/text-replace">
+        <option value="examples/text-replace/text-replace-01.xpl">text-replace/text-replace-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/text-sort">
+        <option value="examples/text-sort/text-sort-01.xpl">text-sort/text-sort-01.xpl</option>
+        <option value="examples/text-sort/text-sort-02.xpl">text-sort/text-sort-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/text-tail">
+        <option value="examples/text-tail/text-tail-01.xpl">text-tail/text-tail-01.xpl</option>
+        <option value="examples/text-tail/text-tail-02.xpl">text-tail/text-tail-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/unarchive">
+        <option value="examples/unarchive/unarchive-01.xpl">unarchive/unarchive-01.xpl</option>
+        <option value="examples/unarchive/unarchive-02.xpl">unarchive/unarchive-02.xpl</option>
+        <option value="examples/unarchive/unarchive-03.xpl">unarchive/unarchive-03.xpl</option>
+        <option value="examples/unarchive/unarchive-04.xpl">unarchive/unarchive-04.xpl</option>
+        <option value="examples/unarchive/unarchive-05.xpl">unarchive/unarchive-05.xpl</option>
+      </optgroup>
+      <optgroup label="examples/unwrap">
+        <option value="examples/unwrap/unwrap-01.xpl">unwrap/unwrap-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/uuid">
+        <option value="examples/uuid/uuid-01.xpl">uuid/uuid-01.xpl</option>
+        <option value="examples/uuid/uuid-02.xpl">uuid/uuid-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/validate-with-dtd">
+        <option value="examples/validate-with-dtd/validate-with-dtd-01.xpl">validate-with-dtd/validate-with-dtd-01.xpl</option>
+        <option value="examples/validate-with-dtd/validate-with-dtd-02.xpl">validate-with-dtd/validate-with-dtd-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/validate-with-json-schema">
+        <option value="examples/validate-with-json-schema/validate-with-json-schema-01.xpl">validate-with-json-schema/validate-with-json-schema-01.xpl</option>
+        <option value="examples/validate-with-json-schema/validate-with-json-schema-02.xpl">validate-with-json-schema/validate-with-json-schema-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/validate-with-nvdl">
+        <option value="examples/validate-with-nvdl/validate-with-nvdl-01.xpl">validate-with-nvdl/validate-with-nvdl-01.xpl</option>
+        <option value="examples/validate-with-nvdl/validate-with-nvdl-02.xpl">validate-with-nvdl/validate-with-nvdl-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/validate-with-relax-ng">
+        <option value="examples/validate-with-relax-ng/validate-with-relax-ng-01.xpl">validate-with-relax-ng/validate-with-relax-ng-01.xpl</option>
+        <option value="examples/validate-with-relax-ng/validate-with-relax-ng-02.xpl">validate-with-relax-ng/validate-with-relax-ng-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/validate-with-schematron">
+        <option value="examples/validate-with-schematron/validate-with-schematron-01.xpl">validate-with-schematron/validate-with-schematron-01.xpl</option>
+        <option value="examples/validate-with-schematron/validate-with-schematron-02.xpl">validate-with-schematron/validate-with-schematron-02.xpl</option>
+        <option value="examples/validate-with-schematron/validate-with-schematron-03.xpl">validate-with-schematron/validate-with-schematron-03.xpl</option>
+        <option value="examples/validate-with-schematron/validate-with-schematron-04.xpl">validate-with-schematron/validate-with-schematron-04.xpl</option>
+        <option value="examples/validate-with-schematron/validate-with-schematron-05.xpl">validate-with-schematron/validate-with-schematron-05.xpl</option>
+      </optgroup>
+      <optgroup label="examples/validate-with-xml-schema">
+        <option value="examples/validate-with-xml-schema/validate-with-xml-schema-01.xpl">validate-with-xml-schema/validate-with-xml-schema-01.xpl</option>
+        <option value="examples/validate-with-xml-schema/validate-with-xml-schema-02.xpl">validate-with-xml-schema/validate-with-xml-schema-02.xpl</option>
+        <option value="examples/validate-with-xml-schema/validate-with-xml-schema-03.xpl">validate-with-xml-schema/validate-with-xml-schema-03.xpl</option>
+        <option value="examples/validate-with-xml-schema/validate-with-xml-schema-04.xpl">validate-with-xml-schema/validate-with-xml-schema-04.xpl</option>
+        <option value="examples/validate-with-xml-schema/validate-with-xml-schema-05.xpl">validate-with-xml-schema/validate-with-xml-schema-05.xpl</option>
+        <option value="examples/validate-with-xml-schema/validate-with-xml-schema-06.xpl">validate-with-xml-schema/validate-with-xml-schema-06.xpl</option>
+      </optgroup>
+      <optgroup label="examples/wrap">
+        <option value="examples/wrap/wrap-01.xpl">wrap/wrap-01.xpl</option>
+        <option value="examples/wrap/wrap-02.xpl">wrap/wrap-02.xpl</option>
+        <option value="examples/wrap/wrap-03.xpl">wrap/wrap-03.xpl</option>
+      </optgroup>
+      <optgroup label="examples/wrap-sequence">
+        <option value="examples/wrap-sequence/wrap-sequence-01.xpl">wrap-sequence/wrap-sequence-01.xpl</option>
+        <option value="examples/wrap-sequence/wrap-sequence-02.xpl">wrap-sequence/wrap-sequence-02.xpl</option>
+        <option value="examples/wrap-sequence/wrap-sequence-03.xpl">wrap-sequence/wrap-sequence-03.xpl</option>
+      </optgroup>
+      <optgroup label="examples/www-form-urldecode">
+        <option value="examples/www-form-urldecode/www-form-urldecode-01.xpl">www-form-urldecode/www-form-urldecode-01.xpl</option>
+        <option value="examples/www-form-urldecode/www-form-urldecode-02.xpl">www-form-urldecode/www-form-urldecode-02.xpl</option>
+        <option value="examples/www-form-urldecode/www-form-urldecode-03.xpl">www-form-urldecode/www-form-urldecode-03.xpl</option>
+      </optgroup>
+      <optgroup label="examples/www-form-urlencode">
+        <option value="examples/www-form-urlencode/www-form-urlencode-01.xpl">www-form-urlencode/www-form-urlencode-01.xpl</option>
+        <option value="examples/www-form-urlencode/www-form-urlencode-02.xpl">www-form-urlencode/www-form-urlencode-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/xinclude">
+        <option value="examples/xinclude/xinclude-01.xpl">xinclude/xinclude-01.xpl</option>
+        <option value="examples/xinclude/xinclude-02.xpl">xinclude/xinclude-02.xpl</option>
+        <option value="examples/xinclude/xinclude-03.xpl">xinclude/xinclude-03.xpl</option>
+        <option value="examples/xinclude/xinclude-04.xpl">xinclude/xinclude-04.xpl</option>
+      </optgroup>
+      <optgroup label="examples/xquery">
+        <option value="examples/xquery/xquery-01.xpl">xquery/xquery-01.xpl</option>
+        <option value="examples/xquery/xquery-02.xpl">xquery/xquery-02.xpl</option>
+      </optgroup>
+      <optgroup label="examples/xsl-formatter">
+        <option value="examples/xsl-formatter/xsl-formatter-01.xpl">xsl-formatter/xsl-formatter-01.xpl</option>
+      </optgroup>
+      <optgroup label="examples/xslt">
+        <option value="examples/xslt/xslt-01.xpl">xslt/xslt-01.xpl</option>
+        <option value="examples/xslt/xslt-02.xpl">xslt/xslt-02.xpl</option>
+        <option value="examples/xslt/xslt-03.xpl">xslt/xslt-03.xpl</option>
+      </optgroup></select>
+
+    <label>XProc 3 processor: <select id="xproc3-processor-select">
+      <option value="MorganaXProc-IIIse" selected>MorganaXProc-IIIse 1.6.4</option>
+      <option value="XMLCalabash">XML Calabash 3.0.0 beta1</option>
+    </select></label>
+  </section>
+  <section style="width: 100%; height: 100%;">
+    <textarea id="xproc-code" rows="25" cols="80" readonly style="width: 100%; height: 100%;"></textarea>
+  </section>
+  <section>
+    <h2>XProc output</h2>
+    <pre id=console></pre>
+  </section>
+
+<script>
+  var xproc3Code = `<?xml version="1.0" encoding="UTF-8"?>
+<p:declare-step xmlns:p="http://www.w3.org/ns/xproc" version="3.0">
+
+  <p:input port="source">
+    <texts>
+      <text>Hello there!</text>
+      <text>This is funny…</text>
+      <text type="normal">And that's normal.</text>
+    </texts>
+  </p:input>
+  <p:output port="result"/>
+
+  <p:add-attribute match="text" attribute-name="type" attribute-value="special"/>
+
+</p:declare-step>`;
+function showPreloadProgress(preloadDone, preloadTotal) {
+  document.getElementById('status').textContent = ("Percentage loaded " + (preloadDone * 100) / preloadTotal);
+}
+
+var cheerpJInitialized = false;
+
+  (async function () {
+    await cheerpjInit({version:11, preloadProgress: showPreloadProgress});
+    cheerpJInitialized = true;
+    document.getElementById('loading').style.display = 'none';
+    //cheerpjCreateDisplay(800, 600);
+    //cheerpOSAddStringFile("/str/pipeline.xpl", xproc3Code);
+    //const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.0-beta1.jar", "/app/cheerpj-xproc3/examples/add-xml-base/add-xml-base-01.xpl");
+    //console.log(`XProc 3 processor exited with code ${exitCode}`);
+    //document.getElementById('status').textContent = `XProc 3 processor exited with code ${exitCode}`;
+  })();
+
+  async function runExample(exampleUri) {
+    document.getElementById('console').textContent = '';
+    document.getElementById('xproc-code').value = await (await fetch(exampleUri)).text();
+    const xproc3Processor = document.getElementById('xproc3-processor-select').value;
+    document.getElementById('status').textContent = `Running XProc pipeline ${exampleUri} with ${xproc3Processor}...`;
+    if (xproc3Processor === 'MorganaXProc-IIIse') {
+      const exitCode = await cheerpjRunMain("com.xml_project.morganaxproc3.XProcEngine", "/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/BlitzMarkupConnector.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/htmlparser-1.4.15.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/jing.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/NineMLConnector.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/httpclient-4.5.10.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/json-schema-validator-1.0.79.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/Saxon10Connector.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/httpcore-4.4.12.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/kryo-4.0.1.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/Saxon11Connector.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/httpmime-4.5.10.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/quasar-actors-0.7.9.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/Saxon12-3Connector.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/itu-1.7.0.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/quasar-core-0.7.9.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/Saxon12Connector.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/jackson-annotations-2.14.2.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/saxon-he-12.5.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/Saxon99Connector.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/jackson-core-2.14.2.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/slf4j-api-1.7.36.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/commons-codec-1.11.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/jackson-databind-2.14.2.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/slf4j-nop-1.7.36.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/markup-blitz-1.6.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/commons-lang3-3.12.0.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/jackson-dataformat-yaml-2.14.2.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/snakeyaml-1.33.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/commons-logging-1.2.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/javax.activation-1.2.0.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/xmlresolver-6.0.14.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/guava-23.0.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse_lib/javax.mail-1.6.2.jar:/app/cheerpj-xproc3/MorganaXProc-IIIse.jar", `/app/cheerpj-xproc3/${exampleUri}`, "-xquery-connector=saxon12-3", "-xslt-connector=saxon12-3", "-ixml-connector=com.xml_project.morganaxproc3.markupblitzConnector.MarkupBlitzConnector");
+      console.log(`XProc 3 processor exited with code ${exitCode}`);
+      document.getElementById('status').textContent = `XProc 3 processor exited with code ${exitCode}`;
+    }
+    else if (xproc3Processor === 'XMLCalabash') {
+      const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.0-beta1.jar", `/app/cheerpj-xproc3/${exampleUri}`);
+      console.log(`XProc 3 processor exited with code ${exitCode}`);
+      document.getElementById('status').textContent = `XProc 3 processor exited with code ${exitCode}`;
+    }
+  }
+
+document.getElementById('examples-select').addEventListener('change', async function() { await runExample(document.getElementById('examples-select').value); });
+
+document.getElementById('xproc3-processor-select').addEventListener('change', async function() { if (document.getElementById('examples-select').value.endsWith('.xpl')) await runExample(document.getElementById('examples-select').value); });
+
+</script>
+
+</body>
+</html>
