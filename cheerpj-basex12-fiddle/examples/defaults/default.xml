@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html lang="en">
+  <head>
+    <title>CheerpJ BaseX 12 XQuery fiddle</title>
+  </head>
+  <body>
+    <section>
+      <h1>Release 0.0.1 alpha</h1>
+      <section>
+        <h2>Features using BaseX 12</h2>
+        <ul>
+          <li>XQuery 3.1 and experimental XQuery 4.0 against XML or JSON input or no input</li>
+          <li>optional automatic evaluation of XQuery as CheerpJ also allows to run Java code (e.g. BaseX) from a web worker</li>
+          <li>output pane should now switch the used editor to the output mode based on the used serialization method/option of the XQuery code</li>
+        </ul>
+      </section>
+      <p>BaseX 12 is Copyright (c) BaseX Team and used under <a href="https://github.com/BaseXdb/basex/blob/main/LICENSE">The BSD 3-Clause License</a>.</p>
+      <p>CheerpJ is used under <a href="https://cheerpj.com/docs/licensing">the community license</a> that is free to use for personal projects.</p>
+    </section>
+  </body>
+</html>
