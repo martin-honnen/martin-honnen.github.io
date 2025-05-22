@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title>Test CheerpJ nightly with Java 12 support with BaseX</title>
+    <script src="https://cjrtnc.leaningtech.com/3_20250521_1399/loader.js"></script>  </head>
+  <body>
+    <script>
+    const xquery = `declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
+    declare option output:method "xml";
+    declare option output:indent "yes";
+    <items>
+    {
+      random-number-generator(current-dateTime())?permute(1 to 20)!<item>{.}</item>
+    }
+    </items>`;
+    (async function () {
+        await cheerpjInit({version:17});
+        //cheerpjCreateDisplay(800, 600);
+        const exitCode = await cheerpjRunMain("org.basex.BaseX", "/app/cheerpj-basex12-fiddle/BaseX.jar", xquery);
+        console.log(`BaseX exited with code ${exitCode}`);
+      })();
+    </script>
+  </body>
+</html>  
+
+  
+
