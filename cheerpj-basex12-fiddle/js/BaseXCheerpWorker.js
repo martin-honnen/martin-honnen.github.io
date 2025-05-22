@@ -33,7 +33,7 @@ var OutputSerializer = null;
 
 var SerializerOptions = null;
 
-var BaseX11Helper = null;
+var BaseX12Helper = null;
 
 var StringReader = null;
 
@@ -61,7 +61,7 @@ var queryProcessor = null;
 
   //lib = await cheerpjRunLibrary("/app/saxon-he-12.4.jar:/app/Cheerp3Helpers.jar");
   //lib = await cheerpjRunLibrary("/app/cheerpj-basex-test/basex-11.7.jar:/app/cheerpj-basex-test/CheerpJBaseX11Helper.jar:/app/cheerpj-basex-test/lib/htmlparser-1.4.16.jar:/app/cheerpj-basex-test/lib/markup-blitz-1.6.jar:/app/cheerpj-basex-test/lib/jing-20220510.jar:/app/cheerpj-basex-test/lib/lucene-stemmers-3.4.0.jar:/app/cheerpj-basex-test/lib/jline-2.14.6.jar:/app/cheerpj-basex-test/lib/custom/saxon-he-12.4.jar");
-  lib = await cheerpjRunLibrary("/app/cheerpj-basex12-fiddle/BaseX.jar:/app/cheerpj-basex11-fiddle/cheerpj-basex12-fiddle/CheerpJBaseX12Helper.jar:/app/cheerpj-basex12-fiddle/lib/htmlparser-1.4.16.jar:/app/cheerpj-basex12-fiddle/lib/markup-blitz-1.8.jar:/app/cheerpj-basex12-fiddle/lib/jing-20220510.jar:/app/cheerpj-basex12-fiddle/lib/lucene-stemmers-3.4.0.jar:/app/cheerpj-basex12-fiddle/lib/jline-2.14.6.jar:/app/cheerpj-basex12-fiddle/lib/custom/saxon-he-12.7.jar");
+  lib = await cheerpjRunLibrary("/app/cheerpj-basex12-fiddle/BaseX.jar:/app/cheerpj-basex12-fiddle/CheerpJBaseX12Helper.jar:/app/cheerpj-basex12-fiddle/lib/htmlparser-1.4.16.jar:/app/cheerpj-basex12-fiddle/lib/markup-blitz-1.8.jar:/app/cheerpj-basex12-fiddle/lib/jing-20220510.jar:/app/cheerpj-basex12-fiddle/lib/lucene-stemmers-3.4.0.jar:/app/cheerpj-basex12-fiddle/lib/jline-2.14.6.jar:/app/cheerpj-basex12-fiddle/lib/custom/saxon-he-12.7.jar");
 
   console.log('Worker CheerpJ library initialized');
   
@@ -87,7 +87,7 @@ var queryProcessor = null;
 
   SerializerOptions = await lib.org.basex.io.serial.SerializerOptions; 
 
-  BaseX11Helper = await lib.BaseX11Helper;
+  BaseX12Helper = await lib.BaseX12Helper;
   
   StringReader = await lib.java.io.StringReader;
 
