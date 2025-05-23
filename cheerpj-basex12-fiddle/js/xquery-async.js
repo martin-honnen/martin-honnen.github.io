@@ -29,7 +29,7 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
       
       var serializer = await queryProcessor.serializer(os);
 
-      const method = await BaseX11Helper.getSerializerMethod(serializer);
+      const method = await BaseX12Helper.getSerializerMethod(serializer);
 
       console.log('method: ' + method);
 
