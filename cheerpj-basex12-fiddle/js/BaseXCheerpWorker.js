@@ -1,4 +1,4 @@
-importScripts("https://cjrtnc.leaningtech.com/3_20250521_1399/loader.js");//"https://cjrtnc.leaningtech.com/3_20250414_1093/cj3loader.js");//"https://cjrtnc.leaningtech.com/3_20250319_724/cj3loader.js"); //importScripts("https://cjrtnc.leaningtech.com/3_20250116_577/cj3loader.js"); //"https://cjrtnc.leaningtech.com/3_20250113_576/cj3loader.js");//importScripts('https://cjrtnc.leaningtech.com/3.0rc2/cj3loader.js');
+importScripts("https://cjrtnc.leaningtech.com/20250522_2392/loader.js");//"https://cjrtnc.leaningtech.com/3_20250414_1093/cj3loader.js");//"https://cjrtnc.leaningtech.com/3_20250319_724/cj3loader.js"); //importScripts("https://cjrtnc.leaningtech.com/3_20250116_577/cj3loader.js"); //"https://cjrtnc.leaningtech.com/3_20250113_576/cj3loader.js");//importScripts('https://cjrtnc.leaningtech.com/3.0rc2/cj3loader.js');
 
 var filetypes = {
   '.htm': 'html',
