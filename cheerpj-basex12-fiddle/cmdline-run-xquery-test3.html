@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title>Test CheerpJ nightly with Java 12 support with BaseX</title>
+    <!--<script src="https://cjrtnc.leaningtech.com/20250522_2392/loader.js"></script>-->
+    <script src="https://cjrtnc.leaningtech.com/20250526_2407/loader.js"></script>
+  </head>
+  <body>
+    <script>
+    const xquery = `declare namespace map = "http://www.w3.org/2005/xpath-functions/map";
+declare namespace array = "http://www.w3.org/2005/xpath-functions/array";
+
+declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
+
+declare option output:method 'xml';
+declare option output:indent 'yes';
+
+csv:parse(\`Foo,Bar
+1,2
+Hello,World\`., { 'header': true() })
+
+`;
+    (async function () {
+        await cheerpjInit({version:17});
+        //cheerpjCreateDisplay(800, 600);
+        const exitCode = await cheerpjRunMain("org.basex.BaseX", "/app/cheerpj-basex12-fiddle/BaseX.jar:/app/cheerpj-basex12-fiddle/CheerpJBaseX12Helper.jar:/app/cheerpj-basex12-fiddle/lib/basex-api-12.0-SNAPSHOT.jar:/app/cheerpj-basex12-fiddle/lib/htmlparser-1.4.16.jar:/app/cheerpj-basex12-fiddle/lib/markup-blitz-1.8.jar:/app/cheerpj-basex12-fiddle/lib/jing-20220510.jar:/app/cheerpj-basex12-fiddle/lib/lucene-stemmers-3.4.0.jar:/app/cheerpj-basex12-fiddle/lib/jline-2.14.6.jar:/app/cheerpj-basex12-fiddle/lib/custom/saxon-he-12.7.jar", xquery);
+        console.log(`BaseX exited with code ${exitCode}`);
+      })();
+    </script>
+  </body>
+</html>  
+
+  
