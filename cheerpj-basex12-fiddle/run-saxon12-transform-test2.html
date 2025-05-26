@@ -112,7 +112,7 @@
 
     cheerpOSAddStringFile("/str/processorTest.xsl", xslt);
 
-    const exitCode = await cheerpjRunJar("/app/cheerpj-basex12-fiddle/lib/custom/saxon-he-12.7.jar", "-t -it -xsl:/str/processorTest.xsl");
+    const exitCode = await cheerpjRunJar("/app/cheerpj-basex12-fiddle/lib/custom/saxon-he-12.7.jar", "-t", "-it", "-xsl:/str/processorTest.xsl");
     console.log(`Saxon exited with code ${exitCode}`);
   })();
 </script>
