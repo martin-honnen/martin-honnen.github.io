@@ -18,7 +18,9 @@ declare option output:indent 'yes';
 
 csv:parse(\`Foo,Bar
 1,2
-Hello,World\`., { 'header': true() })
+Hello,World\`,
+  { 'header': true() }
+)
 
 `;
     (async function () {
