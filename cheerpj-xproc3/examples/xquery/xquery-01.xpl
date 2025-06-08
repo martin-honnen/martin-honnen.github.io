@@ -20,7 +20,7 @@
   <p:output port="result" sequence="true"/>
 
   <p:xquery>
-    <p:with-input port="query" href="sort-things.xq" />
+    <p:with-input port="query" href="sort-things.xql"/>
   </p:xquery>
 
 </p:declare-step>

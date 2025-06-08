@@ -20,7 +20,7 @@
   <p:output port="result" sequence="true"/>
 
   <p:xquery parameters="map{'elm-name': 'thing'}">
-    <p:with-input port="query" href="sort.xq"/>
+    <p:with-input port="query" href="sort.xql"/>
   </p:xquery>
 
 </p:declare-step>
