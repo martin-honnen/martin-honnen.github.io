@@ -60,7 +60,7 @@
     function renderResults(results) {
       var principalResult = results[0];
       setDocument(resultEditor, principalResult, 'xml');
-      writeResult(window.frames['current-result-frame'], principalResult);
+      //writeResult(window.frames['current-result-frame'], principalResult);
     }
 
     const saxonWorker = new Worker("js/SaxonHECheerpWorker.js");
@@ -121,7 +121,7 @@
     <section class="grid-row button-bar">
       <label id="render-result">
         render result
-        <input type="checkbox" id="render-box" name="render-box" checked>
+        <input type="checkbox" id="render-box" name="render-box">
       </label>
     </section>
     <section class="grid-row">
