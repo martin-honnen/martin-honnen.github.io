@@ -61,7 +61,10 @@ async function schematronValidate(input, schematron, schxsltVersion) {
       var compiledSchematron = await schxsltTranspiler.applyTemplates(schematronContextItem);
 
       try {
-        var compiledSchematronExecutable = await xsltCompiler.compile(await compiledSchematron.asSource());
+        var compiledSchematronSource = await compiledSchematron.asSource();
+        await compiledSchematronSource.setSystemId('urn:from-string');
+
+        var compiledSchematronExecutable = await xsltCompiler.compile(compiledSchematronSource);
 
         var schematronTransformer = await compiledSchematronExecutable.load30();
 
