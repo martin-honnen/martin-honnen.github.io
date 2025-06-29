@@ -102,6 +102,6 @@ onmessage = async (e) => {
   var task = e.data.task;
   var data = e.data.data;
   if (task === 'schematron') {
-    await schematronValidate(data.input, data.schematron);
+    await schematronValidate(data.input, data.schematron, data.schxsltVersion);
   }
 }
