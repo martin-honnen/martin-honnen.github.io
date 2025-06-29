@@ -26,7 +26,7 @@ async function schematronValidate(input, schematron, schxsltVersion) {
     var schxsltTranspiler = null;
 
     try {
-      schxsltTranspilerExecutable = await xsltCompiler.compile(await new StreamSource('/app/' + schxsltVersion));
+      schxsltTranspilerExecutable = await xsltCompiler.compile(await new StreamSource('/app/schematron-fiddle/' + schxsltVersion));
       schxsltTranspiler = await schxsltTranspilerExecutable.load30();
     }
     catch (e) {
