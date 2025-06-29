@@ -28,11 +28,18 @@
 
     <xsl:template name="xsl:initial-template">
         <xsl:sequence
-            select="transform(map {
-            'stylesheet-node' : $compiled-schema,
-            'stylesheet-base-uri': $schema-uri,
-            'source-node' : parse-xml($instance-text)
-            })?output"/>
+            select="if (empty($schema-uri))
+                    then
+                      transform(map {
+                      'stylesheet-node' : $compiled-schema,
+                      'source-node' : parse-xml($instance-text)
+                      })?output
+                    else
+                      transform(map {
+                      'stylesheet-node' : $compiled-schema,
+                      'stylesheet-base-uri': $schema-uri,
+                      'source-node' : parse-xml($instance-text)
+                      })?output""/>
     </xsl:template>
     
     <xsl:template match="/">
