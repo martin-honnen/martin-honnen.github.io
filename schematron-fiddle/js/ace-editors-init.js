@@ -8,7 +8,7 @@ xmlEditor.session.setValue('<root>This is an example.</root>');
 
 //xmlEditor.setOption("enableEmmet", true);
 
-xmlEditor.session.on('change', runAutoValidate);
+//xmlEditor.session.on('change', runAutoValidate);
 
 
 var schematronEditor = ace.edit('schematron-editor');
@@ -28,7 +28,7 @@ schematronEditor.session.setValue(`<schema xmlns="http://purl.oclc.org/dsdl/sche
 
 //schematronEditor.setOption("enableEmmet", true);
 
-schematronEditor.session.on('change', runAutoValidate);
+//schematronEditor.session.on('change', runAutoValidate);
 
 
 var resultEditor = ace.edit('result-editor');
