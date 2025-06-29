@@ -22,7 +22,7 @@
     var autoEvaluation = false;
 
     function evaluate() {
-      validate(xmlEditor.session.getValue(), schematronEditor.session.getValue(), document.getElementById('results'), document.getElementById('schxsltVersionSelect').value);
+      validate(xmlEditor.session.getValue(), schematronEditor.session.getValue(), schxsltVersions[document.getElementById('schxsltVersionSelect').value]);
     }
 
     function wait(time) {
@@ -97,7 +97,7 @@
       <option value="schxslt-1.10.1">Schxslt 1.10.1</option>
     </select></label>
     <label>auto-validate <input type="checkbox" id="auto-validate"></label>
-    <input type="button" id="validate" value="validate" accesskey="v" onclick="validate(xmlEditor.session.getValue(), schematronEditor.session.getValue(), document.getElementById('results'), document.getElementById('schxsltVersionSelect').value);">
+    <input type="button" id="validate" value="validate" accesskey="v" onclick="validate(xmlEditor.session.getValue(), schematronEditor.session.getValue(), schxsltVersions[document.getElementById('schxsltVersionSelect').value]);">
     <input type="button" id="save" value="save as URL" accesskey="s" onclick="save();">
    </nav>
 </header>
