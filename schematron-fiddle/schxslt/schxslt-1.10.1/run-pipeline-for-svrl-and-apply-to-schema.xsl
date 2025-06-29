@@ -39,7 +39,7 @@
                       'stylesheet-node' : $compiled-schema,
                       'stylesheet-base-uri': $schema-uri,
                       'source-node' : parse-xml($instance-text)
-                      })?output""/>
+                      })?output"/>
     </xsl:template>
     
     <xsl:template match="/">
