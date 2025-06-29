@@ -35,7 +35,7 @@
 
     function renderXsltResults(results, resultsSelect) {
 
-      resultsSelect.length = 0;
+      //resultsSelect.length = 0;
 
       results.forEach((result, index) => {
         resultsSelect.appendChild(new Option(result.uri, result.uri));
@@ -57,8 +57,7 @@
 
     }
 
-    function renderResults(results, resultsSelect) {
-      resultsSelect.length = 0;
+    function renderResults(results) {
       var principalResult = results[0];
       setDocument(resultEditor, principalResult, 'xml');
       writeResult(window.frames['current-result-frame'], principalResult);
@@ -69,7 +68,7 @@
     saxonWorker.onmessage = e => {
       if (e.data.type === 'result') {
         var results = e.data.results;
-        renderResults(results, document.querySelector('#results'));
+        renderResults(results);//, document.querySelector('#results'));
       }
       else if (e.data.type === 'message' && e.data.message === 'hide') {
         document.getElementById(e.data.id).style.display = 'none';
