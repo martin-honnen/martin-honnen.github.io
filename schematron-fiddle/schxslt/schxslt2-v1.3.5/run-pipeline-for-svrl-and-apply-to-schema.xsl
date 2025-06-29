@@ -30,7 +30,7 @@
         <xsl:sequence
             select="transform(map {
             'stylesheet-node' : $compiled-schema,
-            'stylesheet-base-uri': $schema-uri,
+            'stylesheet-base-uri': if (empty($schema-uri)) then 'urn:from-string' else $schema-uri,
             'source-node' : parse-xml($instance-text)
             })?output"/>
     </xsl:template>
