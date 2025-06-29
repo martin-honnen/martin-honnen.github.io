@@ -72,7 +72,7 @@ async function schematronValidate(input, schematron, schxsltVersion) {
 
         await xsltParameters.put(await new QName('', 'instance-text'), await new XdmAtomicValue(input));
         await xsltParameters.put(await new QName('', 'schema-text'), await new XdmAtomicValue(schematron));
-        await xsltParameters.put(await new QName('', 'schema-uri'), await new XdmAtomicValue('uri:from-string'));
+        await xsltParameters.put(await new QName('', 'instance-uri'), await new XdmAtomicValue('uri:from-string'));
 
 
         await schxsltTranspiler.setStylesheetParameters(xsltParameters);
