@@ -6,20 +6,20 @@ async function schematronValidate(input, schematron, schxsltVersion) {
 
     var inputContextItem = null;
 
-    try {
-      var streamSource = await new StreamSource(await new StringReader(input), inputUri);
-
-      inputContextItem = await docBuilder.build(streamSource);
-    }
-    catch (e) {
-      if (e instanceof SaxonApiException) {
-        postMessage({ type: 'error', message: 'Parsing your XML failed: ' + await e.getMessage() });
-      }
-      else if (e instanceof Error) {
-        postMessage({ type: 'error', message: 'Parsing your XML failed: ' + e.message });
-      }
-      return;
-    }
+    // try {
+    //   var streamSource = await new StreamSource(await new StringReader(input), inputUri);
+    //
+    //   inputContextItem = await docBuilder.build(streamSource);
+    // }
+    // catch (e) {
+    //   if (e instanceof SaxonApiException) {
+    //     postMessage({ type: 'error', message: 'Parsing your XML failed: ' + await e.getMessage() });
+    //   }
+    //   else if (e instanceof Error) {
+    //     postMessage({ type: 'error', message: 'Parsing your XML failed: ' + e.message });
+    //   }
+    //   return;
+    // }
 
     var schxsltTranspilerExecutable = null;
 
@@ -41,36 +41,44 @@ async function schematronValidate(input, schematron, schxsltVersion) {
 
     var schematronContextItem = null;
 
-    try {
-      var streamSource = await new StreamSource(await new StringReader(schematron), schematronUri);
+    // try {
+    //   var streamSource = await new StreamSource(await new StringReader(schematron), schematronUri);
+    //
+    //   schematronContextItem = await docBuilder.build(streamSource);
+    // }
+    // catch (e) {
+    //   if (e instanceof SaxonApiException) {
+    //     postMessage({ type: 'error', message: 'Parsing your Schematron failed: ' + await e.getMessage() });
+    //   }
+    //   else if (e instanceof Error) {
+    //     postMessage({ type: 'error', message: 'Parsing your Schematron failed: ' + e.message });
+    //   }
+    //   return;
+    // }
 
-      schematronContextItem = await docBuilder.build(streamSource);
-    }
-    catch (e) {
-      if (e instanceof SaxonApiException) {
-        postMessage({ type: 'error', message: 'Parsing your Schematron failed: ' + await e.getMessage() });
-      }
-      else if (e instanceof Error) {
-        postMessage({ type: 'error', message: 'Parsing your Schematron failed: ' + e.message });
-      }
-      return;
-    }
-
     try {
-      await schxsltTranspiler.setGlobalContextItem(schematronContextItem);
-      var compiledSchematron = await schxsltTranspiler.applyTemplates(schematronContextItem);
+      //await schxsltTranspiler.setGlobalContextItem(schematronContextItem);
+      //var compiledSchematron = await schxsltTranspiler.applyTemplates(schematronContextItem);
 
       try {
-        var compiledSchematronSource = await compiledSchematron.asSource();
-        await compiledSchematronSource.setSystemId('urn:from-string');
+        //var compiledSchematronSource = await compiledSchematron.asSource();
+        //await compiledSchematronSource.setSystemId('urn:from-string');
 
-        var compiledSchematronExecutable = await xsltCompiler.compile(compiledSchematronSource);
+        //var compiledSchematronExecutable = await xsltCompiler.compile(compiledSchematronSource);
 
-        var schematronTransformer = await compiledSchematronExecutable.load30();
+        //var schematronTransformer = await compiledSchematronExecutable.load30();
 
-        await schematronTransformer.setGlobalContextItem(inputContextItem);
+        var xsltParameters = await new HashMap();
 
-        var svrlResult = await schematronTransformer.applyTemplates(inputContextItem);
+        await xsltParameters.put(await new QName('', 'instance-text'), await new XdmAtomicValue(input));
+        await xsltParameters.put(await new QName('', 'schema-text'), await new XdmAtomicValue(schematron));
+
+
+        await schxsltTranspiler.setStylesheetParameters(xsltParameters);
+
+        //await schematronTransformer.setGlobalContextItem(inputContextItem);
+
+        var svrlResult = await schxsltTranspiler.callTemplate(); //applyTemplates(inputContextItem);
 
         var stringResult = await svrlResult.toString();
 

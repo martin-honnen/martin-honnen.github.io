@@ -35,6 +35,8 @@ var StringWriter = null;
 
 var StreamSource = null;
 
+var HashMap = null;
+
 var URI = null;
 
 var JException = null;
@@ -46,6 +48,8 @@ var SaxonLogger = null;
 var saxonProcessor = null;
 
 var xsltCompiler = null;
+
+var XdmAtomicValue = null;
 
 var saxonInitialized = false;
 
@@ -63,6 +67,8 @@ var saxonInitialized = false;
   postMessage({ type: 'message', message : 'hide', id : 'cheerpj-load-indicator' });
 
   JException = await lib.java.lang.Exception;
+
+  HashMap = await lib.java.util.HashMap;
   
   SaxonProcessor = await lib.net.sf.saxon.s9api.Processor;
   
@@ -87,6 +93,8 @@ var saxonInitialized = false;
   docBuilder = await saxonProcessor.newDocumentBuilder();
 
   xsltCompiler = await saxonProcessor.newXsltCompiler();
+
+  XdmAtomicValue = await lib.net.sf.saxon.s9api.XdmAtomicValue;
 
   saxonInitialized = true;
 
