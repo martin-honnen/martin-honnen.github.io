@@ -78,7 +78,7 @@ async function schematronValidate(input, schematron, schxsltVersion) {
 
         //await schematronTransformer.setGlobalContextItem(inputContextItem);
 
-        var svrlResult = await schxsltTranspiler.callTemplate(); //applyTemplates(inputContextItem);
+        var svrlResult = await schxsltTranspiler.callTemplate(null); //applyTemplates(inputContextItem);
 
         var stringResult = await svrlResult.toString();
 
