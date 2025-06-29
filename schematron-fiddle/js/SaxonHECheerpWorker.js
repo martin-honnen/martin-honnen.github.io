@@ -51,6 +51,8 @@ var xsltCompiler = null;
 
 var XdmAtomicValue = null;
 
+var QName = null;
+
 var saxonInitialized = false;
 
 (async () => {
@@ -95,6 +97,8 @@ var saxonInitialized = false;
   xsltCompiler = await saxonProcessor.newXsltCompiler();
 
   XdmAtomicValue = await lib.net.sf.saxon.s9api.XdmAtomicValue;
+
+  QName = await lib.net.sf.saxon.s9api.QName;
 
   saxonInitialized = true;
 
