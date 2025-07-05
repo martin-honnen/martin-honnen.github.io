@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <html lang="en">
   <head>
-    <title>CheerpJ 4 Saxon HE Java 12.7 XML Workbench: XSLT 3.0, XQuery 3.1, XPath 3.1</title>
+    <title>CheerpJ 4 Saxon HE Java 12.8 XML Workbench: XSLT 3.0, XQuery 3.1, XPath 3.1</title>
   </head>
   <body>
     <section>
-      <h1>Release 12.7.0 beta</h1>
+      <h1>Release 12.8.0 beta</h1>
       <section>
-        <h2>Features using Saxon Java 12.7 HE</h2>
+        <h2>Features using Saxon Java 12.8 HE</h2>
         <ul>
           <li>XSLT 3.0 against XML or JSON input or no input starting with <code>xsl:template name="xsl:initial-template"</code>,
             allowing the use of <code>xsl:result-document</code> and <code>xsl:message</code>, presented in the result editor pane</li>
