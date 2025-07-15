@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Running MorganaXProcIII with CheerpJ</title>
-  <script src="https://cjrtnc.leaningtech.com/4.1/loader.js"></script>
+  <script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
 </head>
 <body>
   <pre id=loading style="color: red;">CheerpJ is loading...</pre>
@@ -39,7 +39,7 @@ function showPreloadProgress(preloadDone, preloadTotal) {
     //cheerpjCreateDisplay(800, 600);
     cheerpOSAddStringFile("/str/pipeline.xpl", xproc3Code);
     //const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/MorganaXProc-IIIse.jar", "/str/pipeline.xpl", "-xslt-connector=saxon12-3");
-    const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.8.jar", "/str/pipeline.xpl");
+    const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.9.jar", "/str/pipeline.xpl");
     console.log(`XML Calabash 3 exited with code ${exitCode}`);
     document.getElementById('status').textContent = `XML Calabash 3 exited with code ${exitCode}`;
   })();
