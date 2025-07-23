@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <title>Test CheerpJ Java 17 support with BaseX 12 and XSLT 2/3</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+  </style>
+  <script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
+</head>
+<body>
+<pre id="console" style="width: 100%; height: 100%; overflow: auto;"></pre>
+<script>
+  (async function () {
+    await cheerpjInit({version:17});
+    //cheerpjCreateDisplay(800, 600);
+    const exitCode = await cheerpjRunMain("org.basex.BaseX", "/app/cheerpj-basex12-fiddle/BaseX.jar", "xslt:transform('/app/cheerpj-basex12-fiddle/sample1.xml', '/app/cheerpj-basex12-fiddle/sheet1.xsl')");
+    console.log(`BaseX exited with code ${exitCode}`);
+  })();
+</script>
+</body>
+</html>
