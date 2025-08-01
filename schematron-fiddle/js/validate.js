@@ -6,7 +6,7 @@ const schxsltVersions = {
   'schxslt-1.10.1' : 'schxslt/schxslt-1.10.1/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json',
   'schxslt-1.10' : 'schxslt/schxslt-1.10/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json',
   'schxslt2-1.3.5' : 'schxslt/schxslt2-v1.3.5/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json',
-  'schxslt2-1.4' : 'schxslt/schxslt2-1.4/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json',
+  'schxslt2-1.4.4' : 'schxslt/schxslt2-1.4.4/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json',
   'schxslt2-1.2.2' : 'schxslt/schxslt2-1.2.2/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json',
   'schxslt2-1.1' : 'schxslt/schxslt2-1.1/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json',
   'schxslt2-1.0' : 'schxslt/schxslt2-1.0/run-pipeline-for-svrl-and-apply-to-schema.xsl.sef.json'
