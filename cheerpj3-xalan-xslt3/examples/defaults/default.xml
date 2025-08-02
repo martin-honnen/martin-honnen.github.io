@@ -5,7 +5,7 @@
   </head>
   <body>
     <section>
-      <h1>Release 0.0.4 beta</h1>
+      <h1>Release 0.0.5 beta</h1>
       <section>
         <h2>Features using Xalan Java XSLT 3 development branch</h2>
         <ul>
@@ -17,6 +17,12 @@
       <section>
         <h2>Supported XSLT 3.0 and XPath 3.1 features</h2>
         <p>See documentation at <a href="https://xalan.apache.org/xalan-j/xsl3/xalanj_xslt3.0_implementation_status.pdf">https://xalan.apache.org/xalan-j/xsl3/xalanj_xslt3.0_implementation_status.pdf</a></p>
+        <ul>
+          <li>expand-text support</li>
+          <li>xpath-default-namespace support</li>
+          <li>xsl:evaluate support</li>
+          <li>lots more</li>
+        </ul>
       </section>
     </section>
   </body>
