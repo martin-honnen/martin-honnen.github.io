@@ -85,6 +85,9 @@
       }
       else if (e.data.type === 'message' && e.data.message === 'hide') {
         document.getElementById(e.data.id).style.display = 'none';
+        if (e.data.id === 'saxon-load-indicator' && autoEvaluation) {
+          evaluate();
+        }
       }
       else {
         setDocument(resultEditor, e.data.message, 'text');
