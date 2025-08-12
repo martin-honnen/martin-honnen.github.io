@@ -19,7 +19,8 @@ function save(form) {
             code: codeEditor.session.getValue(),
             input: inputEditor.session.getValue(),
             'code-type' : form.elements['code-type'].value,
-            'input-type': form.elements['input-type'].value
+            'input-type': form.elements['input-type'].value,
+            'auto-evaluate' : document.getElementById('auto-evaluate').checked
         }
     ).toString());
 }
@@ -34,6 +35,7 @@ function load(location) {
         const code = searchParams.get('code');
         const codeType = searchParams.get('code-type');
         const inputType = searchParams.get('input-type');
+        const autoEval = searchParams.get('auto-evaluate') === 'true';
 
         setDocument(codeEditor, code, codeType.toLocaleLowerCase());
         setDocument(inputEditor, inputCode, inputType === 'JSON' ? 'json' : inputType === 'HTML' ? 'html' : 'xml');
@@ -41,6 +43,8 @@ function load(location) {
         document.getElementById('input-type-form').elements['code-type'].value = codeType;
 
         document.getElementById('input-type-form').elements['input-type'].value = inputType;
+
+        document.getElementById('auto-evaluate').checked = autoEval;
     }
     else {
         loadDefaults();
