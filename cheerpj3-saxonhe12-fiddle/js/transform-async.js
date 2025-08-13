@@ -24,7 +24,7 @@ async function transform(input, xslt, inputType, inputUri, xsltUri, outputUri) {
 
     }
     catch (e) {
-      postMessage({ 'type': 'error', message: 'Executing your XSLT failed: ' + await e.getMessage() });
+      postMessage({ 'type': 'error', message: 'Executing your XSLT failed: ' + (typeof e === 'string' ? e : await e.getMessage()) });
       return;
     }
 
