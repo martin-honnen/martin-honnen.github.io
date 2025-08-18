@@ -17,7 +17,7 @@
             function (evt) {
                 var codeType = evt.currentTarget.form['code-type'].value;
                 if (codeType !== undefined) {
-                    codeEditor.session.setMode(modes[codeType == 'XPath' ? 'xquery' : codeType.toLowerCase()]);
+                    codeEditor.session.setMode(modes[codeType.toLowerCase()]);
                 }
                 return true;
             },

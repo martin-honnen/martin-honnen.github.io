@@ -5,7 +5,8 @@ var modes = {
     'json': 'ace/mode/json',
     'xsd': 'ace/mode/xml',
     'text': 'ace/mode/text',
-    'xquery': 'ace/mode/xquery'
+    'xquery': 'ace/mode/xquery',
+    'xpath' : 'ace/mode/xpath'
 };
 
 var filetypes = {
@@ -18,6 +19,9 @@ var filetypes = {
     '.xhtml' : 'xml',
     '.xquery' : 'xquery',
     '.xq' : 'xquery',
+    '.xpath' : 'xpath',
+    '.xp' : 'xpath',
+    '.xpath31' : 'xpath',
     '.json' : 'json'
 };
 
