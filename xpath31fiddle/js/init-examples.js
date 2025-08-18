@@ -2,7 +2,7 @@ function setEditorFromUrl(url, editor, mode) {
     var req = new XMLHttpRequest();
     req.open('GET', url);
     req.onload = function () {
-        setDocument(editor, req.responseText, 'xml');
+        setDocument(editor, req.responseText, mode);
     };
     req.send();
 }
