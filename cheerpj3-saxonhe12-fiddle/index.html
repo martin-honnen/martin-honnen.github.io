@@ -94,11 +94,18 @@
 	document.addEventListener('DOMContentLoaded', autoEvaluate, false);
 	</script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/ace.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/ace.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/mode-xml.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/mode-html.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/mode-json.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/mode-xquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/mode-xquery.js"></script>-->
+
+  <script src="ace/ace.js"></script>
+  <script src="ace/mode-xml.js"></script>
+  <script src="ace/mode-html.js"></script>
+  <script src="ace/mode-json.js"></script>
+  <script src="ace/mode-xquery.js"></script>
+  <script src="ace/mode-xpath.js"></script>
 </head>
 <body class="container">
 <header>
@@ -171,7 +178,7 @@
             <div class="grid-item">
                 <div id="code-editor" class="editor"></div>
                 <input type="button" id="load-code" value="load" onclick="document.getElementById('load-code-file').click();">
-                <input type="file" id="load-code-file" onchange="this.files[0].text().then(t => codeEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,.xsd,text/xml,application/xml,application/xml+xslt">
+                <input type="file" id="load-code-file" onchange="this.files[0].text().then(t => codeEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,.xsd,.xp,.xpath,.xpath31,text/xml,application/xml,application/xml+xslt">
             </div>
         </section>
         <section class="grid-row button-bar">
