@@ -7,13 +7,20 @@
 
     <link rel="stylesheet" href="css/ace-fiddle.css">
 
-    <script src="/SaxonJS-2.7/SaxonJS2.js"></script>  
+    <script src="/SaxonJS-2.7/SaxonJS2.js"></script>
 
+  <script src="/cheerpj3-saxonhe12-fiddle/ace/ace.js"></script>
+  <script src="/cheerpj3-saxonhe12-fiddle/ace/mode-xml.js"></script>
+  <script src="/cheerpj3-saxonhe12-fiddle/ace/mode-html.js"></script>
+  <script src="/cheerpj3-saxonhe12-fiddle/ace/mode-json.js"></script>
+  <script src="/cheerpj3-saxonhe12-fiddle/ace/mode-xpath.js"></script>
+    <!--
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/mode-xml.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/mode-html.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/mode-json.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/mode-xquery.js"></script>
+    -->
 </head>
 <body class="container">
   <header>
@@ -116,7 +123,7 @@
         <div class="grid-item">
           <div id="xpath-editor" class="editor"></div>
           <input type="button" id="load-xpath" value="load" onclick="document.getElementById('load-xpath-file').click();">
-          <input type="file" id="load-xpath-file" onchange="this.files[0].text().then(t => xpathEditor.session.setValue(t));" accept=".xp,.xpath">
+          <input type="file" id="load-xpath-file" onchange="this.files[0].text().then(t => xpathEditor.session.setValue(t));" accept=".xp,.xpath,.path31">
         </div>
       </section>
       <section class="grid-row button-bar">
