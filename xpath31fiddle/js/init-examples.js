@@ -1,4 +1,4 @@
-function setEditorFromUrl(url, editor) {
+function setEditorFromUrl(url, editor, mode) {
     var req = new XMLHttpRequest();
     req.open('GET', url);
     req.onload = function () {
@@ -8,8 +8,8 @@ function setEditorFromUrl(url, editor) {
 }
 
 function loadDefaults() {
-  setEditorFromUrl('examples/defaults/default.xml', inputEditor);
-  setEditorFromUrl('examples/defaults/default.xp', xpathEditor);
+  setEditorFromUrl('examples/defaults/default.xml', inputEditor, 'xml');
+  setEditorFromUrl('examples/defaults/default.xp', xpathEditor, 'xpath');
 }
 
 
