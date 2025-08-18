@@ -143,206 +143,202 @@ oop.inherits(FoldMode, BaseFoldMode);
 
 });
 
-define("ace/mode/xpath_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module){define(function (require, exports, module) {
-    "use strict";
-    var oop = require("../lib/oop");
-    var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
-    var XPathHighlightRules = function () {
-        var keywordControl = ("for|let|in|return|if|then|else|some|every|satisfies");
-        var keywordOther = ("to|union|intersect|except|as|at");
-        var storageTypes = ("xs|fn|local|qname|any|element|attribute|schema");
-        var constructorTypes = ("map|array|function|item|node|empty-sequence");
-        var logicalOps = "and|or";
-        var arithOps = "\\+|\\-|\\*|div|idiv|mod";
-        var compOpsSymbolic = "<<|>>|<=|>=|=|!=|<|>";
-        var compOpsWord = "eq|ne|le|ge|lt|gt|is";
-        var axisNames = "child|descendant|attribute|self|descendant-or-self|following-sibling|following|parent|ancestor|preceding-sibling|preceding|ancestor-or-self|namespace";
-        var keywordPhrases = "(?:instance\\s+of|treat\\s+as|castable\\s+as|cast)";
-        var numberRe = "\\b(?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)(?:[eE][+-]?[0-9]+)?\\b";
-        var variableRe = "\\$[\\w-]+";
-        var funcNameRe = "\\b[\\w-]+\\b(?=\\s*\\()";
-        var keywordMapper = this.createKeywordMapper({
-            "keyword.control": keywordControl,
-            "keyword.other": keywordOther,
-            "storage.type": storageTypes
-        }, "identifier", true);
-        this.$rules = {
-            start: [
-                {
-                    token: "comment.block.start",
-                    regex: "\\(\\:",
-                    push: "comment"
-                },
-                {
-                    token: "string.quoted.double",
-                    regex: "\"",
-                    push: "dqstring"
-                },
-                {
-                    token: "string.quoted.single",
-                    regex: "'",
-                    push: "sqstring"
-                },
-                {
-                    token: "constant.numeric",
-                    regex: numberRe
-                },
-                {
-                    token: "keyword.other",
-                    regex: "\\b" + keywordPhrases + "\\b"
-                },
-                {
-                    token: "keyword.operator.logical",
-                    regex: "\\b(?:" + logicalOps + ")\\b"
-                },
-                {
-                    token: "keyword.operator.comparison",
-                    regex: "(?:" + compOpsSymbolic + ")"
-                },
-                {
-                    token: "keyword.operator.comparison",
-                    regex: "\\b(?:" + compOpsWord + ")\\b"
-                },
-                {
-                    token: "keyword.operator.arithmetic",
-                    regex: "(?:" + arithOps + ")"
-                },
-                {
-                    token: "keyword.operator.navigation",
-                    regex: "\\/\\/"
-                },
-                {
-                    token: "keyword.operator.navigation",
-                    regex: "\\/|\\|"
-                },
-                {
-                    token: "keyword.operator.map",
-                    regex: "=>|!"
-                },
-                {
-                    token: "entity.name.axis",
-                    regex: "\\b(?:" + axisNames + ")(?=::)"
-                },
-                {
-                    token: "punctuation.separator.axis",
-                    regex: "::"
-                },
-                {
-                    token: "constant.other",
-                    regex: "\\.\\.|\\."
-                },
-                {
-                    token: "variable.other",
-                    regex: variableRe
-                },
-                {
-                    token: "entity.name.function",
-                    regex: funcNameRe
-                },
-                {
-                    token: "storage.type",
-                    regex: "\\b(?:" + constructorTypes + ")\\b"
-                },
-                {
-                    token: "paren.lparen",
-                    regex: "[\\(\\[\\{]"
-                },
-                {
-                    token: "paren.rparen",
-                    regex: "[\\)\\]\\}]"
-                },
-                {
-                    token: keywordMapper,
-                    regex: "[A-Za-z_][\\w-]*\\b"
-                },
-                {
-                    token: "text",
-                    regex: "\\s+"
-                }
-            ],
-            comment: [
-                {
-                    token: "comment.block.start",
-                    regex: "\\(\\:",
-                    push: "comment"
-                },
-                {
-                    token: "comment.block.end",
-                    regex: "\\:\\)",
-                    next: "pop"
-                },
-                {
-                    defaultToken: "comment.block"
-                }
-            ],
-            dqstring: [
-                {
-                    token: "string.quoted.double.escaped",
-                    regex: "\"\""
-                },
-                {
-                    token: "string.quoted.double",
-                    regex: "\"",
-                    next: "pop"
-                },
-                {
-                    defaultToken: "string.quoted.double"
-                }
-            ],
-            sqstring: [
-                {
-                    token: "string.quoted.single.escaped",
-                    regex: "''"
-                },
-                {
-                    token: "string.quoted.single",
-                    regex: "'",
-                    next: "pop"
-                },
-                {
-                    defaultToken: "string.quoted.single"
-                }
-            ]
-        };
-        this.normalizeRules();
+define("ace/mode/xpath_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module){"use strict";
+var oop = require("../lib/oop");
+var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
+var XPathHighlightRules = function () {
+    var keywordControl = ("for|let|in|return|if|then|else|some|every|satisfies");
+    var keywordOther = ("to|union|intersect|except|as|at");
+    var storageTypes = ("xs|fn|local|qname|any|element|attribute|schema");
+    var constructorTypes = ("map|array|function|item|node|empty-sequence");
+    var logicalOps = "and|or";
+    var arithOps = "\\+|\\-|\\*|div|idiv|mod";
+    var compOpsSymbolic = "<<|>>|<=|>=|=|!=|<|>";
+    var compOpsWord = "eq|ne|le|ge|lt|gt|is";
+    var axisNames = "child|descendant|attribute|self|descendant-or-self|following-sibling|following|parent|ancestor|preceding-sibling|preceding|ancestor-or-self|namespace";
+    var keywordPhrases = "(?:instance\\s+of|treat\\s+as|castable\\s+as|cast)";
+    var numberRe = "\\b(?:[0-9]+(?:\\.[0-9]*)?|\\.[0-9]+)(?:[eE][+-]?[0-9]+)?\\b";
+    var variableRe = "\\$[\\w-]+";
+    var funcNameRe = "\\b[\\w-]+\\b(?=\\s*\\()";
+    var keywordMapper = this.createKeywordMapper({
+        "keyword.control": keywordControl,
+        "keyword.other": keywordOther,
+        "storage.type": storageTypes
+    }, "identifier", true);
+    this.$rules = {
+        start: [
+            {
+                token: "comment.block.start",
+                regex: "\\(\\:",
+                push: "comment"
+            },
+            {
+                token: "string.quoted.double",
+                regex: "\"",
+                push: "dqstring"
+            },
+            {
+                token: "string.quoted.single",
+                regex: "'",
+                push: "sqstring"
+            },
+            {
+                token: "constant.numeric",
+                regex: numberRe
+            },
+            {
+                token: "keyword.other",
+                regex: "\\b" + keywordPhrases + "\\b"
+            },
+            {
+                token: "keyword.operator.logical",
+                regex: "\\b(?:" + logicalOps + ")\\b"
+            },
+            {
+                token: "keyword.operator.comparison",
+                regex: "(?:" + compOpsSymbolic + ")"
+            },
+            {
+                token: "keyword.operator.comparison",
+                regex: "\\b(?:" + compOpsWord + ")\\b"
+            },
+            {
+                token: "keyword.operator.arithmetic",
+                regex: "(?:" + arithOps + ")"
+            },
+            {
+                token: "keyword.operator.navigation",
+                regex: "\\/\\/"
+            },
+            {
+                token: "keyword.operator.navigation",
+                regex: "\\/|\\|"
+            },
+            {
+                token: "keyword.operator.map",
+                regex: "=>|!"
+            },
+            {
+                token: "entity.name.axis",
+                regex: "\\b(?:" + axisNames + ")(?=::)"
+            },
+            {
+                token: "punctuation.separator.axis",
+                regex: "::"
+            },
+            {
+                token: "constant.other",
+                regex: "\\.\\.|\\."
+            },
+            {
+                token: "variable.other",
+                regex: variableRe
+            },
+            {
+                token: "entity.name.function",
+                regex: funcNameRe
+            },
+            {
+                token: "storage.type",
+                regex: "\\b(?:" + constructorTypes + ")\\b"
+            },
+            {
+                token: "paren.lparen",
+                regex: "[\\(\\[\\{]"
+            },
+            {
+                token: "paren.rparen",
+                regex: "[\\)\\]\\}]"
+            },
+            {
+                token: keywordMapper,
+                regex: "[A-Za-z_][\\w-]*\\b"
+            },
+            {
+                token: "text",
+                regex: "\\s+"
+            }
+        ],
+        comment: [
+            {
+                token: "comment.block.start",
+                regex: "\\(\\:",
+                push: "comment"
+            },
+            {
+                token: "comment.block.end",
+                regex: "\\:\\)",
+                next: "pop"
+            },
+            {
+                defaultToken: "comment.block"
+            }
+        ],
+        dqstring: [
+            {
+                token: "string.quoted.double.escaped",
+                regex: "\"\""
+            },
+            {
+                token: "string.quoted.double",
+                regex: "\"",
+                next: "pop"
+            },
+            {
+                defaultToken: "string.quoted.double"
+            }
+        ],
+        sqstring: [
+            {
+                token: "string.quoted.single.escaped",
+                regex: "''"
+            },
+            {
+                token: "string.quoted.single",
+                regex: "'",
+                next: "pop"
+            },
+            {
+                defaultToken: "string.quoted.single"
+            }
+        ]
     };
-    oop.inherits(XPathHighlightRules, TextHighlightRules);
-    exports.XPathHighlightRules = XPathHighlightRules;
-});
+    this.normalizeRules();
+};
+oop.inherits(XPathHighlightRules, TextHighlightRules);
+exports.XPathHighlightRules = XPathHighlightRules;
 
 });
 
-define("ace/mode/xpath",["require","exports","module","ace/lib/oop","ace/mode/text","ace/mode/matching_brace_outdent","ace/mode/behaviour/cstyle","ace/mode/folding/cstyle","ace/mode/xpath_highlight_rules"], function(require, exports, module){define(function (require, exports, module) {
-    "use strict";
-    var oop = require("../lib/oop");
-    var TextMode = require("./text").Mode;
-    var MatchingBraceOutdent = require("./matching_brace_outdent").MatchingBraceOutdent;
-    var CstyleBehaviour = require("./behaviour/cstyle").CstyleBehaviour;
-    var CStyleFoldMode = require("./folding/cstyle").FoldMode;
-    var XPathHighlightRules = require("./xpath_highlight_rules").XPathHighlightRules;
-    var Mode = function () {
-        this.HighlightRules = XPathHighlightRules;
-        this.$outdent = new MatchingBraceOutdent();
-        this.$behaviour = new CstyleBehaviour();
-        this.foldingRules = new CStyleFoldMode();
-        this.blockComment = { start: "(:", end: ":)" };
-        this.lineCommentStart = null;
+define("ace/mode/xpath",["require","exports","module","ace/lib/oop","ace/mode/text","ace/mode/matching_brace_outdent","ace/mode/behaviour/cstyle","ace/mode/folding/cstyle","ace/mode/xpath_highlight_rules"], function(require, exports, module){"use strict";
+var oop = require("../lib/oop");
+var TextMode = require("./text").Mode;
+var MatchingBraceOutdent = require("./matching_brace_outdent").MatchingBraceOutdent;
+var CstyleBehaviour = require("./behaviour/cstyle").CstyleBehaviour;
+var CStyleFoldMode = require("./folding/cstyle").FoldMode;
+var XPathHighlightRules = require("./xpath_highlight_rules").XPathHighlightRules;
+var Mode = function () {
+    this.HighlightRules = XPathHighlightRules;
+    this.$outdent = new MatchingBraceOutdent();
+    this.$behaviour = new CstyleBehaviour();
+    this.foldingRules = new CStyleFoldMode();
+    this.blockComment = { start: "(:", end: ":)" };
+    this.lineCommentStart = null;
+};
+oop.inherits(Mode, TextMode);
+(function () {
+    this.$id = "ace/mode/xpath";
+    this.getNextLineIndent = function (state, line, tab) {
+        return this.$getIndent(line);
     };
-    oop.inherits(Mode, TextMode);
-    (function () {
-        this.$id = "ace/mode/xpath";
-        this.getNextLineIndent = function (state, line, tab) {
-            return this.$getIndent(line);
-        };
-        this.checkOutdent = function (state, line, input) {
-            return this.$outdent.checkOutdent(line, input);
-        };
-        this.autoOutdent = function (state, doc, row) {
-            this.$outdent.autoOutdent(doc, row);
-        };
-    }).call(Mode.prototype);
-    exports.Mode = Mode;
-});
+    this.checkOutdent = function (state, line, input) {
+        return this.$outdent.checkOutdent(line, input);
+    };
+    this.autoOutdent = function (state, doc, row) {
+        this.$outdent.autoOutdent(doc, row);
+    };
+}).call(Mode.prototype);
+exports.Mode = Mode;
 
 });
                 (function() {
