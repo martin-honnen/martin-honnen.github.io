@@ -3,7 +3,8 @@ var modes = {
     'html': 'ace/mode/html',
     'xhtml': 'ace/mode/xml',
     'json': 'ace/mode/json',
-    'text': 'ace/mode/text'
+    'text': 'ace/mode/text',
+    'xpath': 'ace/mode/xpath'
 };
 
 var filetypes = {
@@ -13,7 +14,10 @@ var filetypes = {
   '.xsl': 'xml',
   '.xslt': 'xml',
   '.xhtml' : 'xml',
-  '.json' : 'json'
+  '.json' : 'json',
+  '.xpath' : 'xpath',
+  '.xp' : 'xpath',
+  '.xpath31' : 'xpath'
 };
 
 function setDocument(editor, content, mode) {

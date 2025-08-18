@@ -5,7 +5,7 @@ inputEditor.session.setTabSize(2);
 inputEditor.session.setUseSoftTabs(true);
 
 var xpathEditor = ace.edit('xpath-editor');
-xpathEditor.session.setMode('ace/mode/xquery');
+xpathEditor.session.setMode('ace/mode/xpath');
 
 xpathEditor.session.setTabSize(2);
 xpathEditor.session.setUseSoftTabs(true);
