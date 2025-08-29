@@ -15,8 +15,9 @@ async function transform(input, xslt, inputType, inputUri, xsltUri, outputUri) {
         var currentResult = results[i];
         var uri = await currentResult.getUri();
         var content = await currentResult.getContent();
-        let suffix = uri.replace(/.*(\.[a-z]+)/gi, '$1').toLowerCase();
-        let method = filetypes[suffix];
+        let method = await currentResult.getMethod();
+        //let suffix = uri.replace(/.*(\.[a-z]+)/gi, '$1').toLowerCase();
+        //let method = filetypes[suffix];
         resultDocuments.push({ uri: uri, content: content, method: method ? method : 'html' });
       }
       
