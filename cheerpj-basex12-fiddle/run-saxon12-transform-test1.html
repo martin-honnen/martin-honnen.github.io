@@ -2,7 +2,7 @@
 <html lang=en>
 <head>
   <meta charset=utf-8>
-  <title>Test CheerpJ nightly with Java 17 support with Saxon HE 12.7 compiled for Java 8</title>
+  <title>Test CheerpJ nightly with Java 17 support with Saxon HE 12.9 compiled for Java 8</title>
   <!--<script src="https://cjrtnc.leaningtech.com/20250526_2416/loader.js"></script>-->
   <script src="https://cjrtnc.leaningtech.com/4.1/loader.js"></script>
 </head>
@@ -114,7 +114,7 @@
 
     cheerpOSAddStringFile("/str/processorTest.xsl", xslt);
 
-    const exitCode = await cheerpjRunJar("/app/cheerpj-basex12-fiddle/lib/custom/saxon-he-12.7.jar", "-t", "-it", "-xsl:/str/processorTest.xsl");
+    const exitCode = await cheerpjRunJar("/app/cheerpj-basex12-fiddle/lib/custom/saxon-he-12.9.jar", "-t", "-it", "-xsl:/str/processorTest.xsl");
     console.log(`Saxon exited with code ${exitCode}`);
   })();
 </script>
