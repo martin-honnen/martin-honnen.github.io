@@ -1,0 +1,33 @@
+# General Options
+DEBUG = false
+DBPATH = /app/cheerpj-basex12-fiddle/data
+LOGPATH = .logs
+REPOPATH = /app/cheerpj-basex12-fiddle/repo
+LANG = English
+FAIRLOCK = false
+CACHETIMEOUT = 3600
+WRITESTORE = true
+
+# Client/Server Architecture
+HOST = localhost
+PORT = 1984
+SERVERPORT = 1984
+USER = 
+PASSWORD = 
+SERVERHOST = 
+PROXYHOST = 
+PROXYPORT = 0
+NONPROXYHOSTS = 
+IGNORECERT = false
+TIMEOUT = 30
+KEEPALIVE = 600
+PARALLEL = 8
+LOG = data
+LOGEXCLUDE = 
+LOGCUT = 
+LOGMSGMAXLEN = 5000
+LOGTRACE = true
+LOGMASKIP = false
+
+
+# Local Options
