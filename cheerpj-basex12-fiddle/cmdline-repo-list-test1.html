@@ -11,7 +11,7 @@
   (async function () {
     await cheerpjInit({version:17});
     //cheerpjCreateDisplay(800, 600);
-    const exitCode = await cheerpjRunMain("org.basex.BaseX", "/app/cheerpj-basex12-fiddle/BaseX.jar", "q", "repo:list()");
+    const exitCode = await cheerpjRunMain("org.basex.BaseX", "/app/cheerpj-basex12-fiddle/BaseX.jar", "-q", "repo:list()");
     console.log(`BaseX exited with code ${exitCode}`);
   })();
 </script>
