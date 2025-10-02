@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <title>Test CheerpJ 4.2 with Java 17 support with BaseX 12</title>
+  <!--<script src="https://cjrtnc.leaningtech.com/20250526_2407/loader.js"></script>-->
+  <script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
+</head>
+<body>
+<script>
+  (async function () {
+    await cheerpjInit({version:17});
+    //cheerpjCreateDisplay(800, 600);
+    const exitCode = await cheerpjRunMain("org.basex.BaseX", "/app/cheerpj-basex12-fiddle/BaseX.jar", "q", "repo:list()");
+    console.log(`BaseX exited with code ${exitCode}`);
+  })();
+</script>
+</body>
+</html>
+
+
+
+
