@@ -1,8 +1,8 @@
 # General Options
 DEBUG = false
-DBPATH = /app/cheerpj-basex12-fiddle/data
+DBPATH = ./data
 LOGPATH = .logs
-REPOPATH = /app/cheerpj-basex12-fiddle/repo
+REPOPATH = ./repo
 LANG = English
 FAIRLOCK = false
 CACHETIMEOUT = 3600
