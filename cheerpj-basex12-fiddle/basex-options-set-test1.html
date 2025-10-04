@@ -88,7 +88,7 @@
 
     URI = await lib.java.net.URI;
 
-    context = await new Context();
+    context = await new Context(false);
 
     await BaseX12Helper.setRepoPath(context, "/app/repo");
 
