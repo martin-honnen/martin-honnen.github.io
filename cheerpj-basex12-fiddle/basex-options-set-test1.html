@@ -91,6 +91,27 @@
     context = await new Context();
 
     await BaseX12Helper.setRepoPath(context, "/app/repo");
+
+    queryProcessor = await new QueryProcessor("repo:list()", context);
+
+    var os = await new ByteArrayOutputStream();
+
+    var iter = await queryProcessor.iter();
+
+    var serializer = await queryProcessor.serializer(os);
+
+    const method = await BaseX12Helper.getSerializerMethod(serializer);
+
+    console.log('method: ' + method);
+
+    var item = await iter.next();
+
+    while (item != null) {
+      await serializer.serialize(item);
+      item = await iter.next();
+    }
+
+    console.log(await os.toString('utf8'));
   })();
 </script>
 </body>
