@@ -101,11 +101,11 @@ var queryProcessor = null;
 
   URI = await lib.java.net.URI;
   
-  context = await new Context();
+  context = await new Context(false);
 
-  let options = context.options;
+  //let options = context.options;
 
-  await options.set(MainOptions.REPOPATH, "/app/repo"); // your virtual repo path
+  //await options.set(MainOptions.REPOPATH, "/app/repo"); // your virtual repo path
   //await context.set(MainOptions.DBPATH, "/app/data");   // if needed
 
   basexInitialized = true;
