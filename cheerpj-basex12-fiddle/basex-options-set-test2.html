@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <title>Test CheerpJ 4.2 with BaseX 12 to set option on Context</title>
+  <!--<script src="https://cjrtnc.leaningtech.com/20250526_2416/loader.js"></script>-->
+  <script src="https://cjrtnc.leaningtech.com/4.1/loader.js"></script>
+</head>
+<body>
+<script>
+  var lib = null;
+
+  var Context = null;
+
+  var MainOptions = null;
+
+  var basexInitialized = false;
+
+  var context = null;
+
+  (async function () {
+
+    await cheerpjInit({version:17});
+
+    lib = await cheerpjRunLibrary("/app/cheerpj-basex12-fiddle/BaseX.jar:/app/cheerpj-basex12-fiddle/CheerpJBaseX12Helper.jar:/app/cheerpj-basex12-fiddle/lib/basex-api-12.0.jar:/app/cheerpj-basex12-fiddle/lib/htmlparser-1.4.16.jar:/app/cheerpj-basex12-fiddle/lib/markup-blitz-1.8.jar:/app/cheerpj-basex12-fiddle/lib/jing-20241231.jar:/app/cheerpj-basex12-fiddle/lib/lucene-stemmers-3.4.0.jar:/app/cheerpj-basex12-fiddle/lib/jline-2.14.6.jar:/app/cheerpj-basex12-fiddle/lib/custom/saxon-he-12.9.jar:/app/cheerpj-basex12-fiddle/lib/custom/xercesImpl.jar:/app/cheerpj-basex12-fiddle/lib/custom/xml-apis.jar:/app/cheerpj-basex12-fiddle/lib/custom/cupv10k-runtime.jar:/app/cheerpj-basex12-fiddle/lib/custom/org.eclipse.wst.xml.xpath2.processor_1.2.1.jar");
+
+    console.log('Worker CheerpJ library initialized');
+
+    Context = await lib.org.basex.core.Context;
+
+    MainOptions = await lib.org.basex.core.MainOptions;
+
+    context = await new Context();
+
+    let options = await context.options;
+
+    await options.set(MainOptions.REPOPATH, "/app/repo");
+  })();
+</script>
+</body>
+</html>
+
+
+
