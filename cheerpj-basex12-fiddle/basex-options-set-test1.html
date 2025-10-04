@@ -90,9 +90,7 @@
 
     context = await new Context();
 
-    let options = await context.options;
-
-    await options.set(MainOptions.REPOPATH, "/app/repo");
+    await BaseX12Helper.setRepoPath(context, "/app/repo");
   })();
 </script>
 </body>
