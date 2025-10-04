@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <title>Test CheerpJ 4.2 with BaseX 12 to set option on Context</title>
+  <!--<script src="https://cjrtnc.leaningtech.com/20250526_2416/loader.js"></script>-->
+  <script src="https://cjrtnc.leaningtech.com/4.1/loader.js"></script>
+</head>
+<body>
+<script>
+  var lib = null;
+
+  var Context = null;
+
+  var MainOptions = null;
+
+  var QueryProcessor = null;
+
+  var QueryException = null;
+
+  var Value = null;
+
+  var Iter = null;
+
+  var Serializer = null;
+
+  var OutputSerializer = null;
+
+  var SerializerOptions = null;
+
+  var BaseX12Helper = null;
+
+  var StringReader = null;
+
+  var StringWriter = null;
+
+  var StreamSource = null;
+
+  var ByteArrayOutputStream = null;
+
+  var URI = null;
+
+  var JException = null;
+
+  var basexInitialized = false;
+
+  var context = null;
+
+  var queryProcessor = null;
+  (async function () {
+    await cheerpjInit({version:17});
+
+
+    lib = await cheerpjRunLibrary("/app/cheerpj-basex12-fiddle/BaseX.jar:/app/cheerpj-basex12-fiddle/CheerpJBaseX12Helper.jar:/app/cheerpj-basex12-fiddle/lib/basex-api-12.0.jar:/app/cheerpj-basex12-fiddle/lib/htmlparser-1.4.16.jar:/app/cheerpj-basex12-fiddle/lib/markup-blitz-1.8.jar:/app/cheerpj-basex12-fiddle/lib/jing-20241231.jar:/app/cheerpj-basex12-fiddle/lib/lucene-stemmers-3.4.0.jar:/app/cheerpj-basex12-fiddle/lib/jline-2.14.6.jar:/app/cheerpj-basex12-fiddle/lib/custom/saxon-he-12.9.jar:/app/cheerpj-basex12-fiddle/lib/custom/xercesImpl.jar:/app/cheerpj-basex12-fiddle/lib/custom/xml-apis.jar:/app/cheerpj-basex12-fiddle/lib/custom/cupv10k-runtime.jar:/app/cheerpj-basex12-fiddle/lib/custom/org.eclipse.wst.xml.xpath2.processor_1.2.1.jar");
+
+    console.log('Worker CheerpJ library initialized');
+
+
+    JException = await lib.java.lang.Exception;
+
+    Context = await lib.org.basex.core.Context;
+
+    MainOptions = await lib.org.basex.core.MainOptions;
+
+    QueryProcessor = await lib.org.basex.query.QueryProcessor;
+
+    QueryException = await lib.org.basex.query.QueryException;
+
+    Value = await lib.org.basex.query.value.Value;
+
+    ByteArrayOutputStream = await lib.java.io.ByteArrayOutputStream;
+
+    Iter = await lib.org.basex.query.iter.Iter;
+
+    Serializer = await lib.org.basex.io.serial.Serializer;
+
+    OutputSerializer = await lib.org.basex.io.serial.OutputSerializer;
+
+    SerializerOptions = await lib.org.basex.io.serial.SerializerOptions;
+
+    BaseX12Helper = await lib.BaseX12Helper;
+
+    StringReader = await lib.java.io.StringReader;
+
+    StringWriter = await lib.java.io.StringWriter;
+
+    StreamSource = await lib.javax.xml.transform.stream.StreamSource;
+
+    URI = await lib.java.net.URI;
+
+    context = await new Context();
+
+    let options = await context.options;
+
+    await options.set(MainOptions.REPOPATH, "/app/repo");
+  })();
+</script>
+</body>
+</html>
+
+
+
