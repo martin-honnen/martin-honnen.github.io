@@ -103,7 +103,9 @@ var queryProcessor = null;
   
   context = await new Context();
 
-  await context.set(MainOptions.REPOPATH, "/app/repo"); // your virtual repo path
+  let options = await context.options;
+
+  await options.set(MainOptions.REPOPATH, "/app/repo"); // your virtual repo path
   //await context.set(MainOptions.DBPATH, "/app/data");   // if needed
 
   basexInitialized = true;
