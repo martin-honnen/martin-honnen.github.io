@@ -19,6 +19,8 @@ var lib = null;
 
 var Context = null;
 
+var MainOptions = null;
+
 var QueryProcessor = null;
 
 var QueryException = null;
@@ -70,6 +72,8 @@ var queryProcessor = null;
   JException = await lib.java.lang.Exception;
 
   Context = await lib.org.basex.core.Context;
+
+  MainOptions = await lib.org.basex.core.MainOptions;
   
   QueryProcessor = await lib.org.basex.query.QueryProcessor;
 
@@ -98,6 +102,9 @@ var queryProcessor = null;
   URI = await lib.java.net.URI;
   
   context = await new Context();
+
+  await context.set(MainOptions.REPOPATH, "/app/repo"); // your virtual repo path
+  //await context.set(MainOptions.DBPATH, "/app/data");   // if needed
 
   basexInitialized = true;
   
