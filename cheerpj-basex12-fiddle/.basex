@@ -2,7 +2,7 @@
 DEBUG = false
 DBPATH = ./data
 LOGPATH = .logs
-REPOPATH = ./repo
+REPOPATH = /app/repo
 LANG = English
 FAIRLOCK = false
 CACHETIMEOUT = 3600
