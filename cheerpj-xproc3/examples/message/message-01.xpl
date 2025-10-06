@@ -7,7 +7,7 @@
   
   <!-- Some preliminary stuff… -->
 
-  <p:message test="{$debug-messages-on}" select="'Starting computation at ' || current-dateTime()"/>
+  <p:message test="{$debug-messages-on}" select="Starting computation at {current-dateTime()}"/>
   
   <!-- Steps that implement the computation… -->
 
