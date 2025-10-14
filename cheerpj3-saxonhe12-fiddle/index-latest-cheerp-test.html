@@ -122,7 +122,7 @@
                 <!--<label><input type="radio" name="code-type" value="XSD">XSD</label>-->
             </fieldset>
         </form>
-      <label>Examples: <select id="examples" onchange="loadExample(this.dataset.codeUrl, this.dataset.codeType, this.dataset.inputUrl, this.dataset.codeType);">
+      <label>Examples: <select id="examples" onchange="loadExample(this.options[this.selectedIndex].dataset.codeUrl, this.options[this.selectedIndex].dataset.codeType, this.options[this.selectedIndex].dataset.inputUrl, this.options[this.selectedIndex].dataset.codeType);">
         <option data-code-url="" data-input-url="" data-code-type="XSLT" selected>-- choose an example --</option>
         <optgroup label="XSLT for-each-group group-starting-with">
              <option data-code-url="examples/xslt/for-each-group/group-starting-with/sheet1.xsl" data-code-type="xsl" data-input-url="examples/xslt/for-each-group/group-starting-with/sample1.xml" data-input-type="xml">group-starting-with example 1</option>
