@@ -122,6 +122,11 @@
                 <!--<label><input type="radio" name="code-type" value="XSD">XSD</label>-->
             </fieldset>
         </form>
+      <label>Examples: <select id="examples" onchange="loadExamples(this.data.codeUrl, this.data.codeType, this.data.inputUrl, this.data.codeType);">
+        <optgroup>XSLT</optgroup>
+        <optgroup>for-each-group</optgroup>
+        <option data-code-url="examples/xslt/for-each-group/group-starting-with/sheet1.xsl" data-code-type="xsl" data-input-url="examples/xslt/for-each-group/group-starting-with/sample1.xml" data-input-type="xml">group-starting-with example 1</option>
+      </select></label>
       <label>auto-evaluation <input type="checkbox" id="auto-evaluate" checked></label>
       <input type="button" id="transform" value="XSLT transformation" accesskey="t"
              onclick="var inputType = document.getElementById('input-types').form['input-type'].value;

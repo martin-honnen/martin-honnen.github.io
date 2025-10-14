@@ -1,8 +1,8 @@
-function setEditorFromUrl(url, editor) {
+function setEditorFromUrl(url, editor, type) {
     var req = new XMLHttpRequest();
     req.open('GET', url);
     req.onload = function () {
-        setDocument(editor, req.responseText, 'xml');
+        setDocument(editor, req.responseText, type ? type : 'xml');
     };
     req.send();
 }
@@ -10,6 +10,16 @@ function setEditorFromUrl(url, editor) {
 function loadDefaults() {
     setEditorFromUrl('examples/defaults/default.xml', inputEditor);
     setEditorFromUrl('examples/defaults/default.xsl', codeEditor);
+}
+
+function loadExample(codeSample, codeType, inputSample, inputType) {
+  setEditorFromUrl(codeSample, codeEditor, codeType);
+  document.getElementById('input-type-form').elements['code-type'].value = codeType;
+
+  if (inputSample) {
+    setEditorFromUrl(inputSample, inputEditor, inputType);
+    document.getElementById('input-type-form').elements['input-type'].value = inputType;
+  }
 }
 
 
