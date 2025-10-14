@@ -123,9 +123,10 @@
             </fieldset>
         </form>
       <label>Examples: <select id="examples" onchange="loadExamples(this.data.codeUrl, this.data.codeType, this.data.inputUrl, this.data.codeType);">
-        <optgroup>XSLT</optgroup>
-        <optgroup>for-each-group</optgroup>
-        <option data-code-url="examples/xslt/for-each-group/group-starting-with/sheet1.xsl" data-code-type="xsl" data-input-url="examples/xslt/for-each-group/group-starting-with/sample1.xml" data-input-type="xml">group-starting-with example 1</option>
+        <option data-code-url="" data-input-url="" data-code-type="XSLT" selected>-- choose an example --</option>
+        <optgroup label="XSLT for-each-group group-starting-with">
+             <option data-code-url="examples/xslt/for-each-group/group-starting-with/sheet1.xsl" data-code-type="xsl" data-input-url="examples/xslt/for-each-group/group-starting-with/sample1.xml" data-input-type="xml">group-starting-with example 1</option>
+        </optgroup>
       </select></label>
       <label>auto-evaluation <input type="checkbox" id="auto-evaluate" checked></label>
       <input type="button" id="transform" value="XSLT transformation" accesskey="t"

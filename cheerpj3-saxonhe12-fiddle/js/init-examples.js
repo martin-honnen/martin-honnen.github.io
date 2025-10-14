@@ -13,8 +13,10 @@ function loadDefaults() {
 }
 
 function loadExample(codeSample, codeType, inputSample, inputType) {
-  setEditorFromUrl(codeSample, codeEditor, codeType);
-  document.getElementById('input-type-form').elements['code-type'].value = codeType;
+  if (codeSample) {
+    setEditorFromUrl(codeSample, codeEditor, codeType);
+    document.getElementById('input-type-form').elements['code-type'].value = codeType;
+  }
 
   if (inputSample) {
     setEditorFromUrl(inputSample, inputEditor, inputType);
