@@ -39,7 +39,7 @@
   (async function () {
     await cheerpjInit({version:8});
     cheerpOSAddStringFile("/str/sheet1.xsl", xsltCode);
-    const exitCode = await cheerpjRunJar("/app/cheerpj3-saxonhe12-fiddle/saxon-he-12.9.jar", "/str/xsltCode");
+    const exitCode = await cheerpjRunJar("/app/cheerpj3-saxonhe12-fiddle/saxon-he-12.9.jar", "-it", "-xsl:/str/xsltCode");
     console.log(`Saxon exited with code ${exitCode}`);
   })();
 </script>
