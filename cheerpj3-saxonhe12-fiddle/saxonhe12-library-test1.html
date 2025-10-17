@@ -96,7 +96,21 @@
 
     var results = await SaxonHelpers.runXsltTransformation(input, 'XML', 'urn:from-string', xsltCode, 'urn:from-string');
 
+    var resultDocuments = [];
 
+    var size = results.length;
+
+    for (var i = 0; i < size; i++) {
+      var currentResult = results[i];
+      var uri = await currentResult.getUri();
+      var content = await currentResult.getContent();
+      let method = await currentResult.getMethod();
+      //let suffix = uri.replace(/.*(\.[a-z]+)/gi, '$1').toLowerCase();
+      //let method = filetypes[suffix];
+      resultDocuments.push({ uri: uri, content: content, method: method ? method : 'html' });
+    }
+
+    console.log(resultDocuments);
   })();
 </script>
 
