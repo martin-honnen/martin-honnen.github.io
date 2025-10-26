@@ -55,8 +55,7 @@ var saxonInitialized = false;
   await cheerpjInit({ version : 8 });
   //await cheerpjInit({ preloadResources : {"/lt/8/rt.jar":[0,131072,4456448,4849664,5111808,5636096,7995392,8257536,10223616,12451840,13238272,13369344,15073280,15335424,15466496,15597568,15990784,16121856,17170432,17301504,17694720,17825792,18219008,18481152,19267584,19791872,19922944,20578304,20709376,21233664,21364736,21495808,21626880,22806528,22937600,23461888,23592960,26869760],"/lt/8/cheerpj-awt.jar":[0,131072],"/lt/etc/passwd":[0,131072],"/lt/etc/localtime":[],"/lt/8/ext/meta-index":[0,131072],"/lt/8/ext":[],"/lt/8/ext/index.list":[],"/lt/8/ext/sunjce_provider.jar":[],"/lt/8/jsse.jar":[0,131072,786432,917504],"/lt/8/jce.jar":[0,131072],"/lt/8/charsets.jar":[0,131072,1703936,1835008],"/lt/8/resources.jar":[0,131072,917504,1179648],"/lt/8/javaws.jar":[0,131072,1441792,1703936],"/lt/8/lib/security/java.security":[0,131072],"/lt/8/meta-index":[0,131072],"/lt/8/lib/jaxp.properties":[],"/lt/etc/timezone":[],"/lt/8/lib/tzdb.dat":[0,131072]} });
 
-  //lib = await cheerpjRunLibrary("/app/saxon-he-12.4.jar:/app/Cheerp3Helpers.jar");
-  lib = await cheerpjRunLibrary("/app/cheerpj3-saxonhe12-fiddle/saxon-he-12.9.jar:/app/cheerpj3-saxonhe12-fiddle/Cheerp3Helpers.jar");
+  lib = await cheerpjRunLibrary("/app/cheerpj3-saxonhe12-fiddle/Saxon-HE-12.9.jar:/app/cheerpj3-saxonhe12-fiddle/Cheerp3Helpers.jar");
   
   console.log('Worker CheerpJ 4 library initialized');
   
