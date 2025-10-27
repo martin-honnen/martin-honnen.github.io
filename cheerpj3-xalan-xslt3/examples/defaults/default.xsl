@@ -9,11 +9,7 @@
 
   <xsl:output method="html" indent="no"/>
 
-  <xsl:template match="@* | node()">
-    <xsl:copy>
-      <xsl:apply-templates select="@* | node()"/>
-    </xsl:copy>
-  </xsl:template>
+  <xsl:mode on-no-match="shallow-copy"/>
 
   <xsl:template match="/">
     <xsl:copy>
