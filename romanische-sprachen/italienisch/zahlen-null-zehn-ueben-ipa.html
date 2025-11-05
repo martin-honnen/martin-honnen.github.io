@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Italienische Zahlen üben: 0–10</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+    input, button { font-size: 1.2em; padding: 5px; }
+    #feedback { margin-top: 20px; font-size: 1.2em; }
+    .ipa { font-style: italic; color: #555; }
+  </style>
+</head>
+<body>
+  <h1>Italienische Zahlen von 0 bis 10</h1>
+  <form onsubmit="checkAnswer(); return false;">
+  <p id="question"></p>
+  <input type="text" id="answer" placeholder="Italienisches Wort eingeben">
+  <button id="check" type="submit">Überprüfen</button>
+  <div id="feedback"></div>
+  <div id="repeat" style="display:none;"><button type="button" onclick="init();">Wiederholen</button>
+  </div>
+  <audio id="audio" controls style="display:none;"></audio>
+  </form>
+
+  <script>
+    const questions = [
+  { num: 0, word: "zero", ipa: "[ˈdzɛːro]" },
+  { num: 1, word: "uno", ipa: "[ˈuːno]" },
+  { num: 2, word: "due", ipa: "[ˈduːe]" },
+  { num: 3, word: "tre", ipa: "[ˈtrɛ]" },
+  { num: 4, word: "quattro", ipa: "[ˈkwattro]" },
+  { num: 5, word: "cinque", ipa: "[ˈtʃiŋkwe]" },
+  { num: 6, word: "sei", ipa: "[ˈsɛi]" },
+  { num: 7, word: "sette", ipa: "[ˈsɛtte]" },
+  { num: 8, word: "otto", ipa: "[ˈɔtto]" },
+  { num: 9, word: "nove", ipa: "[ˈnɔːve]" },
+  { num: 10, word: "dieci", ipa: "[ˈdjɛːtʃi]" }
+];
+
+    var correctAnswers, current, numbers;
+
+    function init() {
+      current = null;
+      correctAnswers = 0;
+      numbers = questions.slice();
+      shuffle(numbers);
+
+      document.getElementById("answer").style.display = "";
+      document.getElementById("check").style.display = "";
+      document.getElementById("repeat").style.display = 'none';
+
+      nextQuestion();
+    }
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function nextQuestion() {
+      if (numbers.length === 0) {
+        document.getElementById("question").textContent = `Fertig! Du hast alle Zahlen geübt. Ergebnis: ${correctAnswers} von ${questions.length} richtig.`;
+        document.getElementById("answer").style.display = "none";
+        document.querySelector("button").style.display = "none";
+        document.querySelector("#repeat").style.display = '';
+        return;
+      }
+      current = numbers.pop();
+      document.getElementById("question").textContent = `Wie heißt ${current.num} auf Italienisch?`;
+      document.getElementById("answer").value = "";
+      document.getElementById("feedback").textContent = "";
+      document.getElementById("answer").focus();
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.trim().toLowerCase();
+      const feedback = document.getElementById("feedback");
+
+      let result = "";
+      let correct = userInput === current.word;
+      if (correct) {
+        result = "✅ Richtig!";
+        correctAnswers++;
+      } else {
+        result = `❌ Falsch.`;
+      }
+
+      feedback.innerHTML = `${result}<br>Richtig ${correct?'ist':'wäre'}: <strong>${current.word}</strong> <span class="ipa">${current.ipa}</span>`;
+
+      audio.src = `./tts/audio/numeri/${current.word}.mp3`;
+      audio.style.display = "inline";
+      audio.play();
+
+      setTimeout(nextQuestion, 4000);
+    }
+    init();
+  </script>
+  <p><em>Die benutzten Audiodateien wurden mit Microsoft Azure Text-to-Speech generiert.</em></p>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Italienische Zahlen üben: 30–100</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+    input, button { font-size: 1.2em; padding: 5px; }
+    #feedback { margin-top: 20px; font-size: 1.2em; }
+    .ipa { font-style: italic; color: #555; }
+  </style>
+</head>
+<body>
+  <h1>Italienische Zahlen von 30 bis 100</h1>
+  <form onsubmit="checkAnswer(); return false;">
+  <p id="question"></p>
+  <input type="text" id="answer" placeholder="Italienisches Wort eingeben">
+  <button id="check" type="submit">Überprüfen</button>
+  <div id="feedback"></div>
+  <div id="repeat" style="display:none;"><button type="button" onclick="init();">Wiederholen</button>
+  </div>
+  <audio id="audio" controls style="display:none;"></audio>
+  </form>
+
+  <script>
+const questions = [
+  { num: 30, word: "trenta", ipa: "[ˈtrɛnta]" },
+  { num: 31, word: "trentuno", ipa: "[trenˈtuːno]" },
+  { num: 32, word: "trentadue", ipa: "[trentaˈduːe]" },
+  { num: 33, word: "trentatré", ipa: "[trentaˈtrɛ]" },
+  { num: 34, word: "trentaquattro", ipa: "[trentaˈkwattro]" },
+  { num: 35, word: "trentacinque", ipa: "[trentaˈtʃiŋkwe]" },
+  { num: 36, word: "trentasei", ipa: "[trentaˈsɛi]" },
+  { num: 37, word: "trentasette", ipa: "[trentaˈsɛtte]" },
+  { num: 38, word: "trentotto", ipa: "[trentˈɔtto]" },
+  { num: 39, word: "trentanove", ipa: "[trentaˈnɔːve]" },
+
+  { num: 40, word: "quaranta", ipa: "[kwaˈranta]" },
+  { num: 41, word: "quarantuno", ipa: "[kwaranˈtuːno]" },
+  { num: 42, word: "quarantadue", ipa: "[kwarantaˈduːe]" },
+  { num: 43, word: "quarantatré", ipa: "[kwarantaˈtrɛ]" },
+  { num: 44, word: "quarantaquattro", ipa: "[kwarantaˈkwattro]" },
+  { num: 45, word: "quarantacinque", ipa: "[kwarantaˈtʃiŋkwe]" },
+  { num: 46, word: "quarantasei", ipa: "[kwarantaˈsɛi]" },
+  { num: 47, word: "quarantasette", ipa: "[kwarantaˈsɛtte]" },
+  { num: 48, word: "quarantotto", ipa: "[kwarantˈɔtto]" },
+  { num: 49, word: "quarantanove", ipa: "[kwarantaˈnɔːve]" },
+
+  { num: 50, word: "cinquanta", ipa: "[tʃiŋˈkwanta]" },
+  { num: 51, word: "cinquantuno", ipa: "[tʃiŋkwanˈtuːno]" },
+  { num: 52, word: "cinquantadue", ipa: "[tʃiŋkwantaˈduːe]" },
+  { num: 53, word: "cinquantatré", ipa: "[tʃiŋkwantaˈtrɛ]" },
+  { num: 54, word: "cinquantaquattro", ipa: "[tʃiŋkwantaˈkwattro]" },
+  { num: 55, word: "cinquantacinque", ipa: "[tʃiŋkwantaˈtʃiŋkwe]" },
+  { num: 56, word: "cinquantasei", ipa: "[tʃiŋkwantaˈsɛi]" },
+  { num: 57, word: "cinquantasette", ipa: "[tʃiŋkwantaˈsɛtte]" },
+  { num: 58, word: "cinquantotto", ipa: "[tʃiŋkwantˈɔtto]" },
+  { num: 59, word: "cinquantanove", ipa: "[tʃiŋkwantaˈnɔːve]" },
+
+  { num: 60, word: "sessanta", ipa: "[sesˈsanta]" },
+  { num: 61, word: "sessantuno", ipa: "[sesanˈtuːno]" },
+  { num: 62, word: "sessantadue", ipa: "[sessantaˈduːe]" },
+  { num: 63, word: "sessantatré", ipa: "[sessantaˈtrɛ]" },
+  { num: 64, word: "sessantaquattro", ipa: "[sessantaˈkwattro]" },
+  { num: 65, word: "sessantacinque", ipa: "[sessantaˈtʃiŋkwe]" },
+  { num: 66, word: "sessantasei", ipa: "[sessantaˈsɛi]" },
+  { num: 67, word: "sessantasette", ipa: "[sessantaˈsɛtte]" },
+  { num: 68, word: "sessantotto", ipa: "[sessantˈɔtto]" },
+  { num: 69, word: "sessantanove", ipa: "[sessantaˈnɔːve]" },
+
+  { num: 70, word: "settanta", ipa: "[setˈtanta]" },
+  { num: 71, word: "settantuno", ipa: "[settanˈtuːno]" },
+  { num: 72, word: "settantadue", ipa: "[settantaˈduːe]" },
+  { num: 73, word: "settantatré", ipa: "[settantaˈtrɛ]" },
+  { num: 74, word: "settantaquattro", ipa: "[settantaˈkwattro]" },
+  { num: 75, word: "settantacinque", ipa: "[settantaˈtʃiŋkwe]" },
+  { num: 76, word: "settantasei", ipa: "[settantaˈsɛi]" },
+  { num: 77, word: "settantasette", ipa: "[settantaˈsɛtte]" },
+  { num: 78, word: "settantotto", ipa: "[settantˈɔtto]" },
+  { num: 79, word: "settantanove", ipa: "[settantaˈnɔːve]" },
+
+  { num: 80, word: "ottanta", ipa: "[otˈtanta]" },
+  { num: 81, word: "ottantuno", ipa: "[ottanˈtuːno]" },
+  { num: 82, word: "ottantadue", ipa: "[ottantaˈduːe]" },
+  { num: 83, word: "ottantatré", ipa: "[ottantaˈtrɛ]" },
+  { num: 84, word: "ottantaquattro", ipa: "[ottantaˈkwattro]" },
+  { num: 85, word: "ottantacinque", ipa: "[ottantaˈtʃiŋkwe]" },
+  { num: 86, word: "ottantasei", ipa: "[ottantaˈsɛi]" },
+  { num: 87, word: "ottantasette", ipa: "[ottantaˈsɛtte]" },
+  { num: 88, word: "ottantotto", ipa: "[ottantˈɔtto]" },
+  { num: 89, word: "ottantanove", ipa: "[ottantaˈnɔːve]" },
+
+  { num: 90, word: "novanta", ipa: "[noˈvanta]" },
+  { num: 91, word: "novantuno", ipa: "[novanˈtuːno]" },
+  { num: 92, word: "novantadue", ipa: "[novantaˈduːe]" },
+  { num: 93, word: "novantatré", ipa: "[novantaˈtrɛ]" },
+  { num: 94, word: "novantaquattro", ipa: "[novantaˈkwattro]" },
+  { num: 95, word: "novantacinque", ipa: "[novantaˈtʃiŋkwe]" },
+  { num: 96, word: "novantasei", ipa: "[novantaˈsɛi]" },
+  { num: 97, word: "novantasette", ipa: "[novantaˈsɛtte]" },
+  { num: 98, word: "novantotto", ipa: "[novantˈɔtto]" },
+  { num: 99, word: "novantanove", ipa: "[novantaˈnɔːve]" },
+
+  { num: 100, word: "cento", ipa: "[ˈtʃɛnto]" }
+];
+
+    var correctAnswers, current, numbers, totalQuestions;
+
+    function init() {
+      current = null;
+      correctAnswers = 0;
+      let singleNumbers = [1,2,3,4,5,6,7,8,9];
+      shuffle(singleNumbers);
+      let fullNumbers = questions.filter(question => question.num % 10 === 0 && question.num < 100);
+      shuffle(fullNumbers);
+      singleNumbers = singleNumbers.map((n, i) => questions.find(question => question.num == fullNumbers[i % 7].num + n));
+      numbers = fullNumbers.concat(singleNumbers); //questions.filter((question, index) => question.num % 10 == 0 || singleNumbers.some(n => question.num));
+      shuffle(numbers);
+
+      totalQuestions = numbers.length;
+
+      document.getElementById("answer").style.display = "";
+      document.getElementById("check").style.display = "";
+      document.getElementById("repeat").style.display = 'none';
+
+      nextQuestion();
+    }
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    function nextQuestion() {
+      if (numbers.length === 0) {
+        document.getElementById("question").textContent = `Fertig! Du hast alle Zahlen geübt. Ergebnis: ${correctAnswers} von ${totalQuestions} richtig.`;
+        document.getElementById("answer").style.display = "none";
+        document.querySelector("button").style.display = "none";
+        document.querySelector("#repeat").style.display = '';
+        return;
+      }
+      current = numbers.pop();
+      document.getElementById("question").textContent = `Wie heißt ${current.num} auf Italienisch?`;
+      document.getElementById("answer").value = "";
+      document.getElementById("feedback").textContent = "";
+      document.getElementById("answer").focus();
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.trim().toLowerCase();
+      const feedback = document.getElementById("feedback");
+
+      let result = "";
+      let correct = userInput === current.word;
+      if (correct) {
+        result = "✅ Richtig!";
+        correctAnswers++;
+      } else {
+        result = `❌ Falsch.`;
+      }
+
+      feedback.innerHTML = `${result}<br>Richtig ${correct?'ist':'wäre'}: <strong>${current.word}</strong> <span class="ipa">${current.ipa}</span>`;
+
+      audio.src = `./tts/audio/numeri/${current.word}.mp3`;
+      audio.style.display = "inline";
+      audio.play();
+
+      setTimeout(nextQuestion, 4000);
+    }
+    init();
+  </script>
+  <p><em>Die benutzten Audiodateien wurden mit Microsoft Azure Text-to-Speech generiert.</em></p>
+</body>
+</html>
