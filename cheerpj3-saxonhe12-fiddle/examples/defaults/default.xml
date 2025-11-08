@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <html lang="en">
   <head>
-    <title>CheerpJ 3 Saxon HE Java 12.9 XML Workbench: XSLT 3.0, XQuery 3.1, XPath 3.1</title>
+    <title>CheerpJ Saxon HE Java 12.9 XML Workbench: XSLT 3.0, XQuery 3.1, XPath 3.1</title>
   </head>
   <body>
     <section>
@@ -13,7 +13,7 @@
               allowing the use of <code>xsl:result-document</code> and <code>xsl:message</code>, presented in the result editor pane</li>
           <li>XQuery 3.1 against XML or JSON input or no input, <code>fn:trace</code> can now be examined by selecting '*** trace ***' from the "result documents" select box</li>
           <li>XPath 3.1 against XML or JSON input or no input, now with prefixes/namespaces <code>xs</code>, <code>map</code>, <code>array</code>, <code>math</code> and <code>err</code> predeclared</li>
-          <li>optional automatic evaluation of XSLT/XQuery/XPath as CheerpJ 3 also allows to run Java code (e.g. Saxon) from a web worker</li>
+          <li>optional automatic evaluation of XSLT/XQuery/XPath as CheerpJ  also allows to run Java code (e.g. Saxon) from a web worker</li>
         </ul>
       </section>
     </section>
