@@ -326,7 +326,7 @@
 
     <label>XProc 3 processor: <select id="xproc3-processor-select">
       <option value="MorganaXProc-IIIse" selected>MorganaXProc-IIIse 1.7.4</option>
-      <option value="XMLCalabash">XML Calabash 3.0.26</option>
+      <option value="XMLCalabash">XML Calabash 3.0.27</option>
     </select></label>
   </section>
   <section style="width: 100%; height: 100%;">
@@ -381,7 +381,7 @@ var cheerpJInitialized = false;
       document.getElementById('status').textContent = `XProc 3 processor exited with code ${exitCode}`;
     }
     else if (xproc3Processor === 'XMLCalabash') {
-      const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.26.jar", `/app/cheerpj-xproc3/${exampleUri}`);
+      const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.27.jar", `/app/cheerpj-xproc3/${exampleUri}`);
       console.log(`XProc 3 processor exited with code ${exitCode}`);
       document.getElementById('status').textContent = `XProc 3 processor exited with code ${exitCode}`;
     }
