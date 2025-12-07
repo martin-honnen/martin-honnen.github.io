@@ -5,7 +5,7 @@
   </head>
   <body>
     <section>
-      <h1>Release 0.0.7 beta</h1>
+      <h1>Release 0.0.8 beta</h1>
       <section>
         <h2>Features using Xalan Java XSLT 3 development branch</h2>
         <ul>
@@ -22,6 +22,7 @@
           <li><code>expand-text</code> support</li>
           <li><code>xpath-default-namespace</code> support</li>
           <li><code>xsl:evaluate</code> support</li>
+          <li><code>fn:random-number-generator</code> support</li>
           <li>lots more</li>
         </ul>
       </section>
