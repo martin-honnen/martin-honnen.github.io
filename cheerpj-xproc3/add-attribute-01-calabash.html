@@ -39,7 +39,7 @@ function showPreloadProgress(preloadDone, preloadTotal) {
     //cheerpjCreateDisplay(800, 600);
     cheerpOSAddStringFile("/str/pipeline.xpl", xproc3Code);
     //const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/MorganaXProc-IIIse.jar", "/str/pipeline.xpl", "-xslt-connector=saxon12-3");
-    const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.30.jar", "/str/pipeline.xpl");
+    const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.31.jar", "/str/pipeline.xpl");
     console.log(`XML Calabash 3 exited with code ${exitCode}`);
     document.getElementById('status').textContent = `XML Calabash 3 exited with code ${exitCode}`;
   })();
