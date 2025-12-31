@@ -28,10 +28,10 @@ Share and enjoy!</helloWorld>
 </p:declare-step>`;
 
 (async function () {
-  await cheerpjInit({version:11});
+  await cheerpjInit({version:17});
   //cheerpjCreateDisplay(800, 600);
   cheerpOSAddStringFile("/str/helloWord.xpl", xproc3Code);
-  const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.32.jar", "/str/helloWord.xpl");
+  const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.34.jar", "/str/helloWord.xpl");
   console.log(`XML Calabash exited with code ${exitCode}`);
 })();
 </script>
