@@ -1,4 +1,4 @@
-importScripts("https://cjrtnc.leaningtech.com/4.2/loader.js"); //"https://cjrtnc.leaningtech.com/3_20250414_1093/cj3loader.js"); //https://cjrtnc.leaningtech.com/3_20250330_890/cj3loader.js");//https://cjrtnc.leaningtech.com/3.1/cj3loader.js"); //importScripts("https://cjrtnc.leaningtech.com/3_20241216_574/cj3loader.js"); //importScripts("https://cjrtnc.leaningtech.com/3_20241213_572/cj3loader.js"); //importScripts("https://cjrtnc.leaningtech.com/3.0/cj3loader.js");
+importScripts("https://cjrtnc.leaningtech.com/20260129_2897/loader.js"); //https://cjrtnc.leaningtech.com/4.2/loader.js"); //"https://cjrtnc.leaningtech.com/3_20250414_1093/cj3loader.js"); //https://cjrtnc.leaningtech.com/3_20250330_890/cj3loader.js");//https://cjrtnc.leaningtech.com/3.1/cj3loader.js"); //importScripts("https://cjrtnc.leaningtech.com/3_20241216_574/cj3loader.js"); //importScripts("https://cjrtnc.leaningtech.com/3_20241213_572/cj3loader.js"); //importScripts("https://cjrtnc.leaningtech.com/3.0/cj3loader.js");
 
 var filetypes = {
   '.htm': 'html',
@@ -65,7 +65,7 @@ var saxonInitialized = false;
 
   lib = await cheerpjRunLibrary("/app/cheerpj3-saxonhe12-fiddle/Saxon-HE-12.9.jar:/app/cheerpj3-saxonhe12-fiddle/Cheerp3Helpers.jar");
   
-  console.log('Worker CheerpJ 4.2 library initialized');
+  console.log('Worker CheerpJ library initialized');
   
   postMessage({ type: 'message', message : 'hide', id : 'cheerpj3-load-indicator' });
 
