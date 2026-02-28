@@ -33,7 +33,7 @@ year: (digit, digit)?, digit, digit .</p:inline>
     await cheerpjInit({version:11});
     //cheerpjCreateDisplay(800, 600);
     cheerpOSAddStringFile("/str/pipeline.xpl", xproc3Code);
-    const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.38.jar", "/str/pipeline.xpl");
+    const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.40.jar", "/str/pipeline.xpl");
     console.log(`XML Calabash exited with code ${exitCode}`);
   })();
 </script>
