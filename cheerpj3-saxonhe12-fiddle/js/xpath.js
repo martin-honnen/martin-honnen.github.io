@@ -3,5 +3,5 @@ function xpath(input, xpathCode, inputType, codeBaseURI, inputBaseURI, resultsSe
   if (!autoEvaluation)	
     setDocument(resultEditor, "Evaluating your XPath...", "text");
 
-  phoenixmlWorker.postMessage({ task: 'xpath', data : { input : input, code: xpathCode, inputType: inputType, xpathBaseURI: codeBaseURI, inputBaseURI: inputBaseURI }});
+  saxonWorker.postMessage({ task: 'xpath', data : { input : input, code: xpathCode, inputType: inputType, xpathBaseURI: codeBaseURI, inputBaseURI: inputBaseURI }});
 }

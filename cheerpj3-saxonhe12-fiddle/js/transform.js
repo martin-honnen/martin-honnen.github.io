@@ -3,7 +3,7 @@ function transform(input, xslt, inputType, xsltBaseURI, inputBaseURI, resultsSel
   if (!autoEvaluation)
 	  setDocument(resultEditor, "Processing your XSLT...", "text");
 
-  phoenixmlWorker.postMessage({ task: 'transform', data : { input : input, code: xslt, inputType: inputType, xsltBaseURI: xsltBaseURI, inputBaseURI: inputBaseURI }});
+  saxonWorker.postMessage({ task: 'transform', data : { input : input, code: xslt, inputType: inputType, xsltBaseURI: xsltBaseURI, inputBaseURI: inputBaseURI }});
 /*   if (saxonInitialized) {
 	  try {
 		  var contextItem = null;
@@ -96,5 +96,5 @@ function transformUrls(inputUrl, xsltUrl, inputType, resultsSelect) {
   if (!autoEvaluation)
 	  setDocument(resultEditor, "Processing your XSLT...", "text");
 
-  phoenixmlWorker.postMessage({ task: 'transform-urls', data : { input : inputUrl, code: xsltUrl, inputType: inputType }});
+  saxonWorker.postMessage({ task: 'transform-urls', data : { input : inputUrl, code: xsltUrl, inputType: inputType }});
 }
