@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html lang="en">
+  <head>
+    <title>Phoenixml XSLT and XQuery Workbench</title>
+  </head>
+  <body>
+    <section>
+      <h1>Release 1.1.0beta1</h1>
+      <section>
+        <h2>Features using Phoenixml Xslt and XQuery packages</h2>
+        <ul>
+          <li>XSLT 3.0 against XML input or no input starting with <code>xsl:template name="xsl:initial-template"</code>,
+              allowing the use of <code>xsl:result-document</code> and <code>xsl:message</code>, presented in the result editor pane</li>
+          <li>XQuery 3.1 against XML input or no input, <code>fn:trace</code> can now be examined by selecting '*** trace ***' from the "result documents" select box</li>
+          <li>optional automatic evaluation of XSLT/XQuery as Blazor code is run from a web worker</li>
+        </ul>
+      </section>
+    </section>
+  </body>
+</html>
