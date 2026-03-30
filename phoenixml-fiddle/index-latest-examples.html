@@ -103,13 +103,13 @@
       return promise;
     }
 
-    export async function transform(xslt, xml) {
+    async function transform(xslt, xml) {
       const response = await sendRequestToWorker({ command: 'transform', xslt: xslt, xml: xml });
       setDocument(resultEditor, response, 'xml');
       //return response;
     }
 
-    export async function xquery(xquery, xml) {
+    async function xquery(xquery, xml) {
       const response = await sendRequestToWorker({ command: 'executeXQuery', xquery: xquery, xml: xml });
       setDocument(resultEditor, response, 'xml');
       //return response;
@@ -139,11 +139,18 @@
     document.addEventListener('DOMContentLoaded', autoEvaluate, false);
 	</script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/ace.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/mode-xml.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/mode-html.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/mode-json.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/mode-xquery.js"></script>
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/ace.js"></script>-->
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/mode-xml.js"></script>-->
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/mode-html.js"></script>-->
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/mode-json.js"></script>-->
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.2/mode-xquery.js"></script>-->
+
+  <script src="ace/ace.js"></script>
+  <script src="ace/mode-xml.js"></script>
+  <script src="ace/mode-html.js"></script>
+  <script src="ace/mode-json.js"></script>
+  <script src="ace/mode-xquery.js"></script>
+  <script src="ace/mode-xpath.js"></script>
 </head>
 <body class="container">
 <header>
@@ -210,16 +217,16 @@
                         var inputBaseURI = inputFileName != '' && gistId != null ? new window.URL(inputFileName, gistBaseURI).href : 'urn:from-string';
                         var codeBaseURI = codeFileName != '' && gistId != null ? new window.URL(codeFileName, gistBaseURI).href : 'urn:from-string';
                         xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));">
-      <input type="button" id="xpath" value="XPath" accesskey="a"
-             onclick="var inputType = document.getElementById('input-types').form['input-type'].value;
-		                    var codeType = document.getElementById('input-types').form['code-type'].value;
-                        var codeFileInput = document.getElementById('codeFile');
-                        var codeFileName = codeFileInput != null ? codeFileInput.value : '';
-                        var inputFileInput = document.getElementById('inputFile');
-                        var inputFileName = inputFileInput != null ? inputFileInput.value : '';
-                        var inputBaseURI = inputFileName != '' && gistId != null ? new window.URL(inputFileName, gistBaseURI).href : 'urn:from-string';
-                        var codeBaseURI = codeFileName != '' && gistId != null ? new window.URL(codeFileName, gistBaseURI).href : 'urn:from-string';
-                        xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));">
+<!--      <input type="button" id="xpath" value="XPath" accesskey="a"-->
+<!--             onclick="var inputType = document.getElementById('input-types').form['input-type'].value;-->
+<!--		                    var codeType = document.getElementById('input-types').form['code-type'].value;-->
+<!--                        var codeFileInput = document.getElementById('codeFile');-->
+<!--                        var codeFileName = codeFileInput != null ? codeFileInput.value : '';-->
+<!--                        var inputFileInput = document.getElementById('inputFile');-->
+<!--                        var inputFileName = inputFileInput != null ? inputFileInput.value : '';-->
+<!--                        var inputBaseURI = inputFileName != '' && gistId != null ? new window.URL(inputFileName, gistBaseURI).href : 'urn:from-string';-->
+<!--                        var codeBaseURI = codeFileName != '' && gistId != null ? new window.URL(codeFileName, gistBaseURI).href : 'urn:from-string';-->
+<!--                        xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));">-->
       <!--<input type="button" id="xsd" value="XSD" accesskey="V" title="validate XML against XSD schema"
             onclick="validate(inputEditor.session.getValue(), codeEditor.session.getValue(), document.getElementById('results'));">-->
       <input type="button" id="save" value="save as URL" accesskey="s"
