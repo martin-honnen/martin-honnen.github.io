@@ -76,7 +76,7 @@
     let pendingRequestId = 0;
 
     const dotnetWorker =
-      new Worker('./Workers/PhoenixmlWorker.razor.js', { type: 'module' });
+      new Worker('blazor/Workers/PhoenixmlWorker.razor.js', { type: 'module' });
 
     dotnetWorker.addEventListener('message', e => {
       switch (e.data.command) {
