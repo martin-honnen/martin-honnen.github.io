@@ -103,13 +103,13 @@
       return promise;
     }
 
-    async function transform(xslt, xml) {
+    async function transform(xml, xslt) {
       const response = await sendRequestToWorker({ command: 'transform', xslt: xslt, xml: xml });
       setDocument(resultEditor, response, 'xml');
       //return response;
     }
 
-    async function xquery(xquery, xml) {
+    async function xquery(xml, xquery) {
       const response = await sendRequestToWorker({ command: 'executeXQuery', xquery: xquery, xml: xml });
       setDocument(resultEditor, response, 'xml');
       //return response;
