@@ -84,7 +84,7 @@
           const request = pendingRequests[e.data.requestId];
           delete pendingRequests[e.data.requestId];
           if (e.data.error) {
-            request.reject(new Error(e.data.error));
+            request.reject(e.data.error);//(new Error(e.data.error))
           }
           request.resolve(e.data.result);
           break;
