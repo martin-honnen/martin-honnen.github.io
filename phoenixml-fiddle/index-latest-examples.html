@@ -28,7 +28,7 @@
       if (codeType === 'XSLT')
         await transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));
       else if (codeType === 'XQuery')
-        await xquery(codeEditor.session.getValue(), inputType !== 'None' ? inputEditor.session.getValue() : null);// codeBaseURI, inputBaseURI, document.getElementById('results'));
+        await xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue());// codeBaseURI, inputBaseURI, document.getElementById('results'));
       // else if (codeType === 'XPath')
       //   xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType,  codeBaseURI, inputBaseURI, document.getElementById('results'));
     }
