@@ -1,4 +1,4 @@
-﻿import { dotnet } from '../_framework/dotnet.1kol3ywqcr.js'; // '../_framework/dotnet.js';
+﻿import { dotnet } from '../_framework/dotnet.js';
 
 let assemblyExports;
 let startupError;
@@ -28,7 +28,7 @@ self.addEventListener('message', async e => {
             default:
                 throw new Error(`Unknown command: ${e.data.command}`);
         }
-
+        result = JSON.parse(result);
         self.postMessage({
             command: 'response',
             requestId: e.data.requestId, result
