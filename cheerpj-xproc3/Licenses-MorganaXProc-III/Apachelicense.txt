@@ -2,9 +2,10 @@ This file is included in the distribution of MorganaXProc-IIIse because
 the following unchanged libraries are distributed with MorganaXProc-IIIse:
 
 commons-codec-1.x.jar, commons-logging-1.x.jar, httpclient-4.5.x.jar, httpcore-4.4.x.jar, 
-httpmime-4.5.x.jar, guava-23.0.jar, json-schema-validator-1.0.79.jar, commons-lang3-3.12.0.jar,
+httpmime-4.5.x.jar, guava-32.0.jar, json-schema-validator-1.0.79.jar, commons-lang3-3.12.0.jar,
 jackson-core-2.14.2.jar, jackson-databind-2.14.2.jar, jackson-dataformat-yaml-2.14.2.jar, 
-snakeyaml-1.33.jar, commons-imaging-1.0-alpha3.jar, itu-1.7.0.jar, and xmlresolver-6.0.10.jar.
+snakeyaml-1.33.jar, commons-imaging-1.0-alpha6.jar, itu-1.7.0.jar, and xmlresolver-6.0.14.jar,
+pdfbox-app-3.0.4.jar.
 
                                  Apache License
                            Version 2.0, January 2004
