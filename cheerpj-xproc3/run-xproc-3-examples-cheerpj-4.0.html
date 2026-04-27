@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Running XProc 3 examples with CheerpJ</title>
-  <script src="https://cjrtnc.leaningtech.com/4.0/loader.js"></script>
+  <script src="https://cjrtnc.leaningtech.com/4.3/loader.js"></script>
 </head>
 <body>
   <pre id=loading style="color: red;">CheerpJ is loading...</pre>
@@ -378,7 +378,7 @@ var cheerpJInitialized = false;
       document.getElementById('status').textContent = `XProc 3 processor exited with code ${exitCode}`;
     }
     else if (xproc3Processor === 'XMLCalabash') {
-      const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.36.jar", `/app/cheerpj-xproc3/${exampleUri}`);
+      const exitCode = await cheerpjRunJar("/app/cheerpj-xproc3/xmlcalabash-app-3.0.45.jar", `/app/cheerpj-xproc3/${exampleUri}`);
       console.log(`XProc 3 processor exited with code ${exitCode}`);
       document.getElementById('status').textContent = `XProc 3 processor exited with code ${exitCode}`;
     }
