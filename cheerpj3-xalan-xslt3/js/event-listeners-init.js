@@ -1,6 +1,7 @@
 ﻿document.addEventListener('DOMContentLoaded',
     function () {
-        document.getElementById('input-types').addEventListener('click',
+      autoEvaluation = document.getElementById('auto-evaluate').checked;
+      document.getElementById('input-types').addEventListener('click',
             function (evt) {
                 var inputType = evt.currentTarget.form['input-type'].value;
                 if (inputType !== 'None') {
