@@ -111,10 +111,10 @@ onmessage = async (e) => {
   if (task === 'transform') {
     await transform(data.input, data.code, data.inputType, data.inputBaseURI, data.xsltBaseURI);
   }
-  else if (task === 'xquery') {
+/*  else if (task === 'xquery') {
     await xquery(data.input, data.code, data.inputType, data.inputBaseURI, data.xqueryBaseURI);
   }
   else if (task === 'xpath') {
     await xpath(data.input, data.code, data.inputType, data.inputBaseURI, data.xpathBaseURI);
-  }
+  }*/
 }
