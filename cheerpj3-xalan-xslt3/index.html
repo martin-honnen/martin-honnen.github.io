@@ -8,6 +8,13 @@
   <link rel="stylesheet" href="css/ace-fiddle.css">
 
 	<script>
+
+    var xalanLoaded = false;
+    var samplesLoaded = {
+      inputLoaded : false,
+      codeLoaded : false
+    };
+
     var gistId = null;
     var gistBaseURI = null;
 
@@ -17,6 +24,7 @@
     var autoEvaluation = false;
 
     function evaluate() {
+      if (!xalanLoaded || (!samplesLoaded.inputLoaded && !samplesLoaded.codeLoaded)) return;
       var inputType = document.getElementById('input-types').form['input-type'].value;
       var codeType = document.getElementById('input-types').form['code-type'].value;
       var codeFileInput = document.getElementById('codeFile');
@@ -25,7 +33,7 @@
       var inputFileName = inputFileInput != null ? inputFileInput.value : '';
       var inputBaseURI = inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
       var codeBaseURI = codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
-      if (codeType === 'XSLT')
+      if (codeType === 'XSLT' && xalanLoaded)
         transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));
       /*
           else if (codeType === 'XQuery')
