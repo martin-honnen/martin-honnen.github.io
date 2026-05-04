@@ -47,6 +47,7 @@
 	}
 	
 	function autoEvaluate() {
+    clearTimeout(typingTimeout);
 		typingTimeout = autoEvaluation ? setTimeout(evaluate, doneTypingInterval) : 0;//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
 	}
 	
