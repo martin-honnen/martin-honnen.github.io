@@ -22,6 +22,8 @@
   var autoEvaluation = false;
 
 	function evaluate() {
+    console.log(`evaluate called, autoEvaluation is ${autoEvaluation}; xalanLoaded is ${xalanLoaded}, inputLoaded is ${samplesLoaded.inputLoaded}, codeLoaded is ${samplesLoaded.codeLoaded}`);
+
     if (!xalanLoaded || !samplesLoaded.inputLoaded || !samplesLoaded.codeLoaded) return;
 		var inputType = document.getElementById('input-types').form['input-type'].value;
 		var codeType = document.getElementById('input-types').form['code-type'].value;
@@ -47,6 +49,7 @@
 	}
 	
 	function autoEvaluate() {
+    console.log(`autoEvaluate called, autoEvaluation is ${autoEvaluation}; xalanLoaded is ${xalanLoaded}, inputLoaded is ${samplesLoaded.inputLoaded}, codeLoaded is ${samplesLoaded.codeLoaded}`);
     clearTimeout(typingTimeout);
 		typingTimeout = autoEvaluation ? setTimeout(evaluate, doneTypingInterval) : 0;//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
 	}
