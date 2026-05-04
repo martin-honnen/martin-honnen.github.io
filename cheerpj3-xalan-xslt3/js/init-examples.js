@@ -8,6 +8,9 @@ function setEditorFromUrl(url, editor, type) {
     } else if (editor === inputEditor) {
       samplesLoaded.inputLoaded = true;
     }
+    if (samplesLoaded.codeLoaded && samplesLoaded.inputLoaded && autoEvaluation) {
+      evaluateSamples();
+    }
   };
   req.send();
 }

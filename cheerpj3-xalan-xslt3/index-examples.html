@@ -22,10 +22,10 @@
 
   var autoEvaluation = false;
 
-	function evaluate() {
+	function evaluateSamples() {
     //console.log(`evaluate called, autoEvaluation is ${autoEvaluation}; xalanLoaded is ${xalanLoaded}, inputLoaded is ${samplesLoaded.inputLoaded}, codeLoaded is ${samplesLoaded.codeLoaded}`);
 
-    if (!xalanLoaded || !samplesLoaded.inputLoaded || !samplesLoaded.codeLoaded) return;
+    if (!xalanLoaded) return;
 		var inputType = document.getElementById('input-types').form['input-type'].value;
 		var codeType = document.getElementById('input-types').form['code-type'].value;
     var codeFileInput = document.getElementById('codeFile');
@@ -45,20 +45,39 @@
 */
 
 	}
+	
+	// function autoEvaluate() {
+  //   //console.log(`autoEvaluate called, autoEvaluation is ${autoEvaluation}; xalanLoaded is ${xalanLoaded}, inputLoaded is ${samplesLoaded.inputLoaded}, codeLoaded is ${samplesLoaded.codeLoaded}`);
+  //   //clearTimeout(typingTimeout);
+  //   if (autoEvaluation && !samplesToEvaluate && (!xalanLoaded || !samplesLoaded.inputLoaded || !samplesLoaded.codeLoaded))
+  //     typingTimeout = setTimeout(autoEvaluate, doneTypingInterval);
+  //   else if (autoEvaluation && xalanLoaded && samplesLoaded.inputLoaded && samplesLoaded.codeLoaded && samplesToEvaluate && !samplesEvaluated)
+	// 	  evaluate();//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
+	// }
+    function evaluate() {
+      var inputType = document.getElementById('input-types').form['input-type'].value;
+      var codeType = document.getElementById('input-types').form['code-type'].value;
+      var codeFileInput = document.getElementById('codeFile');
+      var codeFileName = codeFileInput != null ? codeFileInput.value : '';
+      var inputFileInput = document.getElementById('inputFile');
+      var inputFileName = inputFileInput != null ? inputFileInput.value : '';
+      var inputBaseURI = inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
+      var codeBaseURI = codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
+      if (codeType === 'XSLT')
+        transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));
+/*
+      else if (codeType === 'XQuery')
+        xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType,  codeBaseURI, inputBaseURI, document.getElementById('results'));
+      else if (codeType === 'XPath')
+        xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType,  codeBaseURI, inputBaseURI, document.getElementById('results'));
+*/
+    }
 
-  function wait(time) {
-	  return new Promise(res => setTimeout(res, time));
-	}
-	
-	function autoEvaluate() {
-    //console.log(`autoEvaluate called, autoEvaluation is ${autoEvaluation}; xalanLoaded is ${xalanLoaded}, inputLoaded is ${samplesLoaded.inputLoaded}, codeLoaded is ${samplesLoaded.codeLoaded}`);
-    //clearTimeout(typingTimeout);
-    if (autoEvaluation && !samplesToEvaluate && (!xalanLoaded || !samplesLoaded.inputLoaded || !samplesLoaded.codeLoaded))
-      typingTimeout = setTimeout(autoEvaluate, doneTypingInterval);
-    else if (autoEvaluation && xalanLoaded && samplesLoaded.inputLoaded && samplesLoaded.codeLoaded && samplesToEvaluate && !samplesEvaluated)
-		  evaluate();//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
-	}
-	
+
+    function autoEvaluate() {
+      typingTimeout = autoEvaluation && !samplesToEvaluate && xalanLoaded ? setTimeout(evaluateSamples, doneTypingInterval) : 0;//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
+    }
+
   function renderXsltResults(results, resultsSelect) {
 
     resultsSelect.length = 0;
