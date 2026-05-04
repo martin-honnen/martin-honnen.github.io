@@ -20,7 +20,7 @@
 
   <xsl:template name="xsl:initial-template" match="/">
     <fib n="{/*}">{f:fib(/*)}</fib>
-    <xsl:comment>Run with {system-property('xsl:product-name')} {system-property('xsl:product-version')} at {current-dateTime()}</xsl:comment>
+    <xsl:comment>Run with {system-property('vendor')} at {current-dateTime()}</xsl:comment>
   </xsl:template>
 
 </xsl:stylesheet>

@@ -25,7 +25,7 @@
 
   <xsl:template match="/" name="xsl:initial-template">
     <fib n="{/*}">{f:iterative-fib(/*)}</fib>
-    <xsl:comment>Run with {system-property('xsl:product-name')} {system-property('xsl:product-version')} at {current-dateTime()}</xsl:comment>
+    <xsl:comment>Run with {system-property('xsl:vendor')} at {current-dateTime()}</xsl:comment>
   </xsl:template>
 
 </xsl:stylesheet>
