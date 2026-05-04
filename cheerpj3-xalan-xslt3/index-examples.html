@@ -50,7 +50,7 @@
 	
 	function autoEvaluate() {
     console.log(`autoEvaluate called, autoEvaluation is ${autoEvaluation}; xalanLoaded is ${xalanLoaded}, inputLoaded is ${samplesLoaded.inputLoaded}, codeLoaded is ${samplesLoaded.codeLoaded}`);
-    clearTimeout(typingTimeout);
+    //clearTimeout(typingTimeout);
 		typingTimeout = autoEvaluation ? setTimeout(evaluate, doneTypingInterval) : 0;//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
 	}
 	
