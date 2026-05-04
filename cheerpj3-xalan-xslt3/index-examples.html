@@ -23,9 +23,12 @@
   var autoEvaluation = false;
 
 	function evaluateSamples() {
-    //console.log(`evaluate called, autoEvaluation is ${autoEvaluation}; xalanLoaded is ${xalanLoaded}, inputLoaded is ${samplesLoaded.inputLoaded}, codeLoaded is ${samplesLoaded.codeLoaded}`);
+    console.log(`evaluateSamples called, autoEvaluation is ${autoEvaluation}; xalanLoaded is ${xalanLoaded}, inputLoaded is ${samplesLoaded.inputLoaded}, codeLoaded is ${samplesLoaded.codeLoaded}`);
 
-    if (!xalanLoaded) return;
+    if (!xalanLoaded) {
+      setTimeout(evaluateSamples, doneTypingInterval);
+      return;
+    }
 		var inputType = document.getElementById('input-types').form['input-type'].value;
 		var codeType = document.getElementById('input-types').form['code-type'].value;
     var codeFileInput = document.getElementById('codeFile');
