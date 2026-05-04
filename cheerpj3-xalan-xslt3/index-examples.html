@@ -78,7 +78,7 @@
 
 
     function autoEvaluate() {
-      typingTimeout = autoEvaluation && !samplesToEvaluate && xalanLoaded ? setTimeout(evaluateSamples, doneTypingInterval) : 0;//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
+      typingTimeout = autoEvaluation && !samplesToEvaluate && xalanLoaded ? setTimeout(evaluate, doneTypingInterval) : 0;//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
     }
 
   function renderXsltResults(results, resultsSelect) {
