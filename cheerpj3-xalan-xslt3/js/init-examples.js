@@ -15,6 +15,8 @@ function setEditorFromUrl(url, editor, type) {
 function loadDefaults() {
   samplesLoaded.codeLoaded = false;
   samplesLoaded.inputLoaded = false;
+  samplesToEvaluate = true;
+  samplesEvaluated = false;
   setEditorFromUrl('examples/defaults/default.xml', inputEditor);
   setEditorFromUrl('examples/defaults/default.xsl', codeEditor);
 }
@@ -22,6 +24,8 @@ function loadDefaults() {
 function loadExample(codeSample, codeType, inputSample, inputType) {
   samplesLoaded.codeLoaded = false;
   samplesLoaded.inputLoaded = false;
+  samplesToEvaluate = true;
+  samplesEvaluated = false;
   if (codeSample) {
     setEditorFromUrl(codeSample, codeEditor, codeType);
     document.getElementById('input-type-form').elements['code-type'].value = codeType;

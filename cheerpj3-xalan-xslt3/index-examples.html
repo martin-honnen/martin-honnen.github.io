@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/ace-fiddle.css">
 
 	<script>
-    var evaluated = false;
+    var samplesEvaluated = false, samplesToEvaluate = false;
     var xalanLoaded = false;
     var samplesLoaded = {
       inputLoaded : false,
@@ -35,7 +35,6 @@
     var inputBaseURI = inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
     var codeBaseURI = codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
     if (codeType === 'XSLT' && xalanLoaded) {
-      evaluated = true;
       transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));
     }
 /*
@@ -54,9 +53,9 @@
 	function autoEvaluate() {
     //console.log(`autoEvaluate called, autoEvaluation is ${autoEvaluation}; xalanLoaded is ${xalanLoaded}, inputLoaded is ${samplesLoaded.inputLoaded}, codeLoaded is ${samplesLoaded.codeLoaded}`);
     //clearTimeout(typingTimeout);
-    if (autoEvaluation && !evaluated && (!xalanLoaded || !samplesLoaded.inputLoaded || !samplesLoaded.codeLoaded))
+    if (autoEvaluation && !samplesToEvaluate && (!xalanLoaded || !samplesLoaded.inputLoaded || !samplesLoaded.codeLoaded))
       typingTimeout = setTimeout(autoEvaluate, doneTypingInterval);
-    else if (autoEvaluation && xalanLoaded && samplesLoaded.inputLoaded && samplesLoaded.codeLoaded && !evaluated)
+    else if (autoEvaluation && xalanLoaded && samplesLoaded.inputLoaded && samplesLoaded.codeLoaded && samplesToEvaluate && !samplesEvaluated)
 		  evaluate();//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
 	}
 	
@@ -96,7 +95,11 @@
 	saxonWorker.onmessage = e => {
     if (e.data.type === 'result') {
       var results = e.data.results;
-      renderResults(results, document.querySelector('#results'));      
+      renderResults(results, document.querySelector('#results'));
+      if (samplesToEvaluate) {
+        samplesEvaluated = true;
+        samplesToEvaluate = false;
+      }
     }
 	  else if (e.data.type === 'message' && e.data.message === 'hide') {
 	    document.getElementById(e.data.id).style.display = 'none';
