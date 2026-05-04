@@ -17,7 +17,7 @@
     var gistBaseURI = null;
 
   var doneTypingInterval = 1000;
-  var typingTimeout;
+  var typingTimeout = -1;
 
   var autoEvaluation = false;
 
@@ -51,7 +51,10 @@
 	function autoEvaluate() {
     console.log(`autoEvaluate called, autoEvaluation is ${autoEvaluation}; xalanLoaded is ${xalanLoaded}, inputLoaded is ${samplesLoaded.inputLoaded}, codeLoaded is ${samplesLoaded.codeLoaded}`);
     //clearTimeout(typingTimeout);
-		typingTimeout = autoEvaluation ? setTimeout(evaluate, doneTypingInterval) : 0;//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
+    if (autoEvaluation && (!xalanLoaded || !samplesLoaded.inputLoaded || !samplesLoaded.codeLoaded))
+      typingTimeout = setTimeout(autoEvaluate, doneTypingInterval);
+    else if (autoEvaluation && xalanLoaded && samplesLoaded.inputLoaded && samplesLoaded.codeLoaded)
+		  typingTimeout = autoEvaluation ? setTimeout(evaluate, doneTypingInterval) : 0;//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
 	}
 	
   function renderXsltResults(results, resultsSelect) {
