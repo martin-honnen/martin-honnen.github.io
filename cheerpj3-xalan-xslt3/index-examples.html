@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/ace-fiddle.css">
 
 	<script>
+    var evaluated = false;
     var xalanLoaded = false;
     var samplesLoaded = {
       inputLoaded : false,
@@ -22,7 +23,7 @@
   var autoEvaluation = false;
 
 	function evaluate() {
-    console.log(`evaluate called, autoEvaluation is ${autoEvaluation}; xalanLoaded is ${xalanLoaded}, inputLoaded is ${samplesLoaded.inputLoaded}, codeLoaded is ${samplesLoaded.codeLoaded}`);
+    //console.log(`evaluate called, autoEvaluation is ${autoEvaluation}; xalanLoaded is ${xalanLoaded}, inputLoaded is ${samplesLoaded.inputLoaded}, codeLoaded is ${samplesLoaded.codeLoaded}`);
 
     if (!xalanLoaded || !samplesLoaded.inputLoaded || !samplesLoaded.codeLoaded) return;
 		var inputType = document.getElementById('input-types').form['input-type'].value;
@@ -33,8 +34,10 @@
     var inputFileName = inputFileInput != null ? inputFileInput.value : '';
     var inputBaseURI = inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
     var codeBaseURI = codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
-    if (codeType === 'XSLT' && xalanLoaded)
+    if (codeType === 'XSLT' && xalanLoaded) {
+      evaluated = true;
       transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));
+    }
 /*
     else if (codeType === 'XQuery')
       xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType,  codeBaseURI, inputBaseURI, document.getElementById('results'));
@@ -49,12 +52,12 @@
 	}
 	
 	function autoEvaluate() {
-    console.log(`autoEvaluate called, autoEvaluation is ${autoEvaluation}; xalanLoaded is ${xalanLoaded}, inputLoaded is ${samplesLoaded.inputLoaded}, codeLoaded is ${samplesLoaded.codeLoaded}`);
+    //console.log(`autoEvaluate called, autoEvaluation is ${autoEvaluation}; xalanLoaded is ${xalanLoaded}, inputLoaded is ${samplesLoaded.inputLoaded}, codeLoaded is ${samplesLoaded.codeLoaded}`);
     //clearTimeout(typingTimeout);
-    if (autoEvaluation && (!xalanLoaded || !samplesLoaded.inputLoaded || !samplesLoaded.codeLoaded))
+    if (autoEvaluation && !evaluated && (!xalanLoaded || !samplesLoaded.inputLoaded || !samplesLoaded.codeLoaded))
       typingTimeout = setTimeout(autoEvaluate, doneTypingInterval);
-    else if (autoEvaluation && xalanLoaded && samplesLoaded.inputLoaded && samplesLoaded.codeLoaded)
-		  typingTimeout = autoEvaluation ? setTimeout(evaluate, doneTypingInterval) : 0;//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
+    else if (autoEvaluation && xalanLoaded && samplesLoaded.inputLoaded && samplesLoaded.codeLoaded && !evaluated)
+		  evaluate();//new Promise(res => setTimeout(evaluate, doneTypingInterval)) : 0;
 	}
 	
   function renderXsltResults(results, resultsSelect) {
