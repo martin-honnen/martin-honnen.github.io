@@ -3,16 +3,25 @@ function setEditorFromUrl(url, editor, type) {
   req.open('GET', url);
   req.onload = function () {
     setDocument(editor, req.responseText, type ? type : 'xml');
+    if (editor === codeEditor) {
+      samplesLoaded.codeLoaded = true;
+    } else if (editor === inputEditor) {
+      samplesLoaded.inputLoaded = true;
+    }
   };
   req.send();
 }
 
 function loadDefaults() {
+  samplesLoaded.codeLoaded = false;
+  samplesLoaded.inputLoaded = false;
   setEditorFromUrl('examples/defaults/default.xml', inputEditor);
   setEditorFromUrl('examples/defaults/default.xsl', codeEditor);
 }
 
 function loadExample(codeSample, codeType, inputSample, inputType) {
+  samplesLoaded.codeLoaded = false;
+  samplesLoaded.inputLoaded = false;
   if (codeSample) {
     setEditorFromUrl(codeSample, codeEditor, codeType);
     document.getElementById('input-type-form').elements['code-type'].value = codeType;

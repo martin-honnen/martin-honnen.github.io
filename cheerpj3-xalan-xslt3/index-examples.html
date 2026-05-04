@@ -9,7 +9,10 @@
 
 	<script>
     var xalanLoaded = false;
-
+    var samplesLoaded = {
+      inputLoaded : false,
+      codeLoaded : false
+    };
     var gistId = null;
     var gistBaseURI = null;
 
@@ -19,6 +22,7 @@
   var autoEvaluation = false;
 
 	function evaluate() {
+    if (!xalanLoaded || (!samplesLoaded.inputLoaded || !samplesLoaded.codeLoaded)) return;
 		var inputType = document.getElementById('input-types').form['input-type'].value;
 		var codeType = document.getElementById('input-types').form['code-type'].value;
     var codeFileInput = document.getElementById('codeFile');
