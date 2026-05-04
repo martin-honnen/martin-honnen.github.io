@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="css/ace-fiddle.css">
 
 	<script>
+    var xalanLoaded = false;
+
     var gistId = null;
     var gistBaseURI = null;
 
@@ -25,7 +27,7 @@
     var inputFileName = inputFileInput != null ? inputFileInput.value : '';
     var inputBaseURI = inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
     var codeBaseURI = codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
-    if (codeType === 'XSLT')
+    if (codeType === 'XSLT' && xalanLoaded)
       transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));
 /*
     else if (codeType === 'XQuery')
@@ -84,6 +86,9 @@
     }
 	  else if (e.data.type === 'message' && e.data.message === 'hide') {
 	    document.getElementById(e.data.id).style.display = 'none';
+      if (e.data.id === 'xalan-load-indicator') {
+        xalanLoaded = true;
+      }
 	  }
 	  else {
 	    setDocument(resultEditor, e.data.message, 'text');
