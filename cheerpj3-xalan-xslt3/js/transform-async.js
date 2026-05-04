@@ -18,7 +18,7 @@ async function transform(input, xslt, inputType, inputUri, xsltUri, outputUri) {
       
       await TransformerFactory.setErrorListener(errorListenerHelper);
 
-      transformer = await TransformerFactory.newTransformer(xsltUri ? await new StreamSource(await new StringReader(xslt), xsltUri) : await new StreamSource(await new StringReader(xslt)));
+      transformer = await TransformerFactory.newTransformer(xsltUri && xsltUri !== 'urn:from-string' ? await new StreamSource(await new StringReader(xslt), xsltUri) : await new StreamSource(await new StringReader(xslt)));
 
       //const transformerImpl = await (TransformerImpl)transformer;
       await transformer.setProperty("http://apache.org/xalan/xslevaluate", true); //await transformer.XSL_EVALUATE_PROPERTY
@@ -85,7 +85,7 @@ async function transform(input, xslt, inputType, inputUri, xsltUri, outputUri) {
     var transformationResult = await new StreamResult(resultWriter);
         
     try {
-      await transformer.transform(inputUri ? await new StreamSource(await new StringReader(input), inputUri) : await new StreamSource(await new StringReader(input)), transformationResult);
+      await transformer.transform(inputUri && inputUri !== 'urn:from-string' ? await new StreamSource(await new StringReader(input), inputUri) : await new StreamSource(await new StringReader(input)), transformationResult);
       
       errors = await getJavaScriptMessages(errorListenerHelper);
    
