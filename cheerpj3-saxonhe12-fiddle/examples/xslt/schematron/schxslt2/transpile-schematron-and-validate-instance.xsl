@@ -8,7 +8,7 @@
     
     <xsl:import href="transpile.xsl"/>
     
-    <xsl:output indent="yes"/>
+    <xsl:output method="xml" indent="yes"/>
     
     <xsl:template match="/">
         <xsl:variable name="transpiled-schematron">
