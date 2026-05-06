@@ -1,4 +1,4 @@
-﻿import { dotnet } from '../_framework/dotnet.dzn0xsoi6a.js';
+﻿import { dotnet } from '../_framework/dotnet.x2hzfsj0ht.js';
 
 let assemblyExports;
 let startupError;
@@ -20,7 +20,7 @@ self.addEventListener('message', async e => {
         let result;
         switch (e.data.command) {
             case 'transform':
-                result = await assemblyExports.PhoenixmlWorker.Transform(e.data.xslt, e.data.xml);
+                result = await assemblyExports.PhoenixmlWorker.Transform(e.data.xslt, e.data.xml, e.data.codeBaseURI, e.data.inputBaseURI);
                 result = JSON.parse(result);
                 break;
             case 'executeXQuery':
