@@ -15,11 +15,13 @@ function loadDefaults() {
 function loadExample(codeSample, codeType, inputSample, inputType) {
   if (codeSample) {
     setEditorFromUrl(codeSample, codeEditor, codeType);
+    codeBaseURI = new URL(codeSample, document.location).href;
     document.getElementById('input-type-form').elements['code-type'].value = codeType;
   }
 
   if (inputSample) {
     setEditorFromUrl(inputSample, inputEditor, inputType);
+    inputBaseURI = new URL(inputSample, document.location).href;
     document.getElementById('input-type-form').elements['input-type'].value = inputType;
   }
 }

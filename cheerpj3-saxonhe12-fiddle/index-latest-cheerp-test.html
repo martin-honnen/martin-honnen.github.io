@@ -11,6 +11,9 @@
     var gistId = null;
     var gistBaseURI = null;
 
+    var inputBaseURI = 'urn:from-string';
+    var codeBaseURI = 'urn:from-string';
+
     var doneTypingInterval = 1000;
     var typingTimeout;
 
@@ -23,8 +26,8 @@
       var codeFileName = codeFileInput != null ? codeFileInput.value : '';
       var inputFileInput = document.getElementById('inputFile');
       var inputFileName = inputFileInput != null ? inputFileInput.value : '';
-      var inputBaseURI = inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
-      var codeBaseURI = codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
+      //var inputBaseURI = inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
+      //var codeBaseURI = codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
       if (codeType === 'XSLT')
         transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType, codeBaseURI, inputBaseURI, document.getElementById('results'));
       else if (codeType === 'XQuery')
