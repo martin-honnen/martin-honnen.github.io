@@ -12,7 +12,7 @@ function loadDefaults() {
     setEditorFromUrl('examples/defaults/default.xsl', codeEditor);
 }
 
-function loadExample(codeSample, codeType, inputSample, inputType) {
+function loadExample(codeSample, codeType, inputSample, inputType, preload) {
   if (codeSample) {
       setEditorFromUrl(codeSample, codeEditor, codeType);
       codeBaseURI = new URL(codeSample, document.location).href;

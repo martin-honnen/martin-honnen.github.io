@@ -32,6 +32,8 @@
               await transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), codeBaseURI, inputBaseURI);
           else if (codeType === 'XQuery')
               await xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue());// codeBaseURI, inputBaseURI, document.getElementById('results'));
+          else if (codeType === 'Schematron')
+              await schematron(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), codeBaseURI, inputBaseURI);// document.getElementById('results'));
           // else if (codeType === 'XPath')
           //   xpath(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), inputType,  codeBaseURI, inputBaseURI, document.getElementById('results'));
       }
@@ -126,6 +128,12 @@
           setDocument(resultEditor, response, 'xml');
           //return response;
       }
+
+      async function schematron(xml, schematron, codeBaseURI, inputBaseURI) {
+          const response = await sendRequestToWorker({ command: 'schematron', schematron: schematron, xml: xml, codeBaseURI: codeBaseURI, inputBaseURI: inputBaseURI });
+          setDocument(resultEditor, response, 'xml');
+          //return response;
+      }
       // const phoenixmlWorker = new Worker("blazor/Workers/PhoenixmlWorker.razor.js");
       //
       // phoenixmlWorker.onmessage = e => {
@@ -179,11 +187,12 @@
                 <legend>code type</legend>
                 <label><input type="radio" name="code-type" value="XSLT" checked>XSLT</label>
                 <label><input type="radio" name="code-type" value="XQuery">XQuery</label>
-<!--                <label><input type="radio" name="code-type" value="XPath">XPath</label>-->
+                <label><input type="radio" name="code-type" value="Schematron">Schematron</label>
+                <!--                <label><input type="radio" name="code-type" value="XPath">XPath</label>-->
                 <!--<label><input type="radio" name="code-type" value="XSD">XSD</label>-->
             </fieldset>
         </form>
-      <label>Examples: <select id="examples" onchange="loadExample(this.options[this.selectedIndex].dataset.codeUrl, this.options[this.selectedIndex].dataset.codeType, this.options[this.selectedIndex].dataset.inputUrl, this.options[this.selectedIndex].dataset.codeType);">
+      <label>Examples: <select id="examples" onchange="loadExample(this.options[this.selectedIndex].dataset.codeUrl, this.options[this.selectedIndex].dataset.codeType, this.options[this.selectedIndex].dataset.inputUrl, this.options[this.selectedIndex].dataset.codeType, this.options[this.selectedIndex].dataset.preload);">
     <option data-code-url="" data-input-url="" data-code-type="XSLT" selected>-- choose an example --</option>
     <optgroup label="XSLT for-each-group group-by">
         <option data-code-url="examples/xslt/for-each-group/group-by/group-xml-cities-by-country.xsl" data-code-type="XSLT" data-input-url="examples/xslt/for-each-group/group-by/cities.xml" data-input-type="XML">group-by simple example 1</option>
@@ -210,7 +219,7 @@
     <optgroup label="Schematron">
         <option data-code-url="examples/xslt/schematron/schxslt2/transpile.xsl" data-code-type="XSLT" data-input-url="examples/xslt/schematron/price.sch" data-input-type="XML">Schematron transpilation sample 1</option>
         <option data-code-url="examples/xslt/schematron/schxslt2/transpile.xsl" data-code-type="XSLT" data-input-url="examples/xslt/schematron/flowers.sch" data-input-type="XML">Schematron transpilation sample 2</option>
-        <option data-code-url="examples/xslt/schematron/schxslt2/transpile-schematron-and-validate-instance.xsl" data-code-type="XSLT" data-input-url="examples/xslt/schematron/books.xml" data-input-type="XML">Schematron transpilation/validation sample1</option>
+        <option data-code-url="examples/xslt/schematron/price.sch" data-code-type="Schematron" data-input-url="examples/xslt/schematron/books.xml" data-input-type="XML">Schematron transpilation/validation sample1</option>
     </optgroup>
 </select></label>
       <label>auto-evaluation <input type="checkbox" id="auto-evaluate" checked></label>

@@ -1,4 +1,4 @@
-﻿import { dotnet } from '../_framework/dotnet.x2hzfsj0ht.js';
+﻿import { dotnet } from '../_framework/dotnet.9yakjqnp07.js';
 
 let assemblyExports;
 let startupError;
@@ -7,6 +7,7 @@ try {
     const { getAssemblyExports, getConfig } = await dotnet.create();
     const config = getConfig();
     assemblyExports = await getAssemblyExports(config.mainAssemblyName);
+    assemblyExports.PhoenixmlWorker.Initialize(self.location.origin);
 } catch (err) {
     startupError = err.message;
 }
@@ -25,6 +26,9 @@ self.addEventListener('message', async e => {
                 break;
             case 'executeXQuery':
                 result = await assemblyExports.PhoenixmlWorker.ExecuteXQuery(e.data.xquery, e.data.xml);
+                break;
+            case 'schematron':
+                result = await assemblyExports.PhoenixmlWorker.Schematron(e.data.schematron, e.data.xml, e.data.codeBaseURI, e.data.inputBaseURI);
                 break;
             default:
                 throw new Error(`Unknown command: ${e.data.command}`);

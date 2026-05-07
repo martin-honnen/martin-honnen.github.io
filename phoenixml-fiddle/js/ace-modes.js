@@ -1,5 +1,6 @@
 var modes = {
     'xml': 'ace/mode/xml',
+    'sch': 'ace/mode/xml',
     'html': 'ace/mode/html',
     'xhtml': 'ace/mode/xml',
     'json': 'ace/mode/json',
@@ -13,6 +14,7 @@ var filetypes = {
     '.htm': 'html',
     '.html': 'html',
     '.xml': 'xml',
+    '.sch': 'xml', 
     '.xsd': 'xml',
     '.xsl': 'xml',
     '.xslt': 'xml',
