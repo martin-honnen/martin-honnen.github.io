@@ -7,7 +7,7 @@ try {
     const { getAssemblyExports, getConfig } = await dotnet.create();
     const config = getConfig();
     assemblyExports = await getAssemblyExports(config.mainAssemblyName);
-    assemblyExports.PhoenixmlWorker.Initialize(self.location.origin);
+    assemblyExports.PhoenixmlWorker.Initialize(document.location);
 } catch (err) {
     startupError = err.message;
 }
