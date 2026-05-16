@@ -7,6 +7,6 @@
 
 <para>This is a very simple <phrase xml:id="docbook">DocBook</phrase>
 document. It serves as a kind of <quote xml:id="smoketest">smoke
-test</quote> to demonstrate that the stylesheets are working.</para>
+test</quote> to demonstrate that the stylesheets are working in Blazor web assembly.</para>
 
 </article>
