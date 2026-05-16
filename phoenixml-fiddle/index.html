@@ -28,7 +28,10 @@
           var inputFileName = inputFileInput != null ? inputFileInput.value : '';
           //var inputBaseURI = inputFileName != '' && gistId != null ? new URL(inputFileName, gistBaseURI).href : 'urn:from-string';
           //var codeBaseURI = codeFileName != '' && gistId != null ? new URL(codeFileName, gistBaseURI).href : 'urn:from-string';
-          if (codeType === 'XSLT')
+          if (codeType === 'XSLT' && codeBaseURI.endsWith('docbook.xsl')) {
+              await docbook(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), codeBaseURI, inputBaseURI);
+          }
+          else if (codeType === 'XSLT')
               await transform(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue(), codeBaseURI, inputBaseURI);
           else if (codeType === 'XQuery')
               await xquery(inputType !== 'None' ? inputEditor.session.getValue() : null, codeEditor.session.getValue());// codeBaseURI, inputBaseURI, document.getElementById('results'));
@@ -110,6 +113,21 @@
 
       async function transform(xml, xslt, codeBaseURI, inputBaseURI) {
           const response = await sendRequestToWorker({ command: 'transform', xslt: xslt, xml: xml, codeBaseURI: codeBaseURI, inputBaseURI: inputBaseURI });
+          if (typeof response === 'string') {
+              setDocument(resultEditor, response, 'text');
+          }
+          else {
+              let results = [];
+              for (let p in response) {
+                  results.push({ uri: p, content: response[p], method: 'xml' });
+              }
+              renderXsltResults(results, document.getElementById('results'));
+          }
+          //return response;
+      }
+
+      async function docbook(xml, xslt, codeBaseURI, inputBaseURI) {
+          const response = await sendRequestToWorker({ command: 'docbook', xslt: xslt, xml: xml, codeBaseURI: codeBaseURI, inputBaseURI: inputBaseURI });
           if (typeof response === 'string') {
               setDocument(resultEditor, response, 'text');
           }
@@ -218,8 +236,12 @@
     </optgroup>
     <optgroup label="Schematron">
         <option data-code-url="examples/xslt/schematron/schxslt2/transpile.xsl" data-code-type="XSLT" data-input-url="examples/xslt/schematron/price.sch" data-input-type="XML">Schematron transpilation sample 1</option>
+        <option data-code-url="examples/xslt/schematron/price.sch" data-code-type="Schematron" data-input-url="examples/xslt/schematron/books.xml" data-input-type="XML">Schematron transpilation/validation sample 1</option>
         <option data-code-url="examples/xslt/schematron/schxslt2/transpile.xsl" data-code-type="XSLT" data-input-url="examples/xslt/schematron/flowers.sch" data-input-type="XML">Schematron transpilation sample 2</option>
-        <option data-code-url="examples/xslt/schematron/price.sch" data-code-type="Schematron" data-input-url="examples/xslt/schematron/books.xml" data-input-type="XML">Schematron transpilation/validation sample1</option>
+        <option data-code-url="examples/xslt/schematron/flowers.sch" data-code-type="Schematron" data-input-url="examples/xslt/schematron/flowers.xml" data-input-type="XML">Schematron transpilation/validation sample 2</option>
+    </optgroup>
+    <optgroup label="Docbook">
+        <option data-code-url="examples/xslt/docbook/xslt/docbook.xsl" data-code-type="XSLT" data-input-url="examples/xslt/docbook/samples/article.xml" data-input-type="XML" data-preload="docbook">Docbook article transform with Docbook TNG</option>
     </optgroup>
 </select></label>
       <label>auto-evaluation <input type="checkbox" id="auto-evaluate" checked></label>
@@ -274,7 +296,7 @@
             <div class="grid-item">
                 <div id="code-editor" class="editor"></div>
                 <input type="button" id="load-code" value="load" onclick="document.getElementById('load-code-file').click();">
-                <input type="file" id="load-code-file" onchange="this.files[0].text().then(t => codeEditor.session.setValue(t));" accept=".xml,.xsl,.xslt,.xsd,text/xml,application/xml,application/xml+xslt">
+                <input type="file" id="load-code-file" onchange="this.files[0].text().then(t => codeEditor.session.setValue(t));" accept=".xml,.sch,.xsl,.xslt,.xsd,text/xml,application/xml,application/xml+xslt">
             </div>
         </section>
         <section class="grid-row button-bar">

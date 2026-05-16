@@ -1,18 +1,15 @@
-﻿import { dotnet } from '../_framework/dotnet.9yakjqnp07.js';
+﻿import { dotnet } from '../_framework/dotnet.nf0neds4fz.js';
 
 let assemblyExports;
 let startupError;
 
 try {
-  const { getAssemblyExports, getConfig } = await dotnet.create();
-  const config = getConfig();
-  assemblyExports = await getAssemblyExports(config.mainAssemblyName);
-  // Derive app base from the worker script URL, works on subpath deployments too
-  const appBase = new URL('../../', self.location.href).href.replace(/\/$/, '');
-  assemblyExports.PhoenixmlWorker.Initialize(appBase);
+    const { getAssemblyExports, getConfig } = await dotnet.create();
+    const config = getConfig();
+    assemblyExports = await getAssemblyExports(config.mainAssemblyName);
+    assemblyExports.PhoenixmlWorker.Initialize(self.location.origin);
 } catch (err) {
-  startupError = err.message;
-  assemblyExports = null; // Reset so the null-check in the message handler triggers
+    startupError = err.message;
 }
 
 self.addEventListener('message', async e => {
@@ -25,6 +22,10 @@ self.addEventListener('message', async e => {
         switch (e.data.command) {
             case 'transform':
                 result = await assemblyExports.PhoenixmlWorker.Transform(e.data.xslt, e.data.xml, e.data.codeBaseURI, e.data.inputBaseURI);
+                result = JSON.parse(result);
+                break;
+            case 'docbook':
+                result = await assemblyExports.PhoenixmlWorker.Docbook(e.data.xslt, e.data.xml, e.data.codeBaseURI, e.data.inputBaseURI);
                 result = JSON.parse(result);
                 break;
             case 'executeXQuery':
