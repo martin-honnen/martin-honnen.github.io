@@ -7,9 +7,12 @@ try {
     const { getAssemblyExports, getConfig } = await dotnet.create();
     const config = getConfig();
     assemblyExports = await getAssemblyExports(config.mainAssemblyName);
-    assemblyExports.PhoenixmlWorker.Initialize(self.location.origin);
+    // Derive app base from the worker script URL, works on subpath deployments too
+    const appBase = new URL('../../', self.location.href).href.replace(/\/$/, '');
+    assemblyExports.PhoenixmlWorker.Initialize(appBase);
 } catch (err) {
     startupError = err.message;
+    assemblyExports = null; // Reset so the null-check in the message handler triggers
 }
 
 self.addEventListener('message', async e => {
