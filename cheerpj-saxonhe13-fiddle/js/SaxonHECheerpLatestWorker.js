@@ -73,7 +73,7 @@ var saxonInitialized = false;
   
   SaxonProcessor = await lib.net.sf.saxon.s9api.Processor;
   
-  SaxonHelpers = await lib.net.liberty_development.cheerp3Helpers.SaxonHelpers;
+  SaxonHelpers = await lib.net.liberty_development.CheerpSaxonHE13Helpers.SaxonHelpers;
 
   StringReader = await lib.java.io.StringReader;
 
