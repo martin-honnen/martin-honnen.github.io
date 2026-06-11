@@ -1,0 +1,18 @@
+[
+  {
+    "name" : "item 1",
+    "categories" : [ "cat 1", "cat 2"]
+  },
+  {
+    "name" : "item 2",
+    "categories" : [ "cat 1", "cat 3"]
+  },
+  {
+    "name" : "item 3",
+    "categories" : [ "cat 2", "cat 3"]
+  },
+  {
+    "name" : "item 4",
+    "categories" : [ "cat 2", "cat 4"]
+  }
+]
