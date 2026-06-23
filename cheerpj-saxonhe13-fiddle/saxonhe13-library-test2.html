@@ -104,7 +104,9 @@ transform(
 
     var result = await xqueryEvaluator.evaluate();
 
-    console.log(`XQuery result: ${result}`);
+    var resultString = await result.toString();
+
+    console.log(`XQuery result: ${resultString}`);
 
   })();
 </script>
