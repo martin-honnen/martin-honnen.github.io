@@ -100,7 +100,7 @@ transform(
 
     xqueryEvaluator = await xqueryExecutable.load();
 
-    xqueryEvaluator.setContextItem(input);
+    await xqueryEvaluator.setContextItem(input);
 
     var result = await xqueryEvaluator.evaluate();
 
