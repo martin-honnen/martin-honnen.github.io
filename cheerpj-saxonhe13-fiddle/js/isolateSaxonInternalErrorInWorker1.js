@@ -1,71 +1,33 @@
 importScripts("https://cjrtnc.leaningtech.com/4.3/loader.js");//importScripts("https://cjrtnc.leaningtech.com/4.2/loader.js"); //"https://cjrtnc.leaningtech.com/3_20250414_1093/cj3loader.js"); //https://cjrtnc.leaningtech.com/3_20250330_890/cj3loader.js");//https://cjrtnc.leaningtech.com/3.1/cj3loader.js"); //importScripts("https://cjrtnc.leaningtech.com/3_20241216_574/cj3loader.js"); //importScripts("https://cjrtnc.leaningtech.com/3_20241213_572/cj3loader.js"); //importScripts("https://cjrtnc.leaningtech.com/3.0/cj3loader.js");
+var lib = null;
+
+var SaxonProcessor = null;
+
+var StringReader = null;
+
+var StringWriter = null;
+
+var StreamSource = null;
+
+var URI = null;
+
+var JException = null;
+
+var SaxonApiException = null;
+
+var saxonProcessor = null;
+
+var xqueryCompiler = null;
+
+var xqueryExecutable = null;
+
+var xqueryEvaluator = null;
 
 var input = null;
-var xqueryCode = `let $xslt := <xsl:stylesheet version="3.0"
-                exclude-result-prefixes="#all"
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:mf="http://example.com/mf">
-
-    <xsl:function name="mf:rng" as="xs:double" visibility="public">
-        <xsl:param name="input" as="xs:double?"/>
-
-        <xsl:variable name="value" as="xs:double">
-            <xsl:choose>
-                <xsl:when test="empty($input) or $input = 0 or number($input) != number($input)">
-                    <xsl:sequence select="random-number-generator(current-dateTime())?number"/>
-                </xsl:when>
-
-                <xsl:when test="$input &lt; 0">
-                    <xsl:sequence select="$input * -1"/>
-                </xsl:when>
-
-                <xsl:otherwise>
-                    <xsl:sequence select="$input"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-        <xsl:sequence select="$value"/>
-    </xsl:function>
-
-</xsl:stylesheet>
-
-for $n in (1 to 3)
-return
-transform(
-    map {
-      'stylesheet-node' : $xslt,
-      'delivery-format' : 'raw',
-      'initial-function' : QName('http://example.com/mf', 'rng'),
-      'function-params' : [()]
-    }
-  )?output`;
+var xqueryCode = `for $n in (1 to 5) return $n * $n`;
 
 (async function () {
-  var lib = null;
 
-  var SaxonProcessor = null;
-
-  var StringReader = null;
-
-  var StringWriter = null;
-
-  var StreamSource = null;
-
-  var URI = null;
-
-  var JException = null;
-
-  var SaxonApiException = null;
-
-  var saxonProcessor = null;
-
-  var xqueryCompiler = null;
-
-  var xqueryExecutable = null;
-
-  var xqueryEvaluator = null;
 
   await cheerpjInit({version: 17});
 
@@ -74,13 +36,6 @@ transform(
   JException = await lib.java.lang.Exception;
 
   SaxonProcessor = await lib.net.sf.saxon.s9api.Processor;
-
-  StringReader = await lib.java.io.StringReader;
-
-  StringWriter = await lib.java.io.StringWriter;
-
-
-  URI = await lib.java.net.URI;
 
   SaxonApiException = await lib.net.sf.saxon.s9api.SaxonApiException;
 
@@ -92,7 +47,7 @@ transform(
 
   xqueryEvaluator = await xqueryExecutable.load();
 
-  xqueryEvaluator.setContextItem(input);
+  await xqueryEvaluator.setContextItem(input);
 
   var result = await xqueryEvaluator.evaluate();
 
