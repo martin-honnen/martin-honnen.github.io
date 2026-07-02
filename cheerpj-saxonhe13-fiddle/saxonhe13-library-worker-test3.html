@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CheerpJ 4.3 Saxon HE 13 XQuery in worker test</title>
+
+  <script>
+
+    const saxonWorker = new Worker("js/isolateSaxonInternalErrorInWorker2.js");
+
+    saxonWorker.onmessage = e => {
+      if (e.data.type === 'XSLT-Results' || e.data.type === 'xquery-result') {
+        var results = e.data.results;
+        console.log(`Worker received ${e.data.type}: ${results}`);
+      }
+      else if (e.data.type === 'result') {
+        var results = e.data.results;
+        console.log(`Worker received: ${results}`);
+      }
+      else if (e.data.type === 'message' && e.data.message === 'hide') {
+
+      }
+      else {
+        console.log(`Worker received: ${e.data.message}`);
+      }
+    }
+  </script>
+
+</head>
+<body>
+
+<section>
+  <h1>Saxon HE 13 XQuery worker test</h1>
+  <script>
+    function xquery(input, xquery, inputType, codeBaseURI, inputBaseURI, resultsSelect) {
+
+      saxonWorker.postMessage({ task: 'xquery', data : { input : input, code: xquery, inputType: inputType, xqueryBaseURI: codeBaseURI, inputBaseURI: inputBaseURI }});
+
+    }
+
+    const xqueryCode = `random-number-generator(current-dateTime())?permute(1 to 10) ! <item>{.}</item>`;
+  </script>
+  <p>Open the browser console, wait for the message that CheerpJ and Saxon have been initialized to appear, then click the button below and check the browser console for error</p>
+  <input type="button" value="test Saxon HE 13 XQuery in worker with dummy context item" onclick="xquery('<root/>', xqueryCode, 'XML', 'urn:from-string', 'urn:from-string', null);">
+  <input type="button" value="test Saxon HE 13 XQuery with no context item in worker" onclick="xquery(null, xqueryCode, 'None', 'urn:from-string', 'urn:from-string', null);">
+</section>
+
+
+</body>
+</html>
