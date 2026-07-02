@@ -76,7 +76,7 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
 
 	  }
 	  catch (e) {
- 		  console.log('Error evaluating XQuery');
+ 		  console.log('Error evaluating XQuery' + typeof e === 'string' ? ': ' + e : '');
       if (e instanceof SaxonApiException) {
         postMessage({ type: 'error', message: 'Error evaluating XQuery: ' + await e.getMessage() + ' (Line ' + await e.getLineNumber() + ')' });
         await e.printStackTrace();
