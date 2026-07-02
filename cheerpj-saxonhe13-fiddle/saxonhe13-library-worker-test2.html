@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CheerpJ 4.3 Saxon HE 13 XQuery in worker test</title>
+
+  <script>
+
+    const saxonWorker = new Worker("js/isolateSaxonInternalErrorInWorker2.js");
+
+
+  </script>
+
+</head>
+<body>
+
+<section>
+  <h1>Saxon HE 13 XQuery worker test</h1>
+  <script>
+    function xquery(input, xquery, inputType, codeBaseURI, inputBaseURI, resultsSelect) {
+
+      saxonWorker.postMessage({ task: 'xquery', data : { input : input, code: xquery, inputType: inputType, xqueryBaseURI: codeBaseURI, inputBaseURI: inputBaseURI }});
+
+    }
+
+    const xqueryCode = `random-number-generator(current-dateTime())?permute(1 to 10) ! <item>{.}</item>`;
+  </script>
+  <p>Click button and check the browser console for error</p>
+  <input type="button" value="test Saxon HE 13 XQuery in worker" onclick="xquery(null, xqueryCode, 'None', 'urn:from-string', 'urn:from-string', null);">
+</section>
+
+
+</body>
+</html>
