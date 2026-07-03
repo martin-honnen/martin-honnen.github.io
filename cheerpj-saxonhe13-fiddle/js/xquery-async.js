@@ -56,7 +56,7 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
 
       var loggerWriter = await new StringWriter;
 
-      await xquerySelector.setTraceFunctionDestination(await new SaxonLogger(loggerWriter));
+      await xquerySelector.setTraceFunctionDestination(await SaxonLogger.makeLogger(loggerWriter));
 
 		  await xquerySelector.setContextItem(contextItem);
 
