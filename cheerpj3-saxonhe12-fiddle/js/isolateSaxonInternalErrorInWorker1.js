@@ -32,9 +32,9 @@ var docBuilder = null;
 
   await cheerpjInit({version: 8});
 
-  lib = await cheerpjRunLibrary("/app/cheerpj3-saxonhe12-fiddle/Saxon-HE-12.9.jar:/app/cheerpj3-saxonhe12-fiddle/Cheerp3Helpers.jar");
+  lib = await cheerpjRunLibrary("/app/cheerpj3-saxonhe12-fiddle/Saxon-HE-12.10.jar:/app/cheerpj3-saxonhe12-fiddle/Cheerp3Helpers.jar");
   
-  console.log('Worker CheerpJ 4.2 library initialized');
+  console.log('Worker CheerpJ 4.3 library initialized');
 
   JException = await lib.java.lang.Exception;
   
