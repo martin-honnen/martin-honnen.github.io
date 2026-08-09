@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test CheerpJ nightly Java 21 support</title>
+  <script src="https://cjrtnc.leaningtech.com/20260803_3439/loader.js"></script>
+
+</head>
+<body>
+<h1>Cheepj nightly test</h1>
+<pre id="console"></pre>
+<script>
+(async function () {
+  await cheerpjInit({ version: 21});
+  const lib = await cheerpjRunLibrary("");
+  const System = await lib.java.lang.System;
+  console.log(`Java version: ${await System.getProperty("java.version")}`);
+})();
+</script>
+</body>
+</html>
