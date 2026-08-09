@@ -8,10 +8,12 @@
 </head>
 <body>
 <script>
+(async function () {
   await cheerpjInit({ version: 21});
   const lib = await cheerpjRunLibrary("");
   const System = lib.java.lang.System;
   console.log(`Java version: ${System.getProperty("java.version")}`);
+})();
 </script>
 </body>
 </html>
