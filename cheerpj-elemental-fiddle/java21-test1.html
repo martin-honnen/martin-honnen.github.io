@@ -11,7 +11,7 @@
 (async function () {
   await cheerpjInit({ version: 21});
   const lib = await cheerpjRunLibrary("");
-  const System = lib.java.lang.System;
+  const System = await lib.java.lang.System;
   console.log(`Java version: ${System.getProperty("java.version")}`);
 })();
 </script>
