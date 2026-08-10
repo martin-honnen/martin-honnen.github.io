@@ -68,6 +68,10 @@ html, body {
     height: 100%;
 }
 
+console {
+  overflow: auto;
+}
+
 #load-input, #load-code, #save-result {
     position: absolute;
     right: 9px;
