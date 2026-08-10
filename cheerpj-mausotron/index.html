@@ -99,9 +99,11 @@
       if (mausotronInitialized) {
 
         try {
+          document.getElementById('console').textContent = 'Validating your XML with Schematron...\n';
           cheerpOSAddStringFile("/str/schematron.sch", schematron);
           cheerpOSAddStringFile("/str/sample.xml", input);
           await mainClass.main(["validate", "--verbose", "/str/schematron.sch", "/str/sample.xml"]);
+          document.getElementById('console').textContent += `Validation terminated.\n`;
         }
         catch (e) {
           document.getElementById('console').textContent = 'Schematron validation of your XML failed: ' + (typeof e === 'string' ? e : await e.getMessage());
