@@ -86,7 +86,8 @@
         }
       }
       else {
-        setDocument(resultEditor, e.data.message, 'text');
+        //setDocument(resultEditor, e.data.message, 'text');
+        console.log(e.data.message);
       }
     }
 
@@ -156,7 +157,7 @@
             </label>
             <label id="render-result">
                 render result
-                <input type="checkbox" id="render-box" name="render-box" checked>
+                <input type="checkbox" id="render-box" name="render-box">
             </label>
         </section>
         <section class="grid-row">
