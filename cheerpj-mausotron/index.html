@@ -102,8 +102,11 @@
           document.getElementById('console').textContent = 'Validating your XML with Schematron...\n';
           cheerpOSAddStringFile("/str/schematron.sch", schematron);
           cheerpOSAddStringFile("/str/sample.xml", input);
-          await mainClass.main(["validate", "--verbose", "/str/schematron.sch", "/str/sample.xml"]);
+          await mainClass.main(["validate", "--verbose", "--report=/str/report.xml", "/str/schematron.sch", "/str/sample.xml"]);
           document.getElementById('console').textContent += `Validation terminated.\n`;
+          const reportBlob = await cjFileBlob("/str/report.xml");
+          const report = await reportBlob.text();
+          document.getElementById('current-result-frame').value = report;
         }
         catch (e) {
           document.getElementById('console').textContent = 'Schematron validation of your XML failed: ' + (typeof e === 'string' ? e : await e.getMessage());
@@ -193,7 +196,7 @@
                 <a id="save-result" onclick="var blob = new Blob([document.getElementById('console').textContent], { type: 'text/plain' }); this.download = 'validationResult.txt'; this.href = window.URL.createObjectURL(blob);">save</a>
             </div>
             <div id="result-frame-container" class="grid-item">
-                <iframe id="current-result-frame" name="current-result-frame" src="about:blank" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
+                <textarea id="current-result-frame" name="current-result-frame"></textarea>
             </div>
         </section>
 
