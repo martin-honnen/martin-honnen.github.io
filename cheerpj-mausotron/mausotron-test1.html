@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test CheerpJ nightly Mausotron test 1</title>
+  <script src="https://cjrtnc.leaningtech.com/20260803_3439/loader.js"></script>
+</head>
+<body>
+<h1>CheepJ Mausotron command line test 1</h1>
+<pre id="console"></pre>
+<script>
+  const xmlSample = `<table>
+  <tr>
+    <td>1,1</td>
+    <td>1,2</td>
+  </tr>
+  <tr>
+    <td>2,1</td>
+    <td>2,2</td>
+  </tr>
+  <tr>
+    <td>3,1</td>
+  </tr>
+</table>`;
+  const schematronSample = `<sch:schema xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt3">
+   <sch:pattern>
+       <sch:rule context="table">
+            <sch:let name="minColumsNo" value="min(.//tr/count(td))"/>
+            <sch:let name="reqColumsNo" value="max(.//tr/count(td))"/>
+
+            <!-- Check the number of cells on each row -->
+            <sch:assert test="$minColumsNo >= $reqColumsNo">Cells are missing. (The number of cells for
+                each row must be <sch:value-of select="$reqColumsNo"/>)</sch:assert>
+        </sch:rule>
+   </sch:pattern>
+</sch:schema>`;
+
+  (async function () {
+    await cheerpjInit({ version: 21});
+    cheerpOSAddStringFile("/str/schematron.sch", schematronSample);
+    cheerpOSAddStringFile("/str/sample.xml", xmlSample);
+    const exitCode = await cheerpjRunJar("/app/mausotron/mausotron.jar", "validate", "/str/schematron.sch", "/str/sample.xml");
+    console.log(`Mausotron exited with code ${exitCode}`);
+  })();
+</script>
+</body>
+</html>
