@@ -180,7 +180,7 @@
                 <input type="file" id="load-code-file" onchange="this.files[0].text().then(t => codeEditor.session.setValue(t));" accept=".xml,.sch,text/xml,application/xml,application/xml+schematron">
             </div>
         </section>
-        <section class="grid-row button-bar">
+        <!--<section class="grid-row button-bar">
             <label>
                 Result documents:
                 <select name="results" id="results"></select>
@@ -189,14 +189,14 @@
                 render result
                 <input type="checkbox" id="render-box" name="render-box">
             </label>
-        </section>
+        </section>-->
         <section class="grid-row">
             <div class="grid-item">
                 <pre id="console" class="console"></pre>
                 <a id="save-result" onclick="var blob = new Blob([document.getElementById('console').textContent], { type: 'text/plain' }); this.download = 'validationResult.txt'; this.href = window.URL.createObjectURL(blob);">save</a>
             </div>
             <div id="result-frame-container" class="grid-item">
-                <textarea id="current-result-frame" name="current-result-frame"></textarea>
+                <textarea id="current-result-frame" name="current-result-frame" rows="20" cols="80"></textarea>
             </div>
         </section>
 
