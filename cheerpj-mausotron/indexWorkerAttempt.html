@@ -68,48 +68,28 @@
       writeResult(window.frames['current-result-frame'], principalResult);
     }
 
-    var lib = null;
+    const mausotronWorker = new Worker("js/MausotronCheerpLatestWorker.js");
 
-    var mausotronInitialized = false;
-    var mainClass = null;
-
-    async function loadLib() {
-      await cheerpjInit({ version: 21});
-      document.getElementById('cheerpj-load-indicator').style.display = 'none';
-      lib = await cheerpjRunLibrary("/app/cheerpj-mausotron/mausotron/mausotron-1.5.jar");
-
-      console.log('Worker CheerpJ library initialized');
-
-      mainClass = await lib.info.mausotron.Main;
-
-      mausotronInitialized = true;
-    }
-
-    (async function () {
-      await loadLib();
-    })();
-
-    async function schematronValidate(input, schematron, inputUri, xsltUri, outputUri) {
-
-      if (mausotronInitialized) {
-
-        try {
-          cheerpOSAddStringFile("/str/schematron.sch", schematron);
-          cheerpOSAddStringFile("/str/sample.xml", input);
-          await mainClass.main(["validate", "--verbose", "/str/schematron.sch", "/str/sample.xml"]);
+    mausotronWorker.onmessage = e => {
+      if (e.data.type === 'XSLT-Results' || e.data.type === 'xquery-result') {
+        var results = e.data.results;
+        renderXsltResults(results, document.querySelector('#results'));
+      }
+      else if (e.data.type === 'result') {
+        var results = e.data.results;
+        renderResults(results, document.querySelector('#results'));
+      }
+      else if (e.data.type === 'message' && e.data.message === 'hide') {
+        document.getElementById(e.data.id).style.display = 'none';
+        if (e.data.id === 'mausotron-load-indicator' && autoEvaluation) {
+          evaluate();
         }
-        catch (e) {
-          document.getElementById('console').textContent = 'Schematron validation of your XML failed: ' + (typeof e === 'string' ? e : await e.getMessage());
-        }
-
       }
       else {
-        console.log('Wait for Mausotron library to be loaded.');
+        //setDocument(resultEditor, e.data.message, 'text');
+        console.log(e.data.message);
       }
-
-
     }
-
 
     document.addEventListener('DOMContentLoaded', autoEvaluate, false);
 	</script>
@@ -139,7 +119,7 @@
                 &lt;!&ndash;<label><input type="radio" name="code-type" value="XSD">XSD</label>&ndash;&gt;
             </fieldset>-->
         </form>
-      <label>auto-evaluation <input type="checkbox" id="auto-evaluate"></label>
+      <label>auto-evaluation <input type="checkbox" id="auto-evaluate" checked></label>
       <input type="button" id="validate" value="Schematron validation" accesskey="v"
              onclick="var codeFileInput = document.getElementById('codeFile');
                         var codeFileName = codeFileInput != null ? codeFileInput.value : '';
@@ -196,6 +176,7 @@
 
 <script src="js/frame-write.js"></script>
 <script src="js/ace-modes.js"></script>
+<script src="js/schematron-validate.js"></script>
 <script src="js/ace-editors-init.js"></script>
 <script src="js/event-listeners-init.js"></script>
 <script src="js/init-examples.js"></script>
