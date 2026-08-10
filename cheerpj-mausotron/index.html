@@ -102,9 +102,9 @@
           document.getElementById('console').textContent = 'Validating your XML with Schematron...\n';
           cheerpOSAddStringFile("/str/schematron.sch", schematron);
           cheerpOSAddStringFile("/str/sample.xml", input);
-          await mainClass.main(["validate", "--verbose", "--report=/str/report.xml", "/str/schematron.sch", "/str/sample.xml"]);
+          await mainClass.main(["validate", "--verbose", "--report=/files/report.xml", "/str/schematron.sch", "/str/sample.xml"]);
           document.getElementById('console').textContent += `Validation terminated.\n`;
-          const reportBlob = await cjFileBlob("/str/report.xml");
+          const reportBlob = await cjFileBlob("/files/report.xml");
           const report = await reportBlob.text();
           document.getElementById('current-result-frame').value = report;
         }
