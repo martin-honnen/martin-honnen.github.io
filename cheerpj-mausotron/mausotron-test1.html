@@ -29,8 +29,7 @@
             <sch:let name="reqColumsNo" value="max(.//tr/count(td))"/>
 
             <!-- Check the number of cells on each row -->
-            <sch:assert test="$minColumsNo >= $reqColumsNo">Cells are missing. (The number of cells for
-                each row must be <sch:value-of select="$reqColumsNo"/>)</sch:assert>
+            <sch:assert test="$minColumsNo >= $reqColumsNo">Cells are missing. (The number of cells for each row must be <sch:value-of select="$reqColumsNo"/>)</sch:assert>
         </sch:rule>
    </sch:pattern>
 </sch:schema>`;
