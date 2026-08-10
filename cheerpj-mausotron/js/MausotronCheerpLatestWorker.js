@@ -15,7 +15,7 @@ var mausotronInitialized = false;
 
   await cheerpjInit({version: 21});
 
-  lib = await cheerpjRunLibrary("/app/cheerpj-mausotron/mausotron/mausotron-1.5.jar");
+  lib = await cheerpjRunLibrary("/app/cheerpj-mausotron/mausotron/mausotron-1.6.jar");
 
   console.log('Worker CheerpJ library initialized');
 

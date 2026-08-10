@@ -38,7 +38,7 @@
     await cheerpjInit({ version: 21});
     cheerpOSAddStringFile("/str/schematron.sch", schematronSample);
     cheerpOSAddStringFile("/str/sample.xml", xmlSample);
-    const exitCode = await cheerpjRunJar("/app/cheerpj-mausotron/mausotron/mausotron-1.5.jar", "validate", "--verbose", "/str/schematron.sch", "/str/sample.xml");
+    const exitCode = await cheerpjRunJar("/app/cheerpj-mausotron/mausotron/mausotron-1.6.jar", "validate", "--verbose", "/str/schematron.sch", "/str/sample.xml");
     console.log(`Mausotron exited with code ${exitCode}`);
   })();
 </script>

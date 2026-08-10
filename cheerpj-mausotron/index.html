@@ -79,7 +79,7 @@
 
       document.getElementById('cheerpj-load-indicator').style.display = 'none';
 
-      lib = await cheerpjRunLibrary("/app/cheerpj-mausotron/mausotron/mausotron-1.5.jar");
+      lib = await cheerpjRunLibrary("/app/cheerpj-mausotron/mausotron/mausotron-1.6.jar");
 
       console.log('Mausotron library initialized');
 
@@ -102,7 +102,7 @@
           document.getElementById('console').textContent = 'Validating your XML with Schematron...\n';
           cheerpOSAddStringFile("/str/schematron.sch", schematron);
           cheerpOSAddStringFile("/str/sample.xml", input);
-          await mainClass.main(["validate", "--verbose", "--report=/files/report.xml", "/str/schematron.sch", "/str/sample.xml"]);
+          await mainClass.main(["validate", "--verbose", "--indent-report", "--report=/files/report.xml", "/str/schematron.sch", "/str/sample.xml"]);
           document.getElementById('console').textContent += `Validation terminated.\n`;
           const reportBlob = await cjFileBlob("/files/report.xml");
           const report = await reportBlob.text();
