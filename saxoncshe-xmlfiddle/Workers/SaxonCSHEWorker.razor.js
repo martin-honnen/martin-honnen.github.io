@@ -8,7 +8,7 @@ try {
     const config = getConfig();
     assemblyExports = await getAssemblyExports(config.mainAssemblyName);
     // Derive app base from the worker script URL, works on subpath deployments too
-    const appBase = new URL('../../', self.location.href).href.replace(/\/$/, '');
+    const appBase = new URL('../', self.location.href).href.replace(/\/$/, '');
     assemblyExports.SaxonCSHEWorker.Initialize(appBase);
 } catch (err) {
     startupError = err.message;
