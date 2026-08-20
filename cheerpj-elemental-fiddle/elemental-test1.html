@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Elemental Test 1</title>
+  <script src="https://cjrtnc.leaningtech.com/20260811_3455/loader.js"></script>
+</head>
+<body>
+<script>
+(async function () {
+  await cheerpjInit({ version: 21, javaProperties: ["exist.home=/app"] });
+
+  //const lib = await cheerpjRunLibrary("/app/lib/exist-core-7.7.0.jar:/app/lib/jcip-annotations-1.0.jar:/app/lib/antlr-2.7.7.jar:/app/lib/jackson-core-2.22.1.jar:/app/lib/aalto-xml-1.3.4.jar:/app/lib/stax2-api-4.2.2.jar:/app/lib/multilock-1.0.1.jar:/app/lib/caffeine-3.2.3.jar:/app/lib/error_prone_annotations-2.43.0.jar:/app/lib/clj-ds-0.0.4.jar:/app/lib/exificient-1.0.7.jar:/app/lib/slf4j-api-2.0.17.jar:/app/lib/xmlpull-1.1.3.1.jar:/app/lib/activation-1.1.1.jar:/app/lib/exificient-grammars-1.0.7.jar:/app/lib/exificient-core-1.0.7.jar:/app/lib/icu4j-59.1.jar:/app/lib/jsr305-3.0.2.jar:/app/lib/jspecify-1.0.0.jar:/app/lib/jing-20241231.jar:/app/lib/isorelax-20030108.jar:/app/lib/exist-start-7.7.0.jar:/app/lib/elemental-media-type-api-7.7.0.jar:/app/lib/elemental-media-type-impl-7.7.0.jar:/app/lib/jakarta.activation-api-2.1.4.jar:/app/lib/apache-httpd-mime-types-2.4.65+1.0.1.jar:/app/lib/exquery-common-0.2.1.jar:/app/lib/bcprov-jdk18on-1.85.jar:/app/lib/lz4-java-1.10.2.jar:/app/lib/j8cu-3.0.0.jar:/app/lib/j8fu-1.24.0.jar:/app/lib/java-uuid-generator-5.2.0.jar:/app/lib/jakarta.servlet-api-5.0.0.jar:/app/lib/jakarta.xml.bind-api-4.0.4.jar:/app/lib/angus-activation-2.0.3.jar:/app/lib/jaxb-runtime-4.0.6.jar:/app/lib/jaxb-core-4.0.6.jar:/app/lib/txw2-4.0.6.jar:/app/lib/istack-commons-runtime-4.1.2.jar:/app/lib/xqjri-20080114-133351.jar:/app/lib/jline-3.30.6.jar:/app/lib/byte-buddy-1.18.2.jar:/app/lib/jargo-0.4.14.jar:/app/lib/commons-codec-1.20.0.jar:/app/lib/commons-io-2.21.0.jar:/app/lib/commons-logging-1.3.5.jar:/app/lib/commons-pool2-2.13.0.jar:/app/lib/log4j-api-2.26.1.jar:/app/lib/log4j-core-2.26.1.jar:/app/lib/log4j-jcl-2.26.1.jar:/app/lib/log4j-jul-2.26.1.jar:/app/lib/log4j-slf4j2-impl-2.26.1.jar:/app/lib/xercesImpl-2.12.2.2-jdk14-xml-schema-1.1.jar:/app/lib/nekohtml-2.1.3.jar:/app/lib/xml-apis-1.4.02.jar:/app/lib/ws-commons-util-1.1.0.jar:/app/lib/xml-resolver-1.2.jar:/app/lib/xmlresolver-6.0.19.jar:/app/lib/xmlresolver-6.0.19-data.jar:/app/lib/xpath2-1.2.1.1.jar:/app/lib/java-cup-10k.jar:/app/lib/Saxon-HE-9.9.1-8.jar:/app/lib/exist-saxon-regex-9.4.0-9.e1.jar:/app/lib/xmlrpc-common-6.1.0.jar:/app/lib/xmlrpc-client-6.1.0.jar:/app/lib/xmlrpc-server-6.1.0.jar:/app/lib/jetty-jaas-11.0.26.jar:/app/lib/api-asn1-api-2.1.7.jar:/app/lib/api-i18n-2.1.7.jar:/app/lib/api-ldap-model-2.1.7.jar:/app/lib/api-asn1-ber-2.1.7.jar:/app/lib/mina-core-2.2.3.jar:/app/lib/commons-lang3-3.15.0.jar:/app/lib/commons-collections4-4.4.jar:/app/lib/api-util-2.1.7.jar:/app/lib/jetty-http-11.0.26.jar:/app/lib/jetty-io-11.0.26.jar:/app/lib/jetty-security-11.0.26.jar:/app/lib/jetty-server-11.0.26.jar:/app/lib/jetty-util-11.0.26.jar:/app/lib/pkg-java-2.0.1.jar:/app/lib/rsyntaxtextarea-3.6.0.jar:/app/lib/quartz-2.5.2.jar:/app/lib/xmldb-api-2.0.0.jar:/app/lib/fastutil-8.5.18.jar:/app/lib/bifurcan-0.2.0-rc1.jar:/app/lib/ant-1.10.15.jar:/app/lib/ant-launcher-1.10.15.jar:/app/lib/jgrapht-core-1.5.2.jar:/app/lib/jheaps-0.14.jar:/app/lib/apfloat-1.10.1.jar:/app/lib/jgrapht-opt-1.5.2.jar:/app/lib/junit-4.13.2.jar:/app/lib/hamcrest-3.0.jar:/app/lib/xmlunit-core-2.11.0.jar:/app/lib/jetty-annotations-11.0.26.jar:/app/lib/jakarta.annotation-api-2.1.1.jar:/app/lib/jetty-plus-11.0.26.jar:/app/lib/jakarta.transaction-api-2.0.0.jar:/app/lib/jetty-jndi-11.0.26.jar:/app/lib/asm-9.8.jar:/app/lib/asm-commons-9.8.jar:/app/lib/asm-tree-9.8.jar:/app/lib/jetty-servlet-11.0.26.jar:/app/lib/jetty-webapp-11.0.26.jar:/app/lib/jetty-xml-11.0.26.jar");
+
+  const lib = await cheerpjRunLibrary("/app/cheerpj-elemental-fiddle/lib/exist-core-7.7.0.jar:/app/cheerpj-elemental-fiddle/lib/jcip-annotations-1.0.jar:/app/cheerpj-elemental-fiddle/lib/antlr-2.7.7.jar:/app/cheerpj-elemental-fiddle/lib/jackson-core-2.22.1.jar:/app/cheerpj-elemental-fiddle/lib/aalto-xml-1.3.4.jar:/app/cheerpj-elemental-fiddle/lib/stax2-api-4.2.2.jar:/app/cheerpj-elemental-fiddle/lib/multilock-1.0.1.jar:/app/cheerpj-elemental-fiddle/lib/caffeine-3.2.3.jar:/app/cheerpj-elemental-fiddle/lib/error_prone_annotations-2.43.0.jar:/app/cheerpj-elemental-fiddle/lib/clj-ds-0.0.4.jar:/app/cheerpj-elemental-fiddle/lib/exificient-1.0.7.jar:/app/cheerpj-elemental-fiddle/lib/slf4j-api-2.0.17.jar:/app/cheerpj-elemental-fiddle/lib/xmlpull-1.1.3.1.jar:/app/cheerpj-elemental-fiddle/lib/activation-1.1.1.jar:/app/cheerpj-elemental-fiddle/lib/exificient-grammars-1.0.7.jar:/app/cheerpj-elemental-fiddle/lib/exificient-core-1.0.7.jar:/app/cheerpj-elemental-fiddle/lib/icu4j-59.1.jar:/app/cheerpj-elemental-fiddle/lib/jsr305-3.0.2.jar:/app/cheerpj-elemental-fiddle/lib/jspecify-1.0.0.jar:/app/cheerpj-elemental-fiddle/lib/jing-20241231.jar:/app/cheerpj-elemental-fiddle/lib/isorelax-20030108.jar:/app/cheerpj-elemental-fiddle/lib/exist-start-7.7.0.jar:/app/cheerpj-elemental-fiddle/lib/elemental-media-type-api-7.7.0.jar:/app/cheerpj-elemental-fiddle/lib/elemental-media-type-impl-7.7.0.jar:/app/cheerpj-elemental-fiddle/lib/jakarta.activation-api-2.1.4.jar:/app/cheerpj-elemental-fiddle/lib/apache-httpd-mime-types-2.4.65+1.0.1.jar:/app/cheerpj-elemental-fiddle/lib/exquery-common-0.2.1.jar:/app/cheerpj-elemental-fiddle/lib/bcprov-jdk18on-1.85.jar:/app/cheerpj-elemental-fiddle/lib/lz4-java-1.10.2.jar:/app/cheerpj-elemental-fiddle/lib/j8cu-3.0.0.jar:/app/cheerpj-elemental-fiddle/lib/j8fu-1.24.0.jar:/app/cheerpj-elemental-fiddle/lib/java-uuid-generator-5.2.0.jar:/app/cheerpj-elemental-fiddle/lib/jakarta.servlet-api-5.0.0.jar:/app/cheerpj-elemental-fiddle/lib/jakarta.xml.bind-api-4.0.4.jar:/app/cheerpj-elemental-fiddle/lib/angus-activation-2.0.3.jar:/app/cheerpj-elemental-fiddle/lib/jaxb-runtime-4.0.6.jar:/app/cheerpj-elemental-fiddle/lib/jaxb-core-4.0.6.jar:/app/cheerpj-elemental-fiddle/lib/txw2-4.0.6.jar:/app/cheerpj-elemental-fiddle/lib/istack-commons-runtime-4.1.2.jar:/app/cheerpj-elemental-fiddle/lib/xqjri-20080114-133351.jar:/app/cheerpj-elemental-fiddle/lib/jline-3.30.6.jar:/app/cheerpj-elemental-fiddle/lib/byte-buddy-1.18.2.jar:/app/cheerpj-elemental-fiddle/lib/jargo-0.4.14.jar:/app/cheerpj-elemental-fiddle/lib/commons-codec-1.20.0.jar:/app/cheerpj-elemental-fiddle/lib/commons-io-2.21.0.jar:/app/cheerpj-elemental-fiddle/lib/commons-logging-1.3.5.jar:/app/cheerpj-elemental-fiddle/lib/commons-pool2-2.13.0.jar:/app/cheerpj-elemental-fiddle/lib/log4j-api-2.26.1.jar:/app/cheerpj-elemental-fiddle/lib/log4j-core-2.26.1.jar:/app/cheerpj-elemental-fiddle/lib/log4j-jcl-2.26.1.jar:/app/cheerpj-elemental-fiddle/lib/log4j-jul-2.26.1.jar:/app/cheerpj-elemental-fiddle/lib/log4j-slf4j2-impl-2.26.1.jar:/app/cheerpj-elemental-fiddle/lib/xercesImpl-2.12.2.2-jdk14-xml-schema-1.1.jar:/app/cheerpj-elemental-fiddle/lib/nekohtml-2.1.3.jar:/app/cheerpj-elemental-fiddle/lib/xml-apis-1.4.02.jar:/app/cheerpj-elemental-fiddle/lib/ws-commons-util-1.1.0.jar:/app/cheerpj-elemental-fiddle/lib/xml-resolver-1.2.jar:/app/cheerpj-elemental-fiddle/lib/xmlresolver-6.0.19.jar:/app/cheerpj-elemental-fiddle/lib/xmlresolver-6.0.19-data.jar:/app/cheerpj-elemental-fiddle/lib/xpath2-1.2.1.1.jar:/app/cheerpj-elemental-fiddle/lib/java-cup-10k.jar:/app/cheerpj-elemental-fiddle/lib/Saxon-HE-9.9.1-8.jar:/app/cheerpj-elemental-fiddle/lib/exist-saxon-regex-9.4.0-9.e1.jar:/app/cheerpj-elemental-fiddle/lib/xmlrpc-common-6.1.0.jar:/app/cheerpj-elemental-fiddle/lib/xmlrpc-client-6.1.0.jar:/app/cheerpj-elemental-fiddle/lib/xmlrpc-server-6.1.0.jar:/app/cheerpj-elemental-fiddle/lib/jetty-jaas-11.0.26.jar:/app/cheerpj-elemental-fiddle/lib/api-asn1-api-2.1.7.jar:/app/cheerpj-elemental-fiddle/lib/api-i18n-2.1.7.jar:/app/cheerpj-elemental-fiddle/lib/api-ldap-model-2.1.7.jar:/app/cheerpj-elemental-fiddle/lib/api-asn1-ber-2.1.7.jar:/app/cheerpj-elemental-fiddle/lib/mina-core-2.2.3.jar:/app/cheerpj-elemental-fiddle/lib/commons-lang3-3.15.0.jar:/app/cheerpj-elemental-fiddle/lib/commons-collections4-4.4.jar:/app/cheerpj-elemental-fiddle/lib/api-util-2.1.7.jar:/app/cheerpj-elemental-fiddle/lib/jetty-http-11.0.26.jar:/app/cheerpj-elemental-fiddle/lib/jetty-io-11.0.26.jar:/app/cheerpj-elemental-fiddle/lib/jetty-security-11.0.26.jar:/app/cheerpj-elemental-fiddle/lib/jetty-server-11.0.26.jar:/app/cheerpj-elemental-fiddle/lib/jetty-util-11.0.26.jar:/app/cheerpj-elemental-fiddle/lib/pkg-java-2.0.1.jar:/app/cheerpj-elemental-fiddle/lib/rsyntaxtextarea-3.6.0.jar:/app/cheerpj-elemental-fiddle/lib/quartz-2.5.2.jar:/app/cheerpj-elemental-fiddle/lib/xmldb-api-2.0.0.jar:/app/cheerpj-elemental-fiddle/lib/fastutil-8.5.18.jar:/app/cheerpj-elemental-fiddle/lib/bifurcan-0.2.0-rc1.jar:/app/cheerpj-elemental-fiddle/lib/ant-1.10.15.jar:/app/cheerpj-elemental-fiddle/lib/ant-launcher-1.10.15.jar:/app/cheerpj-elemental-fiddle/lib/jgrapht-core-1.5.2.jar:/app/cheerpj-elemental-fiddle/lib/jheaps-0.14.jar:/app/cheerpj-elemental-fiddle/lib/apfloat-1.10.1.jar:/app/cheerpj-elemental-fiddle/lib/jgrapht-opt-1.5.2.jar:/app/cheerpj-elemental-fiddle/lib/junit-4.13.2.jar:/app/cheerpj-elemental-fiddle/lib/hamcrest-3.0.jar:/app/cheerpj-elemental-fiddle/lib/xmlunit-core-2.11.0.jar:/app/cheerpj-elemental-fiddle/lib/jetty-annotations-11.0.26.jar:/app/cheerpj-elemental-fiddle/lib/jakarta.annotation-api-2.1.1.jar:/app/cheerpj-elemental-fiddle/lib/jetty-plus-11.0.26.jar:/app/cheerpj-elemental-fiddle/lib/jakarta.transaction-api-2.0.0.jar:/app/cheerpj-elemental-fiddle/lib/jetty-jndi-11.0.26.jar:/app/cheerpj-elemental-fiddle/lib/asm-9.8.jar:/app/cheerpj-elemental-fiddle/lib/asm-commons-9.8.jar:/app/cheerpj-elemental-fiddle/lib/asm-tree-9.8.jar:/app/cheerpj-elemental-fiddle/lib/jetty-servlet-11.0.26.jar:/app/cheerpj-elemental-fiddle/lib/jetty-webapp-11.0.26.jar:/app/cheerpj-elemental-fiddle/lib/jetty-xml-11.0.26.jar");
+
+  const EXistException = await lib.org.exist.EXistException;
+  const PermissionDeniedException = await lib.org.exist.security.PermissionDeniedException;
+  const Subject = await lib.org.exist.security.Subject;
+  const Source = await lib.org.exist.source.Source;
+  const StringSource = await lib.org.exist.source.StringSource;
+  const BrokerPool = await lib.org.exist.storage.BrokerPool;
+  const DBBroker = await lib.org.exist.storage.DBBroker;
+  const Txn = await lib.org.exist.storage.txn.Txn;
+  const ExistEmbeddedServer = await lib.org.exist.test.ExistEmbeddedServer;
+  const DatabaseConfigurationException = await lib.org.exist.util.DatabaseConfigurationException;
+  const XQuerySerializer = await lib.org.exist.util.serializer.XQuerySerializer;
+  const XPathException = await lib.org.exist.xquery.XPathException;
+  const XQueryUtil = await lib.org.exist.xquery.XQueryUtil;
+  const Sequence = await lib.org.exist.xquery.value.Sequence;
+  const SAXException = await lib.org.xml.sax.SAXException;
+  const OutputKeys = await lib.javax.xml.transform.OutputKeys;
+  const IOException = await lib.java.io.IOException;
+  const StringWriter = await lib.java.io.StringWriter;
+  const Optional = await lib.java.util.Optional;
+  const Properties = await lib.java.util.Properties;
+
+  const Files = await lib.java.nio.file.Files;
+  //const StandardCopyOption = await lib.java.nio.file.StandardCopyOption;
+  const Paths = await lib.java.nio.file.Paths;
+
+
+
+  try {
+    const dataDir = await Paths.get("/files/data");
+
+    await Files.createDirectories(dataDir);
+
+    console.log(`dataDir.toAbsolutePath().toString(): ${await (await dataDir.toAbsolutePath()).toString()}`);
+    console.log(`dataDir.isAbsolute(): ${await dataDir.isAbsolute()}`);
+
+    const serverProperties = await new Properties();
+    await serverProperties.setProperty(
+      "db-connection.data-dir",
+      "/files/data"
+    );
+    await serverProperties.setProperty(
+      "db-connection.recovery.journal-dir",
+      "/files/data"
+    );
+
+    const server = await new ExistEmbeddedServer(
+      serverProperties,
+      true,
+      false
+    );
+
+    //const server = await new ExistEmbeddedServer(true, false);
+    await server.startDb();
+
+    // 2. Execute an XQuery
+    const query = await new StringSource("declare namespace output = 'http://www.w3.org/2010/xslt-xquery-serialization'; declare option output:method 'adaptive'; declare option output:indent 'yes'; <items>{(fold-left(1 to 12, random-number-generator(current-dateTime()), function($a, $i) { head($a)?next(), head($a)?number, tail($a) }) => tail()) ! <item>{.}</item>}</items>, map { 'foo' : 'bar' }");
+
+    const outputProperties = await new Properties();
+    //outputProperties.setProperty(OutputKeys.METHOD, "adaptive");
+    //outputProperties.setProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+    //outputProperties.setProperty(OutputKeys.INDENT, "yes");
+
+    const brokerPool = await server.getBrokerPool();
+    const systemDba = await Optional.of(await brokerPool.getSecurityManager().getSystemSubject());
+
+    const broker = await server.getBrokerPool().get(systemDba);
+    const transaction = await brokerPool.getTransactionManager().beginTransaction();
+
+    //try {
+    const result = await XQueryUtil.query(broker, query, false, true, null, outputProperties, null, null, null);
+    const resultSequence = await result.result;
+
+    console.log("Got: " + await resultSequence.getItemCountLong() + " result(s) in: " + await result.totalTime() + "ms");
+
+    //try {
+    const writer = await new StringWriter();
+    const serializer = await new XQuerySerializer(broker, outputProperties, writer);
+    await serializer.serialize(resultSequence);
+    console.log("Result Sequence:");
+    console.log(await writer.toString());
+    //
+
+
+    // NOTE(AR) Make sure to commit the transaction!
+    await transaction.commit();
+
+
+    // 3. Stop the server
+    await server.stopDb();
+  }
+  catch (e) {
+    console.error("Error: " + (typeof e === 'string' ? e : await e.getMessage()));
+  }
+})();
+</script>
+</body>
+</html>
