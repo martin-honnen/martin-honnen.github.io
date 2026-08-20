@@ -1,0 +1,57 @@
+﻿import { dotnet } from '../_framework/dotnet.1kczp1oufh.js';
+
+let assemblyExports;
+let startupError;
+
+try {
+    const { getAssemblyExports, getConfig } = await dotnet.create();
+    const config = getConfig();
+    assemblyExports = await getAssemblyExports(config.mainAssemblyName);
+    // Derive app base from the worker script URL, works on subpath deployments too
+    const appBase = new URL('../../', self.location.href).href.replace(/\/$/, '');
+    assemblyExports.SaxonCSHEWorker.Initialize(appBase);
+} catch (err) {
+    startupError = err.message;
+    assemblyExports = null; // Reset so the null-check in the message handler triggers
+}
+
+self.addEventListener('message', async e => {
+    try {
+        if (!assemblyExports) {
+            throw new Error(startupError || 'worker exports not loaded');
+        }
+
+        let result;
+        switch (e.data.command) {
+            case 'transform':
+                result = await assemblyExports.SaxonCSHEWorker.Transform(e.data.xslt, e.data.xml, e.data.inputType, e.data.codeBaseURI, e.data.inputBaseURI);
+                result = JSON.parse(result);
+                break;
+            case 'docbook':
+                result = await assemblyExports.SaxonCSHEWorker.Docbook(e.data.xslt, e.data.xml, e.data.codeBaseURI, e.data.inputBaseURI);
+                result = JSON.parse(result);
+                break;
+            case 'executeXQuery':
+                 result = await assemblyExports.SaxonCSHEWorker.ExecuteXQuery(e.data.xquery, e.data.xml, e.data.inputType, e.data.codeBaseURI, e.data.inputBaseURI);
+                break;
+            case 'evaluateXPath':
+                result = await assemblyExports.SaxonCSHEWorker.EvaluateXPath(e.data.xpath, e.data.xml, e.data.inputType, e.data.codeBaseURI, e.data.inputBaseURI);
+                break;
+            case 'schematron':
+                result = await assemblyExports.SaxonCSHEWorker.Schematron(e.data.schematron, e.data.xml, e.data.codeBaseURI, e.data.inputBaseURI);
+                break;
+            default:
+                throw new Error(`Unknown command: ${e.data.command}`);
+        }
+
+        self.postMessage({
+            command: 'response',
+            requestId: e.data.requestId, result
+        });
+    } catch (err) {
+        self.postMessage({
+            command: 'response',
+            requestId: e.data.requestId, error: err.message
+        });
+    }
+});
