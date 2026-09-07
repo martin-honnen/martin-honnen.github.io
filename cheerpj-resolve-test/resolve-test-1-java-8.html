@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>resolve Test 1 Java 21</title>
+  <script src="https://cjrtnc.leaningtech.com/20260907_3546/loader.js"></script>
+</head>
+<body>
+<script>
+(async function () {
+  await cheerpjInit({ version: 21 });
+
+  const lib = await cheerpjRunLibrary("");
+
+  const Paths = await lib.java.nio.file.Paths;
+
+  const Path = await lib.java.nio.file.Path;
+
+  const etcPath = await Paths.get("/app/cheerpj-resolve-test/etc");
+  const confPath = await etcPath.resolve("conf.xml");
+
+  console.log(await confPath.toString());
+
+
+})();
+</script>
+</body>
+</html>
