@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+   <uri name="https://exproc.org/contrib/ndw/standalone/1.0.1.xpl"
+        uri="ndw/standalone/1.0.1.xpl"/>
+   <uri name="https://exproc.org/contrib/ndw/standalone/1.0.0.xpl"
+        uri="ndw/standalone/1.0.0.xpl"/>
+   <uri name="https://exproc.org/contrib/ndw/xslt-save/1.0.1.xpl"
+        uri="ndw/xslt-save/1.0.1.xpl"/>
+   <uri name="https://exproc.org/contrib/ndw/xslt-save/1.0.0.xpl"
+        uri="ndw/xslt-save/1.0.0.xpl"/>
+</catalog>
