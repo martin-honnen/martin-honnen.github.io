@@ -30,7 +30,9 @@
 
   const hexFormat = await HexFormat.of();
 
-  console.log(await hexFormat.formatHex(hash));
+  const hexString = await hexFormat.formatHex(hash);
+
+  console.log(hexString.toUpperCase());
 
 })();
 </script>
