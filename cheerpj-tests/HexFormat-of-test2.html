@@ -16,9 +16,11 @@
 
   const HexFormat = await lib.java.util.HexFormat;
 
+  const String = await lib.java.lang.String;
+
   const md5 = await MessageDigest.getInstance("MD5");
 
-  await md5.update(await "XSLT is great!".getBytes());
+  await md5.update(await (await String.valueOf("XSLT is great!")).getBytes());
 
   const hash = await md5.digest();
 
