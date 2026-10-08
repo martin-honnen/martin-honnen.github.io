@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Java 17 HexFormat.of test</title>
+  <script src="https://cjrtnc.leaningtech.com/4.3/loader.js"></script>
+</head>
+<body>
+<script>
+(async function () {
+  await cheerpjInit({version: 17 });
+
+  const lib = await cheerpjRunLibrary("");
+
+  const HexFormat = await lib.java.util.HexFormat;
+
+  const hexFormat = await HexFormat.of();
+
+  console.log(hexFormat);
+
+
+})();
+</script>
+</body>
+</html>
