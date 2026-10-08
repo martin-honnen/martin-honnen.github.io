@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Java 17 HexFormat.of test</title>
+  <script src="https://cjrtnc.leaningtech.com/4.3/loader.js"></script>
+</head>
+<body>
+<script>
+(async function () {
+  await cheerpjInit({version: 17 });
+
+  const lib = await cheerpjRunLibrary("");
+
+  const MessageDigest = await lib.java.security.MessageDigest;
+
+  const HexFormat = await lib.java.util.HexFormat;
+
+  const md5 = await MessageDigest.getInstance("MD5");
+
+  await md5.update("XSLT is great!".getBytes());
+
+  const hash = await md5.digest();
+
+  const hexFormat = await HexFormat.of();
+
+  console.log(await hexFormat.formatHex(hash));
+
+})();
+</script>
+</body>
+</html>
