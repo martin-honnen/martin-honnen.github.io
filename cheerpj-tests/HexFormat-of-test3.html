@@ -20,7 +20,11 @@
 
   const md5 = await MessageDigest.getInstance("MD5");
 
-  await md5.update(new TextEncoder().encode("XSLT is great!"));
+  const u8 = new TextEncoder().encode("XSLT is great!");
+
+  const i8 = new Int8Array(u8.buffer, u8.byteOffset, u8.byteLength);
+
+  await md5.update(i8);
 
   const hash = await md5.digest();
 
