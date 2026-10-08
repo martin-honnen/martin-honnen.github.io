@@ -20,7 +20,7 @@
 
   const md5 = await MessageDigest.getInstance("MD5");
 
-  await md5.update(await (await String.valueOf("XSLT is great!")).getBytes());
+  await md5.update(await (await new String("XSLT is great!")).getBytes());
 
   const hash = await md5.digest();
 
