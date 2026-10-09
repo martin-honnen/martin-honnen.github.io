@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Java 17 CheerpJ nightly MessageDigest update byte[] test</title>
+  <script src="https://cjrtnc.leaningtech.com/20261007_3659/loader.js"></script>
+</head>
+<body>
+<script>
+(async function () {
+  await cheerpjInit({version: 17 });
+
+  const lib = await cheerpjRunLibrary("");
+
+  const MessageDigest = await lib.java.security.MessageDigest;
+
+  const HexFormat = await lib.java.util.HexFormat;
+
+  const String = await lib.java.lang.String;
+
+  const md5 = await MessageDigest.getInstance("MD5");
+
+  await md5.update(await (await new String("XSLT is great!")).getBytes());
+
+  const hash = await md5.digest();
+
+  const hexFormat = await HexFormat.of();
+
+  const hashString = await hexFormat.formatHex(hash);
+
+  console.log(hashString.toUpperCase());
+
+})();
+</script>
+</body>
+</html>
