@@ -22,7 +22,7 @@
 
   const u8 = new TextEncoder().encode("XSLT is great!");
 
-  const i8 = new Int8Array(u8.buffer, u8.byteOffset, u8.byteLength);
+  const i8 = new Int8Array(u8.buffer); //new Int8Array(u8.buffer, u8.byteOffset, u8.byteLength);
 
   await md5.update(i8);
 
