@@ -33,16 +33,18 @@ async function xquery(input, xquery, inputType, inputUri, xqueryUri) {
 
       console.log('method: ' + method);
 
-      var item = await iter.next();
+      // var item = await iter.next();
+      //
+      // while (item != null) {
+      //   await serializer.serialize(item);
+      //   item = await iter.next();
+      // }
+      //
+      // //await os.flush();
+      //
+      // const serializedResult = await os.toString('UTF-8');
 
-      while (item != null) {
-        await serializer.serialize(item);
-        item = await iter.next();
-      }
-
-      //await os.flush();
-
-      const serializedResult = await os.toString('UTF-8');
+      const serializedResult = await BaseX13Helper.serializeQuery(queryProcessor);
 
 		  postMessage({ type : 'xquery-result', task: 'xquery',  results : [{ uri : '*** query result ***', content : serializedResult, method: method === 'basex' ? 'xml' : method }]});
 
