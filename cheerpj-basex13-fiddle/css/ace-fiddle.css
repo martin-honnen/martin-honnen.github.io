@@ -1,0 +1,91 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* background-color: lightgreen; */
+}
+
+#input-type-form {
+    display: flex;
+    flex-direction: row;
+}
+
+.view-container {
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 100%;
+    flex-direction: column;
+}
+
+.grid-row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    flex-basis: 50%;
+    /* height: 50%; */
+    /*background-color: lightgreen;*/
+}
+
+.button-bar {
+    align-items: center;
+    flex-basis: auto;
+    justify-content: space-around;
+}
+
+.button-bar h2 {
+    margin: 0.3em 0;
+}
+
+.grid-item {
+    flex-grow: 1;
+    flex-basis: 50%;
+    height: 100%;
+    position: relative;
+    /*background-color: lightyellow;*/
+    /*border: 1px solid red;*/
+}
+
+#current-result-frame {
+    width: 100%;
+    height: 100%;
+}
+
+.editor {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#load-input, #load-code, #save-result {
+    position: absolute;
+    right: 9px;
+    bottom: 9px;
+    opacity: 0.3;
+    z-index: 100;
+}
+
+#save-result {
+    display: inline-block;
+    border-width: 2px;
+    border-style: outset;
+    border-color: rgb(118,118,118);
+    padding: 2px;
+    color: black;
+    text-decoration: none;
+}
+
+#load-input-file, #load-code-file {
+    display: none;
+}

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title>Test CheerpJ nightly with Java 21 support with BaseX 13</title>
+    <!--<script src="https://cjrtnc.leaningtech.com/20250522_2392/loader.js"></script>-->
+    <!--<script src="https://cjrtnc.leaningtech.com/20250526_2407/loader.js"></script>-->
+    <script src="https://cjrtnc.leaningtech.com/20261007_3659/loader.js"></script>
+  </head>
+  <body>
+    <script>
+    const xquery = `parse-xml('<root><item>foo</item><item>bar</item></root>')`;
+
+
+    var lib = null;
+
+    var Context = null;
+
+    var QueryProcessor = null;
+
+    var QueryException = null;
+
+    var Value = null;
+
+    var Iter = null;
+
+    var Serializer = null;
+
+    var OutputSerializer = null;
+
+    var SerializerOptions = null;
+
+    var BaseX13Helper = null;
+
+    var StringReader = null;
+
+    var StringWriter = null;
+
+    var StreamSource = null;
+
+    var ByteArrayOutputStream = null;
+
+    var URI = null;
+
+    var JException = null;
+
+    var basexInitialized = false;
+
+    var context = null;
+
+    var queryProcessor = null;
+
+    var System = null;
+
+    var javaOut = null;
+
+    (async function () {
+
+      await cheerpjInit({version:21});
+
+      lib = await cheerpjRunLibrary("/app/cheerpj-basex13-fiddle/BaseX.jar:/app/cheerpj-basex13-fiddle/CheerpJBaseX13Helper.jar:/app/cheerpj-basex13-fiddle/lib/basex-api-13.0-SNAPSHOT.jar:/app/cheerpj-basex13-fiddle/lib/htmlparser-1.4.16.jar:/app/cheerpj-basex13-fiddle/lib/markup-blitz-1.13.jar:/app/cheerpj-basex13-fiddle/lib/jing-20241231.jar:/app/cheerpj-basex13-fiddle/lib/lucene-stemmers-3.4.0.jar:/app/cheerpj-basex13-fiddle/lib/jline-2.14.6.jar:/app/cheerpj-basex13-fiddle/lib/custom/saxon-he-12.10.jar:/app/cheerpj-basex13-fiddle/lib/custom/xercesImpl.jar:/app/cheerpj-basex13-fiddle/lib/custom/xml-apis.jar:/app/cheerpj-basex13-fiddle/lib/custom/cupv10k-runtime.jar:/app/cheerpj-basex13-fiddle/lib/custom/org.eclipse.wst.xml.xpath2.processor_1.2.1.jar");
+
+      basexInitialized = true;
+
+      console.log('CheerpJ library initialized');
+
+      System = await lib.java.lang.System;
+
+      JException = await lib.java.lang.Exception;
+
+      Context = await lib.org.basex.core.Context;
+
+      MainOptions = await lib.org.basex.core.MainOptions;
+
+      QueryProcessor = await lib.org.basex.query.QueryProcessor;
+
+      QueryException = await lib.org.basex.query.QueryException;
+
+      Value = await lib.org.basex.query.value.Value;
+
+      ByteArrayOutputStream = await lib.java.io.ByteArrayOutputStream;
+
+      Iter = await lib.org.basex.query.iter.Iter;
+
+      Serializer = await lib.org.basex.io.serial.Serializer;
+
+      OutputSerializer = await lib.org.basex.io.serial.OutputSerializer;
+
+      SerializerOptions = await lib.org.basex.io.serial.SerializerOptions;
+
+      BaseX13Helper = await lib.BaseX13Helper;
+
+      StringReader = await lib.java.io.StringReader;
+
+      StringWriter = await lib.java.io.StringWriter;
+
+      StreamSource = await lib.javax.xml.transform.stream.StreamSource;
+
+      URI = await lib.java.net.URI;
+
+      javaOut = await System.out;
+
+      context = await new Context(false);
+
+      queryProcessor = await new QueryProcessor(xquery, context);
+
+
+
+      var os = await new ByteArrayOutputStream();
+
+      var iter = await queryProcessor.iter();
+
+      var serializer = await queryProcessor.serializer(os);
+
+      const method = await BaseX13Helper.getSerializerMethod(serializer);
+
+      console.log('method: ' + method);
+
+      var item = await iter.next();
+
+      while (item != null) {
+        await serializer.serialize(item);
+        item = await iter.next();
+      }
+
+      const serializedResult = await os.toString('UTF-8');
+
+      console.log('serializedResult: ', serializedResult);
+
+      })();
+    </script>
+  </body>
+</html>  
+
+  
