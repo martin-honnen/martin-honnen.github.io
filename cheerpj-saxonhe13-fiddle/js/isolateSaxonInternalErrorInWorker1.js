@@ -31,7 +31,7 @@ var xqueryCode = `for $n in (1 to 5) return $n * $n`;
 
   await cheerpjInit({version: 17});
 
-  lib = await cheerpjRunLibrary("/app/cheerpj-saxonhe13-fiddle/saxon-he-13.0.jar:/app/cheerpj-saxonhe13-fiddle/lib/xmlresolver-6.0.23.jar");
+  lib = await cheerpjRunLibrary("/app/cheerpj-saxonhe13-fiddle/saxon-he-13.1.jar:/app/cheerpj-saxonhe13-fiddle/lib/xmlresolver-6.1.0.jar");
 
   JException = await lib.java.lang.Exception;
 
