@@ -1,4 +1,4 @@
-﻿import { dotnet } from '../_framework/dotnet.1kczp1oufh.js';
+﻿import { dotnet } from '../_framework/dotnet.1bqra8gqv0.js';
 
 let assemblyExports;
 let startupError;
