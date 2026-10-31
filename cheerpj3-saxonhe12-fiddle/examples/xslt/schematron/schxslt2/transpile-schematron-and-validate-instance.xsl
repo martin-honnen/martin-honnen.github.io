@@ -4,15 +4,15 @@
     exclude-result-prefixes="#all"
     version="3.0">
     
-    <xsl:param name="schema-uri" as="xs:string?" select="resolve-uri('price.sch', base-uri(/))"/>
+    <xsl:param name="schema-uri" as="xs:string?" required="yes"/>
     
     <xsl:import href="transpile.xsl"/>
     
-    <xsl:output method="xml" indent="yes"/>
+    <xsl:output indent="yes"/>
     
     <xsl:template match="/">
         <xsl:variable name="transpiled-schematron">
-            <xsl:apply-templates select="doc($schema-uri)/node()"/>
+            <xsl:apply-templates select="if (doc-available($schema-uri)) then doc($schema-uri)/node() else doc(resolve-uri($schema-uri, base-uri(/)))/node()"/>
         </xsl:variable>
         <xsl:sequence
             select="transform(map {
